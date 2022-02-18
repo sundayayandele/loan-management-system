@@ -544,7 +544,7 @@ public function profilepictureclient(Request $request,$id){
 
 public function loanAnalysisView($id){
   //  $profileclient=reg_employee_mst::find(decrypt($id));
- return $employeeData=reg_employee_mst::find(decrypt($id));
+  $employeeData=reg_employee_mst::find(decrypt($id));
 
 if (is_null($employeeData) || $employeeData->company_id == 0){
     return redirect('dashboard')->with('kycError', 'Fill In Your KYC Form First.'); 
