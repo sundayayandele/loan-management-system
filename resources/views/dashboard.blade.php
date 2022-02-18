@@ -3,5 +3,5 @@
     <div class="font-semibold text-xl leading-tight">   
         </div>
     </x-slot>
-        @include('layouts.adminkit.static.index')    
+        @include('layouts.static.index')    
 </x-app-layout>
