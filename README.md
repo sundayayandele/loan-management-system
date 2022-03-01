@@ -14,7 +14,7 @@ Please follow carefully the installation and use of this web framework of the Lo
 11.  Now you can migrate as tables as usual as:
 12.  `php artisan migrate`
 13. Navigate to your `path_to_system.../loanmgtsystem/public/register` to start the system and  ``path_to_system.../loanmgtsystem/public/login`` to login a client
-14.  To Navigate to the admin dashboard go to your `reg_employee_mst` table in your dashboard and change the column named `admin` of a registered user you would like to make an admin and change that value from 0 to 1 then that user will nolonger login to the clients dashboard but will now login to the admin dashboard.
+14.  To Navigate to the admin dashboard go to your `reg_employee_mst` table in your database and change the column named `admin` of a registered user you would like to make an admin and change that value from 0 to 1 then that user will nolonger login to the clients dashboard but will now login to the admin dashboard.
 15.  This system uses email notifications to send some requests to clients in testing. You can set up that at mailtrap (https://mailtrap.io/login) and copy the mail credentials for Laravel app and put the codes in .`env`
 ## Additions
 Feel free to make any meaningful pull request to enhance this system  
