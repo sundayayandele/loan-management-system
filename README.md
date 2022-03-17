@@ -11,7 +11,7 @@ Please follow carefully the installation and use of this web framework of the Lo
 8. Now set up your database credentials in `.env` but do not migrate the tables yet
 9. This system consists of a parent table `reg_employee_mst` which contains a foreign id which the childrens table will be referencing and as such it must be migrated first before other tables are run. Hence migrate it first as:
 10.  `php artisan migrate --path=database/migrations/2022_01_31_191309_create_reg_employee_msts_table.php`
-11.  Now you can migrate as tables as usual as:
+11.  Now you can migrate tables as usual:
 12.  `php artisan migrate`
 13. Navigate to your `path_to_system.../loanmgtsystem/public/register` to start the system and  ``path_to_system.../loanmgtsystem/public/login`` to login a client
 14.  To Navigate to the admin dashboard go to your `reg_employee_mst` table in your database and change the column named `admin` of a registered user you would like to make an admin and change that value from 0 to 1 then that user will nolonger login to the clients dashboard but will now login to the admin dashboard.
