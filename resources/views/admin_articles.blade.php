@@ -37,11 +37,23 @@
  <x-auth-validation-errors style="color:red" class="mb-4" :errors="$errors" />
               
 <!--If published successfully-->
+
+<!--profilepicture set successfully--> 
 @if (session('published'))
-      <div class="alert alert-success w-75">
-         {!! session('published') !!}
-      </div>
-@endif
+<div class="alert alert-primary alert-dismissible fade show " role="alert">
+          <div class="font-medium text-600">
+            <i class="fa-regular fa-bell"></i>
+        <strong>Hello there!</strong> You have some feedbacks
+        </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+           
+            {!! session('published') !!}
+       
+          </div>
+    </div>
+	@endif
 <br>
             <div class="form-group">
               <label for="title">Title</label>

@@ -1,14 +1,39 @@
 @include('admin_top_menu')
 
 
-
 <div class="container shadow p-3 mb-5 bg-white rounded">
 <h3>UNAPPROVED LOAN APPLICATIONS</h3>
 @if(Session::has('approved'))
-<div class="alert alert-success w-100">{{session::get('approved')}}</div>
+<div class="alert alert-primary alert-dismissible fade show " role="alert">
+          <div class="font-medium text-600">
+            <i class="fa-regular fa-bell"></i>
+        <strong>Hello there!</strong> You have some feedbacks
+        </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+           
+            {!! session('approved') !!}
+       
+          </div>
+    </div>
 @endif
+
+
 @if(Session::has('denied'))
-<div class="alert alert-danger w-100">{{session::get('denied')}}</div>
+<div class="alert alert-primary alert-dismissible fade show " role="alert">
+          <div class="font-medium text-600">
+            <i class="fa-regular fa-bell"></i>
+        <strong>Hello there!</strong> You have some feedbacks
+        </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+           
+            {!! session('denied') !!}
+       
+          </div>
+    </div>
 @endif
 <table class="table table-striped">
   <thead>

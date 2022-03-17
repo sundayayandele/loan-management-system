@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
-
+use Session;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
 class Authenticate extends Middleware
@@ -15,7 +15,8 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('dashboard');
+            Session::flash('status','You are logged out now. Enjoy browsing other public areas of the system');
+            return route('login');
         }
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
-class reg_employee_mst extends Authenticatable  
+class reg_employee_mst extends Authenticatable   
 {
     use HasFactory, Notifiable;
 

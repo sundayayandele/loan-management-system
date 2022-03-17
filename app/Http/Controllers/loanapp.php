@@ -317,7 +317,7 @@ public function web_loan_application(Request $request,$id){
 **/
    
    else if (web_loan_application::where('employee_id',"=",$request->employee_id)->exists()){
-    return redirect('dashboard')->with('pendingl', 'Whooops it seems You have a pending Loan. First settle this Loan then you can apply later.');     
+    return redirect('dashboard')->with('pendingl', 'It seems You have a pending Loan. First settle this Loan then you can apply later.');     
     } 
 
     
@@ -441,7 +441,7 @@ public function articles_view(Request $request){
 
 
 public function emailsub(){
-    $emailsub = emailsubscription::paginate(3);;
+    $emailsub = emailsubscription::paginate(3);
     return view('emailsub')->with("emailsub",$emailsub);
    
   

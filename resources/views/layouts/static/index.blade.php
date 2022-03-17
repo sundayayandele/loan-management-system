@@ -11,11 +11,6 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <!--Fontawsome--> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -27,7 +22,7 @@
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
-	<title>Home::Dashboard InstaFinance Loan Applications</title>
+	<title>{{ config('app.name') }}</title>
 
 	<link href="{{asset('dashboardassets/css/app.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -189,80 +184,154 @@
 
  <!--Successs Application-->
  @if (session('status'))
-      <div class="alert alert-success w-75">
-         {!! session('status') !!}
-      </div>
-@endif
+<div class="alert alert-primary alert-dismissible fade show " role="alert">
+          <div class="font-medium text-600">
+            <i class="fa-regular fa-bell"></i>
+        <strong>Hello there!</strong> You have some feedbacks
+        </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+           
+            {!! session('status') !!}
+     
+          </div>
+    </div>
+	@endif
+
 
 
  <!--Successs KYC FORM Application-->
  @if (session('kyc'))
-      <div class="alert alert-success w-75">
-         {!! session('kyc') !!}
-      </div>
-@endif
+<div class="alert alert-primary alert-dismissible fade show " role="alert">
+          <div class="font-medium text-600">
+            <i class="fa-regular fa-bell"></i>
+        <strong>Hello there!</strong> You have some feedbacks
+        </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+           
+            {!! session('kyc') !!}
+        
+          </div>
+    </div>
+	@endif
 
 
 <!--If Multiple loan numbers are detected in the database-->
 @if (session('wrongloannumber'))
-      <div class="alert alert-danger w-75">
-         {!! session('wrongloannumber') !!}
-      </div>
-@endif
+<div class="alert alert-danger alert-dismissible fade show " role="alert">
+          <div class="font-medium text-600">
+            <i class="fa-regular fa-bell"></i>
+        <strong>Hello there!</strong> You have some feedbacks
+        </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+           
+            {!! session('wrongloannumber') !!}
+       
+          </div>
+    </div>
+	@endif
 
 
 
 <!--If KYC Invalid-->
 @if (session('invalidKYC'))
-      <div class="alert alert-danger w-75">
-         {!! session('invalidKYC') !!}
-      </div>
-@endif
-
+<div class="alert alert-warning alert-dismissible fade show " role="alert">
+          <div class="font-medium text-600">
+            <i class="fa-regular fa-bell"></i>
+        <strong>Hello there!</strong> You have some feedbacks
+        </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            
+            {!! session('invalidKYC') !!}
+       
+          </div>
+    </div>
+	@endif
 
 <!--Invalid Company Id-->
 @if (session('invalid_company_id'))
-      <div class="alert alert-danger w-75">
-         {!! session('invalid_company_id') !!}
-      </div>
-@endif
+<div class="alert alert-danger alert-dismissible fade show " role="alert">
+          <div class="font-medium text-600">
+            <i class="fa-regular fa-bell"></i>
+        <strong>Hello there!</strong> You have some feedbacks
+        </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+           
+            {!! session('invalid_company_id') !!}
+       
+          </div>
+    </div>
+	@endif
 
 
 
 
 <!--Submit KYC Form error if user tries to access loanAmortisation/analysis without submitting KYC-->
 @if (session('kycError'))
-      <div class="alert alert-danger w-75">
-         {!! session('kycError') !!}
-      </div>
-@endif
+<div class="alert alert-danger alert-dismissible fade show " role="alert">
+          <div class="font-medium text-600">
+            <i class="fa-regular fa-bell"></i>
+        <strong>Hello there!</strong> You have some feedbacks
+        </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          
+            {!! session('kecError') !!}
+       
+          </div>
+    </div>
+	@endif
 
 
 
 <!--When a Client has a pending loan and tries to reapply (detected on bank method controller) -->
-@if (session('pendingb'))
-      <div class="alert alert-danger w-75">
-         {!! session('pendingb') !!}
-      </div>
-@endif
-
-
-
-<!--When a Client has a pending loan and tries to reapply (detected on loan method controller) -->
 @if (session('pendingl'))
-      <div class="alert alert-danger w-75">
-         {!! session('pendingl') !!}
-      </div>
-@endif
+<div class="alert alert-danger alert-dismissible fade show " role="alert">
+          <div class="font-medium text-600">
+            <i class="fa-regular fa-bell"></i>
+        <strong>Hello there!</strong> You have some feedbacks
+        </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            
+            {!! session('pendingl') !!}
+       
+          </div>
+    </div>
+	@endif
 
 
 
-<!--profilepicture set Successsfully-->
+
+
+
+<!--profilepicture set successfully--> 
 @if (session('profilepicture'))
-      <div class="alert alert-success w-75">
-         {!! session('profilepicture') !!}
-      </div>
-@endif
+<div class="alert alert-primary alert-dismissible fade show " role="alert">
+          <div class="font-medium text-600">
+            <i class="fa-regular fa-bell"></i>
+        <strong>Hello there!</strong> You have some feedbacks
+        </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+           
+            {!! session('profilepicture') !!}
+       
+          </div>
+    </div>
+	@endif
 
 
 
@@ -698,6 +767,9 @@ let profilepic = document.getElementById("profilepicture").value;
 		});
 	</script>
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
 </body>
 
 </html>

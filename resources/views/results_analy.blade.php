@@ -83,7 +83,7 @@
     <div class="card-header">
         <div class="row">
           <div class="col-sm-6 col-md-6 col-xs-12 col-lg-6">
-       Loan Status  : {{$loan_status}} Loans
+       Loan Status  : {{$loan_status}} Loan(s)
           </div>
           
         </div>

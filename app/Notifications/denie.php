@@ -46,7 +46,7 @@ class denie extends Notification
                     ->greeting('Application Denied')
                     ->line('Hi ' .$this->loan_applicant_name. ' we regret to inform you that your Loan application was denied for not meeting the minimum requirements.')
                     ->action('Notification Action', url('/'))
-                    ->line('For further enquiries please do contact us at info@instafinance.com')
+                    ->line('For further enquiries please do contact us at info@kwachacredit.com')
                     ->line('Thank you for using our application!');
     }
 

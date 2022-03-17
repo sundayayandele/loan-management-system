@@ -11,6 +11,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Session;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -70,7 +71,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-
+        Session::flash('status','You are logged out now. Enjoy browsing other public areas of the system');
         return redirect('login');
     }
 }
