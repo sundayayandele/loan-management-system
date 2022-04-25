@@ -40,28 +40,25 @@ class RegisteredUserController extends Controller
             'lastname' => ['required', 'string', 'max:255'],
             'nrc' => ['required', 'string', 'max:255','unique:reg_employee_mst'],
             'email'=>['required','email','unique:reg_employee_mst'],
-            /*
-            'Rules\Password::defaults()'
-            */
-            'password' => ['required', 'confirmed'],
+            'password' => ['required', 'confirmed',Rules\Password::defaults()],
         ]);
 
         $user = reg_employee_mst::create([
             'firstname' => $request->name,
             'lastname' => $request->lastname,
             'email' => $request->email,
-             'nrc' => $request->nrc,
+             'nrc' => str_replace('/','',$request->nrc),
          ]);
 
 
          $user_profile = website_profile::create([
-            'nrc' => $request->nrc,
+            'nrc' => str_replace('/','',$request->nrc),
         ]);
 
                 
          $reg_employee = reg_employee_mst::find($user->employee_id);
          $api_logins = new api_logins_mst;
-         $api_logins->nrc = $request->nrc;
+         $api_logins->nrc = str_replace('/','',$request->nrc);
          $api_logins->password = Hash::make($request->password);
          //$reg = $reg_employee->api_logins_mst(); 
          //return  $reg->get();
