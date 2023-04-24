@@ -20,6 +20,10 @@
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
@@ -75,8 +79,8 @@
 
 
 					<li class="sidebar-item">
-                    <a class="sidebar-link" href="{{route('emailsub')}}">
-              <i class="align-middle fas fa-users" ></i> <span class="align-middle" style="color:white">Regisered Users</span>
+                    <a class="sidebar-link" href="{{route('users.index')}}">
+              <i class="align-middle fas fa-users" ></i> <span class="align-middle" style="color:white">Registered Users</span>
             </a>					
 					</li>
 

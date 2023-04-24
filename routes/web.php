@@ -1,6 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loanapp;
+use App\Http\Controllers\RegisteredUsersController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -203,13 +205,22 @@ Route::get('approve_loan/{id}', [loanapp::class, 'approve'])
 ## Loan Applications - Denie Approve (ADMINS ONLY)
 Route::get('denied_loan_application/{id}', [loanapp::class, 'denie'])
 ->middleware('auth','admin')->name('denie');
+
      
-     
-     
+## Regisered Users - CRUD - (ADMINS ONLY)
+Route::resource('users', RegisteredUsersController::class)
+->middleware('auth','admin');     
+
+## Retrieve all registeeed users via AJAX 
+Route::get('/users-all', [RegisteredUsersController::class, 'all_users'])
+->name('all_users'); 
+
+
+
 
 ## If the Called Route is not found call this Route
 Route::fallback(function () {
-    return view('Whoops!!!! wrong address. Are you drunk ?');
+    return view('Whoops!!!! this link does not exist');
 });
 
 
