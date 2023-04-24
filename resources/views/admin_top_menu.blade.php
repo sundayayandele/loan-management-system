@@ -92,7 +92,7 @@
 					</li>
 
 					<li class="sidebar-item">
-                    <a class="sidebar-link" href="{{route('emailsub')}}">
+                    <a class="sidebar-link" href="{{route('active_loans')}}">
               <i class="align-middle fas fa-money" ></i> <span class="align-middle" style="color:white">Active Loans</span>
             </a>					
 					</li>

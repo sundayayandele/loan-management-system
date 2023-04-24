@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\ActiveLoansController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loanapp;
 use App\Http\Controllers\RegisteredUsersController;
@@ -214,6 +216,15 @@ Route::resource('users', RegisteredUsersController::class)
 ## Retrieve all registeeed users via AJAX 
 Route::get('/users-all', [RegisteredUsersController::class, 'all_users'])
 ->name('all_users'); 
+
+
+## Active Loans Users - ALL
+Route::get('active-loans', [ActiveLoansController::class,'index'])
+->middleware('auth')     
+->name('active_loans');
+## Retrieve all active loans via AJAX 
+Route::get('/loans-all', [ActiveLoansController::class, 'active_loans'])
+->name('all_active_loans'); 
 
 
 
