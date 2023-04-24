@@ -6,20 +6,21 @@ use App\Models\web_loan_application;
 use Illuminate\Http\Request;
 use DataTables;
 use App\Models\reg_employee_mst;
-class ActiveLoansController extends Controller
+
+class DeniedLoansController extends Controller
 {
-        /**
+           /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
 
 
-public function active_loans(Request $request){
+public function denied_loans(Request $request){
     
     // if ($request->ajax()) {
         
-         $data = web_loan_application::where('approved',"=",1)->get();
+         $data = web_loan_application::where('approved',"=",3)->get();
          return Datatables::of($data)
              ->addIndexColumn()  
              ->addColumn('loan_number', function($data){
@@ -52,15 +53,13 @@ public function active_loans(Request $request){
                  return $data->mobile_monney_name;
              })  
             
-             ->addColumn('due_date', function($data){
-                 return date('d, F-Y',strtotime($data->due_date));
-             })  
+            
             
              ->addColumn('created_at', function($data){
                  return date('d,F-Y',strtotime($data->created_at));
              })  
              
-             ->rawColumns(['loan_number','loan_type','mannumber','company_id','duration','loan_amount','payment_mode','mobile_money_number','mobile_money_name','due_date','created_at'])
+             ->rawColumns(['loan_number','loan_type','mannumber','company_id','duration','loan_amount','payment_mode','mobile_money_number','mobile_money_name','created_at'])
              ->make(true);
      //}
  
@@ -72,7 +71,7 @@ public function active_loans(Request $request){
      public function index()
      {
          //
-     return view('ActiveLoans.active_loans');    
+     return view('DeniedLoans.denied_loans');    
      }
  
      

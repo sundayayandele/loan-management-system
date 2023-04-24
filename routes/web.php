@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActiveLoansController;
+use App\Http\Controllers\DeniedLoansController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loanapp;
 use App\Http\Controllers\RegisteredUsersController;
@@ -218,14 +219,22 @@ Route::get('/users-all', [RegisteredUsersController::class, 'all_users'])
 ->name('all_users'); 
 
 
-## Active Loans Users - ALL
+## Active Loans
 Route::get('active-loans', [ActiveLoansController::class,'index'])
 ->middleware('auth')     
 ->name('active_loans');
 ## Retrieve all active loans via AJAX 
-Route::get('/loans-all', [ActiveLoansController::class, 'active_loans'])
+Route::get('/active-all', [ActiveLoansController::class, 'active_loans'])
 ->name('all_active_loans'); 
 
+
+## Denied Loans
+Route::get('denied-loans', [DeniedLoansController::class,'index'])
+->middleware('auth')     
+->name('denied_loans');
+## Retrieve all denied loans via AJAX 
+Route::get('/denied-all', [DeniedLoansController::class, 'denied_loans'])
+->name('all_denied_loans'); 
 
 
 

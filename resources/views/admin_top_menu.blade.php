@@ -98,8 +98,14 @@
 					</li>
 
 					<li class="sidebar-item">
-                    <a class="sidebar-link" href="{{route('emailsub')}}">
+                    <a class="sidebar-link" href="{{route('denied_loans')}}">
               <i class="align-middle fas fa-ban" ></i> <span class="align-middle" style="color:white">Denied Loans</span>
+            </a>					
+					</li>
+
+					<li class="sidebar-item">
+                    <a class="sidebar-link" href="{{route('denied_loans')}}">
+              <i class="align-middle fas flatpickr-calendar" ></i> <span class="align-middle" style="color:white">Pending Loans</span>
             </a>					
 					</li>
 
