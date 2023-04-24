@@ -104,8 +104,8 @@
 					</li>
 
 					<li class="sidebar-item">
-                    <a class="sidebar-link" href="{{route('denied_loans')}}">
-              <i class="align-middle fas flatpickr-calendar" ></i> <span class="align-middle" style="color:white">Pending Loans</span>
+                    <a class="sidebar-link" href="{{route('pending_loans')}}">
+              <i class="align-middle fas fa-clock-o" ></i> <span class="align-middle" style="color:white">Pending Loans</span>
             </a>					
 					</li>
 

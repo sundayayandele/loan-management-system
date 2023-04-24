@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActiveLoansController;
 use App\Http\Controllers\DeniedLoansController;
+use App\Http\Controllers\PendingLoansController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loanapp;
 use App\Http\Controllers\RegisteredUsersController;
@@ -235,6 +236,17 @@ Route::get('denied-loans', [DeniedLoansController::class,'index'])
 ## Retrieve all denied loans via AJAX 
 Route::get('/denied-all', [DeniedLoansController::class, 'denied_loans'])
 ->name('all_denied_loans'); 
+
+
+
+## Pending Loans
+Route::get('pendng-loans', [PendingLoansController::class,'index'])
+->middleware('auth')     
+->name('pending_loans');
+## Retrieve all pending loans via AJAX 
+Route::get('/pending-all', [PendingLoansController::class, 'pending_loans'])
+->name('all_pending_loans'); 
+
 
 
 
