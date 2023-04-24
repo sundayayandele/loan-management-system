@@ -51,7 +51,7 @@
 
 				<ul class="sidebar-nav">
 					<li class="sidebar-header">
-						Pages
+						Web Analytics
 					</li>
 
 					<li class="sidebar-item ">
@@ -67,18 +67,77 @@
             </a>					
 					</li>
 
-				
-
-				<li class="sidebar-item">
+					<li class="sidebar-item">
 						<a class="sidebar-link" href="{{route('messages')}}">
               <i class="align-middle fas fa-sms" ></i> <span class="align-middle" style="color:white">Messages</span>
             </a>
+				</li>
+
+
+					<li class="sidebar-item">
+                    <a class="sidebar-link" href="{{route('emailsub')}}">
+              <i class="align-middle fas fa-users" ></i> <span class="align-middle" style="color:white">Regisered Users</span>
+            </a>					
+					</li>
+
+
+					<li class="sidebar-header">
+						Loans
+					</li>
+
+					<li class="sidebar-item">
+                    <a class="sidebar-link" href="{{route('emailsub')}}">
+              <i class="align-middle fas fa-money" ></i> <span class="align-middle" style="color:white">Active Loans</span>
+            </a>					
+					</li>
+
+					<li class="sidebar-item">
+                    <a class="sidebar-link" href="{{route('emailsub')}}">
+              <i class="align-middle fas fa-ban" ></i> <span class="align-middle" style="color:white">Denied Loans</span>
+            </a>					
+					</li>
+
+					<li class="sidebar-item">
+                    <a class="sidebar-link" href="{{route('emailsub')}}">
+              <i class="align-middle fas fa-ban" ></i> <span class="align-middle" style="color:white">Payments updates</span>
+            </a>					
+					</li>
+
+					<li class="sidebar-item">
+                    <a class="sidebar-link" href="{{route('emailsub')}}">
+              <i class="align-middle fas fa-copy" ></i> <span class="align-middle" style="color:white">Loan Agreement Forms</span>
+            </a>					
+					</li> 
+
+
+				
+
+				
+			<li class="sidebar-header">
+						My Approvals
+					</li>
 
 			<li class="sidebar-item">
 						<a class="sidebar-link" href="{{route('review')}}">
               <i class="align-middle fas fa-copy" ></i> <span class="align-middle" style="color:white">Review Loan Applications</span>
             </a>
 					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{route('review')}}">
+              <i class="align-middle fas fa-copy" ></i> <span class="align-middle" style="color:white">Roles & Permissions</span>
+            </a>
+					</li>
+					<li class="sidebar-item">
+                    <a class="sidebar-link" href="{{route('emailsub')}}">
+              <i class="align-middle fas fa-check" ></i> <span class="align-middle" style="color:white">My Approvals</span>
+            </a>			<li class="sidebar-item">
+                    <a class="sidebar-link" href="{{route('emailsub')}}">
+              <i class="align-middle fas fa-mobile-phone" ></i> <span class="align-middle" style="color:white">Send Text</span>
+            </a>					
+					</li>		
+					</li>
+
+
 					<hr>
 <center>
 					<li class="sidebar-item">
