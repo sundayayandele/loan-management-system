@@ -42,6 +42,10 @@ return [
             'visibility' => 'public',
         ],
 
+'settlements' => [
+            'driver' => 'local',
+            'root' => public_path('settlements_files'),
+        ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

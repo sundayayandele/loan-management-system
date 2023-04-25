@@ -48,7 +48,7 @@
 </head>
 
 <body>
-
+@include('sweetalert::alert')
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
@@ -112,7 +112,7 @@
 
 					<li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('payments.create')}}">
-              <i class="align-middle fas fa-ban" ></i> <span class="align-middle" style="color:white">Payments updates</span>
+              <i class="align-middle fas fa-money" ></i> <span class="align-middle" style="color:white">Payments updates</span>
             </a>					
 					</li>
 
@@ -135,6 +135,14 @@
               <i class="align-middle fas fa-copy" ></i> <span class="align-middle" style="color:white">Review Loan Applications</span>
             </a>
 					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{route('settlements.create')}}">
+              <i class="align-middle fas fa-upload" ></i> <span class="align-middle" style="color:white">Upload Settlements</span>
+            </a>
+					</li>
+
+
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="{{route('review')}}">
               <i class="align-middle fas fa-copy" ></i> <span class="align-middle" style="color:white">Roles & Permissions</span>
@@ -143,12 +151,14 @@
 					<li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('emailsub')}}">
               <i class="align-middle fas fa-check" ></i> <span class="align-middle" style="color:white">My Approvals</span>
-            </a>			<li class="sidebar-item">
+            </a>
+					</li>
+			<li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('emailsub')}}">
               <i class="align-middle fas fa-mobile-phone" ></i> <span class="align-middle" style="color:white">Send Text</span>
             </a>					
 					</li>		
-					</li>
+					
 
 
 					<hr>
