@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActiveLoansController;
 use App\Http\Controllers\DeniedLoansController;
 use App\Http\Controllers\PendingLoansController;
+use App\Http\Controllers\PaymentsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loanapp;
 use App\Http\Controllers\RegisteredUsersController;
@@ -247,6 +248,10 @@ Route::get('pendng-loans', [PendingLoansController::class,'index'])
 Route::get('/pending-all', [PendingLoansController::class, 'pending_loans'])
 ->name('all_pending_loans'); 
 
+
+## Update Payments - CRUD - (ADMINS ONLY)
+Route::resource('payments', PaymentsController::class)
+->middleware('auth','admin');  
 
 
 

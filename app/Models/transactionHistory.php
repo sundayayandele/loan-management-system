@@ -14,9 +14,11 @@ class transactionHistory extends Model
           */
 
     protected $fillable = [
+        'loan_number',
+        'loan_amount',        
         'transaction_id',
-        'message',
-        'airtel_money_id',
+        'payment_method',
+        'user_id',
     ];
 
 

@@ -48,6 +48,7 @@
 </head>
 
 <body>
+@include('sweetalert::alert')
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
@@ -110,7 +111,7 @@
 					</li>
 
 					<li class="sidebar-item">
-                    <a class="sidebar-link" href="{{route('emailsub')}}">
+                    <a class="sidebar-link" href="{{route('payments.create')}}">
               <i class="align-middle fas fa-ban" ></i> <span class="align-middle" style="color:white">Payments updates</span>
             </a>					
 					</li>
