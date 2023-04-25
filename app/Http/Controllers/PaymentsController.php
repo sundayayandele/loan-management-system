@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\transactionHistory;
+use App\Models\web_loan_application;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -49,15 +50,51 @@ class PaymentsController extends Controller
             
         ]);
 
-      transactionHistory::create([
+        // The Loan Number exists and everything is fine upto here Now
+        // Check if the Loan Number is active|pending|completed
+       $loan_status = web_loan_application::where('loan_number',"=",$request->loan_number)->where('approved',"=",1)->exists();
+if($loan_status){
+     
+      // Update or create Transactions
+      transactionHistory::create([    
         'loan_number' => $request->loan_number,
         'loan_amount' => $request->loan_amount,
+        'payment_method' => $request->payment_method,
         'transaction_id' => $request->transaction_id,
-        'user_id' => auth()->user()->employee_id
-      ]);
-      toast('Your Payment has been added successfully!','success');
-      return redirect()->back();
+        'user_id' => auth()->user()->employee_id,
+    ]);
 
+      
+     // Update or create Balance Due
+     $total_paid = transactionHistory::where('loan_number',"=",$request->loan_number)->sum('loan_amount');
+     $loan_got = web_loan_application::where('loan_number',"=",$request->loan_number)->sum('loan_amount'); 
+     $balance_due = ($loan_got - $total_paid);
+
+
+    $update_balance = transactionHistory::where('loan_number',"=",$request->loan_number)->latest()->first();   
+    $update_balance->balance_due = $balance_due; 
+    $update_balance->save(); 
+
+// Check if the Loan has been completed 
+if($balance_due <= 0){
+$loan_done = web_loan_application::where('loan_number',"=",$request->loan_number)->first();
+$loan_done->approved = 4;
+$loan_done->save();
+toast('This Loan Re-Payment has been paid and completed successfully!','success');
+return redirect()->back();
+}
+
+else{
+    toast('A partial repayment of the Loan has been made successfully!','success');
+    return redirect()->back();   
+}
+
+}
+    
+    else{
+        toast('This Loan has either been paid in Full, denied or is pending approval!','error');
+        return redirect()->back();    
+    }
     }
 
     /**

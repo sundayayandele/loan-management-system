@@ -19,6 +19,7 @@ class transactionHistory extends Model
         'transaction_id',
         'payment_method',
         'user_id',
+        'balance_due'
     ];
 
 
