@@ -150,7 +150,12 @@
 					</li>
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="{{route('roles_permissions.create')}}">
-              <i class="align-middle fas fa fa-plus-square" ></i> <span class="align-middle" style="color:white">Assign Roles to Permissions</span>
+              <i class="align-middle fas fa fa-plus-square" ></i> <span class="align-middle" style="color:white">Permissions</span>
+            </a>
+					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{route('roles_users.create')}}">
+              <i class="align-middle fas fa fa-user" ></i> <span class="align-middle" style="color:white">Users</span>
             </a>
 					</li>
 					<li class="sidebar-item">

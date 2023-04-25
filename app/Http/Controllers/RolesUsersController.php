@@ -2,34 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\reg_employee_mst;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class RolesToPermissions extends Controller
+class RolesUsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-
+        //
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * 
+    
      */
     public function create()
     {
-        //
-        return view('RolesPermissions.create',[
-            'roles' => Role::get(),
-            'permissions' => Permission::get()
+        return view('RolesUsers.create',[
+            'users' => reg_employee_mst::get(),
+            'roles' => Role::get()
         ]);
     }
 
@@ -42,14 +42,15 @@ class RolesToPermissions extends Controller
     public function store(Request $request)
     {
        
-        $role = Role::find($request->role);
-        $permissions =explode(",",$request->input('dataField')); 
-        foreach ($permissions as $permission) {
-            $getPermission = Permission::findByName($permission);
-            $role->givePermissionTo($getPermission);
+        $user = reg_employee_mst::find($request->user);
+        $roles = explode(",",$request->input('dataField')); 
+        foreach ($roles as $role) {
+            $getRoles = Role::findByName($role);
+            $user->assignRole($getRoles);
+           
         }
 
-        toast('Roles Assigned Permission(s) Successfully!','success');
+        toast('User Assigned Role(s) Successfully!','success');
         return redirect()->back();   
     }
 

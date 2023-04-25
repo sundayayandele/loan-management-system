@@ -1,29 +1,29 @@
 
-<h3>Give Permissions to Roles </h3>
+<h3>Give Roles to Users </h3>
 <br>
 <!-- Create form with Bootstrap styling -->
 <div class="container">
-  <form class="form-horizontal" action="{{route('roles_permissions.store')}}" method="post">
+  <form class="form-horizontal" action="{{route('roles_users.store')}}" method="post">
     @csrf
   <div class="form-group">
-      <label for="roles" class="col-sm-2 control-label">Select Role:</label>
+      <label for="users" class="col-sm-2 control-label">Select User:</label>
       <div class="col-sm-10">
-        <select class="form-control" name="role">
-            @forelse ($roles as $role)
-          <option value="{{$role->id}}">{{$role->name}}</option>
+        <select class="form-control" name="user">
+            @forelse ($users as $user)
+          <option value="{{$user->employee_id}}">{{$user->firstname. " ". $user->lastname}}</option>
           @empty
-          You have not not added any roles yet 
+          You currently have no users yet 
           @endforelse
         </select>
       </div>
     </div>
 
     <div class="form-group">
-      <label for="dropdown" class="col-sm-2 control-label">Assign Permission(s)</label>
+      <label for="dropdown" class="col-sm-2 control-label">Assign Role(s):</label>
       <div class="col-sm-10">
-        <select id="dropdown" class="form-control" name="permissions">
-        @foreach ($permissions as $permission)
-          <option value="{{$permission->name}}">{{$permission->name}}</option>
+        <select id="dropdown" class="form-control" name="roles">
+        @foreach ($roles as $role)
+          <option value="{{$role->name}}">{{$role->name}}</option>
          @endforeach
         </select>
       </div>

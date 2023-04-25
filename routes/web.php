@@ -7,6 +7,7 @@ use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\UploadSettlementsFormsController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\RolesToPermissions;
+use App\Http\Controllers\RolesUsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loanapp;
 use App\Http\Controllers\RegisteredUsersController;
@@ -265,8 +266,13 @@ Route::resource('roles', RolesController::class)
 ->middleware('auth','admin');  
 
 
-## Assign Roles To Permissions - CRUD - (ADMINS ONLY)
+## Assign Permissions To Users - CRUD - (ADMINS ONLY)
 Route::resource('roles_permissions', RolesToPermissions::class)
+->middleware('auth','admin');  
+
+
+## Assign Roles To Users - CRUD - (ADMINS ONLY)
+Route::resource('roles_users', RolesUsersController::class)
 ->middleware('auth','admin');  
 
 
