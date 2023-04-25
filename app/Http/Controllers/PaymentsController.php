@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\transactionHistory;
-Use Alert;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 
 class PaymentsController extends Controller
@@ -38,17 +39,23 @@ class PaymentsController extends Controller
      */
     public function store(Request $request)
     {
+       
         //
         $request->validate([
             'loan_number' => 'required|exists:web_loan_applications',
             'loan_amount' => 'required|numeric',
             'transaction_id' => 'required|string|unique:transaction_histories',
-            'payment_method' => 'required|string',
-            'user_id' => 'required|string',
+            'payment_method' => 'required|string'
+            
         ]);
 
-      transactionHistory::create($request->all());
-      toast('Payment submitted sucessfully!','success');
+      transactionHistory::create([
+        'loan_number' => $request->loan_number,
+        'loan_amount' => $request->loan_amount,
+        'transaction_id' => $request->transaction_id,
+        'user_id' => auth()->user()->employee_id
+      ]);
+      toast('Your Payment has been added successfully!','success');
       return redirect()->back();
 
     }
