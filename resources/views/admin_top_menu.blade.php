@@ -144,8 +144,13 @@
 
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="{{route('review')}}">
-              <i class="align-middle fas fa-copy" ></i> <span class="align-middle" style="color:white">Roles & Permissions</span>
+						<a class="sidebar-link" href="{{route('roles.create')}}">
+              <i class="align-middle fas fa-user-plus" ></i> <span class="align-middle" style="color:white">Roles</span>
+            </a>
+					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{route('roles_permissions.create')}}">
+              <i class="align-middle fas fa fa-plus-square" ></i> <span class="align-middle" style="color:white">Assign Roles to Permissions</span>
             </a>
 					</li>
 					<li class="sidebar-item">

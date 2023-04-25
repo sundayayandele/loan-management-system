@@ -5,6 +5,8 @@ use App\Http\Controllers\DeniedLoansController;
 use App\Http\Controllers\PendingLoansController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\UploadSettlementsFormsController;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\RolesToPermissions;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loanapp;
 use App\Http\Controllers\RegisteredUsersController;
@@ -258,6 +260,14 @@ Route::resource('payments', PaymentsController::class)
 Route::resource('settlements', UploadSettlementsFormsController::class)
 ->middleware('auth','admin');  
 
+## Roles - CRUD - (ADMINS ONLY)
+Route::resource('roles', RolesController::class)
+->middleware('auth','admin');  
+
+
+## Assign Roles To Permissions - CRUD - (ADMINS ONLY)
+Route::resource('roles_permissions', RolesToPermissions::class)
+->middleware('auth','admin');  
 
 
 ## If the Called Route is not found call this Route

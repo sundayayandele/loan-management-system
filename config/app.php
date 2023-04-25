@@ -167,6 +167,7 @@ return [
          */
         Yajra\DataTables\DataTablesServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
         /*
          * Application Service Providers...
