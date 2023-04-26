@@ -102,7 +102,7 @@ Route::post('/articles', [loanapp::class, 'admin_articles'])
 Route::get('/emailsub', [loanapp::class, 'emailsub'])
 ->middleware('auth','admin')->name("emailsub");
 
-## Retrieve all registeeed users via AJAX 
+## Retrieve all emails via AJAX 
 Route::get('/emails-all', [loanapp::class, 'all_emails'])
 ->name('all_emails'); 
 
@@ -111,6 +111,10 @@ Route::get('/emails-all', [loanapp::class, 'all_emails'])
 Route::get('/messages', [loanapp::class, 'message'])
 ->middleware('admin','auth')->name("messages");
 
+## Retrieve all messages via AJAX 
+Route::get('/messages-all', [loanapp::class, 'all_messages'])
+->name('all_messages');
+ 
 
 ## profile client  
 Route::get('profileclient/{id}', [loanapp::class, 'profileclient'])

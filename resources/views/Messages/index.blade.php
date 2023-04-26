@@ -1,3 +1,3 @@
 @include('admin_top_menu')
-@include('web_messages')
+@include('Messages.content')
 @include('admin_bottom_menu')

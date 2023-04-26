@@ -482,9 +482,38 @@ public function emailsub(){
      * @return \Illuminate\Http\RedirectResponse
      */
 
+     public function all_messages(){
+        $data = message::get();
+        
+            return Datatables::of($data)
+                ->addIndexColumn()  
+                ->addColumn('name', function($data){
+                    return $data->name;
+                })  
+                ->addColumn('email', function($data){
+                    return $data->email;
+                })  
+                ->addColumn('subject', function($data){
+                    return $data->subject;
+                })   
+                ->addColumn('message', function($data){
+                    return $data->message;
+                })  
+                ->addColumn('created_at', function($data){
+                    return date('d,F-Y',strtotime($data->created_at));
+                })   
+    
+                 
+                ->rawColumns(['name','email','subject','message','created_at'])
+                ->make(true);
+    }
+    
+
+
+
 public function message(){
-    $message = message::paginate(3);
-    return view('message')->with("message",$message);
+ 
+    return view('Messages.index');
    
   
 } 
