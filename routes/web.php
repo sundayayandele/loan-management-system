@@ -102,6 +102,9 @@ Route::post('/articles', [loanapp::class, 'admin_articles'])
 Route::get('/emailsub', [loanapp::class, 'emailsub'])
 ->middleware('auth','admin')->name("emailsub");
 
+## Retrieve all registeeed users via AJAX 
+Route::get('/emails-all', [loanapp::class, 'all_emails'])
+->name('all_emails'); 
 
 
 ## Read Clients Messages and queiries which were sent from the Web (ADMIN ONLY)

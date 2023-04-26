@@ -23,6 +23,7 @@ use Session;
 use App\Notifications\approve;
 use App\Notifications\denie;
 use Illuminate\Support\Facades\Notification;
+use DataTables;
 class loanapp extends Controller
 {
 
@@ -440,10 +441,31 @@ public function articles_view(Request $request){
      */
 
 
+public function all_emails(){
+    $data = emailsubscription::get();
+    
+        return Datatables::of($data)
+            ->addIndexColumn()  
+            ->addColumn('email', function($data){
+                return $data->email;
+            })   
+            ->addColumn('created_at', function($data){
+                return date('d,F-Y',strtotime($data->created_at));
+            })   
+
+             
+            ->rawColumns(['email','created_at','action'])
+            ->make(true);
+}
+
+
+
+
+
+
 public function emailsub(){
-    $emailsub = emailsubscription::paginate(3);
-    return view('emailsub')->with("emailsub",$emailsub);
-   
+    
+    return view('Emails.index'); 
   
 } 
 
