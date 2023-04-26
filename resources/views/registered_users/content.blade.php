@@ -16,9 +16,9 @@
       <th scope="col">Bank Name</th>
       <th scope="col">Bank Branch</th>
       <th scope="col">Bank Account Number</th>
-      <th scope="col">Bank Account Name</th>
-     
+      <th scope="col">Bank Account Name</th>     
       <th scope="col">Date</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -70,6 +70,7 @@
             {data: 'bank_account_number', name: 'bank_account_number'},
             {data: 'bank_account_name', name: 'bank_account_name'},
             {data: 'created_at', name: 'created_at'},
+            {data: 'action', name: 'action'},
            
         ],
         buttons: [

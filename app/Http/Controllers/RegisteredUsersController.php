@@ -70,8 +70,17 @@ public function all_users(Request $request){
             ->addColumn('created_at', function($data){
                 return date('d,F-Y',strtotime($data->created_dt));
             })  
+
+            ->addColumn('action', function($data){
+                $btn = "<div class='table-actions'>
+                <a href='".route('users.show',['user'=>$data->employee_id])."' class='show-employee cursure-pointer'><i class='fas fa-eye text-primary'></i></a>
+                <a href='".route("users.edit",['user'=>$data->employee_id])."'><i class='fas fa-pencil text-dark'></i></a>
+                <a href='".route("users.destroy",['user'=>$data->employee_id])."' class='delete cursure-pointer'><i class='fas fa-trash-o text-danger'></i></a>
+                </div>";
+                return $btn;
+        })
             
-            ->rawColumns(['first_name','last_name','mannumber','nrc','dob','gender','marital_status','email','phone','net_salary','company_id','bank_id','bank_branch_id','bank_account_number','bank_account_name','created_at'])
+            ->rawColumns(['first_name','last_name','mannumber','nrc','dob','gender','marital_status','email','phone','net_salary','company_id','bank_id','bank_branch_id','bank_account_number','bank_account_name','created_at','action'])
             ->make(true);
     //}
 
