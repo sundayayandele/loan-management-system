@@ -51,6 +51,7 @@
                 <x-input id="email"  type="radio" name="marital" value="married"/> Married <br>
                 <x-input id="email"  type="radio" name="marital" value="divorced"/> Divorced <br>
                 <x-input id="email"  type="radio" name="marital" value="widowed"/>  Widowed <br>
+                <x-input id="email"  type="radio" name="marital" value="separated"/>  Separated <br>
             </div>
 
           

@@ -26,6 +26,58 @@
   </tbody>
 </table>
 
+
+<!--Bootstrap Modal -->    
+
+
+<!-- Modal -->
+<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="delete-modal-label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="delete-modal-label">Confirm deletion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this user?
+        <form id="delete-form" action="" method="POST">
+          @csrf
+          @method('DELETE')
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" form="delete-form" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const usersTable = document.getElementById('users');
+  usersTable.addEventListener('click', function(event) {
+    if (event.target.classList.contains('delete-link')) {
+      event.preventDefault();
+     
+      // Show the confirmation modal
+      const modal = new bootstrap.Modal(document.getElementById('delete-modal'));
+      modal.show();
+
+      // Set the delete form action to the link's href attribute
+      const deleteForm = document.getElementById('delete-form');
+      alert(event.target.href);
+      deleteForm.action = event.target.href;
+    }
+  });
+</script>
+
+
+<!--End retrieving href-->
+
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -109,3 +161,4 @@
     
   });
 </script>
+

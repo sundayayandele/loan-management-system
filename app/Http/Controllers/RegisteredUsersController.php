@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\reg_employee_mst;
+use RealRashid\SweetAlert\Facades\Alert;
 use DataTables;
 class RegisteredUsersController extends Controller
 {
@@ -75,10 +76,10 @@ public function all_users(Request $request){
                 $btn = "<div class='table-actions'>
                 <a href='".route('users.show',['user'=>$data->employee_id])."' class='show-employee cursure-pointer'><i class='fas fa-eye text-primary'></i></a>
                 <a href='".route("users.edit",['user'=>$data->employee_id])."'><i class='fas fa-pencil text-dark'></i></a>
-                <a href='".route("users.destroy",['user'=>$data->employee_id])."' class='delete cursure-pointer'><i class='fas fa-trash-o text-danger'></i></a>
+                <a data-bs-toggle='modal' data-bs-target='#delete-modal' href='".route("users.destroy",['user'=>$data->employee_id])."' class='delete-link'>&#x1F5D1;</a>
                 </div>";
                 return $btn;
-        })
+        }) 
             
             ->rawColumns(['first_name','last_name','mannumber','nrc','dob','gender','marital_status','email','phone','net_salary','company_id','bank_id','bank_branch_id','bank_account_number','bank_account_name','created_at','action'])
             ->make(true);
@@ -134,9 +135,12 @@ public function all_users(Request $request){
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($user)
     {
         //
+       return view('registered_users.edit',[
+        'employee' => reg_employee_mst::find($user)
+       ]);
     }
 
     /**
@@ -146,10 +150,60 @@ public function all_users(Request $request){
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $user)
+    
     {
+       
+        $request->validate([
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'mannumber' => 'required|string',
+            'gender' => 'required|string',
+            'marital_status' => 'required|string',
+            'phone' => 'required|string',
+            'nrc' => 'required|string',
+            'dob' => 'required|date',
+            'address' => 'required|string',
+            'email' => 'required|email',
+            'position' => 'required|string',
+            'net_salary' => 'required|numeric',
+            'bank_id' => 'required|string',
+            'bank_branch' => 'required|string',
+            'bank_account_number' => 'required|string',
+            'bank_account_name' => 'required|string',
+            'mobile_money_number' => 'required|numeric',
+            'mobile_money_name' => 'required|string',
+            
+        ]);
         //
+       
+    $personalDetails=reg_employee_mst::find($user);
+    $personalDetails->firstname=$request->input('firstname');
+    $personalDetails->lastname=$request->input('lastname');
+    $personalDetails->mannumber=$request->input('mannumber');
+    $personalDetails->dob=$request->input('dob');
+    $personalDetails->gender=$request->input('gender');
+    $personalDetails->nrc=$request->input('nrc');
+    $personalDetails->marital_status=$request->input('marital_status');
+    $personalDetails->phone=$request->input('phone');
+    $personalDetails->address=$request->input('address');
+    $personalDetails->email=$request->input('email');
+    $personalDetails->position=$request->input('position');
+    $personalDetails->net_salary=$request->input('net_salary');
+    $personalDetails->bank_id=$request->input('bank_id');
+    $personalDetails->bank_branch=$request->input('bank_branch');
+    $personalDetails->bank_account_number=$request->input('bank_account_number');
+    $personalDetails->bank_account_name=$request->input('bank_account_name');
+    $personalDetails->mobile_money_number=$request->input('mobile_money_number');
+    $personalDetails->mobile_money_name=$request->input('mobile_money_name');
+    $personalDetails->save();
+
+
+    toast($request->input('firstname').'s Personal Details updated successfully!','success');
+     return redirect()->back();
     }
+
+    
 
     /**
      * Remove the specified resource from storage.
@@ -157,8 +211,12 @@ public function all_users(Request $request){
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($user)
     {
+        $user = reg_employee_mst::find($user);
+        $user->delete();
+        toast('User has been trashed  successfully!','success');
+        return redirect()->back();
         //
     }
 }
