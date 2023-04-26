@@ -35,9 +35,8 @@
     <div class="col-md-8 col-sm-12 col-xl-8 offset-md-2 offset-xl-2">
 
         <div class="widget overflow-visible">
-            <div class="progress progress-sm progress-hi-3 hidden">
-                <div class="progress-bar bg-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
-            </div>
+           
+            <br><br>
             <div class="widget-body">
                 
 

@@ -124,9 +124,13 @@ public function all_users(Request $request){
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user)
+    
     {
         //
+        return view('registered_users.show',[
+       'employee' => reg_employee_mst::find($user)
+        ]);
     }
 
     /**
