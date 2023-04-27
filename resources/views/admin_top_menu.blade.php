@@ -131,10 +131,21 @@
 			<li class="sidebar-header">
 						My Approvals
 					</li>
+					<li class="sidebar-item">
+                    <a class="sidebar-link" href="{{route('loan_approvals.index')}}">
+              <i class="align-middle fas fa-check" ></i> <span class="align-middle" style="color:white">Review Loans - DLO</span>
+            </a>
+					</li>
 
 			<li class="sidebar-item">
 						<a class="sidebar-link" href="{{route('review')}}">
-              <i class="align-middle fas fa-copy" ></i> <span class="align-middle" style="color:white">Review Loan Applications</span>
+              <i class="align-middle fas fa-copy" ></i> <span class="align-middle" style="color:white">Review Loans - CFO</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{route('reviewed_loans')}}">
+              <i class="align-middle fas fa-copy" ></i> <span class="align-middle" style="color:white">Review Loans - ADMIN</span>
             </a>
 					</li>
 
@@ -160,11 +171,7 @@
               <i class="align-middle fas fa fa-user" ></i> <span class="align-middle" style="color:white">Users</span>
             </a>
 					</li>
-					<li class="sidebar-item">
-                    <a class="sidebar-link" href="{{route('loan_approvals.index')}}">
-              <i class="align-middle fas fa-check" ></i> <span class="align-middle" style="color:white">My Approvals</span>
-            </a>
-					</li>
+					
 			<li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('emailsub')}}">
               <i class="align-middle fas fa-mobile-phone" ></i> <span class="align-middle" style="color:white">Send Text</span>

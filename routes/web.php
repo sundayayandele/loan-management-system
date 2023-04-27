@@ -201,29 +201,20 @@ Route::get('review', [loanapp::class, 'review'])
 ->middleware('auth','admin')->name('review');
 
 
-##Loan Applications - Find attachments (ADMINS ONLY)
-Route::get('find_attachments/{id}', [loanapp::class, 'find_attachments'])
-->middleware('auth','admin')->name('find_attachments');
 
 
-
-
-##Loan Applications - Find attachments (ADMINS ONLY)
-Route::get('find_attachments', [loanapp::class, 'find_attachments'])
-->middleware('auth','admin')->name('approved');
+##Loan Applications - Review Verfied Loans (ADMINS ONLY)
+Route::get('reviewed_loans', [loanapp::class, 'reviewed_loans'])
+->middleware('auth','admin')->name('reviewed_loans');
 
 
 
 ## Loan Applications - Approve (ADMINS ONLY)
-Route::get('approve_loan/{id}', [loanapp::class, 'approve'])
-->middleware('auth','admin')->name('approve');
+Route::post('approve_or_denie', [loanapp::class, 'approve'])
+->middleware('auth','admin')->name('approve_or_denie');
 
 
-## Loan Applications - Denie Approve (ADMINS ONLY)
-Route::get('denied_loan_application/{id}', [loanapp::class, 'denie'])
-->middleware('auth','admin')->name('denie');
-
-     
+    
 ## Regisered Users - CRUD - (ADMINS ONLY)
 Route::resource('users', RegisteredUsersController::class)
 ->middleware('auth','admin');     

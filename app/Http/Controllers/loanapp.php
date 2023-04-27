@@ -742,18 +742,23 @@ else{
 
 
 
-public function find_attachments($id){
-$loan_applications = reg_employee_mst::find(decrypt($id));
-$reg = $loan_applications->reg_employee_attachment()->get(); 
-return view('review_attachments',compact('reg'));
+public function reviewed_loans(){
+    $loan_status = Approvals::where('cfo_decision', "=", 1)->orWhere('cfo_decision', "=", 0)->first();
+    if($loan_status){
+    $loan_applications = web_loan_application::where('loan_number', "=", $loan_status->loan_number)->where('approved',"=",7)->orWhere('approved',"=",8)->first();
+    return view('LoanApprovals_ADMIN.index',[
+        'loan_applications' =>     $loan_applications,
+        'loan_status' => $loan_status
+    ]);
+    //return view('loan_approval', compact('loan_applications'));
+    }
+    else{
+        toast('You have no Loans to review!','success');
+        return redirect()->route('admindashboard');    
+    
+    } 
+    }
   
-
-}
-
-
-
-
-
 
 
 
@@ -768,25 +773,51 @@ return view('review_attachments',compact('reg'));
      */
 
 
-public function approve($id){
-    $loan_applications = web_loan_application::where('employee_id',"=",decrypt($id))->firstOrFail();
+public function approve(Request $request){
+    $request->validate([
+        'loan_number' => 'required|string',
+        'admin_decision' => 'required|string'
+    ]);
+
+
+
+    $loan_applications = web_loan_application::where('loan_number',"=",$request->loan_number)->where('approved',"=",7)->orWhere('approved',"=",8)->first();
+    
+    
+    if($request->admin_decision == 'yes'){
     $loan_applications-> approved = 1;
     $loan_applications->save();
-    session::flash('approved', 'Loan Approved Successfully');
-
+    
     ## Send Email Notification to the user together with the loan number
     ## If Loan Application has been approved successfully
 
      $loan_number =  $loan_applications->loan_number;     
-     $email_notification = reg_employee_mst::find(decrypt($id));
-     $loan_applicant_name = $email_notification->firstname;
+     $email_notification = reg_employee_mst::find($loan_applications->employee_id);
+     $loan_applicant_name = $email_notification->firstname. ' '.$email_notification->lastname;
      $email_notification->notify(new approve($loan_number,$loan_applicant_name));
-     return Redirect::back();
-     
+     toast('Loan Approved Successfully. Client Notified Via Email!','success');
+    return redirect()->back();  
+}
+
+elseif($request->admin_decision == 'no'){
+    $loan_applications-> approved = 0;
+    $loan_applications->save();
+    
+    ## Send Email Notification to the user together with the loan number
+    ## If Loan Application has been denied successfully
+    $loan_number =  $loan_applications->loan_number;
+    $email_notification = reg_employee_mst::find($loan_applications->employee_id);
+    $loan_applicant_name = $email_notification->firstname. ' '.$email_notification->lastname;
+    $email_notification->notify(new denie($loan_applicant_name));
+    toast('Loan Denied Successfully. Client Notified Via Email!','success');
+    return redirect()->back();  
      }
 
-
-
+else{
+    toast('Invalid Request','error');
+    return redirect()->back();  
+}
+    }
   
 
 /**
