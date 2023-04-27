@@ -1,16 +1,16 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Traits\HasRoles;
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
 class reg_employee_mst extends Authenticatable   
 {
-    use HasRoles, HasFactory, Notifiable;
+    use HasFactory, Notifiable;
 
     public function api_logins_mst()
     {

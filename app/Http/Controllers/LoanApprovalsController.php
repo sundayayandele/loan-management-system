@@ -41,6 +41,7 @@ class LoanApprovalsController extends Controller
      */
     public function store(Request $request)
     {
+      
         $request->validate([
             'loan_number' => 'required|numeric',
             'answer1' => 'required|string',
@@ -48,6 +49,7 @@ class LoanApprovalsController extends Controller
             'answer3' => 'required|string',
             'answer4' => 'required|string',
             'answer5' => 'required|string',
+            'answer6' => 'required|string',
             'answer7' => 'required|string',
             'answer8' => 'required|string',
             'answer9' => 'required|string',
@@ -59,6 +61,7 @@ class LoanApprovalsController extends Controller
         ]);
         //
         $add_user = new Approvals; 
+        $add_user -> loan_number = $request->loan_number; 
         $add_user -> answer1 = $request->answer1; 
         $add_user -> answer2 = $request->answer2; 
         $add_user -> answer3 = $request->answer3; 
@@ -70,15 +73,15 @@ class LoanApprovalsController extends Controller
         $add_user -> answer9 = $request->answer9; 
         $add_user -> answer10 = $request->answer10; 
         $add_user -> answer11 = $request->answer11; 
-        $add_user -> answer12 = $request->answer12; 
-        $add_user -> comments = $request->comments; 
+        $add_user -> loan_officer_decision = $request->loan_officer_decision == 'yes' ? 1 : 0; 
+        $add_user -> loan_officer_comments = $request->loan_officer_comments; 
         $add_user -> user_id = auth()->user()->employee_id; 
         $add_user -> save(); 
 
 
         // Update Loan Status Based on the Loan Officers Analysis
         $loan_status = web_loan_application::where('loan_number',"=",$request->loan_number)->first();
-        $loan_status->loan_number = $request->loan_officer_decision;
+        $loan_status->approved = $request->loan_officer_decision == 'yes' ? 5 : 6; // Status For Loan Approval/Denie From the Loan Officer
         $loan_status->save();
        
         toast('The Loan Analysis has been submitted for verification to the CFO Succesfully!','success');
@@ -115,9 +118,26 @@ class LoanApprovalsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $loan_approval)
     {
         //
+      $request->validate([
+        'loan_number' => 'required|numeric',
+        'cfo_decision' => 'required|string',
+        'cfo_comments' => 'required|string'
+      ]);  
+       
+      $loan_data = Approvals::find($loan_approval);
+      $loan_data->update($request->all());
+
+ // Update Loan Status Based on the Chief Financial officers Analysis
+ $loan_status = web_loan_application::where('loan_number',"=",$request->loan_number)->first();
+ $loan_status->approved = $request->loan_officer_decision == 'yes' ? 7 : 8; // Status For Loan Approval/Denie From the CFO
+ $loan_status->save();
+
+ toast('The Loan Analysis has been submitted for verification to the ADMIN Succesfully!','success');
+ return redirect()->route('review');    
+
     }
 
     /**
