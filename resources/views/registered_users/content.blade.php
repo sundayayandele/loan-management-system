@@ -66,7 +66,7 @@
 
       // Set the delete form action to the link's href attribute
       const deleteForm = document.getElementById('delete-form');
-      alert(event.target.href);
+      
       deleteForm.action = event.target.href;
     }
   });
