@@ -8,6 +8,7 @@ use App\Http\Controllers\UploadSettlementsFormsController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\RolesToPermissions;
 use App\Http\Controllers\RolesUsersController;
+use App\Http\Controllers\LoanApprovalsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loanapp;
 use App\Http\Controllers\RegisteredUsersController;
@@ -114,7 +115,7 @@ Route::get('/messages', [loanapp::class, 'message'])
 ## Retrieve all messages via AJAX 
 Route::get('/messages-all', [loanapp::class, 'all_messages'])
 ->name('all_messages');
- 
+
 
 ## profile client  
 Route::get('profileclient/{id}', [loanapp::class, 'profileclient'])
@@ -281,6 +282,11 @@ Route::resource('roles_permissions', RolesToPermissions::class)
 ## Assign Roles To Users - CRUD - (ADMINS ONLY)
 Route::resource('roles_users', RolesUsersController::class)
 ->middleware('auth','admin');  
+
+## Loan Approvals - DLO
+Route::resource('loan_approvals', LoanApprovalsController::class)
+->middleware('auth');  
+
 
 
 ## If the Called Route is not found call this Route

@@ -161,7 +161,7 @@
             </a>
 					</li>
 					<li class="sidebar-item">
-                    <a class="sidebar-link" href="{{route('emailsub')}}">
+                    <a class="sidebar-link" href="{{route('loan_approvals.index')}}">
               <i class="align-middle fas fa-check" ></i> <span class="align-middle" style="color:white">My Approvals</span>
             </a>
 					</li>
