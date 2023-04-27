@@ -120,6 +120,7 @@ class LoanApprovalsController extends Controller
      */
     public function update(Request $request, $loan_approval)
     {
+        
         //
       $request->validate([
         'loan_number' => 'required|numeric',
@@ -128,11 +129,14 @@ class LoanApprovalsController extends Controller
       ]);  
        
       $loan_data = Approvals::find($loan_approval);
-      $loan_data->update($request->all());
+      $loan_data->update([
+        'cfo_decision' => $request->cfo_decision == 'yes' ? 1 : 0,
+        'cfo_comments' => $request->cfo_comments
+      ]);
 
  // Update Loan Status Based on the Chief Financial officers Analysis
  $loan_status = web_loan_application::where('loan_number',"=",$request->loan_number)->first();
- $loan_status->approved = $request->loan_officer_decision == 'yes' ? 7 : 8; // Status For Loan Approval/Denie From the CFO
+ $loan_status->approved = $request->cfo_decision == 'yes' ? 7 : 8; // Status For Loan Approval/Denie From the CFO
  $loan_status->save();
 
  toast('The Loan Analysis has been submitted for verification to the ADMIN Succesfully!','success');
