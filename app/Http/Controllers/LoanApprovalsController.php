@@ -74,6 +74,12 @@ class LoanApprovalsController extends Controller
         $add_user -> comments = $request->comments; 
         $add_user -> user_id = auth()->user()->employee_id; 
         $add_user -> save(); 
+
+
+        // Update Loan Status Based on the Loan Officers Analysis
+        $loan_status = web_loan_application::where('loan_number',"=",$request->loan_number)->first();
+        $loan_status->loan_number = $request->loan_officer_decision;
+        $loan_status->save();
        
         toast('The Loan Analysis has been submitted for verification to the CFO Succesfully!','success');
         return redirect()->route('loan_approvals.index');    

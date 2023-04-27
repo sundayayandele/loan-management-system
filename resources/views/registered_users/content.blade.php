@@ -1,3 +1,7 @@
+
+
+
+
 <table class="table" id="users">
   <thead>
     <tr>
@@ -128,6 +132,7 @@
         buttons: [
                    {
                        extend: 'pdf',
+                       className: 'btn btn-success',
                        exportOptions: {
                            columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,4,15,16] // Column index which needs to export
                        },
@@ -140,18 +145,21 @@
                    },
                    {
                        extend: 'csv',
+                       className: 'btn btn-primary',
                        exportOptions: {
                            columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,4,15,16] // Column index which needs to export
                        }
                    },
                    {
                        extend: 'excel',
+                       className: 'btn btn-secondary',
                        exportOptions: {
                            columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,4,15,16] // Column index which needs to export
                        }
                    },
                    {
                        extend: 'print',
+                       className: 'btn btn-info',
                        exportOptions: {
                            columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,4,15,16] // Column index which needs to export
                        }

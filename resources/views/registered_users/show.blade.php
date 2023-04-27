@@ -119,21 +119,21 @@
                 <p class="mb-4"><span class="text-primary font-italic me-1">Next of Kin</span> Details
                 </p>
                 <p class="mb-1" style="font-size: .77rem;">Names: </p>
-                <div class="progress rounded" style="height: 5px;">
+               
                 {{$employee->next_of_kin_fname. ' '.$employee->next_of_kin_lname}} 
-                </div>
+                
                 <p class="mt-4 mb-1" style="font-size: .77rem;">Relationship</p>
-                <div class="progress rounded" style="height: 5px;">
+                
                 {{$employee->next_of_kin_relationship}}
-                </div>
+                
                 <p class="mt-4 mb-1" style="font-size: .77rem;">Phone</p>
-                <div class="progress rounded" style="height: 5px;">
+                
                 {{$employee->next_of_kin_phone}}
-                </div>
+                
                 <p class="mt-4 mb-1" style="font-size: .77rem;">Addrress</p>
-                <div class="progress rounded" style="height: 5px;">
+                
                 {{$employee->next_of_kin_address}}
-                </div>
+                
                
               </div>
             </div>
@@ -144,25 +144,25 @@
                 <p class="mb-4"><span class="text-primary font-italic me-1">Bank</span> Details
                 </p>
                 <p class="mb-1" style="font-size: .77rem;">Bank Name</p>
-                <div class="progress rounded" style="height: 5px;">
+               
                 {{$employee->bank_id}}
-                </div>
+               
                 <p class="mt-4 mb-1" style="font-size: .77rem;">BankBranch</p>
-                <div class="progress rounded" style="height: 5px;">
+               
                 {{$employee->bank_branch_id}}
-                </div>
+                
                 <p class="mt-4 mb-1" style="font-size: .77rem;">Bank Account Number</p>
-                <div class="progress rounded" style="height: 5px;">
+               
                 {{$employee->bank_account_number}}
-                </div>
+               
                 <p class="mt-4 mb-1" style="font-size: .77rem;">MBank Account Name</p>
-                <div class="progress rounded" style="height: 5px;">
+               
                 {{$employee->bank_account_name}}
-                </div>
+                
                 <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Money</p>
-                <div class="progress rounded mb-2" style="height: 5px;">
+                
                  {{$employee->mobile_money_no. ''.$employee->mobile_money_name  }}
-                </div>
+                
               </div>
             </div>
           </div>
