@@ -53,8 +53,8 @@ class LoanApprovalsController extends Controller
             'answer9' => 'required|string',
             'answer10' => 'required|string',
             'answer11' => 'required|string',
-            'answer12' => 'required|string',
-            'comments' => 'required|string',
+            'loan_officer_decision' => 'required|string',
+            'loan_officer_comments' => 'required|string',
             
         ]);
         //

@@ -281,8 +281,8 @@
           <td><button class="btn btn-danger">Are you approving this Loan?</button></td>
           <td>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="answer12" value="yes" id="answer12_yes">
-              <label class="form-check-label" for="answer12_yes">Yes</label>
+              <input class="form-check-input" type="checkbox" name="loan_officer_decision" value="yes" id="loan_officer_decision">
+              <label class="form-check-label" for="loan_officer_decision">Yes</label>
             </div>
           </td>
           <td>
@@ -296,8 +296,8 @@
           <td>Comments</td>
           <td colspan="2">
             <div class="form-floating">
-              <textarea class="form-control" name="comments" id="comments" rows="3"></textarea>
-              <label for="comments">Enter your comments here</label>
+              <textarea class="form-control" name="loan_officer_comments" id="loan_officer_comments" rows="3"></textarea>
+              <label for="loan officer comments">Enter your comments here</label>
             </div>
           </td>
         </tr>

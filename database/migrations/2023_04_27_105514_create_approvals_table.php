@@ -26,8 +26,10 @@ class CreateApprovalsTable extends Migration
             $table->string('answer9');
             $table->string('answer10');
             $table->string('answer11');
-            $table->string('answer12');
-            $table->string('comments');
+            $table->integer('loan_officer_decision');
+            $table->integer('cfo_decision');
+            $table->string('loan_officer_comments');
+            $table->string('cfo_comments');
             $table->string('user_id');
             $table->string('loan_number');
            
