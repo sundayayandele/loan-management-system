@@ -229,7 +229,7 @@
                       <div class="col-lg-6 col-md-6 col-sm-12">
                       <div class="form-group">
                         <label for="Bank Branch">Bank Branch</label><small class="text-danger">*</small>
-                        <input type="text" name="bank_branch" class="form-control @error('bank_branch') is-invalid @enderror" id="bank_branch" autocomplete="off" value="{{ old('bank_branch', $employee->bank_branch) }}" >
+                        <input type="text" name="bank_branch" class="form-control @error('bank_branch') is-invalid @enderror" id="bank_branch" autocomplete="off" value="{{ old('bank_branch', $employee->bank_branch_id) }}" >
                         @error('bank_branch')
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror
@@ -242,7 +242,7 @@
                       <div class="col-lg-6 col-md-6 col-sm-12">
                       <div class="form-group">
                         <label for="Bank Account Number">Bank Account Number</label><small class="text-danger">*</small>
-                        <input type="text" name="bank_account_number" class="form-control @error('bank_account_number') is-invalid @enderror" id="bank_account_number" autocomplete="off" value="{{ old('bank_account_number', $employee->bank_account_number) }}" >
+                        <input type="text" name="bank_account_number" class="form-control @error('bank_account_number') is-invalid @enderror" id="bank_account_number" autocomplete="off" value="{{ old('bank_account_number', $employee->bank_account_no) }}" >
                         @error('bank_account_number')
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror
