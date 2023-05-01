@@ -105,6 +105,24 @@
             </div>
 
 
+            <!-- Mobile Money Number -->
+ <div class="mt-4">
+                <x-label for="mobile money number" :value="__('Mobile Money Number')" />
+
+                <x-input id="mobile_money_number" class="block mt-1 w-full" type="number" name="mobile_money_number" required/>
+                
+            </div>
+
+
+              <!-- Mobile Money Name -->
+ <div class="mt-4">
+                <x-label for="mobile money name" :value="__('Mobile Money Name')" />
+
+                <x-input id="mobile_money_name" class="block mt-1 w-full" type="text" name="mobile_money_name" required/>
+                
+            </div>
+
+
 
 
             <div class="flex items-center justify-end mt-4">

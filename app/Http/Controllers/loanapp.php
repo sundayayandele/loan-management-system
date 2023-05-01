@@ -216,6 +216,8 @@ public function bankdetails(Request $request,$id){
         'branchname'=>['required','string'],
         'accountnumber'=>['required','numeric'],
         'accountname'=>['required','string'], 
+        'mobile_money_number'=>['required','numeric'],
+        'mobile_money_name'=>['required','string'], 
         
     ]);
    if ($validate->fails()){
@@ -228,11 +230,47 @@ else {
     $bankDetails->bank_branch_id=$request->input('branchname');
     $bankDetails->bank_account_no=$request->input('accountnumber');
     $bankDetails->bank_account_name=$request->input('accountname');
+    $bankDetails->mobile_money_no=$request->input('mobile_money_number');
+    $bankDetails->mobile_money_name=$request->input('mobile_money_name');
     $bankDetails->save();
 
    
-   //Show that the form KYC has been submitted successfully
-   return redirect('dashboard')->with('kyc', 'Your KYC form has been Submitted successfully');
+   //Goto signature
+   return redirect()->route('signature');
+  
+    
+}
+
+}
+
+
+
+
+
+/**
+     * KYC forms to be filled in by the client who wants to apply for a loan.
+     * Signature Details
+     * Signature Forms Ends Here
+     * 
+     * @param  \App\Http\Requests\Auth\LoginRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+
+
+public function signature(Request $request,$id){
+    $validate=validator::make($request->all(),[
+        'signature'=>['required','string']        
+    ]);
+   if ($validate->fails()){
+    return Redirect::back()->withErrors($validate)->withInput();
+   }
+   
+else {
+  //Show that the form KYC has been submitted successfully
+  return redirect('dashboard')->with('kyc', 'Your KYC form has been Submitted successfully');
+
+   
+  
     
 }
 

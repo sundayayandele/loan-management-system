@@ -53,6 +53,15 @@ Route::get('/bankdetails', function(){
 
 
 
+
+## Call the signature View
+Route::get('/signature', function(){
+    return view('ClientSignature.create'); 
+})->middleware('auth');//->name('signature'); 
+
+
+
+
 ## bankdetails route submit   
 Route::post('bankdetails/{id}', [loanapp::class, 'bankdetails'])
                 ->middleware('auth')->name('bank_submit');

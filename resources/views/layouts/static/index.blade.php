@@ -424,7 +424,8 @@ let profilepic = document.getElementById("profilepicture").value;
 													</div>
 												</div>
 												<h4 class="mt-1 mb-3" style="font-weight: bold;">
-												<!--Removed href="{{route('approved')}}"-->
+												
+												
 												<a style="color:black" href="{{route('loanAnalysisView',encrypt(Auth::user()->employee_id))}}">Loan Analysis</a>											
 											
 											
