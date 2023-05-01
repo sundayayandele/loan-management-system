@@ -173,7 +173,7 @@
 					</li>
 					
 			<li class="sidebar-item">
-                    <a class="sidebar-link" href="{{route('emailsub')}}">
+                    <a class="sidebar-link" href="{{route('reminders.create')}}">
               <i class="align-middle fas fa-mobile-phone" ></i> <span class="align-middle" style="color:white">Send Text</span>
             </a>					
 					</li>		

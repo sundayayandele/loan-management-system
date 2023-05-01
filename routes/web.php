@@ -12,6 +12,7 @@ use App\Http\Controllers\LoanApprovalsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loanapp;
 use App\Http\Controllers\RegisteredUsersController;
+use App\Http\Controllers\RemindersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -276,6 +277,11 @@ Route::resource('roles_users', RolesUsersController::class)
 
 ## Loan Approvals - DLO
 Route::resource('loan_approvals', LoanApprovalsController::class)
+->middleware('auth');  
+
+
+## Reminders Notification
+Route::resource('reminders', RemindersController::class)
 ->middleware('auth');  
 
 
