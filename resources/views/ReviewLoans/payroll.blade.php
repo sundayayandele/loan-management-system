@@ -23,12 +23,10 @@
             </div> 
 
            
- <!-- Employee Id -->
- <div class="mt-4">
-            <x-label for="name" :value="__('Employee Id')" />
 
-            <x-input id="name" class="block mt-1 w-full" type="text"  value='{{$hold_loan->employee_id}}' name="employee_id"  readonly/>
-            </div> 
+
+            <x-input id="name" class="block mt-1 w-full" type="hidden"  value='{{$hold_loan->employee_id}}' name="employee_id"  readonly/>
+            
 
 
 
@@ -59,10 +57,25 @@
 <div class="mt-4">
             <x-label for="name" :value="__('Loan Amount (ZMW)')" />
 
-            <x-input id="name" class="block mt-1 w-full" value="{{$hold_loan->loan_amount}}" type="number"  name="loan_amt"  />
+            <x-input id="name" class="block mt-1 w-full" value="{{$hold_loan->amount}}" type="number" name="loan_amt"  />
             </div> 
 
 
+            <!-- Loan Repayment Amount -->
+<div class="mt-4">
+            <x-label for="LoanRepayments" :value="__('Total Repayments Amount (ZMW)')" />
+
+            <x-input id="name" class="block mt-1 w-full" value="{{$hold_loan->loan_amount}}"  readonly  />
+            </div> 
+
+
+
+             <!-- EMI -->
+<div class="mt-4">
+            <x-label for="EMI" :value="__('EMI (ZMW)')" />
+
+            <x-input id="name" class="block mt-1 w-full" value="{{$hold_loan->emi}}" readonly/>
+            </div> 
            
 
 

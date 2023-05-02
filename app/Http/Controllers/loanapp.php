@@ -262,17 +262,20 @@ public function loanapplication($id){
 
 public function web_loan_application(Request $request,$id){
    
+
     $validate=validator::make($request->all(),[
         'loan_type'=>['required','string'],
         'employee_id'=>['required','numeric'],
         'tenure_months'=>['required','numeric'],         
         'loan_amt'=>['required','numeric'],  
+        'total_repayments_amt'=>['required','numeric'],  
+        'emi'=>['required','numeric'],  
         'payment_mode_id'=>['required','string'],   
         'mobile_money_no'=>['required','numeric'],   
         'mobile_money_name'=>['required','string'], 
-        'payslip1'=>['required','string','mimes:pdf'],   
-        'payslip2'=>['required','string','mimes:pdf'],   
-        'bankstatement'=>['required','string','mimes:pdf'],  
+        'payslip1'=>['required','mimes:pdf'],   
+        'payslip2'=>['required','mimes:pdf'],   
+        'bankstatement'=>['required','mimes:pdf'],  
          
     ]);
    if ($validate->fails()){
@@ -303,7 +306,7 @@ public function web_loan_application(Request $request,$id){
  * 
 **/
    
-   else if (web_loan_application::where('employee_id',"=",$request->employee_id)->exists()){
+   elseif (web_loan_application::where('employee_id',"=",$request->employee_id)->exists()){
     return redirect('dashboard')->with('pendingl', 'It seems You have a pending Loan. First settle this Loan then you can apply later.');     
     } 
 
@@ -314,12 +317,17 @@ public function web_loan_application(Request $request,$id){
  * 
 **/
 
+
+
 else{
+   
     $loan_application= new web_loan_application;
     $loan_application->loan_type = $request->loan_type;
     $loan_application->employee_id = $request->employee_id;
     $loan_application->months = $request->tenure_months;
-    $loan_application->loan_amount = $request->loan_amt;
+    $loan_application->amount = $request->loan_amt;
+    $loan_application->loan_amount = $request->total_repayments_amt;
+    $loan_application->emi = $request->emi;
     $loan_application->payment_mode = $request->payment_mode_id;
     $loan_application->mobile_money_number = $request->mobile_money_no;
     $loan_application->mobile_monney_name = $request->mobile_money_name;
