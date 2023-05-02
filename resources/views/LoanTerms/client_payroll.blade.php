@@ -29,11 +29,11 @@ th,table,td {
 
 
 <center>
-    <img src="{{asset('images/eliana_logos/Capture.JPG')}}" width="160" height="100" alt="{{config('app.name')}}" style="margin-top:20px;">
+    <img src="{{asset('images/logo.JPG')}}" width="160" height="100" alt="{{config('app.name')}}" style="margin-top:20px;">
     <br><br>
 
 
-    <img src='{{asset("files/Auth::user()->profilepic")}}' width="100" height="100" alt="{{auth()->user()->firstname. ' '.auth()->user()->lastname}}">
+    <img src="{{asset('attatchments_loans/'.Auth::user()->profilepic)}}" width="100" height="100" alt="{{auth()->user()->firstname. ' '.auth()->user()->lastname}}">
 
 
     </center>
@@ -53,9 +53,9 @@ th,table,td {
 </p>
 <h3>2.0 Subject of the Agreement</h3>
 
-<p>2.1.	On the basis of the terms specified in this Agreement, the Lender will provide the Borrower with a loan facility of  “ZMW <strong>{{$hold_loan->loan_amounts}}</strong>
-” at a total  credit of "<strong>{{$hold_loan->loan_percentage}}</strong>
-"% per Month payable in "<strong>{{$hold_loan->loan_installments}}</strong>
+<p>2.1.	On the basis of the terms specified in this Agreement, the Lender will provide the Borrower with a loan facility of  “ZMW <strong><input type="text" id="loan_amt_terms" value="" readonly></strong>
+” at a total  credit of "<strong>6.69%</strong>
+"% per Month payable in "<strong><input type="text" id="emi_terms" value="" readonly/></strong>
 "  installments  following the borrower completion of the online application form that is on the lender’s on-line platform.</p>
 <p>2.2. The lender and the borrower hereby agree that they shall be at liberty to appoint agents to act for them and the agency law shall apply.</p>
 <p>2.3.	Lender and Borrower take responsibility to fulfill commitments towards each other fully and in due time.</p>
@@ -69,7 +69,7 @@ th,table,td {
  
 <h3>4.0 Acknowledgement of Receipt of Cash</h3>
 
-<p>4.1 I “{{auth()->user()->firstname. ' '.auth()->user()->lastname}}” hereby acknowledges receipt of ZMW “<strong>{{$hold_loan->loan_amounts}}</strong>
+<p>4.1 I “{{auth()->user()->firstname. ' '.auth()->user()->lastname}}” hereby acknowledges receipt of ZMW “<strong><input type="text" id="loan_amt_terms_conditions" value="" readonly></strong>
 ” paid out in cash and/or by Deposit to Bank Account/ Mobile money on the date “{{date('j, F Y')}}”  </p> 
 
 <h3>5.0 Repayment</h3>
@@ -145,7 +145,7 @@ th,table,td {
 <p>The Borrower will be treated with the utmost dignity and respect in accordance with their rights and freedoms as enshrined in the Constitution of Zambia, Act. No. 2 of 2016. Likewise, it is expected that the Borrower will not discriminate against an employee(s) of the Credit Provider in any way.</p>
 <h3> 23.o Signature and Date</h3>
 <p>The Parties hereby agree to the terms and conditions set forth in this Agreement and such is demonstrated throughout by their signatures below:</p>
-<p>Signed this <strong>{{date(d)}} day of {{date(F-Y)}}</strong>
+<p>Signed this <strong>{{date('d')}} day of {{date('F-Y')}}</strong>
 
 <h3>Signed by the Borrower: </h3>
 <p>Full Name of Borrower “<strong>{{auth()->user()->firstname. ' '.auth()->user()->lastname}}</strong></p>
@@ -157,8 +157,8 @@ $user = auth()->user();
 Signature of Borrower: “<img src="{{asset($user->signature->getSignatureImagePath())}}" width="50" height="50" alt="{{config('app.name')}}">
 ”
 <p>Signed for and on behalf of the Credit Provider: </p>
-<p>Full Name of Credit Provider Representative: “{{Auth::user()->name}}”</p>
-<p>Signature of Credit Provider Representative: “<img src="{{asset('files/Auth::user()->borrower_photo_signature')}}" width="50" height="50" alt="Borrower Signature">”</p>
+<p>Full Name of Credit Provider Representative: “Matthews Chilufya”</p>
+<p>Signature of Credit Provider Representative: “”</p>
 
 
                                      <h3>MANDATE TO THE BANK TO PAY BY DIRECT DEBIT</h3>
@@ -243,7 +243,7 @@ Payment Date (DD/MM/ YYYY)
     </th>
     </tr>
     <tr>
-        <td>{{$hold_loan->loan_monthly}}</td>
+        <td><input type="text" id="emi" value="" readonly></td>
         
     </tr>
 </table>
@@ -278,7 +278,7 @@ Payment Date (DD/MM/ YYYY)
     
     </tr>
     <tr>
-        <td>{{ \Carbon\Carbon::today()->addMonths($loan_installments) }}</td>
+        <td></td>
         
     </tr>
 </table>
@@ -296,7 +296,7 @@ Payment Date (DD/MM/ YYYY)
     </th>
     </tr>
     <tr>
-      <td>{{$hold_loan->loan_monthly + 1000}}</td>  
+      <td><input type="text" id="emi_terms" value="" readonly> + 1000</td>  
     </tr>
 </table>
 
@@ -378,7 +378,7 @@ W
     </th>
 </tr>
     <tr>
-        {{$hold_loan->employee_name}}
+        {{auth()->user()->firstname. ' '.auth()->user()->lastname}}
     </tr>
 </table>
   
@@ -430,7 +430,7 @@ W
           
         </tr>
         <tr>
-          <td>{{Auth::user()->client_bank_name}}</td>
+          <td>{{Auth::user()->bank_id}}</td>
           
         </tr>
         
@@ -447,7 +447,7 @@ W
         </th>
     </tr>
     <tr>
-          <td>{{Auth::user()->client_bank_branch}}</td>  
+          <td>{{Auth::user()->bank_branch_id}}</td>  
         </tr>
     </table>
 <br>
@@ -458,7 +458,7 @@ W
         </th>
         </tr>
         <tr>
-          <td> {{Auth::user()->client_bank_account_number}}</td> 
+          <td> {{Auth::user()->bank_account_no}}</td> 
         </tr>
     </table>
 
@@ -477,8 +477,8 @@ W
 
 <h3>INSTRUCTION TO DEBIT MY ACCOUNT</h3>
 <p>Please pay TCS Ltd t/a Eliana Cash Express, Direct Debits from my account detailed in this mandate subject to safeguards assured by the Direct Debits Guarantee. I/we understand that this mandate may remain with Eliana Cash Express and, if so, details will be passed electronically to my Bank/NBFI.</p>
-Signatures <img src="{{asset('files/Auth::user()->borrower_photo_signature')}}" width="50" height="50" alt="Borrower Signature">
-<h3>Date : {{date(d-F-Y)}} </h3>
+Signatures <img src="{{asset('files/Auth::user()->profilepic')}}" width="50" height="50" alt="Borrower Signature">
+<h3>Date : {{date('d-F-Y')}} </h3>
 
    <h3>  Banks/NBFIs may not accept Direct Debit Mandates for some types of accounts</h3>
 <small>This Guarantee is offered by all Banks/NBFI that take part in the DDACC System. The efficiency and security of the Direct Debit is monitored and protected by your own Bank/NBFI. </small>  

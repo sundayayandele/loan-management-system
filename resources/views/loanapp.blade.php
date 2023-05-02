@@ -159,7 +159,7 @@
              <!-- Loan Application Submitt -->
              <div class="flex items-center justify-end mt-4">
                
-
+             <p><input type="checkbox" name="terms" required> I have read and agreed to the <a href="#" data-toggle="modal" data-target="#exampleModalLong">Terms and Conditions on this link</a> of auto loans </p>
                 <x-button class="ml-4">
                     {{ __('APPLY') }}
                 </x-button>
@@ -167,7 +167,7 @@
             
                
 
-
+@include('LoanTerms.client_payroll')
 
         
     </form>
@@ -231,6 +231,9 @@ if(loan_amount >= 1001 && loan_amount <= 10000){
 var total = (loan_amount+higher_facility_fee)+((loan_amount+higher_facility_fee)*(loan_percent/100)*installments);
  document.getElementById('total_repayments_amt').value = parseFloat(total).toFixed(2);
  document.getElementById('emi').value = parseFloat((total/installments)).toFixed(2);
+ document.getElementById('emi_terms').value = parseFloat((total/installments)).toFixed(2);
+ document.getElementById('loan_amt_terms').value = loan_amount;
+ document.getElementById('loan_amt_terms_conditions').value = loan_amount;
 }
  
            

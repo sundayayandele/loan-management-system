@@ -340,10 +340,8 @@ else{
     $loan_application->save();
 
       
-//return redirect('dashboard')->with('status', 'Your Loan has been submitted successfully. Wait for the email confirmation once approved.'); 
- return view('ReviewLoans.payroll',[
-    'hold_loan' => web_loan_application::where('loan_number',"=",$loannumber)->first()
- ]);   
+return redirect('dashboard')->with('status', 'Your Loan has been submitted successfully. Wait for the email confirmation once approved.'); 
+ 
     
 }
 }

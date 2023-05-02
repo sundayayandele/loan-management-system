@@ -141,7 +141,7 @@
 						
 							{{Auth::user()->name}} <i id="usericon" class="fas fa-user-shield" style="font-size:26px"></i>
 
-							<img id="userprofile" src="{{asset('attatchments_loans/'.Auth::user()->profilepic)}}" style="width:80px; height:80px; border-radius:100%";/>
+							<img id="userprofile" src="{{asset('attatchments_loans/'.Auth::user()->profilepic)}}" style="width:30px; height:30px; border-radius:100%";/>
 </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<!--Profile Route-->
