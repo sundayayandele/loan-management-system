@@ -10,6 +10,22 @@ th,table,td {
 <body>
 
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Terms & Conditions</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+
+
+
+
 
 
 <center>
@@ -469,6 +485,12 @@ Signatures <img src="{{asset('files/Auth::user()->borrower_photo_signature')}}" 
  <small>  If the amounts to be paid or the payment dates change, Eliana Cash Express will notify you 14 working days in advance of your account being debited or as otherwise agreed. If an error is made by Eliana Cash Express, you are guaranteed a full and immediate refund of the amount paid from Eliana Cash Express.</small> 
 <small> If an error is made by your bank/NBFI, you are guaranteed a full and immediate refund from your branch of the amount paid.</small> 
 <small> You can cancel a Direct Debit at any time by writing to your Bank/NBFI. Please also send a copy of your letter to us.</small> 
+
+</div> 
+</div>
+</div>
+
+
 
 </body>
 </html>

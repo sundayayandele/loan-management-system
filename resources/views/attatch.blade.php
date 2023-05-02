@@ -7,7 +7,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
         
-        <form method="POST"  enctype="multipart/form-data" action="{{route('attatchments_submit',encrypt(Auth::user()->employee_id))}}">
+        <form method="POST" enctype="multipart/form-data" action="{{route('attatchments_submit',encrypt(Auth::user()->employee_id))}}">
             @csrf
 
 
@@ -33,14 +33,7 @@
 
 
             
-            
-            <!--utulity Bill-->
-<div class="mt-4">
-                <x-label for="pay slips" :value="_('Upload any utility (PDF Only).')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="file" name="utility" required/>
-                
-            </div>
+      
            
 
 

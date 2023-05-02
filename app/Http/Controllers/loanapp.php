@@ -160,10 +160,11 @@ public function employerdetails(Request $request,$id){
 
 public function attatchments(Request $request,$id){
     $validate=validator::make($request->all(),[
-        'nrc_file'=>'required|mimes:jpeg,jpg,png|max:10200', //10mb Max
-        'passportphoto'=>'required|mimes:pdf|max:10200'
+        'nrc_file'=>'required|mimes:pdf|max:10200', //10mb Max
+        'passportphoto'=>'required|mimes:jpeg,jpg,png|max:10200'
         
     ]);
+    
    if ($validate->fails()){
     return Redirect::back()->withErrors($validate)->withInput();
    }
@@ -177,8 +178,8 @@ public function attatchments(Request $request,$id){
 
      
        // Submitting Passport Photo 
-       $nrc->profilepic = $request->profilepicture->store('profilepicture');
-       $nrc->save();
+       $attachments_nrc ->profilepic = $request->passportphoto->store('passportphoto');
+       $attachments_nrc->save();
 
 
 
@@ -251,14 +252,6 @@ public function loanapplication($id){
   
 } 
 
-
-
-
-
-
-
-
-
 /**
      * Loan Application Form to be filled in by the client who wants to apply for a loan.
      * 
@@ -272,12 +265,14 @@ public function web_loan_application(Request $request,$id){
     $validate=validator::make($request->all(),[
         'loan_type'=>['required','string'],
         'employee_id'=>['required','numeric'],
-        'company_id'=>['required','numeric'], 
         'tenure_months'=>['required','numeric'],         
         'loan_amt'=>['required','numeric'],  
         'payment_mode_id'=>['required','string'],   
         'mobile_money_no'=>['required','numeric'],   
         'mobile_money_name'=>['required','string'], 
+        'payslip1'=>['required','string','mimes:pdf'],   
+        'payslip2'=>['required','string','mimes:pdf'],   
+        'bankstatement'=>['required','string','mimes:pdf'],  
          
     ]);
    if ($validate->fails()){
@@ -296,7 +291,7 @@ public function web_loan_application(Request $request,$id){
 
    if(web_loan_application::where('loan_number',"=",$loannumber)->exists()){
    
-   return redirect('dashboard')->with('wrongloannumber', 'Invalid wrong Loan Number, try to reapply');     
+   return redirect('dashboard')->with('wrongloannumber', 'Whoops something went wrong, try again');     
   
 
 } 
@@ -323,20 +318,24 @@ else{
     $loan_application= new web_loan_application;
     $loan_application->loan_type = $request->loan_type;
     $loan_application->employee_id = $request->employee_id;
-    $loan_application->company_id = $request->company_id;
     $loan_application->months = $request->tenure_months;
     $loan_application->loan_amount = $request->loan_amt;
     $loan_application->payment_mode = $request->payment_mode_id;
     $loan_application->mobile_money_number = $request->mobile_money_no;
     $loan_application->mobile_monney_name = $request->mobile_money_name;
     $loan_application->loan_number = $loannumber;
+    $loan_application->payslip1 = $request->payslip1->store('payslips');
+    $loan_application->payslip2 = $request->payslip2->store('payslips');
+    $loan_application->bank_statement = $request->bankstatement->store('bank_statement');
     $loan_application->approved = 0;
     $loan_application->due_date = Carbon::now()->addMonths($request->tenure_months)->format('d-m-Y');
     $loan_application->save();
 
       
-return redirect('dashboard')->with('status', 'Your Loan has been submitted successfully. Wait for the email confirmation once approved.'); 
-    
+//return redirect('dashboard')->with('status', 'Your Loan has been submitted successfully. Wait for the email confirmation once approved.'); 
+ return view('ReviewLoans.payroll',[
+    'hold_loan' => web_loan_application::where('loan_number',"=",$loannumber)->first()
+ ]);   
     
 }
 }
