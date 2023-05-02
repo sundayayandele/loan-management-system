@@ -20,13 +20,13 @@ return [
     /**
      * Route name where you want to redirect users after signing.
      */
-    'redirect_route_name' => 'dashboard',
+    'redirect_route_name' => 'personaldetails_blade',
 
     /**
      * Width and height of the signature rectangle.
      */
     'width' => 600,
-    'height' => 200,
+    'height' => 350,
 
     /**
      * Should certify the document signature with certificate

@@ -174,7 +174,7 @@
 					<h1 class="h3 mb-3">Hi <strong>{{ Auth::user()->name }} {{ Auth::user()->lastname }}</strong> Welcome to the Clients Dashboard</h1>
 					<div id="alertNewCustomer" class="alert alert-warning" role="alert">
 
-					<i class="fa fa-exclamation-triangle" style="font-size:22px;color:red"><a style="color:red" href="{{route('personaldetails_blade')}}"> Update Your KYC Forms.</a></i>
+					<i class="fa fa-exclamation-triangle" style="font-size:22px;color:red"><a style="color:red" href="{{'signature'}}"> Update Your KYC Forms.</a></i>
 
 				</div>
 <input id="hide" type="hidden" value="{{ Auth::user()->bank_account_no}}"/>
@@ -425,7 +425,7 @@ let profilepic = document.getElementById("profilepicture").value;
 												</div>
 												<h4 class="mt-1 mb-3" style="font-weight: bold;">
 												
-												
+
 												<a style="color:black" href="{{route('loanAnalysisView',encrypt(Auth::user()->employee_id))}}">Loan Analysis</a>											
 											
 											

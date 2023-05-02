@@ -17,38 +17,22 @@
 <div class="mt-4">
                 <x-label for="NRC" :value="__('Upload your NRC (PDF Only).')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="file"  name="nrc_file" required/>
+                <x-input id="NRC" class="block mt-1 w-full" type="file"  name="nrc_file" required/>
                 
             </div>
 
 
             <!--Passport Photo-->
             <div class="mt-4">
-                <x-label for="passportphoto" :value="__('Upload your Passport Photo (PDF Only).')" />
+                <x-label for="passportphoto" :value="__('Upload your Passport Photo (JPG,PNG Only).')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="file" name="passportphoto" required/>
+                <x-input id="passportphoto" class="block mt-1 w-full" type="file" name="passportphoto" required/>
                 
             </div>
 
 
 
-             <!--2 Latest payslips-->
-             <div class="mt-4">
-                <x-label for="pay slips" :value="__('Upload payslip 1 (PDF Only).')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="file" name="payslip1" required/>
-                
-            </div>
-
-
-            <!--2 Latest payslips-->
-            <div class="mt-4">
-                <x-label for="pay slips" :value="__('Upload another payslip 2 (PDF Only).')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="file"  name="payslip2" required/>
-                
-            </div>
-
+            
             
             <!--utulity Bill-->
 <div class="mt-4">

@@ -160,12 +160,9 @@ public function employerdetails(Request $request,$id){
 
 public function attatchments(Request $request,$id){
     $validate=validator::make($request->all(),[
-        'nrc_file'=>'required|mimes:pdf|max:2048',
-        'passportphoto'=>'required|mimes:pdf|max:2048',
-        'payslip1'=>'required|mimes:pdf|max:2048',
-        'payslip2'=>'required|mimes:pdf|max:2048',
-        'utility'=>'required|mimes:pdf|max:2048',
-                     
+        'nrc_file'=>'required|mimes:jpeg,jpg,png|max:10200', //10mb Max
+        'passportphoto'=>'required|mimes:pdf|max:10200'
+        
     ]);
    if ($validate->fails()){
     return Redirect::back()->withErrors($validate)->withInput();
@@ -174,23 +171,17 @@ public function attatchments(Request $request,$id){
        //Submiting NRC File in reg_employee_attachments 
        $attachments_nrc = reg_employee_mst::find(decrypt($id));
        $nrc = new reg_employee_attachment;
-       $nrc->attachment_name=$request->nrc_file->storeAs('nrc', $request->nrc_file->getClientOriginalName());
+       $nrc->attachment_name=$request->nrc_file->store('nrc');
        $nrc->document_type_id=1;
-       $nrc_submit = $attachments_nrc->reg_employee_attachment()->save($nrc);
+       $attachments_nrc->reg_employee_attachment()->save($nrc);
 
-       //Submiting Payslip File in reg_employee_attachments
-       $attachments_payslip = reg_employee_mst::find(decrypt($id));
-       $payslip = new reg_employee_attachment;
-       $payslip->attachment_name=$request->payslip1->storeAs('latest_payslips', $request->payslip1->getClientOriginalName());
-       $payslip->document_type_id=3;
-       $kyc =  $attachments_payslip->reg_employee_attachment()->save($payslip);
+     
+       // Submitting Passport Photo 
+       $nrc->profilepic = $request->profilepicture->store('profilepicture');
+       $nrc->save();
 
-       //Submiting utility attachments in reg_employee_attachments
-       $attachments_utilities = reg_employee_mst::find(decrypt($id));
-       $utility = new reg_employee_attachment;
-       $utility->attachment_name=$request->utility->storeAs('utilities', $request->utility->getClientOriginalName());
-       $utility->document_type_id=5;
-       $utility = $attachments_utilities->reg_employee_attachment()->save($utility);
+
+
        return redirect()->route('bankdetails');
 
    }    
@@ -235,52 +226,12 @@ else {
     $bankDetails->save();
 
    
-   //Goto signature
-   return redirect()->route('signature');
-  
+   //Show that the form KYC has been submitted successfully
+   return redirect('dashboard')->with('kyc', 'Your KYC form has been Submitted successfully');
     
 }
 
 }
-
-
-
-
-
-/**
-     * KYC forms to be filled in by the client who wants to apply for a loan.
-     * Signature Details
-     * Signature Forms Ends Here
-     * 
-     * @param  \App\Http\Requests\Auth\LoginRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-
-
-public function signature(Request $request,$id){
-    $validate=validator::make($request->all(),[
-        'signature'=>['required','string']        
-    ]);
-   if ($validate->fails()){
-    return Redirect::back()->withErrors($validate)->withInput();
-   }
-   
-else {
-  //Show that the form KYC has been submitted successfully
-  return redirect('dashboard')->with('kyc', 'Your KYC form has been Submitted successfully');
-
-   
-  
-    
-}
-
-}
-
-
-
-
-
-
 
 
 
@@ -598,7 +549,7 @@ public function profileclient($id){
 
 public function profilepictureclient(Request $request,$id){
     $validate=validator::make($request->all(),[
-        'profilepicture'=>'required|mimes:jpg,jpeg,png|max:2048',
+        'profilepicture'=>'required|mimes:jpg,jpeg,png|max:10200',
                      
     ]);
 
@@ -608,7 +559,7 @@ public function profilepictureclient(Request $request,$id){
    
        else{
         $profilepicture=reg_employee_mst::find(decrypt($id));
-        $profilepicture->profilepic=$request->profilepicture->storeAs('profilepicture',$request->profilepicture->getClientOriginalName());
+        $profilepicture->profilepic=$request->profilepicture->store('profilepicture');
        
        ## Save profile picture
        $profilepicture->save();
