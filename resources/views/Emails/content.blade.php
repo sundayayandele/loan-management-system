@@ -45,20 +45,48 @@
                    ],
         buttons: [
                    {
-                       extend: 'pdf',
+        extend: 'pdf',
+        className: 'btn btn-success',
+        text: '<i class="fa fa-file-pdf"></i> Export as PDF',
+        titleAttr: 'Export as PDF',
+        title: 'Emails Report',
+        exportOptions: {
+            columns: ':visible'
+        }
                       
                      
                    },
                    {
-                       extend: 'csv',
+                    extend: 'csv',
+        className: 'btn btn-info',
+        text: '<i class="fa fa-file-excel"></i> Export as CSV',
+        titleAttr: 'Export as CSV',
+        title: 'Emails Report',
+        exportOptions: {
+            columns: ':visible'
+        }
                      
                    },
                    {
-                       extend: 'excel',
+                    extend: 'excel',
+        className: 'btn btn-primary',
+        text: '<i class="fa fa-file-excel"></i> Export as EXCEL',
+        titleAttr: 'Export as EXCEL',
+        title: 'Emails Report',
+        exportOptions: {
+            columns: ':visible'
+        }
                      
                    },
                    {
-                       extend: 'print',
+                    extend: 'print',
+        className: 'btn btn-secondary',
+        text: '<i class="fa fa-print"></i> Print',
+        titleAttr: 'Print',
+        title: 'Messages Print',
+        exportOptions: {
+            columns: ':visible'
+        }
                        
                    },
               ],

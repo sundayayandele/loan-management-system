@@ -132,7 +132,7 @@
         buttons: [
                    {
                        extend: 'pdf',
-                       className: 'btn btn-success',
+                      
                        exportOptions: {
                            columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,4,15,16] // Column index which needs to export
                        },
@@ -142,27 +142,44 @@
             doc.pageOrientation = 'landscape';
             doc.pageSize = 'A4';
         },
+        className: 'btn btn-success',
+        text: '<i class="fa fa-file-pdf"></i> Export as PDF',
+        titleAttr: 'Export as PDF',
+        title: 'Registered Users Report',
                    },
                    {
                        extend: 'csv',
-                       className: 'btn btn-primary',
+                       
                        exportOptions: {
                            columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,4,15,16] // Column index which needs to export
-                       }
+                       },
+                       className: 'btn btn-info',
+        text: '<i class="fa fa-file-excel"></i> Export as CSV',
+        titleAttr: 'Export as CSV',
+        title: 'Registered Users Report',
                    },
+
+
                    {
                        extend: 'excel',
-                       className: 'btn btn-secondary',
+                      
                        exportOptions: {
                            columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,4,15,16] // Column index which needs to export
-                       }
+                       },
+                       className: 'btn btn-primary',
+        text: '<i class="fa fa-file-excel"></i> Export as EXCEL',
+        titleAttr: 'Export as EXCEL',
+        title: 'Registered Users Report',
                    },
                    {
                        extend: 'print',
-                       className: 'btn btn-info',
                        exportOptions: {
                            columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,4,15,16] // Column index which needs to export
-                       }
+                       },
+                       className: 'btn btn-secondary',
+        text: '<i class="fa fa-print"></i> Print',
+        titleAttr: 'Print',
+        title: 'Print Registered Users',
                    },
               ],
     });

@@ -164,7 +164,19 @@
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="{{route('password.request')}}"><i class="align-middle me-1" data-feather="settings"></i> Change password</a>
                                 <hr>
-								<a class="dropdown-item" href="mailto:support@instafinancelimited.com"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
+								<form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form>
+
+
+
+								
 								<div class="dropdown-divider"></div>
 								
 							</div>

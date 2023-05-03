@@ -58,7 +58,7 @@
         className: 'btn btn-success',
         text: '<i class="fa fa-file-pdf"></i> Export as PDF',
         titleAttr: 'Export as PDF',
-        title: 'Settlements Report',
+        title: 'Transactions History Report',
         exportOptions: {
             columns: ':visible'
         }
@@ -70,7 +70,7 @@
         className: 'btn btn-info',
         text: '<i class="fa fa-file-excel"></i> Export as CSV',
         titleAttr: 'Export as PDF',
-        title: 'Settlements Report',
+        title: 'Transactions History Report',
         exportOptions: {
         columns: ':visible'
         }
@@ -81,7 +81,7 @@
         className: 'btn btn-primary',
         text: '<i class="fa fa-file-excel"></i> Export as Excel',
         titleAttr: 'Export as PDF',
-        title: 'Settlements Report',
+        title: 'Transactions History Report',
         exportOptions: {
         columns: ':visible'
         }
@@ -92,7 +92,7 @@
         className: 'btn btn-info',
         text: '<i class="fa fa-print"></i> Print',
         titleAttr: 'Export as PDF',
-        title: 'Settlements Report',
+        title: 'Transactions History Report',
         exportOptions: {
         columns: ':visible'
         }

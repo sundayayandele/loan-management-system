@@ -48,7 +48,10 @@
       <th>Mobile Number</th>
       <th>Loan Number</th>
       <th>Payment Mode</th>
-      <th>Attachments</th>
+      <th>NRC/PICTURE</th>
+      <th>PAYSLIP-1</th>
+      <th>PAYSLIP-2</th>
+      <th>Bank Statement</th>
     </tr>
   </thead>
   <tbody>
@@ -70,7 +73,9 @@
         @endforelse
         </td>
        
-        
+        <td><a href="{{asset('attatchments_loans/'.$loan_applications->payslip1)}}">PAYSLIP-1</a></td>  
+        <td><a href="{{asset('attatchments_loans/'.$loan_applications->payslip2)}}">PAYSLIP-2</a></td> 
+        <td><a href="{{asset('attatchments_loans/'.$loan_applications->bank_statement)}}">Bank Statement</a></td>   
       
     </tr>
    
