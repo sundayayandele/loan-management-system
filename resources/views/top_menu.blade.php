@@ -45,7 +45,7 @@
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="#">
+				<a class="sidebar-brand" href="{{route('dashboard')}}">
           <span class="align-middle">Menu Dashboard</span>
         </a>
 
@@ -89,7 +89,7 @@
 				
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="{{route('collectionsView')}}">
-              <i class="fas fa-credit-card" ></i> <span class="align-middle" style="color:white">Balance</span>
+              <i class="fas fa-credit-card" ></i> <span class="align-middle" style="color:white">Payments</span>
             </a>
 					</li>
 
@@ -104,14 +104,14 @@
 
 				
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="#chartjs-dashboard-line">
-              <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle" style="color:white">Charts</span>
+						<a class="sidebar-link" href="{{route('checkpayments')}}">
+              <i class="fas fa-credit-card" ></i> <span class="align-middle" style="color:white">Transactions</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="mailto:instafinance@gmail.com">
-              <i class="align-middle" data-feather="map"></i> <span class="align-middle" style="color:white">help</span>
+              <i class="fas fa-question-circle"></i> <span class="align-middle" style="color:white">help</span>
             </a>
 					</li>
 				</ul>
