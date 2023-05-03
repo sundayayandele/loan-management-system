@@ -75,7 +75,7 @@
             doc.pageOrientation = 'landscape';
             doc.pageSize = 'A4';
         },
-        ,
+        
         className: 'btn btn-success',
         text: '<i class="fa fa-file-pdf"></i> Export as PDF',
         titleAttr: 'Export as PDF',

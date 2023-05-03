@@ -721,13 +721,13 @@ $loan_status = Approvals::where('cfo_decision', "=", 0)->first();
 if($loan_status){
 $loan_applications = web_loan_application::where('loan_number', "=", $loan_status->loan_number)->where('approved',"=",5)->orWhere('approved',"=",6)->first();
 return view('LoanApprovals_CFO.index',[
-    'loan_applications' =>     $loan_applications,
+    'loan_applications' => $loan_applications,
     'loan_status' => $loan_status
 ]);
 //return view('loan_approval', compact('loan_applications'));
 }
 else{
-    toast('You have no Loans to review!','success');
+    toast('All Loans have been reviewed!','success');
     return redirect()->route('admindashboard');    
 
 } 

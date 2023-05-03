@@ -72,11 +72,14 @@
         <p>No files attached</p>
         @endforelse
         </td>
-       
+        @if($loan_applications)
         <td><a href="{{asset('attatchments_loans/'.$loan_applications->payslip1)}}">PAYSLIP-1</a></td>  
         <td><a href="{{asset('attatchments_loans/'.$loan_applications->payslip2)}}">PAYSLIP-2</a></td> 
         <td><a href="{{asset('attatchments_loans/'.$loan_applications->bank_statement)}}">Bank Statement</a></td>   
-      
+      @else
+      No Applications to review
+      <br>
+      @endif
     </tr>
    
   </tbody>

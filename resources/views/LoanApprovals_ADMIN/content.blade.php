@@ -53,6 +53,9 @@ $user = \App\Models\reg_employee_mst::find($loan_status->user_id);
       <th>Loan Number</th>
       <th>Payment Mode</th>
       <th>Attachments</th>
+      <td>PAYSLIP-1</td>
+      <td>PAYSLIP-2</td>
+      <td>Bank Statement</td>
     </tr>
   </thead>
   <tbody>
@@ -73,7 +76,14 @@ $user = \App\Models\reg_employee_mst::find($loan_status->user_id);
         <p>No files attached</p>
         @endforelse
         </td>
-       
+        @if($loan_applications)
+        <td><a href="{{asset('attatchments_loans/'.$loan_applications->payslip1)}}">PAYSLIP-1</a></td>  
+        <td><a href="{{asset('attatchments_loans/'.$loan_applications->payslip2)}}">PAYSLIP-2</a></td> 
+        <td><a href="{{asset('attatchments_loans/'.$loan_applications->bank_statement)}}">Bank Statement</a></td>   
+      @else
+      No Applications to review
+      <br>
+      @endif    
         
       
     </tr>
