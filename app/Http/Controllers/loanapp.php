@@ -14,6 +14,7 @@ use App\Models\reg_employee_attachment;
 use App\Models\reg_employee_mst;
 use App\Models\transactionHistory;
 use App\Models\emailsubscription;
+use App\Models\SettlementForms;
 use App\Models\message;
 use App\Models\website_profile;
 use App\Models\web_article;
@@ -630,7 +631,30 @@ public function profilepictureclient(Request $request,$id){
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
+ 
+     
+     public function settlements_forms_downloads(){
+        $data = SettlementForms::where('user_id', "=", auth()->user()->employee_id)->get();
+        return Datatables::of($data)
+            ->addIndexColumn()  
+            ->addColumn('loan_number', function($data){
+                return $data->loan_number;
+            })   
+            ->addColumn('settlement_file', function($data){
+                $btn = '<div class="table-actions">
+                    <a href="'.asset('settlements_files/'.$data->settlement_file).'" class="show-employee cursure-pointer">Download</a>
+                </div>';
+                return $btn;
+            })   
+            ->addColumn('created_at', function($data){
+                return date('j, F-Y', strtotime($data->created_at));
+            })            
+            ->rawColumns(['loan_number','settlement_file','created_at'])
+            ->make(true);
+    }
     
+
+
 
 
 public function settlement_forms(){

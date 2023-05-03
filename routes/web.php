@@ -163,6 +163,11 @@ Route::get('application/{id}', [loanapp::class, 'loanapplication'])
 Route::post('/web_loan_application/{id}', [loanapp::class, 'web_loan_application'])
 ->middleware('auth')->name('web_loan_application');
 
+
+## Settlements Forms Downloads 
+Route::get('settlements_forms_downloads', [loanapp::class, 'settlements_forms_downloads'])
+->middleware('auth')->name('settlements_forms_downloads');
+
                       
 ## Loan Analysis View Armotization 
 Route::get('settlement_forms', [loanapp::class, 'settlement_forms'])
