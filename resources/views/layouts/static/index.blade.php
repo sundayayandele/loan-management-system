@@ -413,12 +413,12 @@ let profilepic = document.getElementById("profilepicture").value;
 											<div class="card-body">
 												<div class="row">
 													<div class="col mt-0">
-														<h5 class="card-title">Loan armotization.</h5>
+														<h5 class="card-title">Loan Settlements</h5>
 													</div>
 
 													<div class="col-auto">
 														<div class="stat text-primary">
-														<i class="fas fa-calculator"></i>
+														<i class="fas fa-download"></i>
 															
 															</div>
 													</div>
@@ -426,13 +426,13 @@ let profilepic = document.getElementById("profilepicture").value;
 												<h4 class="mt-1 mb-3" style="font-weight: bold;">
 												
 
-												<a style="color:black" href="{{route('loanAnalysisView',encrypt(Auth::user()->employee_id))}}">Loan Analysis</a>											
+												<a style="color:black" href="{{route('settlement_forms')}}">Download Settlements</a>											
 											
 											
 											</h4>
 												<div class="mb-0">
-													<span class="text-success">Check <i class="mdi mdi-arrow-bottom-right">Loan Calculator</i></span>
-													<span class="text-muted">Check interest to be paid</span>
+													<span class="text-success">Download <i class="mdi mdi-arrow-bottom-right">Settlements</i></span>
+													<span class="text-muted">Check loan settlements forms</span>
 												</div>
 											</div>
 										</div>
@@ -473,7 +473,7 @@ let profilepic = document.getElementById("profilepicture").value;
 												</div>
 												<h4 class="mt-1 mb-3" style="font-weight: bold;">
 												
-												<form action="{{route('checkpayments',encrypt(Auth::user()->nrc))}}" method="GET">
+												<form action="{{route('checkpayments')}}" method="GET">
 													@csrf
 											<button style="font-weight:bold;">Payments History</button>		
 											

@@ -1,3 +1,3 @@
 @include('top_menu')
-@include('checkpaymentsref')
+@include('TransactionHistories.content')
 @include('bottom_menu')

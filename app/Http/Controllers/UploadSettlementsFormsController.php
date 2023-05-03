@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\SettlementForms;
+use App\Models\{SettlementForms,web_loan_application};
 use RealRashid\SweetAlert\Facades\Alert;
 class UploadSettlementsFormsController extends Controller
 {
@@ -41,13 +41,17 @@ class UploadSettlementsFormsController extends Controller
             'settlement_file' => 'required|mimes:pdf|max:10240' //Max:10mb           
             
         ]);
-
-        SettlementForms::updateOrCreate([
+$user_id = web_loan_application::where('loan_number',"=",$request->loan_number)->first();
+$employee_id = '';
+if($user_id){
+    $employee_id = $user_id->employee_id;
+}        SettlementForms::updateOrCreate([
     
             'loan_number'   => $request->loan_number
                
         ], [
           'settlement_file' => $request->file('settlement_file')->store('settlements','settlements'), 
+          'user_id' => $employee_id
         ]);       
 
         toast('Settlement Uploaded Successfully!','success');

@@ -362,11 +362,55 @@ return redirect('dashboard')->with('status', 'Your Loan has been submitted succe
 **/
 
 
-public function checkpaymentstatus(Request $request,$id){
+public function transaction_histories(Request $request){
+    
+   // $checkpayments=transactionHistory::where('transaction_id',"=",decrypt($id))->paginate(2);
+        
+         $data = transactionHistory::where('transaction_id',"=",auth()->user()->nrc)->get();
+         return Datatables::of($data)
+             ->addIndexColumn()  
+             ->addColumn('loan_number', function($data){
+                return $data->loan_number;
+            })  
+             ->addColumn('loan_amount', function($data){
+                 return $data->loan_type;
+             })   
+             ->addColumn('message', function($data){
+                return $data->message;
+             })   
+             ->addColumn('transaction_id', function($data){
+                
+                 return $data->transaction_id;
+             })   
+             ->addColumn('balance_due', function($data){
+                return $data->balance_due;
+             })  
+             ->addColumn('payment_method', function($data){
+                 return $data->payment_method;
+             })  
+            
+                         ->addColumn('created_at', function($data){
+                 return date('j,F-Y',strtotime($data->created_at));
+             })  
+             
+             ->rawColumns(['loan_number','loan_amount','message','transaction_id','balance_due','payment_method','created_at'])
+             ->make(true);
+     //}
+ 
+ 
+ }
+
+
+
+
+
+
+
+public function checkpaymentstatus(Request $request){
     
     
-    $checkpayments=transactionHistory::where('transaction_id',"=",decrypt($id))->paginate(2);
-    return view('checkpayments')->with("checkpayments",$checkpayments);
+    
+    return view('TransactionHistories.checkpayments');
   
 }  
 
@@ -589,76 +633,20 @@ public function profilepictureclient(Request $request,$id){
     
 
 
-public function loanAnalysisView($id){
-  //  $profileclient=reg_employee_mst::find(decrypt($id));
-  $employeeData=reg_employee_mst::find(decrypt($id));
-
-if (is_null($employeeData) || $employeeData->company_id == 0){
-    return redirect('dashboard')->with('kycError', 'Fill In Your KYC Form First.'); 
-    
-}
-else{
-   return view('loanAnalysisView', compact('employeeData'));
-}
-   
+public function settlement_forms(){
+  
+return view('Settlements.download');
   
   
 } 
 
 
-## Loan Analysis and Amortization submitted data
-
-public function loanAnalysis(Request $request,$id){
-       
-    $loan_type = $request->loan_type;
-    $loan_period = $request->company_id; 
-    $loan_amount = $request->loan_amt;
-    $loan_interest = "15%";
-    $loan_period = $request->tenure_months;
-    $loan_total_payments = (0.15*$loan_amount*$loan_period) + $loan_amount;
-    $due_date = Carbon::now()->addMonths($loan_period)->format('d-m-Y'); 
-
-
-## Check if company ID is filled or not
-
-if (is_null($request->company_id)){
-    return redirect('dashboard')->with('invalid_company_id', 'Please submit your KYC Forms First'); 
-    
-}
-
-
-else{
-  
-   return view("results_amortisation",compact("loan_type","loan_period","loan_amount","loan_interest","loan_period","loan_total_payments","due_date"));
-}   
-
-    
-}
 
 
 
 
 
 
-/**
-     * Here follows the actions to be peformed by the Client
-     * Check Loan Profile  
-     * 
-     * 
-     * @param  \App\Http\Requests\Auth\LoginRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-
-
-    
-public function analyticsView($id){
-    $profileclient=reg_employee_mst::find(decrypt($id));
-    $employeeData=reg_employee_mst::where('email',"=",$profileclient->email)->first();
-    $refPaymentMode=ref_payment_mode::all();
-    return view('AnalyticsView', compact('profileclient','employeeData','refPaymentMode')); 
-     
-  
-} 
 
 
 ## Loan Analytics Customer Profile View 

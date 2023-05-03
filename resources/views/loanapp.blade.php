@@ -159,7 +159,7 @@
              <!-- Loan Application Submitt -->
              <div class="flex items-center justify-end mt-4">
                
-             <p><input type="checkbox" name="terms" required> I have read and agreed to the <a href="#" data-toggle="modal" data-target="#exampleModalLong">Terms and Conditions on this link</a> of auto loans </p>
+             <p><input type="checkbox" name="terms" required> I have read and agreed to the <a href="#" data-toggle="modal" data-target="#exampleModalLong">Terms and Conditions</a> of this loan</p>
                 <x-button class="ml-4">
                     {{ __('APPLY') }}
                 </x-button>

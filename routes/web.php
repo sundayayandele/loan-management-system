@@ -95,8 +95,13 @@ Route::post('attatchments/{id}', [loanapp::class, 'attatchments'])
 
 
 
+##Transaction Histories
+Route::get('transaction_histories', [loanapp::class, 'transaction_histories'])
+                ->middleware('auth')->name('transaction_histories');                
+
+
 ## paymentscheck status route submit by submitting the loan number   
-Route::get('payments_history/{id}', [loanapp::class, 'checkpaymentstatus'])
+Route::get('checkpayments', [loanapp::class, 'checkpaymentstatus'])
                 ->middleware('auth')->name('checkpayments');
 
 
@@ -160,13 +165,12 @@ Route::post('/web_loan_application/{id}', [loanapp::class, 'web_loan_application
 
                       
 ## Loan Analysis View Armotization 
-Route::get('loanAnalysisView/{id}', [loanapp::class, 'loanAnalysisView'])
-->middleware('auth')->name('loanAnalysisView');
+Route::get('settlement_forms', [loanapp::class, 'settlement_forms'])
+->middleware('auth')->name('settlement_forms');
 
                         
-## Loan Analysis Submit Armotization
-Route::post('/loanAnalysisView/{id}', [loanapp::class, 'loanAnalysis'])
-->middleware('auth')->name('loanAnalysis_submit');
+
+
 
                   
 ## Loan Customer Profile 
