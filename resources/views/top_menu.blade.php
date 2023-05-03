@@ -33,7 +33,7 @@
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
-	<title>Home::Dashboard InstaFinance Loan Applications</title>
+	<title>{{config('app.name')}}</title>
 
 	<link href="{{asset('dashboardassets/css/app.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -61,38 +61,46 @@
 					</li>
 
 
-					<li class="sidebar-item " >
-                    <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{route('profilec', encrypt(Auth::user()->employee_id))}}">
-              <i class="align-middle fas fa-user" ></i> <br><span class="align-middle" style="color:white">Personal Profile</span>
-            </a>					
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{route('profilec', encrypt(Auth::user()->employee_id))}}">
+              <i class="fas fa-user" ></i> <span class="align-middle" style="color:white">Personal Profile</span>
+            </a>
 					</li>
+
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{route('loanapplication',encrypt(Auth::user()->employee_id))}}">
+              <i class="fas fa-copy" ></i> <span class="align-middle" style="color:white">Loan Application</span>
+            </a>
+					</li>
+
+
+					
+
+                   
 
 
 					<li class="sidebar-item" >
-						<a class="sidebar-link" href="{{route('analyticsView',encrypt(Auth::user()->employee_id))}}">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle" style="color:white">Loan Profile</span>
+						<a class="sidebar-link" href="{{route('settlement_forms')}}">
+              <i class="fas fa-file" ></i> <span class="align-middle" style="color:white">Settlements</span>
             </a>
 					</li>
+
+				
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{route('collectionsView')}}">
+              <i class="fas fa-credit-card" ></i> <span class="align-middle" style="color:white">Balance</span>
+            </a>
+					</li>
+
+
+
+					
+
+					
 
 				
 					
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="{{route('collectionsView')}}">
-                        <i class="fas fa-credit-card"></i> <br> <span class="align-middle" style="color:white">Settle Balance</span>
-            </a>
-					</li>
-
-				
-					<li class="sidebar-item sidebar-link">
-					<i class="fas fa-money"></i>
-					<form action="{{route('checkpayments',encrypt(Auth::user()->nrc))}}" method="GET">
-													@csrf
-											<button style="color:white">Payments History</button>		
-																				
-	</form>
-					</li>
 
 				
 					<li class="sidebar-item">

@@ -33,8 +33,8 @@
 <body>
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
-			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="index.html">
+			<div class=" js-simplebar">
+				<a class="sidebar-brand" href="">
           <span class="align-middle">Menu Dashboard</span>
         </a>
 
@@ -45,7 +45,7 @@
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="#">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle" style="color:white">Dashboard</span>
+              <i class="align-middle" data-feather="sliders"></i> <span  style="color:white">Dashboard</span>
             </a>
 					</li>
 
