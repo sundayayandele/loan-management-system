@@ -55,7 +55,7 @@ public function personaldetails_blade(){
         'DateofBirth'=>['required'],
         'gender'=>['required','string'],
         'marital'=>['required','string'],
-        'number'=>['required','numeric'],
+        'number'=>['required','string'],
         'address'=>['required','string'],
         'town'=>['required','string'],
         'province'=>['required','string'],
@@ -95,7 +95,7 @@ public function personaldetails_blade(){
         'lastnamenext'=>['required','string'],
         'relationshipnext'=>['required','string'],
         'physicaladdressnext'=>['required','string'], 
-        'phonenumbernext'=>['required','numeric'],        
+        'phonenumbernext'=>['required','string'],        
     ]);
    if ($validate->fails()){
     return Redirect::back()->withErrors($validate)->withInput();

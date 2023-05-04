@@ -1,4 +1,4 @@
-<x-guest-layout>
+
     
 <div >
   <h3> NEXT OF KIN  </h3>
@@ -16,71 +16,84 @@
            
 
  <!-- Next of Kin Firstname-->
- <div class="mt-4">
-                <x-label for="firstname" :value="__('First Name')" />
+ <div class="form-group">
+    <label for="First Name">First Name</label> <small class="text-danger">*</small>
 
-                <x-input id="email" class="block mt-1 w-full" type="text" name="firstnamenext" required/>
-                
-            </div>
+    <input type="text" class="form-control" name="firstnamenext" required>
+</div>
 
+
+
+ 
 
             <!-- Next of Kin  Lastname-->
- <div class="mt-4">
-                <x-label for="lastname" :value="__('Last Name')" />
+            <div class="form-group">
+    <label for="First Name">Last Name</label> <small class="text-danger">*</small>
 
-                <x-input id="email" class="block mt-1 w-full" type="text" name="lastnamenext" required/>
-                
-            </div>
+    <input type="text" class="form-control" name="lastnamenext" required>
+</div>
 
-            <!-- Relationship-->
-            <div class="mt-4">
-<x-label for="relationship" :value="__('Relationship')" />
 
-  <select class="block mt-1 w-full" name="relationshipnext" required>
-  <option value="Father">Father</option>
+
+             <!-- Relationship-->
+             <div class="form-group">
+<label for="relationship">Relationship</label> <small class="text-danger">*</small>
+ <select class="form-control" name="relationshipnext" required>
+ <option value="Father">Father</option>
   <option value="Mother">Mother</option>
   <option value="Uncle">Uncle</option>
   <option value="Brother">Brother</option>
   <option value="Sister">Sister</option>
   <option value="Cousing">Cousin</option>
   <option value="Aunty">Aunty</option>
-  
-  
-</select>                
-            </div>
-
-             <!--Phone Number -->
- <div class="mt-4">
-                <x-label for="phone number" :value="__('Phone Number')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="number" name="phonenumbernext" required/>
-                
-            </div>
-
-
-
-            <!--Physical address  -->
- <div class="mt-4">
-                <x-label for="Physical Address" :value="__('Physical Address')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="text" name="physicaladdressnext" required/>
-                
-            </div>
+  <option value="Other">Other</option>
+ 
+</select>
+    
+  </div>
 
 
 
             
-            <div class="flex items-center justify-end mt-4">
+
+             <!--Phone Number -->
+             <div class="form-group">
+    <label for="Phone Number">Phone Number</label> <small class="text-danger">*</small>
+    <input type="text" name="phonenumbernext" class="form-control" id="phone" placeholder="XXX-XXX-XXXX" autocomplete="off" data-mask="000-000-0000">
+    
+    
+  </div>
+
+
+ 
+
+
+            <!--Physical address  -->
+            <div class="form-group">
+    <label for="Home Address">Home Address</label> <small class="text-danger">*</small>
+    <input type="text" class="form-control" name="physicaladdressnext" required>
+    
+  </div>
+
+
+
+
+            
+            
                
 
-                <x-button class="ml-4">
-                    {{ __('Next') }}
-                </x-button>
-            </div>
+            <button type="submit" class="btn btn-success">Next</button>
+            
         </form>
    
-</x-guest-layout>
+<script> 
 
+$(document).ready(function(){
+    $('#phone').mask('000-000-0000');
+});
+
+
+</script>
 
 </body>
 </html>

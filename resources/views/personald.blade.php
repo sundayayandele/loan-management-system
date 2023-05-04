@@ -76,8 +76,7 @@
             <!-- Active Phone Number -->
             <div class="form-group">
     <label for="Phone Number">Phone Number</label> <small class="text-danger">*</small>
-    <input type="number" class="form-control" name="number" data-mask="000-000-0000" required>
-    
+    <input type="text" name="number" class="form-control" id="phone" placeholder="XXX-XXX-XXXX" autocomplete="off" data-mask="000-000-0000">
   </div>
 
 
@@ -143,6 +142,15 @@
 });
 
     </script>  
+
+<script> 
+
+$(document).ready(function(){
+    $('#phone').mask('000-000-0000');
+});
+
+
+</script>
    
 
 
