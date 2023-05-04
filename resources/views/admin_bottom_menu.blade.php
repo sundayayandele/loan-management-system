@@ -15,7 +15,7 @@
 					<div class="row text-muted">
 						<div class="col-6 text-start">
 							<p class="mb-0">
-								<a class="text-muted" href="https://esvicsolutions.com" target="_blank"><strong>&copyEsvic solutions</strong></a>
+								<a class="text-muted" href="https://esvicsolutions.com" target="_blank"><strong>&copy{{config('app.name')}}</strong></a>
 							</p>
 						</div>
 						<div class="col-6 text-end">

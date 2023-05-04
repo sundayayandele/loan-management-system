@@ -15,7 +15,7 @@
 					<div class="row text-muted">
 						<div class="col-6 text-start">
 							<p class="mb-0">
-								<a class="text-muted" href="https://www.chandachewe.com" target="_blank"><strong>Chanda Chewe</strong></a>
+								<a class="text-muted" href="https://www.chandachewe.com" target="_blank"><strong>{{config('app.name')}}</strong></a>
 							</p>
 						</div>
 						<div class="col-6 text-end">

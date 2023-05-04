@@ -1,12 +1,11 @@
 <?php
 namespace App\Http\Controllers;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Hash;
-use RealRashid\SweetAlert\Facades\Alert;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Storage;
+use ZipArchive;
 use Illuminate\Http\Request;
 use App\Models\ref_payment_mode;
 use App\Models\ref_town_mst;
@@ -767,6 +766,44 @@ public function reviewed_loans(){
   
 
 
+    public function downloadZip(){
+       
+        $zip = new ZipArchive();
+    
+    
+        $fileName = "terms_conditions/FORMS/Loan_agreement_forms.zip";
+        try{
+             if ($zip->open(public_path($fileName), ZipArchive::CREATE) === true) {
+                 $files = File::files(public_path("terms_conditions/FORMS"));
+     
+     
+                 foreach ($files as $key => $value) {
+                     $relativeNameInZipFile = basename($value);
+                     $zip->addFile($value, $relativeNameInZipFile);
+                 }
+     
+                 $zip->close();
+             }
+     
+             return response()->download(public_path($fileName));
+         
+         }
+     
+     
+         catch(\Throwable $e){
+            toast('No Loan Agreement Forms have been found!','error');
+            return redirect()->back();        
+         }
+     
+    
+    }
+
+
+
+
+
+
+
 
 
 /**
@@ -797,10 +834,25 @@ public function approve(Request $request){
     ## Send Email Notification to the user together with the loan number
     ## If Loan Application has been approved successfully
 
-     $loan_number =  $loan_applications->loan_number;     
-     $email_notification = reg_employee_mst::find($loan_applications->employee_id);
-     $loan_applicant_name = $email_notification->firstname. ' '.$email_notification->lastname;
-     $email_notification->notify(new approve($loan_number,$loan_applicant_name));
+    
+// Compile the loan agreement form  
+$hold_loan = web_loan_application::where('loan_number',"=",$request->loan_number)->first(); 
+$applicant = reg_employee_mst::find($hold_loan->employee_id);
+$rep = auth()->user()->firstname. ' '.auth()->user()->lastname;
+
+$pdf = Pdf::loadView('LoanTerms.company_payroll', compact('hold_loan','applicant','rep'))
+->setOptions(['defaultFont' => 'sans-serif','isRemoteEnabled' => true]);
+$attachment = $pdf->output();
+
+$fileName = $request->loan_number.'.pdf';
+
+Storage::disk("loan_agreement_forms")->put('FORMS/'.$fileName, $attachment);
+
+
+
+
+
+
      toast('Loan Approved Successfully. Client Notified Via Email!','success');
     return redirect()->back();  
 }

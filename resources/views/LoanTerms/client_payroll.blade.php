@@ -154,8 +154,10 @@ th,table,td {
 $user = auth()->user();
 @endphp
 “ 
+@if(!is_null($user->signature))
 Signature of Borrower: “<img src="{{asset($user->signature->getSignatureImagePath())}}" width="50" height="50" alt="{{config('app.name')}}">
-”
+"
+@endif
 <p>Signed for and on behalf of the Credit Provider: </p>
 <p>Full Name of Credit Provider Representative: “Matthews Chilufya”</p>
 <p>Signature of Credit Provider Representative: “”</p>

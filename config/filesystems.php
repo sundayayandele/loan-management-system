@@ -34,7 +34,7 @@ return [
             'driver' => 'local',
             'root' => public_path('attatchments_loans'),
         ],
-
+        
         'public' => [
             'driver' => 'local',
             'root' => public_path('attatchments_loans'),
@@ -45,6 +45,11 @@ return [
 'settlements' => [
             'driver' => 'local',
             'root' => public_path('settlements_files'),
+        ],
+
+        'loan_agreement_forms' => [
+            'driver' => 'local',
+            'root' => public_path('terms_conditions'),
         ],
         's3' => [
             'driver' => 's3',
