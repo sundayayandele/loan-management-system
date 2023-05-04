@@ -1,4 +1,4 @@
-<x-guest-layout>
+
   <h3>
       Attatchments
   </h3>
@@ -14,22 +14,25 @@
 
           
 <!--NRC Copy-->
-<div class="mt-4">
-                <x-label for="NRC" :value="__('Upload your NRC (PDF Only).')" />
+<div class="form-group">
+    <label for="Upload your NRC (PDF Only)">Upload your NRC (PDF Only)</label> <small class="text-danger">*</small>
 
-                <x-input id="NRC" class="block mt-1 w-full" type="file"  name="nrc_file" required/>
-                
-            </div>
+    <input type="file" accept="application/pdf" class="form-control" name="nrc_file" >
+    <small class="text-danger"> The File should not be more than 10 MB </small>
+  </div>
+
 
 
             <!--Passport Photo-->
-            <div class="mt-4">
-                <x-label for="passportphoto" :value="__('Upload your Passport Photo (JPG,PNG Only).')" />
+            <div class="form-group">
+    <label for="Upload your Selfie">Upload your Passport Photo (JPG/JPEG AND PNG)</label> <small class="text-danger">*</small>
 
-                <x-input id="passportphoto" class="block mt-1 w-full" type="file" name="passportphoto" required/>
-                
-            </div>
+    <input type="file" accept="image/jpeg, image/png" class="form-control" name="passportphoto" >
+    <small class="text-danger"> The Photo should not be more than 10 MB </small>
+  </div>
 
+
+           
 
 
             
@@ -38,13 +41,7 @@
 
 
 
-            <div class="flex items-center justify-end mt-4">
-               
-
-                <x-button class="ml-4">
-                    {{ __('Next') }}
-                </x-button>
-            </div>
+  <button type="submit" class="btn btn-success">Next</button>
         </form>
    
-</x-guest-layout>
+

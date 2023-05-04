@@ -129,7 +129,7 @@ public function personaldetails_blade(){
 public function employerdetails(Request $request,$id){
     $validate=validator::make($request->all(),[
         'employername'=>['required','string'],
-        'employeenumber'=>['required','numeric'],
+        'employeenumber'=>['nullable','string'],
         'netmonthly'=>['required','numeric'],
              
     ]);
