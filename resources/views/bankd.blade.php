@@ -1,4 +1,4 @@
-<x-guest-layout>
+
     <h3>
       Bank Details
     </h3>
@@ -27,10 +27,10 @@
            
 
 <!-- Bank Name -->
-<div class="mt-4">
-<x-label for="email" :value="__('Select Your Bank')" />
+<div class="form-group">
+<label for="Select Your Bank">Select Your Bank</label> <small class="text-danger">*</small>
 
-  <select class="block mt-1 w-full" name="bankname" required>
+  <select class="form-control" name="bankname" required>
   <option value="Zambia National Commercial Bank (Zanaco)">Zambia National Commercial Bank (Zanaco)</option>
   <option value="Standard Chartered Bank Zambia">Standard Chartered Bank Zambia</option>
   <option value="Barclays Zambia (Absa)">Barclays Zambia (Absa)</option>
@@ -54,84 +54,59 @@
 
 
  <!-- Branch Name -->
- <div class="mt-4">
-                <x-label for="email" :value="__('Branch Name')" />
+ <div class="form-group">
+    <label for="Bank Branch Name">Bank Branch Name</label> <small class="text-danger">*</small>
+    <input type="text" class="form-control" name="branchname" required>
+    
+  </div>
 
-                <select class="block mt-1 w-full" name="branchname" required>
-  <option value="ZN-Cairo Road Branch">ZN-Cairo Road Branch</option>
-  <option value="FBZ - Kamwala Branch">FBZ - Kamwala Branch</option>
-  <option value="Bar - Kabwata Branch">Bar - Kabwata Branch</option>
-  <option value="FNB - Cairo Road Branch">FNB - Cairo Road Branch</option>
-  <option value="SCB - SCB-Cairo">SCB - SCB-Cairo</option>
-  <option value="ABZ - Arcades Branch">ABZ - Arcades Branch</option>
-  <option value="SCB-Northend-Cairo Road">SCB-Northend-Cairo Road </option>
-  <option value="SCB - Buteko Avenue Ndola">SCB - Buteko Avenue Ndola</option>
-  <option value="SCB - Chililabombwe">SCB - Chililabombwe</option>
-  <option value="SCB - Chingola">SCB - Chingola</option>
-  <option value="SCB - Choma">SCB - Choma</option>
-  <option value="SCB - Crossroads Lusaka">SCB - Crossroads Lusaka</option>
-  <option value="SCB Fallspark - Livingstone">SCB Fallspark - Livingstone</option>
-  <option value="SCB - Kabulonga Shopping Centre Lusaka">SCB - Kabulonga Shopping Centre Lusaka</option>
-  <option value="SCB - Jacaranda Mall Ndola">SCB - Jacaranda Mall Ndola</option>
-  <option value="SCB - Kasama">SCB - Kasama</option>
-  <option value="SCB - Zambia Way Kitwe">SCB - Zambia Way Kitwe</option>  
-  <option value="SCB - Livingstone">SCB - Livingstone</option>
-  <option value="SCB - Luanshya">SCB - Luanshya</option>
-  <option value=">SCB - Manda Hill Shopping Mall Lusaka">SCB - Manda Hill Shopping Mall Lusaka</option>
-  <option value="SCB - Manda Hill Shopping Mall Lusaka">SCB - Mazabuka</option>
-  <option value="SCB - Mongu">SCB - Mongu</option>
-  <option value="SCB - Ndola South">SCB - Ndola South</option>
-  <option value="SCB - Solwezi">SCB - Solwezi</option>
-  <option value="BAR - Central Park Cairo Road">BAR - Central Park Cairo Road</option>  
-  
-</select>  
-                
-            </div>
+
+
+ 
 
             <!-- Account Number -->
- <div class="mt-4">
-                <x-label for="email" :value="__('Account Number')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="number" name="accountnumber" required/>
-                
-            </div>
-
-            <!-- Account Name -->
- <div class="mt-4">
-                <x-label for="email" :value="__('Account Name')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="text" name="accountname" required/>
-                
-            </div>
+            <div class="form-group">
+    <label for="Bank Account Number">Bank Account Number</label> <small class="text-danger">*</small>
+    <input type="text" class="form-control" name="accountnumber" required>
+    
+  </div>
 
 
-            <!-- Mobile Money Number -->
- <div class="mt-4">
-                <x-label for="mobile money number" :value="__('Mobile Money Number')" />
+             <!-- Account Name -->
+             <div class="form-group">
+    <label for="Bank Account Name">Bank Account Name</label> <small class="text-danger">*</small>
+    <input type="text" class="form-control" name="accountname" required>
+    
+  </div>
 
-                <x-input id="mobile_money_number" class="block mt-1 w-full" type="number" name="mobile_money_number" required/>
-                
-            </div>
 
 
+
+             <!-- Mobile Money Number -->
+             <div class="form-group">
+    <label for="Mobile Money Number">Mobile Money Number</label> <small class="text-danger">*</small>
+    <input type="text" name="mobile_money_number" class="form-control" id="phone" placeholder="XXX-XXX-XXXX" autocomplete="off" data-mask="000-000-0000">
+  </div>
+
+ 
               <!-- Mobile Money Name -->
- <div class="mt-4">
-                <x-label for="mobile money name" :value="__('Mobile Money Name')" />
+               <!-- Physical Address -->
+             <div class="form-group">
+    <label for="Mobile Money Name">Mobile Money Name</label> <small class="text-danger">*</small>
+    <input type="text" class="form-control" name="mobile_money_name" required>
+    
+  </div>
 
-                <x-input id="mobile_money_name" class="block mt-1 w-full" type="text" name="mobile_money_name" required/>
-                
-            </div>
+ 
 
-
-
-
-            <div class="flex items-center justify-end mt-4">
-               
-
-                <x-button class="ml-4">
-                    {{ __('Submit') }}
-                </x-button>
-            </div>
+  <button type="submit" class="btn btn-success">Finish</button>
         </form>
    
-</x-guest-layout>
+        <script> 
+
+$(document).ready(function(){
+    $('#phone').mask('000-000-0000');
+});
+
+
+</script>

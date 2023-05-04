@@ -209,7 +209,7 @@ public function bankdetails(Request $request,$id){
         'branchname'=>['required','string'],
         'accountnumber'=>['required','numeric'],
         'accountname'=>['required','string'], 
-        'mobile_money_number'=>['required','numeric'],
+        'mobile_money_number'=>['required','string'],
         'mobile_money_name'=>['required','string'], 
         
     ]);
@@ -229,7 +229,8 @@ else {
 
    
    //Show that the form KYC has been submitted successfully
-   return redirect('dashboard')->with('kyc', 'Your KYC form has been Submitted successfully');
+   toast('Your KYC form has been Submitted successfully','success');
+   return redirect('dashboard');
     
 }
 
