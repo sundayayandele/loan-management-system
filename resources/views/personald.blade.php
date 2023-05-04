@@ -1,4 +1,3 @@
-<x-guest-layout>
    
 <div >
   <h3> PERSONAL DETAILS </h3>
@@ -18,91 +17,97 @@
 
 
            <!-- Name -->
-           <div class="mt-4">
-                <x-label for="name" :value="__('Full Names')" />
+   <div class="form-group">
+    <label for="Full Names">Full Names</label> <small class="text-danger">*</small>
 
-                <x-input id="name" class="block mt-1 w-full" type="text"  value='{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}' name="name"  readonly/>
-            </div>
+    <input type="text" class="form-control" name="name" value='{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}' name="name"  readonly>
+    
+  </div>
 
+
+           
             
             
      
              <!-- D.O.B -->
-             <div class="mt-4">
-                <x-label for="email" :value="__('D.O.B')" />
+ <div class="form-group">
+    <label for="Date of Birth (DOB)">Date of Birth (DOB)</label> <small class="text-danger">*</small>
 
-                <x-input id="email" class="block mt-1 w-full" type="date" name="DateofBirth" required/>
-            </div>
+    <input type="text" class="form-control" id="datepicker" name="DateofBirth" required>
+</div>
+
 
 
             <!-- Gender -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Please Select Your Gender.')" required/>
-<br>
-                <x-input id="email" type="radio" name="gender" value="male"/> Male
-                <x-input id="email" type="radio" name="gender" value="female"/> Female
-            </div>
-
-             <!-- Marital Status -->
-             <div class="mt-4">
-                <x-label for="email" :value="__('Marital Status.')" required/>
-<br>
-                <x-input id="email"  type="radio" name="marital" value="single"/> Single <br>
-                <x-input id="email"  type="radio" name="marital" value="married"/> Married <br>
-                <x-input id="email"  type="radio" name="marital" value="divorced"/> Divorced <br>
-                <x-input id="email"  type="radio" name="marital" value="widowed"/>  Widowed <br>
-                <x-input id="email"  type="radio" name="marital" value="separated"/>  Separated <br>
-            </div>
-
-          
-
-            <!-- Active Phone Number -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Mobile Money number')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="number" name="number" required/>
-                
-            </div>
-
-
-             <!-- Physical Address -->
-             <div class="mt-4">
-                <x-label for="email" :value="__('Home Address')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="text" name="address" required/>
-                
-            </div>
-
-             <!-- Town of Residence -->
-             <div class="mt-4">
-                <x-label for="email" :value="__('Town of Residence')" />
-
-
-   <!--Show the retrieved towns from the database--> 
-
-    
- <select class="block mt-1 w-full" name="town" required>
- <option value="Kitwe">Kitwe</option>
-  <option value="Lusaka">Lusaka</option>
-  <option value="Chingola">Chingola</option>
-  <option value="Ndola">Ndola</option>
-  <option value="Kalulushi">Kalulushi</option>
-  <option value="Kafue">Kafue</option>
-  <option value="Nakonde">Nakonde</option>
-  <option value="New york">New York</option>
-  <option value="Georgia">Georgia</option>
-  <option value="Kaoma">Kaoma</option>
+<div class="form-group">
+    <label for="Please Select Your Gender">Please Select Your Gender</label> <small class="text-danger">*</small>
+    <select class="form-control" name="gender" required>
+ <option value="Male">Male</option>
+  <option value="Female">Female</option>
+ 
 </select>
+    
   </div>
 
 
-             <!-- Province of Residence -->
-             <div class="mt-4">
-                <x-label for="email" :value="__('Province of Residence')" />
+            
+             <!-- Marital Status -->
 
-<!--Show the Provinces to the user--> 
-<select class="block mt-1 w-full" name="province" required>
-  <option value="Southern">Southern </option>
+<div class="form-group">
+<label for="Marital Status">Marital Status</label> <small class="text-danger">*</small>
+ <select class="form-control" name="marital" required>
+ <option value="Single">Single</option>
+ <option value="Married">Married</option>
+ <option value="Divorced">Divorced</option>
+ <option value="Widowed">Widowed</option>
+ <option value="Separated">Separated</option>
+ 
+</select>
+    
+  </div>
+
+
+
+
+
+
+                   
+
+            <!-- Active Phone Number -->
+            <div class="form-group">
+    <label for="Phone Number">Phone Number</label> <small class="text-danger">*</small>
+    <input type="number" class="form-control" name="number" data-mask="000-000-0000" required>
+    
+  </div>
+
+
+
+            
+             <!-- Physical Address -->
+             <div class="form-group">
+    <label for="Home Address">Home Address</label> <small class="text-danger">*</small>
+    <input type="text" class="form-control" name="address" required>
+    
+  </div>
+
+             
+
+             <!-- Town of Residence -->
+             <div class="form-group">
+    <label for="Town of Residence">Town of Residence</label> <small class="text-danger">*</small>
+    <input type="text" class="form-control" name="town" placeholder="Lusaka" required>
+    
+  </div>
+
+
+
+
+            
+             <!-- Province of Residence -->
+             <div class="form-group">
+    <label for="Province of Residence">Province of Residence</label> <small class="text-danger">*</small>
+    <select class="form-control" name="province" required>
+    <option value="Southern">Southern </option>
   <option value="Nothern">Nothern</option>
   <option value="Western">Western</option>
   <option value="Eastern">Eastern</option>
@@ -112,23 +117,33 @@
   <option value="Central">Central</option>
   <option value="Copperbelt">Copperbelt</option>
   <option value="Muchinga">Muchinga</option>
-  
-</select>      
-                
-            </div>
+ 
+</select>
+    
+  </div>
 
 
-           <br>
-               <x-button class="ml-4">
-                   {{ __('Next') }}
-               </x-button>
+
+
+             
+
+          
+               <button type="submit" class="btn btn-success">Next</button>
+                 
            </div>  
 
         </form>
 
-      
+    <script> 
+    $(document).ready(function(){
+  $('#datepicker').datepicker({
+    format: 'dd/mm/yyyy'
+    
+  });
+});
+
+    </script>  
    
-</x-guest-layout>
 
 
 

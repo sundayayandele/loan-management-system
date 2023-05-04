@@ -19,7 +19,12 @@
            <div class="mt-4">
            <x-label for="name" :value="__('Loan Type')" />
 
-            <x-input id="name" class="block mt-1 w-full" type="text" value='Personal Loan' name="loan_type"  readonly/>
+           <select class="block mt-1 w-full" name="loan_type" required>
+  <option value="PAYROLL BASED LOANS">Payroll Based Loan</option>
+  <option value="AUTO LOANS">Auto Loans</option>
+  <option value="GROUP LOANS">Group Loans</option>
+  
+ </select>            
             </div> 
 
            
