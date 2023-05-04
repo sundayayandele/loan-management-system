@@ -300,7 +300,14 @@ Route::resource('loan_approvals', LoanApprovalsController::class)
 
 ## Reminders Notification
 Route::resource('reminders', RemindersController::class)
-->middleware('auth');  
+->middleware('auth'); 
+
+
+
+## Download Compressed Loan Agreement Forms
+Route::get('downloading_loan_agreement_forms', [loanapp::class,'downloadZip'])
+->middleware('auth')
+->name('downloading_loan_agreement_forms'); 
 
 
 

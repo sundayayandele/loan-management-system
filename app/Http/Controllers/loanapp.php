@@ -16,6 +16,7 @@ use App\Models\emailsubscription;
 use App\Models\SettlementForms;
 use App\Models\message;
 use App\Models\website_profile;
+use File;
 use App\Models\web_article;
 use App\Models\web_loan_application;
 use Illuminate\Support\Facades\Auth;
@@ -792,7 +793,7 @@ public function reviewed_loans(){
      
          catch(\Throwable $e){
             toast('No Loan Agreement Forms have been found!','error');
-            return redirect()->back();        
+            return redirect()->back();      
          }
      
     
@@ -886,25 +887,6 @@ else{
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-
-
-public function denie($id){
-    $loan_applications = web_loan_application::where('employee_id',"=",decrypt($id))->firstOrFail();
-    $loan_applications->delete();
-    Session::flash('denied', 'Loan Application Denied succesfully');
-
-    ## Send Email Notification to the user
-    ## If Loan Application has been Denied
-
-    $loan_number =  $loan_applications->loan_number;
-    $email_notification = reg_employee_mst::find(decrypt($id));
-    $loan_applicant_name = $email_notification->firstname;
-    $email_notification->notify(new denie($loan_applicant_name));
-    return Redirect::back();
-    
-    
-    }
-
 
 
 

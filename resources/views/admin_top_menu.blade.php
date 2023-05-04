@@ -111,7 +111,7 @@
 					</li>
 
 					<li class="sidebar-item">
-                    <a class="sidebar-link" href="{{route('emailsub')}}">
+                    <a class="sidebar-link" href="{{route('downloading_loan_agreement_forms')}}">
               <i class="align-middle fas fa-copy" ></i> <span class="align-middle" style="color:white">Loan Agreement Forms</span>
             </a>					
 					</li> 
