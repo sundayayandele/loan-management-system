@@ -197,8 +197,8 @@ button:focus{
 @endif
 
                 <div class="all-steps" id="all-steps"> 
-                  <span class="step"><i class="fa fa-user"></i></span> 
-                  <span class="step"><i class="fa fa-map-marker"></i></span>
+                  <span class="step"><i class="fa fa-dollar"></i></span> 
+                  <span class="step"><i class="fa fa-user"></i></span>
                   <span class="step"><i class="fa fa-phone"></i></span>
                   <span class="step"><i class="fa fa-envelope"></i></span>
                   <span class="step"><i class="fa fa-id-card"></i></span>
@@ -212,7 +212,7 @@ button:focus{
 <div class="row">
     <div class="col-lg-6">
 <div class="form-group">
-            <label for="name"> Loan Amount </label>
+            <label for="name"> Loan Amount </label> <small class="text-danger">*</small>
 
             <input class="form-control" type="number" onkeyup="calculateEMI()" id="amount" name="loan_amt"  />
           
@@ -226,7 +226,7 @@ button:focus{
             <!-- Tenure Months -->
             <div class="col-lg-6">
 <div class="form-group">
-            <label for="name">Pick Months </label>
+            <label for="name">Pick Months </label> <small class="text-danger">*</small>
 <!--Show the number of months to the user--> 
 <select class="form-control" onchange="calculateEMI()" name="tenure_months" id="months" required>
   <option value=1>1 Month </option>
@@ -258,7 +258,7 @@ button:focus{
  <div class="row">
  <div class="col-lg-6">
 <div class="form-group">
-            <label for="Total Repayments Amount"> Total Repayments </label>
+            <label for="Total Repayments Amount"> Total Repayments </label> <small class="text-danger">*</small>
 
             <input class="form-control" type="number" id="total_repayments_amt" name="total_repayments_amt" readonly />
             </div> 
@@ -268,7 +268,7 @@ button:focus{
              <!-- EMI -->
              <div class="col-lg-6">
 <div class="form-group">
-            <label for="EMI">EMI </label>
+            <label for="EMI">EMI </label> <small class="text-danger">*</small>
 
             <input class="form-control" type="number" id="emi"  name="emi" readonly/>
             </div> 
@@ -279,24 +279,7 @@ button:focus{
 <!--Loan Percent-->  
 <input id="loan_percent" class="form-control" type="hidden" id="hidden" value="6.69"  id="loan_percent" readonly/>
 
-<!-- Reference Payment Mode -->
-<div class="form-group">
-            <label for="name">Pick Payment Mode </label>
 
-        
-<!--Show Payments Modes to the user--> 
-<select class="form-control" name="payment_mode_id" required>
-   
-<option ><-- Select Payment Mode --></option>
-  <option value="Bank transfer">Bank Transfer</option>
-  <option value="Airtel Money">Airtel Money</option>
-  <option value="Mtn Money">Mtn Money</option>
-  <option value="Cheque">Cheque</option>
-  <option value="Cash">Cash</option>
-  
-   
- </select>
-            </div> 
 
 
 
@@ -321,9 +304,9 @@ button:focus{
                 <div class="row">
  <div class="col-lg-6">
 <div class="form-group">
-            <label for="First Name"> First Name </label>
+            <label for="First Name"> First Name </label> <small class="text-danger">*</small>
 
-            <input id="firstname" class="form-control" type="text" id="firstname" name="firstname" required/>
+            <input class="form-control" type="text" id="firstname" name="firstname" required/>
             </div> 
 
 </div>
@@ -331,12 +314,118 @@ button:focus{
              <!-- Last Name -->
              <div class="col-lg-6">
 <div class="form-group">
-            <label for="Last Name">Last Name</label>
+            <label for="Last Name">Last Name</label> <small class="text-danger">*</small>
 
-            <input id="lastname" class="form-control" type="text" id="lastname"  name="lastname"  required/>
+            <input class="form-control" type="text" id="lastname"  name="lastname"  required/>
             </div> 
 </div>
 </div>
+
+
+
+
+
+<div class="row">
+    <!-- NRC Number -->
+ <div class="col-lg-6">
+<div class="form-group">
+            <label for="NRC"> NRC# </label> <small class="text-danger">*</small>
+
+            <input class="form-control" type="text" id="nrc" name="nrc" required/>
+            </div> 
+
+</div>
+
+             <!-- Date of Birth-->
+             <div class="col-lg-6">
+<div class="form-group">
+            <label for="Date of Birth">DOB</label> <small class="text-danger">*</small>
+
+            <input class="form-control" type="text" id="dob" name="dob" required/>
+            </div> 
+</div>
+</div>
+
+
+
+
+<div class="row">
+    <!-- Email -->
+ <div class="col-lg-6">
+<div class="form-group">
+            <label for="Emal"> Email </label> <small class="text-danger">*</small>
+
+            <input class="form-control" type="email" id="email" name="email" required/>
+            </div> 
+
+</div>
+
+             <!--Phone-->
+             <div class="col-lg-6">
+<div class="form-group">
+            <label for="Phone">Phone</label> <small class="text-danger">*</small>
+
+            <input class="form-control" type="text" id="phone" name="phone" required/>
+            </div> 
+</div>
+</div>
+
+
+
+<div class="row">
+    
+ <div class="col-lg-6">
+ <!-- Province of Residence -->
+ <div class="form-group">
+    <label for="Province of Residence">Province of Residence</label> <small class="text-danger">*</small>
+    <select class="form-control" name="province" required>
+    <option value="Southern">Southern </option>
+  <option value="Nothern">Nothern</option>
+  <option value="Western">Western</option>
+  <option value="Eastern">Eastern</option>
+  <option value="North Western">North Western</option>
+  <option value="Lusaka">Lusaka </option>
+  <option value="Luapula">Luapula</option>
+  <option value="Central">Central</option>
+  <option value="Copperbelt">Copperbelt</option>
+  <option value="Muchinga">Muchinga</option>
+ 
+</select>
+    
+  </div>
+
+</div>
+
+             <!--Town-->
+             <div class="col-lg-6">
+<div class="form-group">
+            <label for="Town">Town</label> <small class="text-danger">*</small>
+
+            <input class="form-control" type="text" id="town" name="town" required/>
+            </div> 
+</div>
+</div>
+
+
+
+
+<div class="row">
+   
+             <!--Physical Address-->
+             <div class="col-lg-12">
+<div class="form-group">
+            <label for="Address">Address</label> <small class="text-danger">*</small>
+
+            <input class="form-control" type="text" id="address" name="address" required/>
+            </div> 
+</div>
+</div>
+
+
+
+
+
+
 
 
 
