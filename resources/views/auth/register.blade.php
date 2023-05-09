@@ -214,8 +214,9 @@ button:focus{
 <div class="form-group">
             <label for="name"> Loan Amount </label>
 
-            <input id="name" class="form-control" type="number" onkeyup="calculateEMI()" id="amount" name="loan_amt"  />
-            </div> 
+            <input class="form-control" type="number" onkeyup="calculateEMI()" id="amount" name="loan_amt"  />
+          
+        </div> 
 </div>
 
         
@@ -239,20 +240,17 @@ button:focus{
 
 </div>
 </div>
-<!-- 
+ 
 
-            <div class="form-group">
-  <label for="company_percentage">Facility Fee - For Loans between (K200-K1000)</label>
-  <input type="number" name="lower_facility_fee" value="100" class="form-control"  id="lower_facility_fee" readonly>
-    <small>The facility fee of K100 will be added to the loan amount(s) between K200 to K1000</small>  
-  </div>
+           
+  <input type="hidden" name="lower_facility_fee" value="100" class="form-control"  id="lower_facility_fee" readonly>
+    
   
-  <div class="form-group" style="display:none">
-  <label for="company_percentage">Facility Fee - For Loans between (K1001 - K10,000)</label>
-  <input type="number" name="higher_facility_fee" value="100" class="form-control"  id="higher_facility_fee" readonly>
-    <small>The facility fee of K100 will be added to the loan amount(s) between K1001 - K10,000</small>  
-  </div>
--->
+  
+  
+    <input type="hidden" name="higher_facility_fee" value="100" class="form-control"  id="higher_facility_fee" readonly>
+   
+  
 
 
 
@@ -262,7 +260,7 @@ button:focus{
 <div class="form-group">
             <label for="Total Repayments Amount"> Total Repayments </label>
 
-            <input id="name" class="form-control" type="number" id="total_repayments_amt" name="total_repayments_amt" readonly />
+            <input class="form-control" type="number" id="total_repayments_amt" name="total_repayments_amt" readonly />
             </div> 
 
 </div>
@@ -272,7 +270,7 @@ button:focus{
 <div class="form-group">
             <label for="EMI">EMI </label>
 
-            <input id="name" class="form-control" type="number" id="emi"  name="emi"  readonly/>
+            <input class="form-control" type="number" id="emi"  name="emi" readonly/>
             </div> 
 </div>
 </div>
@@ -316,12 +314,40 @@ button:focus{
 
               
 
+<!--Contact Details-->
 
                 <div class="tab">
-                  <h6>What's your Address?</h6>
-                    <p><input type="text" placeholder="Address" autofocus oninput="this.className = ''" name="address"></p>
+                 
+                <div class="row">
+ <div class="col-lg-6">
+<div class="form-group">
+            <label for="First Name"> First Name </label>
+
+            <input id="firstname" class="form-control" type="text" id="firstname" name="firstname" required/>
+            </div> 
+
+</div>
+
+             <!-- Last Name -->
+             <div class="col-lg-6">
+<div class="form-group">
+            <label for="Last Name">Last Name</label>
+
+            <input id="lastname" class="form-control" type="text" id="lastname"  name="lastname"  required/>
+            </div> 
+</div>
+</div>
+
+
+
+
+
                     
                 </div>
+
+
+
+
                 <div class="tab">
                     <h6>What's your Phone Number?</h6>
                     <p><input type="number" value="{{old('number')}}" autofocus placeholder="Phone Number" oninput="this.className = ''" name="phone"></p>
@@ -429,6 +455,70 @@ button:focus{
                }
 </script>
 
+
+<script>
+
+  function calculateEMI() {
+
+
+    var loan_percent = document.getElementById('loan_percent').value;
+            if (!loan_percent)
+            loan_percent = '0';
+
+
+
+             var installments = document.getElementById('months').value;
+            if (!installments)
+                installments = '0';
+
+
+                var loan_amount =document.getElementById('amount').value;
+            if (!loan_amount)
+                loan_amount = '0';
+                
+                
+                 var lower_facility_fee =document.getElementById('lower_facility_fee').value;
+            if (!lower_facility_fee)
+                lower_facility_fee = '0';
+                
+                
+                 var higher_facility_fee =document.getElementById('higher_facility_fee').value;
+            if (!higher_facility_fee)
+                higher_facility_fee = '0';
+
+
+               
+
+
+            var loan_amount = parseFloat(loan_amount);
+            var loan_percent = parseFloat(loan_percent);
+            var installments = parseFloat(installments);
+            var lower_facility_fee = parseFloat(lower_facility_fee);
+            var higher_facility_fee = parseFloat(higher_facility_fee);
+            
+
+            
+            
+
+
+if(loan_amount >= 200 && loan_amount <= 1000){
+var total = (loan_amount+lower_facility_fee)+((loan_amount+lower_facility_fee)*(loan_percent/100)*installments);
+ document.getElementById('total_repayments_amt').value = parseFloat(total).toFixed(2);
+ document.getElementById('emi').value = parseFloat((total/installments)).toFixed(2);
+}
+
+if(loan_amount >= 1001 && loan_amount <= 10000){
+var total = (loan_amount+higher_facility_fee)+((loan_amount+higher_facility_fee)*(loan_percent/100)*installments);
+ document.getElementById('total_repayments_amt').value = parseFloat(total).toFixed(2);
+ document.getElementById('emi').value = parseFloat((total/installments)).toFixed(2);
+ document.getElementById('emi_terms').value = parseFloat((total/installments)).toFixed(2);
+ document.getElementById('loan_amt_terms').value = loan_amount;
+ document.getElementById('loan_amt_terms_conditions').value = loan_amount;
+}
+ 
+           
+        }
+      </script>
 
 
 
