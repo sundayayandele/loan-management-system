@@ -199,17 +199,19 @@ button:focus{
                 <div class="all-steps" id="all-steps"> 
                   <span class="step"><i class="fa fa-dollar"></i></span> 
                   <span class="step"><i class="fa fa-user"></i></span>
-                  <span class="step"><i class="fa fa-phone"></i></span>
-                  <span class="step"><i class="fa fa-envelope"></i></span>
-                  <span class="step"><i class="fa fa-id-card"></i></span>
-                  <span class="step"><i class="fa fa-lock"></i></span>
+                  <span class="step"><i class="fa fa-industry"></i></span>
+                  <span class="step"><i class="fa fa-user-plus"></i></span>
+                  <span class="step"><i class="fa fa-file"></i></span>
+                  <span class="step"><i class="fa fa-lock" ></i></span>
                   <span class="step"><i class="fa fa-tachometer"></i></span>
                 </div>
 
                 <div class="tab">
-                 
+                <strong>Loan Details</strong>   
+                <hr>            
 <!--Loan Tab-->    
 <div class="row">
+
     <div class="col-lg-6">
 <div class="form-group">
             <label for="name"> Loan Amount </label> <small class="text-danger">*</small>
@@ -300,7 +302,8 @@ button:focus{
 <!--Contact Details-->
 
                 <div class="tab">
-                 
+                <strong>Personal Details</strong>   
+                <hr>                
                 <div class="row">
  <div class="col-lg-6">
 <div class="form-group">
@@ -438,19 +441,347 @@ button:focus{
 
 
                 <div class="tab">
-                    <h6>What's your Phone Number?</h6>
-                    <p><input type="number" value="{{old('number')}}" autofocus placeholder="Phone Number" oninput="this.className = ''" name="phone"></p>
-                 
-                </div>
-                <div class="tab">
-                    <h6>Enter Email ?</h6>
-                    <p><input type="email" placeholder="Email" value="{{old('email')}}" autofocus oninput="this.className = ''" name="email"></p>
-                </div>
+                <strong>Employeement Details</strong>   
+                <hr>    
+                 <div class="row">
+  <div class="col-lg-6">
+ <div class="form-group">
+             <label for="Employee Number"> Employee# </label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="text" id="employee_number" name="employee_number" required/>
+             </div> 
+ 
+ </div>
+ 
+              <!-- Last Name -->
+              <div class="col-lg-6">
+ <div class="form-group">
+             <label for="Job Title">Job Title</label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="text" id="job_title"  name="job_title"  required/>
+             </div> 
+ </div>
+ </div>
+ 
+ 
+ 
+ 
+ 
+ <div class="row">
+     <!-- NRC Number -->
+  <div class="col-lg-6">
+ <div class="form-group">
+             <label for="Ministry"> Ministry </label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="text" id="ministry" name="ministry" required/>
+             </div> 
+ 
+ </div>
+ 
+              <!-- Basic Pay-->
+              <div class="col-lg-6">
+ <div class="form-group">
+             <label for="Basic Pay">Basic Pay</label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="text" id="basic" name="basic" required/>
+             </div> 
+ </div>
+ </div>
+ 
+ 
+ 
+ 
+ <div class="row">
+     <!-- Net -->
+  <div class="col-lg-6">
+ <div class="form-group">
+             <label for="Gross Pay"> Gross Pay </label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="text" id="gross" name="gross" required/>
+             </div> 
+ 
+ </div>
+ 
+              <!--Net-->
+              <div class="col-lg-6">
+ <div class="form-group">
+             <label for="Net">Net</label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="text" id="net" name="net" required/>
+             </div> 
+ </div>
+ </div>
+ 
+ 
+ 
+ <div class="row">
+     
+  <div class="col-lg-6">
+  <!-- Province of Residence -->
+  <div class="form-group">
+     <label for="Base Station">Base Station</label> <small class="text-danger">*</small>
+     <select class="form-control" name="base_station" required>
+     <option value="Southern">Southern </option>
+   <option value="Nothern">Nothern</option>
+   <option value="Western">Western</option>
+   <option value="Eastern">Eastern</option>
+   <option value="North Western">North Western</option>
+   <option value="Lusaka">Lusaka </option>
+   <option value="Luapula">Luapula</option>
+   <option value="Central">Central</option>
+   <option value="Copperbelt">Copperbelt</option>
+   <option value="Muchinga">Muchinga</option>
+  
+ </select>
+     
+   </div>
+ 
+ </div>
+ 
+              <!--Town-->
+              <div class="col-lg-6">
+ <div class="form-group">
+             <label for="Town">Work Town</label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="text" id="town" name="town" required/>
+             </div> 
+ </div>
+ </div>
+ 
+ 
+ 
+ 
+ <div class="row">
+    
+              <!--Physical Address-->
+              <div class="col-lg-12">
+ <div class="form-group">
+             <label for="Address">Work Physical Address</label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="text" id="address" name="address" required/>
+             </div> 
+ </div>
+ </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                     
+                 </div>
 
-                <div class="tab">
-                    <h6>What's your NRC Number?</h6>
-                    <p><input  type="text" placeholder="NRC" value="{{old('nrc')}}" autofocus oninput="this.className = ''" name="nrc"></p>
-                </div>
+                 
+
+
+
+
+                 <div class="tab">
+                <strong>Supervisor & Next of Kin</strong>   
+                <hr>    
+                 <div class="row">
+  <div class="col-lg-6">
+ <div class="form-group">
+             <label for="Supervisors Name"> Supervisors Full Name </label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="text" id="employer_name" name="employer_name" required/>
+             </div> 
+ 
+ </div>
+ 
+              <!-- Employer Number -->
+              <div class="col-lg-6">
+ <div class="form-group">
+             <label for="Supervisors Number">Supervisors Number</label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="text" id="employer_number"  name="employer_number"  required/>
+             </div> 
+ </div>
+ </div>
+ 
+ 
+ 
+ 
+ 
+ <div class="row">
+     <!-- NRC Number -->
+  <div class="col-lg-6">
+ <div class="form-group">
+             <label for="Ministry"> Ministry </label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="text" id="ministry" name="ministry" required/>
+             </div> 
+ 
+ </div>
+ 
+              <!-- Next of Kin Firstname -->
+              <div class="col-lg-6">
+ <div class="form-group">
+             <label for="Next of Kin First Name">Next of Kin First Name</label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="text" id="nexofkin_firstname" name="nexofkin_firstname" required/>
+             </div> 
+ </div>
+ </div>
+ 
+ 
+ 
+ 
+ <div class="row">
+     <!-- Next of Kin Last Name -->
+  <div class="col-lg-6">
+ <div class="form-group">
+             <label for="Next of Kin Last Name"> Next of Kin Last Name </label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="text" id="nexofkin_lastname" name="nexofkin_lastname" required/>
+             </div> 
+ 
+ </div>
+ 
+              <!--Next of Kin Number-->
+              <div class="col-lg-6">
+ <div class="form-group">
+             <label for="Next of Kin Number">Next of Kin Number</label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="text" id="nexofkin_lastname" name="nexofkin_lastname" required/>
+             </div> 
+ </div>
+ </div>
+ 
+ 
+ 
+ <div class="row">
+     
+  <div class="col-lg-6">
+  <!-- Relationship with Next of Kin -->
+  <div class="form-group">
+     <label for="Relationship with Next of Kin">Relationship with Next of Kin</label> <small class="text-danger">*</small>
+     <select class="form-control" name="base_station" required>
+     <option value="Father">Father </option>
+   <option value="Mother">Mother</option>
+   <option value="Spouse">Spouse</option>
+   <option value="Aunty">Aunty</option>
+   <option value="Cousin">Cousin</option>
+   <option value="Nephew">Nephew </option>
+   <option value="Uncle">Uncle</option>
+   <option value="Grand Mother">Grand Mother</option>
+   <option value="Grand Father">Grand Father</option>
+   <option value="Child">Child</option>
+   <option value="Other">Other</option>
+  
+ </select>
+     
+   </div>
+ 
+ </div>
+ 
+              <!--Next of Kin Physical Address-->
+              <div class="col-lg-6">
+ <div class="form-group">
+             <label for="Next of Kin Physical Address">Next of Kin Physical Address</label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="text" id="nextofkin_address" name="nextofkin_address" required/>
+             </div> 
+ </div>
+ </div>
+ 
+ 
+ 
+ 
+ 
+                     
+                 </div>
+
+
+
+
+
+
+
+
+
+
+
+                 <div class="tab">
+                <strong>Attachments</strong>   
+                <hr>    
+                 <div class="row">
+  <div class="col-lg-6">
+ <div class="form-group">
+             <label for="Payslip1">Upload {{date('F-Y',strtotime('-1 month'))}} Payslip (PDF)</label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="file" id="payslip1" name="payslip1" required/>
+             </div> 
+ 
+ </div>
+ 
+              <!-- Payslip-2 -->
+              <div class="col-lg-6">
+ <div class="form-group">
+ <label for="Payslip1">Upload {{date('F-Y',strtotime('-2 months'))}} Payslip (PDF)</label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="file" id="file"  name="payslip2"  required/>
+             </div> 
+ </div>
+ </div>
+ 
+ 
+ 
+ 
+ 
+ <div class="row">
+     <!-- Bank Statement -->
+  <div class="col-lg-6">
+ <div class="form-group">
+             <label for="Bank Statement "> Bank Statement (PDF) </label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="text" id="bank_statement" name="bank_statement" required/>
+             </div> 
+ 
+ </div>
+ 
+              <!-- Passport Photo -->
+              <div class="col-lg-6">
+ <div class="form-group">
+             <label for="Passport Photo">Selfie (JPG/PNG)</label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="file" id="passport_photo" name="passport_photo" required/>
+             </div> 
+ </div>
+ </div>
+ 
+ 
+ 
+ 
+ <div class="row">
+     <!-- NRC -->
+  <div class="col-lg-6">
+ <div class="form-group">
+             <label for="NRC"> NRC (PDF) </label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="file" id="file" name="file" required/>
+             </div> 
+ 
+ </div>
+ 
+              
+ 
+                      
+                 </div>
+
+</div>
+
+
+
+
+
+
+
 
 
                 <div class="tab">
