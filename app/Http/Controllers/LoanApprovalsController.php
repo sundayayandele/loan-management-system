@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\web_loan_application;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Approvals;
+use App\Notifications\SignatureNotification.php;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Http\Request;
 
 class LoanApprovalsController extends Controller
@@ -83,7 +85,22 @@ class LoanApprovalsController extends Controller
         $loan_status = web_loan_application::where('loan_number',"=",$request->loan_number)->first();
         $loan_status->approved = $request->loan_officer_decision == 'yes' ? 5 : 6; // Status For Loan Approval/Denie From the Loan Officer
         $loan_status->save();
-       
+  
+        
+        $applicant = reg_employee_mst::find($loan_status->employee_id);
+        if (!$applicant->hasBeenSigned()) {   
+
+
+    ## Send Email Notification to the user together with the loan number
+    ## For the purpose of Loan Signature Verification
+    $loan_number =  $request->loan_number;
+    $email_notification = reg_employee_mst::find($loan_status->employee_id);
+    $loan_applicant_name = $email_notification->firstname. ' '.$email_notification->lastname;
+    $email_notification->notify(new SignatureNotification($loan_number,$loan_applicant_name));
+
+
+        }
+
         toast('The Loan Analysis has been submitted for verification to the CFO Succesfully!','success');
         return redirect()->route('loan_approvals.index');    
 

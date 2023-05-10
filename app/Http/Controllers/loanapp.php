@@ -851,7 +851,12 @@ $fileName = $request->loan_number.'.pdf';
 Storage::disk("loan_agreement_forms")->put('FORMS/'.$fileName, $attachment);
 
 
-
+## Send Email Notification to the user together with the loan number
+    ## If Loan Application has been approved successfully
+    $loan_number =  $loan_applications->loan_number;
+    $email_notification = reg_employee_mst::find($loan_applications->employee_id);
+    $loan_applicant_name = $email_notification->firstname. ' '.$email_notification->lastname;
+    $email_notification->notify(new approve($loan_number,$loan_applicant_name));
 
 
 
