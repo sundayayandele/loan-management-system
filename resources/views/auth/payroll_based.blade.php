@@ -137,14 +137,14 @@ button:focus{
 
 
 
-            <form id="regForm" method="POST" action="{{ route('register') }}">
+            <form id="regForm" method="POST" action="{{ route('payroll') }}">
              @csrf  
           <center>
-                    <h1 id="register">Eliana CashXpress</h1>
+                    <h1 id="register">Civil Servant Loan</h1>
                     <h4>Get a Loan From as Low as: </h4>
                    
                         <a href="#" class="btn btn-info btn-lg" style="font-weight:bold;font-size:16px">
-                            <span class="glyphicon glyphicon-circle-arrow-right"></span> K500
+                            <span class="glyphicon glyphicon-circle-arrow-right"></span> K1000
                           </a>
                     
                    
@@ -605,7 +605,7 @@ button:focus{
 <div class="form-group">
    <label for="Mobile Money Name">Mobile Money Name</label> <small class="text-danger">*</small>
 
-   <input class="form-control" type="text" id="momo_name" name="momo_number" required/>
+   <input class="form-control" type="text" id="momo_name" name="momo_name" required/>
    </div> 
 </div>
 
@@ -720,7 +720,7 @@ button:focus{
  <div class="form-group">
              <label for="Next of Kin Number">Next of Kin Number</label> <small class="text-danger">*</small>
  
-             <input class="form-control" type="text" id="nexofkin_lastname" name="nexofkin_lastname" required/>
+             <input class="form-control" type="text" id="nexofkin_number" name="nexofkin_number" required/>
              </div> 
  </div>
  </div>
@@ -733,7 +733,7 @@ button:focus{
   <!-- Relationship with Next of Kin -->
   <div class="form-group">
      <label for="Relationship with Next of Kin">Relationship with Next of Kin</label> <small class="text-danger">*</small>
-     <select class="form-control" name="base_station" required>
+     <select class="form-control" name="next_of_kin_relationship" required>
      <option value="Father">Father </option>
    <option value="Mother">Mother</option>
    <option value="Spouse">Spouse</option>
@@ -812,7 +812,7 @@ button:focus{
  <div class="form-group">
              <label for="Bank Statement "> Bank Statement (PDF) </label> <small class="text-danger">*</small>
  
-             <input class="form-control" accept="application/pdf" type="text" id="bank_statement" name="bank_statement" required/>
+             <input class="form-control" accept="application/pdf" type="file" id="bank_statement" name="bank_statement" required/>
              </div> 
  
  </div>
@@ -836,7 +836,7 @@ button:focus{
  <div class="form-group">
              <label for="NRC"> NRC (PDF) </label> <small class="text-danger">*</small>
  
-             <input class="form-control" type="file" id="file" name="file" required/>
+             <input class="form-control" accept="application/pdf" type="nrc" id="file" name="nrc_file" required/>
              </div> 
  
  </div>
@@ -861,7 +861,7 @@ button:focus{
                     <p><input type="password" placeholder="Atleast 8 characters" oninput="this.className = ''" name="password" value="{{old('password')}}" autofocus></p>
                 </div>
                <br>
-                <div class="thanks-message text-center" id="text-message"> <img src="{{asset('images/eliana_logos/Capture.JPG')}}" width="120" height="100" class="mb-4">
+                <div class="thanks-message text-center" id="text-message"> <img src="{{asset('images/logo.JPG')}}" width="120" height="100" class="mb-4">
                     <h3>Thank you for your feedback!</h3> <span>You are one step away from getting your Loan! Click on the Submit button below to get started.</span>
               <br>
                     <button type="submit" class="btn btn-primary">SUBMIT</button>
@@ -1031,6 +1031,12 @@ $(document).ready(function(){
 });
 $(document).ready(function(){
     $('#mobile_money_number').mask('0000-000-000');
+});
+$(document).ready(function(){
+    $('#employer_number').mask('0000-000-000');
+});
+$(document).ready(function(){
+    $('#nexofkin_number').mask('0000-000-000');
 });
 
 

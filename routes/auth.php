@@ -6,16 +6,31 @@ use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\PayrollRegisteredUserController;
+use App\Http\Controllers\Auth\AutoRegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/register', [RegisteredUserController::class, 'create'])
-                ->middleware('guest')
-                ->name('register');
-
-Route::post('/register', [RegisteredUserController::class, 'store'])
+Route::get('/payroll', [PayrollRegisteredUserController::class, 'create'])
                 ->middleware('guest');
+               
+
+Route::post('/payroll', [PayrollRegisteredUserController::class, 'store'])
+                ->middleware('guest')
+                ->name('payroll');
+
+
+Route::get('/auto', [AutoRegisteredUserController::class, 'create'])
+                ->middleware('guest');
+                
+Route::post('/auto', [AutoRegisteredUserController::class, 'store'])
+                ->middleware('guest')
+                ->name('auto');
+
+
+
+
+
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
                 ->middleware('guest')
