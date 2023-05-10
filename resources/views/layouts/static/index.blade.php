@@ -476,15 +476,8 @@ let profilepic = document.getElementById("profilepicture").value;
 														</div>
 													</div>
 												</div>
-												<h4 class="mt-1 mb-3" style="font-weight: bold;">
-												
-												<form action="{{route('checkpayments')}}" method="GET">
-													@csrf
-											<button style="font-weight:bold;">Payments History</button>		
-											
-
-											</h4>
-	</form>
+												<h4 class="mt-1 mb-3" style="font-weight: bold;"><a style="color:black" href="{{route('checkpayments')}}">Payments</a></h4>
+													
 												<div class="mb-0">
 													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i>check your ballance</span>
 													<span class="text-muted">& payment history</span>
