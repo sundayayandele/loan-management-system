@@ -69,16 +69,16 @@ class AutoRegisteredUserController extends Controller
             'nextofkin_number' => ['required', 'string'],
             'nextofkin_address' => ['required', 'string','max:255'],
             'next_of_kin_relationship' => ['required', 'string','max:255'],
-            'whitebook' => ['required', 'string','mimes:pdf'],
-            'front_image' => ['required', 'string','mimes:png,jpeg'],
-            'back_image' => ['required', 'string','mimes:png,jpeg'],
-            'right_image' => ['required', 'string','mimes:png,jpeg'],
-            'left_image' => ['required', 'string','mimes:png,jpeg'],
-            'chassis_number' => ['required', 'string','mimes:png,jpeg'],
-            'mileage' => ['required', 'string','mimes:png,jpeg'],
-            'bank_statement' => ['required', 'string','mimes:pdf'],
-            'passport_photo' => ['required', 'string','mimes:png,jpeg'],
-            'nrc_file' => ['required', 'string','mimes:pdf'],
+            'whitebook' => ['required', 'string','mimes:pdf','max:10200'], //10mb Max
+            'front_image' => ['required', 'string','mimes:png,jpeg','max:10200'],
+            'back_image' => ['required', 'string','mimes:png,jpeg','max:10200'],
+            'right_image' => ['required', 'string','mimes:png,jpeg','max:10200'],
+            'left_image' => ['required', 'string','mimes:png,jpeg','max:10200'],
+            'chassis_number' => ['required', 'string','mimes:png,jpeg','max:10200'],
+            'mileage' => ['required', 'string','mimes:png,jpeg','max:10200'],
+            'bank_statement' => ['required', 'string','mimes:pdf','max:10200'],
+            'passport_photo' => ['required', 'string','mimes:png,jpeg','max:10200'],
+            'nrc_file' => ['required', 'string','mimes:pdf','max:10200'],
             'password' => ['required', 'confirmed',Rules\Password::defaults()],
         ],
         [
@@ -101,10 +101,10 @@ class AutoRegisteredUserController extends Controller
         $user->address = $request->address;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->position = $request->job_title;
-        $user->net_salary = $request->net;
-        $user->gross = $request->gross;
-        $user->basic = $request->basic;
+        $user->asset_estimate = $request->asset_estimate;
+        $user->asset_name = $request->asset_name;
+        $user->asset_location = $request->asset_location;
+        $user->work_address = $request->work_address;
         $user->next_of_kin_fname = $request->nexofkin_firstname;
         $user->next_of_kin_lname = $request->nexofkin_lastname;
         $user->next_of_kin_relationship = $request->next_of_kin_relationship;
@@ -115,10 +115,7 @@ class AutoRegisteredUserController extends Controller
         $user->bank_account_no = $request->account_number;
         $user->bank_account_name = $request->account_name;
         $user->mobile_money_no = $request->mobile_money_number;
-        $user->mobile_money_name = $request->momo_name;
-        $user->company_id = $request->ministry;
-        $user->supervisors_name = $request->employer_name;
-        $user->supervisors_number = $request->employer_number;
+        $user->mobile_money_name = $request->momo_name;       
         $user->save();   
 
          $user_profile = website_profile::create([
@@ -175,7 +172,7 @@ elseif (web_loan_application::where('employee_id',"=",$user->employee_id)->exist
 else{
 
  $loan_application= new web_loan_application;
- $loan_application->loan_type = "PAYROLL BASED";// $request->loan_type;
+ $loan_application->loan_type = "AUTO LOANS";// $request->loan_type;
  $loan_application->employee_id = $user->employee_id;
  $loan_application->months = $request->tenure_months;
  $loan_application->amount = $request->loan_amt;
@@ -185,8 +182,13 @@ else{
  $loan_application->mobile_money_number = $request->mobile_money_number;
  $loan_application->mobile_monney_name = $request->momo_name;
  $loan_application->loan_number = $loannumber;
- $loan_application->payslip1 = $request->payslip1->store('payslips');
- $loan_application->payslip2 = $request->payslip2->store('payslips');
+ $loan_application->whitebook = $request->whitebook->store('whitebooks');
+ $loan_application->front_image = $request->front_image->store('front_images');
+ $loan_application->back_image = $request->back_image->store('back_images');
+ $loan_application->left_image = $request->left_image->store('left_images');
+ $loan_application->right_image = $request->right_image->store('right_images');
+ $loan_application->chassis_number = $request->chassis_number->store('chassis_number_images');
+ $loan_application->mileage = $request->mileage->store('mileage_images');
  $loan_application->bank_statement = $request->bank_statement->store('bank_statement');
  $loan_application->approved = 0;
  $loan_application->due_date = Carbon::now()->addMonths($request->tenure_months)->format('d-m-Y');
