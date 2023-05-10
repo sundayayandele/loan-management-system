@@ -1,22 +1,6 @@
 <x-guest-layout>
    
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                  <!--Register-->
-                  <center>
-                  <br>
-<div style="font-weight:bolder;font-size:22px; color:black">Sign Up First.</div>
-</center>
-            </a>
-        </x-slot>
-
-      
-
-
-
-
-       
+              
 <style>
 
 body {
@@ -144,18 +128,13 @@ button:focus{
 
 
 <div class="container">
+    <br>
     <div class="row d-flex justify-content-center align-items-center">
         
             
-      
-      
+           
         <div class="col-md-8">
 
-<center>
-<img src="{{asset('images/eliana_logos/Capture.JPG')}}" width="160" height="100" alt="ElianaCashXpress" style="margin-top:20px;">
-<br><br>
-</center>
-       
 
 
             <form id="regForm" method="POST" action="{{ route('register') }}">
@@ -344,7 +323,7 @@ button:focus{
 <div class="form-group">
             <label for="Date of Birth">DOB</label> <small class="text-danger">*</small>
 
-            <input class="form-control" type="text" id="dob" name="dob" required/>
+            <input class="form-control" type="text" id="datepicker" name="dob" required/>
             </div> 
 </div>
 </div>
@@ -454,6 +433,7 @@ button:focus{
  </div>
  
               <!-- Last Name -->
+      
               <div class="col-lg-6">
  <div class="form-group">
              <label for="Job Title">Job Title</label> <small class="text-danger">*</small>
@@ -551,23 +531,115 @@ button:focus{
  
  
  
- <div class="row">
-    
-              <!--Physical Address-->
-              <div class="col-lg-12">
- <div class="form-group">
-             <label for="Address">Work Physical Address</label> <small class="text-danger">*</small>
  
-             <input class="form-control" type="text" id="address" name="address" required/>
+ <div class="row">
+     
+  <div class="col-lg-6">
+  <!-- Province of Residence -->
+  <div class="form-group">
+     <label for="Bank Name">Bank Name</label> <small class="text-danger">*</small>
+     <select class="form-control" name="bankname" required>
+     <option value="">Pick Your Bank</option>
+  <option value="Zambia National Commercial Bank (Zanaco)">Zambia National Commercial Bank (Zanaco)</option>
+  <option value="Standard Chartered Bank Zambia">Standard Chartered Bank Zambia</option>
+  <option value="Barclays Zambia (Absa)">Barclays Zambia (Absa)</option>
+  <option value="Stanbic Bank (Zambia)">Stanbic Bank (Zambia)</option>
+  <option value="Cavmont Bank Limited (CBL)">Cavmont Bank Limited (CBL)</option>
+  <option value="Ecobank Zambia">Ecobank Zambia</option>
+  <option value="Indo Zambia Bank">Indo Zambia Bank</option>
+  <option value="Investrust Bank">Investrust Bank</option>
+  <option value="First Alliance Bank">First Alliance Bank</option>
+  <option value="Access Bank Zambia">Access Bank Zambia</option>
+  <option value="ATLASMARA">ATLASMARA</option>
+  <option value="BANK OF CHINA (ZAMBIA) LIMITEDk">BANK OF CHINA (ZAMBIA) LIMITEDk</option>
+  <option value="FIRST CAPITAL BANK ZAMBIA">FIRST CAPITAL BANK ZAMBIA</option>
+  <option value="FNB">FNB</option>
+  <option value="UBA">UBA</option>
+  <option value="ZNBS">ZNBS</option>
+  <option value="CITIBANK B">CITIBANK B</option>  
+  
+</select>             
+   </div>
+ 
+ </div>
+ 
+              <!--Branch Name-->
+              <div class="col-lg-6">
+ <div class="form-group">
+             <label for="Bank branch">Bank Branch</label> <small class="text-danger">*</small>
+ 
+             <input class="form-control" type="text" id="bank_branch" name="bank_branch" required/>
              </div> 
  </div>
  </div>
  
  
+ <div class="row">
+    
+    <!--Bank Account Name-->
+    <div class="col-lg-6">
+<div class="form-group">
+   <label for="Account Name">Account Name</label> <small class="text-danger">*</small>
+
+   <input class="form-control" type="text" id="account_name" name="account_name" required/>
+   </div> 
+</div>
+
+
+<div class="col-lg-6">
+<div class="form-group">
+   <label for="Account Number">Account Number</label> <small class="text-danger">*</small>
+
+   <input class="form-control" type="text" id="account_number" name="account_number" required/>
+   </div> 
+</div>
+</div> 
+
+
+
+
+<div class="row">
+    
+    <!--Mobile Money Name-->
+    <div class="col-lg-6">
+<div class="form-group">
+   <label for="Mobile Money Name">Mobile Money Name</label> <small class="text-danger">*</small>
+
+   <input class="form-control" type="text" id="momo_name" name="momo_number" required/>
+   </div> 
+</div>
+
+
+<div class="col-lg-6">
+<div class="form-group">
+   <label for="Mobile Money Number">Mobile Money Number</label> <small class="text-danger">*</small>
+
+   <input class="form-control" type="text" id="mobile_money_number" name="mobile_money_number" required/>
+   </div> 
+</div>
+
+
+
+
+</div> 
+
+
+
+
+
+
  
- 
- 
- 
+ <div class="row">
+    
+    <!--Physical Address-->
+    <div class="col-lg-12">
+<div class="form-group">
+   <label for="Address">Work Physical Address</label> <small class="text-danger">*</small>
+
+   <input class="form-control" type="text" id="address" name="address" required/>
+   </div> 
+</div>
+</div> 
  
  
  
@@ -715,7 +787,7 @@ button:focus{
  <div class="form-group">
              <label for="Payslip1">Upload {{date('F-Y',strtotime('-1 month'))}} Payslip (PDF)</label> <small class="text-danger">*</small>
  
-             <input class="form-control" type="file" id="payslip1" name="payslip1" required/>
+             <input class="form-control" accept="application/pdf" type="file" id="payslip1" name="payslip1" required/>
              </div> 
  
  </div>
@@ -725,7 +797,7 @@ button:focus{
  <div class="form-group">
  <label for="Payslip1">Upload {{date('F-Y',strtotime('-2 months'))}} Payslip (PDF)</label> <small class="text-danger">*</small>
  
-             <input class="form-control" type="file" id="file"  name="payslip2"  required/>
+             <input class="form-control" accept="application/pdf" type="file" id="file"  name="payslip2"  required/>
              </div> 
  </div>
  </div>
@@ -740,7 +812,7 @@ button:focus{
  <div class="form-group">
              <label for="Bank Statement "> Bank Statement (PDF) </label> <small class="text-danger">*</small>
  
-             <input class="form-control" type="text" id="bank_statement" name="bank_statement" required/>
+             <input class="form-control" accept="application/pdf" type="text" id="bank_statement" name="bank_statement" required/>
              </div> 
  
  </div>
@@ -750,7 +822,7 @@ button:focus{
  <div class="form-group">
              <label for="Passport Photo">Selfie (JPG/PNG)</label> <small class="text-danger">*</small>
  
-             <input class="form-control" type="file" id="passport_photo" name="passport_photo" required/>
+             <input class="form-control" accept="image/jpeg, image/png" type="file" id="passport_photo" name="passport_photo" required/>
              </div> 
  </div>
  </div>
@@ -931,9 +1003,9 @@ if(loan_amount >= 1001 && loan_amount <= 10000){
 var total = (loan_amount+higher_facility_fee)+((loan_amount+higher_facility_fee)*(loan_percent/100)*installments);
  document.getElementById('total_repayments_amt').value = parseFloat(total).toFixed(2);
  document.getElementById('emi').value = parseFloat((total/installments)).toFixed(2);
- document.getElementById('emi_terms').value = parseFloat((total/installments)).toFixed(2);
- document.getElementById('loan_amt_terms').value = loan_amount;
- document.getElementById('loan_amt_terms_conditions').value = loan_amount;
+ //document.getElementById('emi_terms').value = parseFloat((total/installments)).toFixed(2);//
+ //document.getElementById('loan_amt_terms').value = loan_amount;
+ //document.getElementById('loan_amt_terms_conditions').value = loan_amount;
 }
  
            
@@ -942,7 +1014,33 @@ var total = (loan_amount+higher_facility_fee)+((loan_amount+higher_facility_fee)
 
 
 
+<script> 
+    $(document).ready(function(){
+  $('#datepicker').datepicker({
+    format: 'dd/mm/yyyy'
+    
+  });
+});
 
+    </script>  
+
+<script> 
+
+$(document).ready(function(){
+    $('#phone').mask('0000-000-000');
+});
+$(document).ready(function(){
+    $('#mobile_money_number').mask('0000-000-000');
+});
+
+
+$(document).ready(function(){
+    $('#nrc').mask('000000/00/0');
+});
+
+
+</script>
+   
 
 
 
