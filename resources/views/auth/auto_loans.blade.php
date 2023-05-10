@@ -144,7 +144,7 @@ button:focus{
                     <h4>Get a Loan From as Low as: </h4>
                    
                         <a href="#" class="btn btn-info btn-lg" style="font-weight:bold;font-size:16px">
-                            <span class="glyphicon glyphicon-circle-arrow-right"></span> K1000
+                            <span class="glyphicon glyphicon-circle-arrow-right"></span> K6000
                           </a>
                     
                    
@@ -258,7 +258,7 @@ button:focus{
 
           
 <!--Loan Percent-->  
-<input id="loan_percent" class="form-control" type="hidden" id="hidden" value="6.69"  id="loan_percent" readonly/>
+<input id="loan_percent" class="form-control" type="hidden" id="hidden" value="12.75"  id="loan_percent" readonly/>
 
 
 
@@ -473,11 +473,11 @@ button:focus{
  
               <!--Town-->
               <div class="col-lg-6">
- <div class="form-group">
-             <label for="Town">Work Town</label> <small class="text-danger">*</small>
- 
-             <input class="form-control" type="text" id="town" name="town" required/>
-             </div> 
+              <div class="form-group">
+   <label for="Address">Work Physical Address</label> <small class="text-danger">*</small>
+
+   <input class="form-control" type="text" id="work_address" name="work_address" required/>
+   </div> 
  </div>
  </div>
  
@@ -582,17 +582,7 @@ button:focus{
 
 
  
- <div class="row">
-    
-    <!--Physical Address-->
-    <div class="col-lg-12">
-<div class="form-group">
-   <label for="Address">Work Physical Address</label> <small class="text-danger">*</small>
-
-   <input class="form-control" type="text" id="address" name="address" required/>
-   </div> 
-</div>
-</div> 
+ 
  
  
  
@@ -710,7 +700,7 @@ button:focus{
  <div class="form-group">
              <label for="Upload Image of White Book (PNG/JPEG)">Upload Image of White Book (PNG/JPEG)</label> <small class="text-danger">*</small>
  
-             <input class="form-control" accept="application/pdf" type="file" id="whitebook" name="whitebook" required/>
+             <input class="form-control" accept="image/jpeg, image/png" type="file" id="whitebook" name="whitebook" required/>
              
              </div> 
  
@@ -719,7 +709,7 @@ button:focus{
               <!-- Front Image -->
               <div class="col-lg-6">
  <div class="form-group">
- <label for="Payslip1">Upload Front Image of vehicle (PNG/JPEG)</label> <small class="text-danger">*</small>
+ <label for="Upload Front Image of vehicle (PNG/JPEG)">Upload Front Image of vehicle (PNG/JPEG)</label> <small class="text-danger">*</small>
  
              <input class="form-control" accept="image/jpeg, image/png" type="file" id="front_image"  name="front_image"  required/>
              </div> 
@@ -731,7 +721,7 @@ button:focus{
  <div class="row">
   <div class="col-lg-6">
  <div class="form-group">
-             <label for="Payslip1">Upload Back Image (PNG/JPEG)</label> <small class="text-danger">*</small>
+             <label for="Upload Back Image of Vehicle (PNG/JPEG)">Upload Back Image of Vehicle (PNG/JPEG)</label> <small class="text-danger">*</small>
  
              <input class="form-control"accept="image/jpeg, image/png" type="file" id="back_image" name="back_image" required/>
              
@@ -742,7 +732,7 @@ button:focus{
               <!-- Left Image -->
               <div class="col-lg-6">
  <div class="form-group">
- <label for="Payslip1">Upload Front Left Image of vehicle (PNG/JPEG)</label> <small class="text-danger">*</small>
+ <label for="Upload Left Image of vehicle (PNG/JPEG)">Upload Left Image of vehicle (PNG/JPEG)</label> <small class="text-danger">*</small>
  
              <input class="form-control" accept="image/jpeg, image/png" type="file" id="left_image"  name="left_image"  required/>
              </div> 
@@ -755,7 +745,7 @@ button:focus{
  <div class="row">
   <div class="col-lg-6">
  <div class="form-group">
-             <label for="Payslip1">Upload Right Image (PNG/JPEG)</label> <small class="text-danger">*</small>
+             <label for="Upload Right Image of Vehicle (PNG/JPEG)">Upload Right Image of Vehicle (PNG/JPEG)</label> <small class="text-danger">*</small>
  
              <input class="form-control"accept="image/jpeg, image/png" type="file" id="right_image" name="right_image" required/>
              
@@ -766,7 +756,7 @@ button:focus{
               <!-- Chassis Number -->
               <div class="col-lg-6">
  <div class="form-group">
- <label for="Payslip1">Upload Chassis Number of vehicle (PNG/JPEG)</label> <small class="text-danger">*</small>
+ <label for="Chassis Number Image of vehicle (PNG/JPEG)">Upload Chassis Number Image of vehicle (PNG/JPEG)</label> <small class="text-danger">*</small>
  
              <input class="form-control" accept="image/jpeg, image/png" type="file" id="chassis_number"  name="chassis_number"  required/>
              </div> 
@@ -789,24 +779,21 @@ button:focus{
  </div>
  
               
- </div>
  
  
- 
- 
- 
- <div class="row">
-     <!-- Bank Statement -->
+  <!-- Bank Statement -->
   <div class="col-lg-6">
  <div class="form-group">
-             <label for="Bank Statement ">  </label> <small class="text-danger">*</small>
+             <label for="Bank Statement">Upload Bank Statement (PDF)</label> <small class="text-danger">*</small>
  
              <input class="form-control" accept="application/pdf" type="file" id="bank_statement" name="bank_statement" required/>
              </div> 
  
  </div>
+</div>
  
               <!-- Passport Photo -->
+              <div class="row">
               <div class="col-lg-6">
  <div class="form-group">
              <label for="Passport Photo">Selfie (JPG/PNG)</label> <small class="text-danger">*</small>
@@ -814,18 +801,18 @@ button:focus{
              <input class="form-control" accept="image/jpeg, image/png" type="file" id="passport_photo" name="passport_photo" required/>
              </div> 
  </div>
- </div>
  
  
  
  
- <div class="row">
+ 
+ 
      <!-- NRC -->
   <div class="col-lg-6">
  <div class="form-group">
              <label for="NRC"> NRC (PDF) </label> <small class="text-danger">*</small>
  
-             <input class="form-control" accept="application/pdf" type="nrc" id="file" name="nrc_file" required/>
+             <input class="form-control" accept="application/pdf" type="file" id="file" name="nrc_file" required/>
              </div> 
  
  </div>
@@ -982,21 +969,20 @@ button:focus{
             
 
 
-if(loan_amount >= 200 && loan_amount <= 1000){
+
 var total = (loan_amount+lower_facility_fee)+((loan_amount+lower_facility_fee)*(loan_percent/100)*installments);
  document.getElementById('total_repayments_amt').value = parseFloat(total).toFixed(2);
  document.getElementById('emi').value = parseFloat((total/installments)).toFixed(2);
-}
 
-if(loan_amount >= 1001 && loan_amount <= 10000){
+
+
 var total = (loan_amount+higher_facility_fee)+((loan_amount+higher_facility_fee)*(loan_percent/100)*installments);
  document.getElementById('total_repayments_amt').value = parseFloat(total).toFixed(2);
  document.getElementById('emi').value = parseFloat((total/installments)).toFixed(2);
  //document.getElementById('emi_terms').value = parseFloat((total/installments)).toFixed(2);//
  //document.getElementById('loan_amt_terms').value = loan_amount;
  //document.getElementById('loan_amt_terms_conditions').value = loan_amount;
-}
- 
+
            
         }
       </script>
