@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\PayrollRegisteredUserController;
+use App\Http\Controllers\Auth\PrivateSectorRegisteredUserController;
 use App\Http\Controllers\Auth\AutoRegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,13 @@ Route::get('/auto', [AutoRegisteredUserController::class, 'create'])
 Route::post('/auto', [AutoRegisteredUserController::class, 'store'])
                 ->middleware('guest')
                 ->name('auto');
+
+Route::get('/private_sector', [PrivateSectorRegisteredUserController::class, 'create'])
+                ->middleware('guest');
+                
+Route::post('/private_sector', [PrivateSectorRegisteredUserController::class, 'store'])
+                ->middleware('guest')
+                ->name('private_sector');
 
 
 
