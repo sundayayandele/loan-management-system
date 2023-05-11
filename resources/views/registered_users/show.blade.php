@@ -71,7 +71,7 @@
                 <p class="mb-0">Full Name</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">{{ $employee->firsname. ' '.$employee->lastname }}</p>
+                <p class="text-muted mb-0">{{ $employee->firstname. ' '.$employee->lastname }}</p>
               </div>
             </div>
             <hr>
@@ -153,7 +153,7 @@
                 
                 <p class="mt-4 mb-1" style="font-size: .77rem;">Bank Account Number</p>
                
-                {{$employee->bank_account_number}}
+                {{$employee->bank_account_no}}
                
                 <p class="mt-4 mb-1" style="font-size: .77rem;">MBank Account Name</p>
                

@@ -16,7 +16,7 @@
 
             <!-- Tenure Months -->
 <div class="mt-4">
-            <x-label for="name" :value="__('How Many Months')" />
+            <x-label for="How Many Months" :value="__('How Many Months')" />
 <!--Show the number of months to the user--> 
 <select class="block mt-1 w-full" onchange="calculateEMIPayroll()" value="{{ old('tenure_months') }}" name="tenure_months" id="months_payroll" required>
   <option value=1>1 Month </option>
@@ -31,7 +31,7 @@
 
 <!-- Loan Amount -->
 <div class="mt-4">
-            <x-label for="name" :value="__('Loan Amount (ZMW)')" />
+            <x-label for="Loan Amount (ZMW)" :value="__('Loan Amount (ZMW)')" />
 
             <x-input id="name" class="block mt-1 w-full" type="number" onkeyup="calculateEMIPayroll()" id="amount_payroll" value="{{ old('loan_amt') }}" name="loan_amt"  />
             <small>The facility fee of K100 will be added.</small>   
@@ -72,7 +72,7 @@
 
 <!-- Reference Payment Mode -->
 <div class="mt-4">
-            <x-label for="name" :value="__('Payment Mode')" />
+            <x-label for="Payment Mode" :value="__('Payment Mode')" />
 
         
 <!--Show Payments Modes to the user--> 

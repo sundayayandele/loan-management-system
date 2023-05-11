@@ -16,7 +16,7 @@
 
             <!-- Tenure Months -->
 <div class="mt-4">
-            <x-label for="name" :value="__('How Many Months')" />
+            <x-label for="How Many Months" :value="__('How Many Months')" />
 <!--Show the number of months to the user--> 
 <select class="block mt-1 w-full" onchange="calculateEMIPrivate()" value="{{ old('tenure_months') }}" name="tenure_months" id="months_private" required>
   <option value=1>1 Month </option>
@@ -31,7 +31,7 @@
 
 <!-- Loan Amount -->
 <div class="mt-4">
-            <x-label for="name" :value="__('Loan Amount (ZMW)')" />
+            <x-label for="Loan Amount (ZMW)" :value="__('Loan Amount (ZMW)')" />
 
             <x-input id="name" class="block mt-1 w-full" type="number" onkeyup="calculateEMIPrivate()" id="amount_private" value="{{ old('loan_amt') }}" name="loan_amt"  />
             <small>The facility fee of K100 will be added.</small>   
@@ -55,7 +55,7 @@
 
  <!-- Loan Repayments Amount -->
 <div class="mt-4">
-            <x-label for="Total Repayments Amount" :value="__('Total Repayments Amount (ZMW)')" />
+            <x-label for="Total Repayments Amount (ZMW)" :value="__('Total Repayments Amount (ZMW)')" />
 
             <x-input id="name" class="block mt-1 w-full" type="number" id="total_repayments_amt_private" value="{{ old('total_repayments_amt') }}" name="total_repayments_amt" readonly />
             </div> 
@@ -72,7 +72,7 @@
 
 <!-- Reference Payment Mode -->
 <div class="mt-4">
-            <x-label for="name" :value="__('Payment Mode')" />
+            <x-label for="Payment Mode" :value="__('Payment Mode')" />
 
         
 <!--Show Payments Modes to the user--> 

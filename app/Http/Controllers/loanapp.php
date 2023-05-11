@@ -69,6 +69,9 @@ public function web_loan_application(Request $request,$id){
         'payment_mode_id'=>['required','string'],   
         'payslip1'=>['nullable','mimes:pdf'],   
         'payslip2'=>['nullable','mimes:pdf'],   
+        'asset_name'=>['nullable','string'],   
+        'asset_location'=>['nullable','string'],   
+        'asset_estimate'=>['nullable','numeric'],   
         'bankstatement'=>['required','mimes:pdf'],  
          
     ]);
