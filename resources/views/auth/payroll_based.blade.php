@@ -521,9 +521,9 @@ button:focus{
               <!--Town-->
               <div class="col-lg-6">
  <div class="form-group">
-             <label for="Town">Work Town</label> <small class="text-danger">*</small>
+             <label for="Town">Work Physical Address</label> <small class="text-danger">*</small>
  
-             <input class="form-control" type="text" id="work_town" value="{{ old('work_town') }}" name="work_town" required/>
+             <input class="form-control" type="text" id="work_address" value="{{ old('work_address') }}" name="work_address" required/>
              </div> 
  </div>
  </div>
@@ -539,7 +539,7 @@ button:focus{
   <div class="form-group">
      <label for="Bank Name">Bank Name</label> <small class="text-danger">*</small>
      <select class="form-control" name="bankname" value="{{ old('bankname') }}" required>
-     <option value="">Pick Your Bank</option>
+    
   <option value="Zambia National Commercial Bank (Zanaco)">Zambia National Commercial Bank (Zanaco)</option>
   <option value="Standard Chartered Bank Zambia">Standard Chartered Bank Zambia</option>
   <option value="Barclays Zambia (Absa)">Barclays Zambia (Absa)</option>
@@ -629,23 +629,7 @@ button:focus{
 
 
  
- <div class="row">
-    
-    <!--Physical Address-->
-    <div class="col-lg-12">
-<div class="form-group">
-   <label for="Address">Work Physical Address</label> <small class="text-danger">*</small>
-
-   <input class="form-control" type="text" id="work_physical_address" value="{{ old('work_physical_address') }}" name="work_physical_address" required/>
-   </div> 
-</div>
-</div> 
- 
- 
- 
- 
- 
-                     
+                 
                  </div>
 
                  
@@ -696,7 +680,7 @@ button:focus{
  <div class="form-group">
              <label for="Next of Kin First Name">Next of Kin First Name</label> <small class="text-danger">*</small>
  
-             <input class="form-control" type="text" id="nexofkin_firstname" value="{{ old('nextofkin_firstname') }}" name="nexofkin_firstname" required/>
+             <input class="form-control" type="text" id="nextofkin_firstname" value="{{ old('nextofkin_firstname') }}" name="nextofkin_firstname" required/>
              </div> 
  </div>
  </div>
@@ -710,7 +694,7 @@ button:focus{
  <div class="form-group">
              <label for="Next of Kin Last Name"> Next of Kin Last Name </label> <small class="text-danger">*</small>
  
-             <input class="form-control" type="text" id="nexofkin_lastname" value="{{ old('nextofkin_lastname') }}" name="nexofkin_lastname" required/>
+             <input class="form-control" type="text" id="nextofkin_lastname" value="{{ old('nextofkin_lastname') }}" name="nextofkin_lastname" required/>
              </div> 
  
  </div>
@@ -720,7 +704,7 @@ button:focus{
  <div class="form-group">
              <label for="Next of Kin Number">Next of Kin Number</label> <small class="text-danger">*</small>
  
-             <input class="form-control" type="text" id="nexofkin_number" value="{{ old('nexofkin_number') }}" name="nexofkin_number" required/>
+             <input class="form-control" type="text" id="nextofkin_number" value="{{ old('nextofkin_number') }}" name="nextofkin_number" required/>
              </div> 
  </div>
  </div>
@@ -836,7 +820,7 @@ button:focus{
  <div class="form-group">
              <label for="NRC"> NRC (PDF) </label> <small class="text-danger">*</small>
  
-             <input class="form-control" accept="application/pdf" type="nrc" id="file" value="{{ old('nrc_file') }}" name="nrc_file" required/>
+             <input class="form-control" accept="application/pdf" type="file" id="file" value="{{ old('nrc_file') }}" name="nrc_file" required/>
              </div> 
  
  </div>
@@ -857,14 +841,17 @@ button:focus{
 
 
                 <div class="tab">
-                    <h6>Create Password</h6>
+                    <label for="create password">Create Password</label>
                     <p><input type="password" placeholder="Atleast 8 characters" oninput="this.className = ''" name="password" value="{{old('password')}}" autofocus></p>
+                    <label for="password confirmation">Confirm Password</label>
+                    <p><input type="password" placeholder="Confirm Password" oninput="this.className = ''" name="password_confirmation" value="{{old('password_confirmation')}}" autofocus></p>
                 </div>
                <br>
-                <div class="thanks-message text-center" id="text-message"> <img src="{{asset('images/logo.JPG')}}" width="120" height="100" class="mb-4">
+                <div class="thanks-message text-center tab" id="text-message">
+                   
                     <h3>Thank you for your feedback!</h3> <span>You are one step away from getting your Loan! Click on the Submit button below to get started.</span>
               <br>
-                    <button type="submit" class="btn btn-primary">SUBMIT</button>
+                    <button type="submit" name="submit" class="btn btn-primary">SUBMIT</button>
                 </div>
                 <div style="overflow:auto;" id="nextprevious">
                     <div style="float:right;">
@@ -993,20 +980,20 @@ button:focus{
             
 
 
-if(loan_amount >= 200 && loan_amount <= 1000){
+
 var total = (loan_amount+lower_facility_fee)+((loan_amount+lower_facility_fee)*(loan_percent/100)*installments);
  document.getElementById('total_repayments_amt').value = parseFloat(total).toFixed(2);
  document.getElementById('emi').value = parseFloat((total/installments)).toFixed(2);
-}
 
-if(loan_amount >= 1001 && loan_amount <= 10000){
+
+
 var total = (loan_amount+higher_facility_fee)+((loan_amount+higher_facility_fee)*(loan_percent/100)*installments);
  document.getElementById('total_repayments_amt').value = parseFloat(total).toFixed(2);
  document.getElementById('emi').value = parseFloat((total/installments)).toFixed(2);
  //document.getElementById('emi_terms').value = parseFloat((total/installments)).toFixed(2);//
  //document.getElementById('loan_amt_terms').value = loan_amount;
  //document.getElementById('loan_amt_terms_conditions').value = loan_amount;
-}
+
  
            
         }
@@ -1036,7 +1023,7 @@ $(document).ready(function(){
     $('#employer_number').mask('0000-000-000');
 });
 $(document).ready(function(){
-    $('#nexofkin_number').mask('0000-000-000');
+    $('#nextofkin_number').mask('0000-000-000');
 });
 
 

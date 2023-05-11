@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Controller;
 use App\Models\reg_employee_mst;
 use App\Models\reg_employee_attachment;
+use App\Models\web_loan_application;
 use App\Models\website_profile;
 use App\Models\api_logins_mst;
 use App\Providers\RouteServiceProvider;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection ;
 class PayrollRegisteredUserController extends Controller
 {
@@ -48,7 +50,7 @@ class PayrollRegisteredUserController extends Controller
             'lastname' => ['required', 'string','max:255'],
             'nrc' => ['required', 'string'],
             'email' => ['required', 'email','unique:reg_employee_mst'],
-            'dob' => ['required', 'string','max:255'],
+            'dob' => ['required', 'date','before:2005-01-01'],
             'phone' => ['required', 'string'],
             'province' => ['required', 'string'],
             'town' => ['required', 'string'],
@@ -56,15 +58,16 @@ class PayrollRegisteredUserController extends Controller
             'employee_number' => ['required', 'string'],
             'job_title' => ['required', 'string','max:255'],
             'ministry' => ['required', 'string'],
-            'basic' => ['required', 'numeric'],
-            'gross' => ['required', 'numeric'],
-            'net' => ['required', 'numeric'],
+            'gross' => ['required','numeric','gte:net,basic'],
+            'net' => ['required','numeric','lt:gross'],
+            'basic' => ['required','numeric','lt:gross'],
             'bankname' => ['required', 'string','max:255'],
             'bank_branch' => ['required', 'string','max:255'],
             'account_name' => ['required', 'string','max:255'],
             'account_number' => ['required', 'string','max:255'],
             'momo_name' => ['required', 'string','max:255'],
             'mobile_money_number' => ['required', 'string'],
+            'base_station' => ['required', 'string'],
             'employer_name' => ['required', 'string','max:255'],
             'employer_number' => ['required', 'string'],
             'nextofkin_firstname' => ['required', 'string','max:255'],
@@ -72,16 +75,20 @@ class PayrollRegisteredUserController extends Controller
             'nextofkin_number' => ['required', 'string'],
             'nextofkin_address' => ['required', 'string','max:255'],
             'next_of_kin_relationship' => ['required', 'string','max:255'],
-            'payslip1' => ['required', 'string','mimes:pdf','max:10200'],
-            'payslip2' => ['required', 'string','mimes:pdf','max:10200'],
-            'bank_statement' => ['required', 'string','mimes:pdf','max:10200'],
-            'passport_photo' => ['required', 'string','mimes:png,jpeg','max:10200'],
-            'nrc_file' => ['required', 'string','mimes:pdf','max:10200'],
+            'payslip1' => ['required', 'mimes:pdf','max:10200'],
+            'payslip2' => ['required','mimes:pdf','max:10200'],
+            'bank_statement' => ['required', 'mimes:pdf','max:10200'],
+            'passport_photo' => ['required', 'mimes:png,jpeg','max:10200'],
+            'nrc_file' => ['required', 'mimes:pdf','max:10200'],
             'password' => ['required', 'confirmed',Rules\Password::defaults()],
         ],
         [
+            'dob.before' => 'The date of birth must be before 1st January 2005',
 			'email.unique' => "You are already a client, just Log In and apply.",
 			'phone.unique' => 'Only first time clients needs to do this. Returning clients just needs to log in and apply',
+            'gross.gte' => 'The gross amount must be greater than or equal to basic or net',
+            'net.lt' => 'The net amount must be less than gross',
+            'basic.lt' => 'The basic amount must be less than gross'
 			
 		]);
 
@@ -97,14 +104,16 @@ class PayrollRegisteredUserController extends Controller
         $user->province_id = $request->province;
         $user->town_id = $request->town;
         $user->address = $request->address;
+        $user->base_station_town = $request->base_station;
+        $user->base_station_address = $request->work_address;
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->position = $request->job_title;
         $user->net_salary = $request->net;
         $user->gross = $request->gross;
         $user->basic = $request->basic;
-        $user->next_of_kin_fname = $request->nexofkin_firstname;
-        $user->next_of_kin_lname = $request->nexofkin_lastname;
+        $user->next_of_kin_fname = $request->nextofkin_firstname;
+        $user->next_of_kin_lname = $request->nextofkin_lastname;
         $user->next_of_kin_relationship = $request->next_of_kin_relationship;
         $user->next_of_kin_phone = $request->nextofkin_number;
         $user->next_of_kin_address = $request->nextofkin_address;
@@ -173,7 +182,7 @@ elseif (web_loan_application::where('employee_id',"=",$user->employee_id)->exist
 else{
 
  $loan_application= new web_loan_application;
- $loan_application->loan_type = "PAYROLL BASED";// $request->loan_type;
+ $loan_application->loan_type = 1;//$request->loan_type;
  $loan_application->employee_id = $user->employee_id;
  $loan_application->months = $request->tenure_months;
  $loan_application->amount = $request->loan_amt;
