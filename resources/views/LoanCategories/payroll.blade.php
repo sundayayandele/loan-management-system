@@ -18,7 +18,7 @@
 <div class="mt-4">
             <x-label for="name" :value="__('How Many Months')" />
 <!--Show the number of months to the user--> 
-<select class="block mt-1 w-full" onchange="calculateEMIPayroll()" name="tenure_months" id="months_payroll" required>
+<select class="block mt-1 w-full" onchange="calculateEMIPayroll()" value="{{ old('tenure_months') }}" name="tenure_months" id="months_payroll" required>
   <option value=1>1 Month </option>
   <option value=2>2 Months</option>
   <option value=3>3 Months</option>
@@ -33,7 +33,7 @@
 <div class="mt-4">
             <x-label for="name" :value="__('Loan Amount (ZMW)')" />
 
-            <x-input id="name" class="block mt-1 w-full" type="number" onkeyup="calculateEMIPayroll()" id="amount_payroll" name="loan_amt"  />
+            <x-input id="name" class="block mt-1 w-full" type="number" onkeyup="calculateEMIPayroll()" id="amount_payroll" value="{{ old('loan_amt') }}" name="loan_amt"  />
             <small>The facility fee of K100 will be added.</small>   
         </div> 
 
@@ -57,14 +57,14 @@
 <div class="mt-4">
             <x-label for="Total Repayments Amount" :value="__('Total Repayments Amount (ZMW)')" />
 
-            <x-input id="name" class="block mt-1 w-full" type="number" id="total_repayments_amt_payroll" name="total_repayments_amt" readonly />
+            <x-input id="name" class="block mt-1 w-full" type="number" id="total_repayments_amt_payroll" value="{{ old('total_repayments_amt') }}" name="total_repayments_amt" readonly />
             </div> 
 
              <!-- EMI -->
 <div class="mt-4">
             <x-label for="EMI" :value="__('EMI (ZMW)')" />
 
-            <x-input id="name" class="block mt-1 w-full" type="number" id="emi_payroll"  name="emi"  readonly/>
+            <x-input id="name" class="block mt-1 w-full" type="number" id="emi_payroll" value="{{ old('emi') }}" name="emi"  readonly/>
             </div> 
           
 <!--Loan Percent-->  
@@ -76,9 +76,9 @@
 
         
 <!--Show Payments Modes to the user--> 
-<select class="block mt-1 w-full" name="payment_mode_id" required>
+<select class="block mt-1 w-full" value="{{ old('payment_mode_id') }}" name="payment_mode_id" required>
    
-<option value=""><-- Select Payment Mode --></option>
+
   <option value="Bank transfer">Bank Transfer</option>
   <option value="Airtel Money">Airtel Money</option>
   <option value="Mtn Money">Mtn Money</option>
@@ -98,7 +98,7 @@
             <div class="mt-4">
                 <x-label for="payslip1" :value="__('Upload '.date('F Y', strtotime('-1 month')) .' Payslip (PDF)')" />
 
-                <x-input id="payslip1" accept="application/pdf" class="block mt-1 w-full" type="file" name="payslip1" required/>
+                <x-input id="payslip1" accept="application/pdf" class="block mt-1 w-full" type="file" value="{{ old('payslip1') }}" name="payslip1" required/>
                 
             </div>
 
@@ -107,7 +107,7 @@
             <div class="mt-4">
                 <x-label for="payslip2" :value="__('Upload '.date('F Y', strtotime('-2 months')) .' Payslip (pdf)')" />
 
-                <x-input id="payslip2" accept="application/pdf" class="block mt-1 w-full" type="file"  name="payslip2" required/>
+                <x-input id="payslip2" accept="application/pdf" class="block mt-1 w-full" type="file" value="{{ old('payslip2') }}" name="payslip2" required/>
                 
             </div>
 
@@ -115,7 +115,7 @@
              <div class="mt-4">
                 <x-label for="bank statement" :value="__('Upload Latest Bank Statement (PDF)')" />
 
-                <x-input id="bankstatement" accept="application/pdf" class="block mt-1 w-full" type="file"  name="bankstatement" required/>
+                <x-input id="bankstatement" accept="application/pdf" class="block mt-1 w-full" type="file" value="{{ old('bankstatement') }}" name="bankstatement" required/>
                 
             </div>
 

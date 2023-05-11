@@ -143,6 +143,9 @@ if($request->loan_type == 1 || $request->loan_type == 3){
 }
 // If the Loan is For Auto Loans
 else{
+    $loan_application->asset_name = $request->asset_name;
+    $loan_application->asset_estimate = $request->asset_estimate;
+    $loan_application->asset_location = $request->asset_location;
     $loan_application->whitebook = $request->whitebook->store('whitebooks');
     $loan_application->front_image = $request->front_image->store('front_images');
     $loan_application->back_image = $request->back_image->store('back_images');
