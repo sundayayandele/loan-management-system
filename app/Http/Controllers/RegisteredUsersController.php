@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\reg_employee_mst;
 use RealRashid\SweetAlert\Facades\Alert;
 use DataTables;
+use DateTime;
 class RegisteredUsersController extends Controller
 {
     /**
@@ -36,7 +37,10 @@ public function all_users(Request $request){
                return $data->nrc;
             })  
             ->addColumn('dob', function($data){
-                return date('d,F-Y',strtotime($data->dob));
+                $date = DateTime::createFromFormat('d/m/Y', $data->dob);
+                $formatted_date = date("j, F Y", strtotime($date->format('Y-m-d')));
+                return $formatted_date;
+
             })  
             ->addColumn('gender', function($data){
                 return $data->gender;

@@ -272,7 +272,7 @@
                       <div class="col-lg-6 col-md-6 col-sm-12">
                       <div class="form-group">
                         <label for="Mobile Money Number">Mobile Money Number</label><small class="text-danger">*</small>
-                        <input type="number" name="mobile_money_number" class="form-control @error('mobile_money_number') is-invalid @enderror" id="mobile_money_number" autocomplete="off" value="{{ old('mobile_money_number', $employee->mobile_money_number) }}" >
+                        <input type="text" name="mobile_money_number" class="form-control @error('mobile_money_number') is-invalid @enderror" id="mobile_money_number" autocomplete="off" value="{{ old('mobile_money_number', $employee->mobile_money_no) }}" >
                         @error('mobile_money_number')
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror
