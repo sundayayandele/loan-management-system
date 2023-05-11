@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use RealRashid\SweetAlert\Facades\Alert;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;

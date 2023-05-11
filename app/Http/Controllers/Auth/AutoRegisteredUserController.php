@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Controller;
 use App\Models\reg_employee_mst;
 use App\Models\reg_employee_attachment;
+use App\Models\web_loan_application;
 use App\Models\website_profile;
 use App\Models\api_logins_mst;
 use App\Providers\RouteServiceProvider;
@@ -13,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection ;
 class AutoRegisteredUserController extends Controller
 {
@@ -36,8 +39,7 @@ class AutoRegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-        
+               
         $request->validate([
             'loan_amt' => ['required', 'numeric'],
             'tenure_months' => ['required', 'numeric'],
@@ -49,7 +51,7 @@ class AutoRegisteredUserController extends Controller
             'lastname' => ['required', 'string','max:255'],
             'nrc' => ['required', 'string'],
             'email' => ['required', 'email','unique:reg_employee_mst'],
-            'dob' => ['required', 'string','max:255'],
+            'dob' => ['required', 'string','before:2005-01-01'],
             'phone' => ['required', 'string'],
             'province' => ['required', 'string'],
             'town' => ['required', 'string'],
@@ -69,19 +71,20 @@ class AutoRegisteredUserController extends Controller
             'nextofkin_number' => ['required', 'string'],
             'nextofkin_address' => ['required', 'string','max:255'],
             'next_of_kin_relationship' => ['required', 'string','max:255'],
-            'whitebook' => ['required', 'string','mimes:pdf','max:10200'], //10mb Max
-            'front_image' => ['required', 'string','mimes:png,jpeg','max:10200'],
-            'back_image' => ['required', 'string','mimes:png,jpeg','max:10200'],
-            'right_image' => ['required', 'string','mimes:png,jpeg','max:10200'],
-            'left_image' => ['required', 'string','mimes:png,jpeg','max:10200'],
-            'chassis_number' => ['required', 'string','mimes:png,jpeg','max:10200'],
-            'mileage' => ['required', 'string','mimes:png,jpeg','max:10200'],
-            'bank_statement' => ['required', 'string','mimes:pdf','max:10200'],
-            'passport_photo' => ['required', 'string','mimes:png,jpeg','max:10200'],
-            'nrc_file' => ['required', 'string','mimes:pdf','max:10200'],
+            'whitebook' => ['required', 'mimes:png,jpeg','max:10200','max:10200'], //10mb Max
+            'front_image' => ['required', 'mimes:png,jpeg','max:10200'],
+            'back_image' => ['required', 'mimes:png,jpeg','max:10200'],
+            'right_image' => ['required', 'mimes:png,jpeg','max:10200'],
+            'left_image' => ['required', 'mimes:png,jpeg','max:10200'],
+            'chassis_number' => ['required', 'mimes:png,jpeg','max:10200'],
+            'mileage' => ['required', 'mimes:png,jpeg','max:10200'],
+            'bank_statement' => ['required', 'mimes:pdf','max:10200'],
+            'passport_photo' => ['required', 'mimes:png,jpeg','max:10200'],
+            'nrc_file' => ['required', 'mimes:pdf','max:10200'],
             'password' => ['required', 'confirmed',Rules\Password::defaults()],
         ],
         [
+            'dob.before' => 'The date of birth must be before 1st January 2005',
 			'email.unique' => "You are already a client, just Log In and apply.",
 			'phone.unique' => 'Only first time clients needs to do this. Returning clients just needs to log in and apply',
 			
@@ -94,19 +97,15 @@ class AutoRegisteredUserController extends Controller
         $user->lastname = $request->lastname;
         $user->email = $request->email;
         $user->nrc = str_replace('/','',$request->nrc);
-        $user->mannumber = $request->employee_number;
         $user->dob = $request->dob;
         $user->province_id = $request->province;
         $user->town_id = $request->town;
         $user->address = $request->address;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->asset_estimate = $request->asset_estimate;
-        $user->asset_name = $request->asset_name;
-        $user->asset_location = $request->asset_location;
-        $user->work_address = $request->work_address;
-        $user->next_of_kin_fname = $request->nexofkin_firstname;
-        $user->next_of_kin_lname = $request->nexofkin_lastname;
+        $user->base_station_address = $request->work_address;
+        $user->next_of_kin_fname = $request->nextofkin_firstname;
+        $user->next_of_kin_lname = $request->nextofkin_lastname;
         $user->next_of_kin_relationship = $request->next_of_kin_relationship;
         $user->next_of_kin_phone = $request->nextofkin_number;
         $user->next_of_kin_address = $request->nextofkin_address;
@@ -143,8 +142,8 @@ $number = random_int(1000000000, 9999999999);
 $loannumber = $user->employee_id.$number;
 
 if(web_loan_application::where('loan_number',"=",$loannumber)->exists()){
-
-return redirect('dashboard')->with('wrongloannumber', 'Whoops something went wrong, try again');     
+    toast('Whoops something went wrong, try again!','error');
+    return redirect('/');     
 
 
 } 
@@ -157,8 +156,11 @@ return redirect('dashboard')->with('wrongloannumber', 'Whoops something went wro
 **/
 
 elseif (web_loan_application::where('employee_id',"=",$user->employee_id)->exists()){
- return redirect('dashboard')->with('pendingl', 'It seems You have a pending Loan. First settle this Loan then you can apply later.');     
- } 
+      
+ toast('It seems You have a pending Loan. First settle this Loan then you can apply later!','error');
+ return redirect('/');   
+
+} 
 
  
 /**
@@ -172,12 +174,15 @@ elseif (web_loan_application::where('employee_id',"=",$user->employee_id)->exist
 else{
 
  $loan_application= new web_loan_application;
- $loan_application->loan_type = "AUTO LOANS";// $request->loan_type;
+ $loan_application->loan_type = 2;// $request->loan_type;
  $loan_application->employee_id = $user->employee_id;
  $loan_application->months = $request->tenure_months;
  $loan_application->amount = $request->loan_amt;
  $loan_application->loan_amount = $request->total_repayments_amt;
  $loan_application->emi = $request->emi;
+ $loan_application->asset_estimate = $request->asset_estimate;
+ $loan_application->asset_name = $request->asset_name;
+ $loan_application->asset_location = $request->asset_location;
  //$loan_application->payment_mode = $request->payment_mode_id;
  $loan_application->mobile_money_number = $request->mobile_money_number;
  $loan_application->mobile_monney_name = $request->momo_name;
@@ -207,9 +212,10 @@ else{
  // Submitting Passport Photo 
  $user->profilepic = $request->passport_photo->store('passportphoto');
  $user->save();
-   
-return redirect('dashboard')->with('status', 'Your Loan has been submitted successfully. Wait for the email confirmation once approved.'); 
 
+ toast('Your Loan has been submitted successfully. Wait for the email confirmation once approved!','success');
+ return redirect('/');   
+   
  
 }
 

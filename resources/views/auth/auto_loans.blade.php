@@ -137,7 +137,7 @@ button:focus{
 
 
 
-            <form id="regForm" method="POST" action="{{ route('auto') }}">
+            <form id="regForm" method="POST" action="{{ route('auto') }}" enctype="multipart/form-data">
              @csrf  
           <center>
                     <h1 id="register">Auto Loans</h1>
@@ -195,7 +195,7 @@ button:focus{
 <div class="form-group">
             <label for="name"> Loan Amount </label> <small class="text-danger">*</small>
 
-            <input class="form-control" type="number" onkeyup="calculateEMI()" id="amount" name="loan_amt"  />
+            <input class="form-control" type="number" value="{{ old('loan_amt') }}" onkeyup="calculateEMI()" id="amount" name="loan_amt"  />
           
         </div> 
 </div>
@@ -209,7 +209,7 @@ button:focus{
 <div class="form-group">
             <label for="name">Pick Months </label> <small class="text-danger">*</small>
 <!--Show the number of months to the user--> 
-<select class="form-control" onchange="calculateEMI()" name="tenure_months" id="months" required>
+<select class="form-control" onchange="calculateEMI()" name="tenure_months" value="{{ old('tenure_months') }}" id="months" required>
   <option value=1>1 Month </option>
   <option value=2>2 Months</option>
   <option value=3>3 Months</option>
@@ -241,7 +241,7 @@ button:focus{
 <div class="form-group">
             <label for="Total Repayments Amount"> Total Repayments </label> <small class="text-danger">*</small>
 
-            <input class="form-control" type="number" id="total_repayments_amt" name="total_repayments_amt" readonly />
+            <input class="form-control" type="number" id="total_repayments_amt" value="{{ old('total_repayments_amt') }}" name="total_repayments_amt" readonly />
             </div> 
 
 </div>
@@ -251,7 +251,7 @@ button:focus{
 <div class="form-group">
             <label for="EMI">EMI </label> <small class="text-danger">*</small>
 
-            <input class="form-control" type="number" id="emi"  name="emi" readonly/>
+            <input class="form-control" type="number" value="{{ old('emi') }}" id="emi"  name="emi" readonly/>
             </div> 
 </div>
 </div>
@@ -288,7 +288,7 @@ button:focus{
 <div class="form-group">
             <label for="First Name"> First Name </label> <small class="text-danger">*</small>
 
-            <input class="form-control" type="text" id="firstname" name="firstname" required/>
+            <input class="form-control" type="text" id="firstname" value="{{ old('firstname') }}" name="firstname" required/>
             </div> 
 
 </div>
@@ -298,7 +298,7 @@ button:focus{
 <div class="form-group">
             <label for="Last Name">Last Name</label> <small class="text-danger">*</small>
 
-            <input class="form-control" type="text" id="lastname"  name="lastname"  required/>
+            <input class="form-control" type="text" id="lastname" value="{{ old('lastname') }}" name="lastname"  required/>
             </div> 
 </div>
 </div>
@@ -313,7 +313,7 @@ button:focus{
 <div class="form-group">
             <label for="NRC"> NRC# </label> <small class="text-danger">*</small>
 
-            <input class="form-control" type="text" id="nrc" name="nrc" required/>
+            <input class="form-control" type="text" id="nrc"value="{{ old('nrc') }}"  name="nrc" required/>
             </div> 
 
 </div>
@@ -323,7 +323,7 @@ button:focus{
 <div class="form-group">
             <label for="Date of Birth">DOB</label> <small class="text-danger">*</small>
 
-            <input class="form-control" type="text" id="datepicker" name="dob" required/>
+            <input class="form-control" type="text" id="datepicker" value="{{ old('dob') }}" name="dob" required/>
             </div> 
 </div>
 </div>
@@ -337,7 +337,7 @@ button:focus{
 <div class="form-group">
             <label for="Emal"> Email </label> <small class="text-danger">*</small>
 
-            <input class="form-control" type="email" id="email" name="email" required/>
+            <input class="form-control" type="email" id="email" value="{{ old('email') }}" name="email" required/>
             </div> 
 
 </div>
@@ -347,7 +347,7 @@ button:focus{
 <div class="form-group">
             <label for="Phone">Phone</label> <small class="text-danger">*</small>
 
-            <input class="form-control" type="text" id="phone" name="phone" required/>
+            <input class="form-control" type="text" id="phone" value="{{ old('phone') }}" name="phone" required/>
             </div> 
 </div>
 </div>
@@ -360,7 +360,7 @@ button:focus{
  <!-- Province of Residence -->
  <div class="form-group">
     <label for="Province of Residence">Province of Residence</label> <small class="text-danger">*</small>
-    <select class="form-control" name="province" required>
+    <select class="form-control" name="province" value="{{ old('province') }}" required>
     <option value="Southern">Southern </option>
   <option value="Nothern">Nothern</option>
   <option value="Western">Western</option>
@@ -383,7 +383,7 @@ button:focus{
 <div class="form-group">
             <label for="Town">Town</label> <small class="text-danger">*</small>
 
-            <input class="form-control" type="text" id="town" name="town" required/>
+            <input class="form-control" type="text" id="town" value="{{ old('town') }}" name="town" required/>
             </div> 
 </div>
 </div>
@@ -398,7 +398,7 @@ button:focus{
 <div class="form-group">
             <label for="Address">Address</label> <small class="text-danger">*</small>
 
-            <input class="form-control" type="text" id="address" name="address" required/>
+            <input class="form-control" type="text" id="address" value="{{ old('address') }}" name="address" required/>
             </div> 
 </div>
 </div>
@@ -430,7 +430,7 @@ button:focus{
  <div class="form-group">
              <label for="Asset Estimate"> Asset Estimate </label> <small class="text-danger">*</small>
  
-             <input class="form-control" type="text" id="asset_estimate" name="asset_estimate" required/>
+             <input class="form-control" type="text" id="asset_estimate" value="{{ old('asset_estimate') }}" name="asset_estimate" required/>
              </div> 
  
  </div>
@@ -440,7 +440,7 @@ button:focus{
  <div class="form-group">
              <label for="Asset Name">Asset Name</label> <small class="text-danger">*</small>
  
-             <input class="form-control" type="text" id="asset_name" name="asset_name" required/>
+             <input class="form-control" type="text" id="asset_name" value="{{ old('asset_name') }}" name="asset_name" required/>
              </div> 
  </div>
  </div>
@@ -453,7 +453,7 @@ button:focus{
   <!-- Province of Residence -->
   <div class="form-group">
      <label for="Asset Location">Asset Location</label> <small class="text-danger">*</small>
-     <select class="form-control" name="asset_location" required>
+     <select class="form-control" name="asset_location" value="{{ old('asset_location') }}" required>
      <option value="Southern">Southern </option>
    <option value="Nothern">Nothern</option>
    <option value="Western">Western</option>
@@ -476,7 +476,7 @@ button:focus{
               <div class="form-group">
    <label for="Address">Work Physical Address</label> <small class="text-danger">*</small>
 
-   <input class="form-control" type="text" id="work_address" name="work_address" required/>
+   <input class="form-control" type="text" id="work_address" value="{{ old('work_address') }}" name="work_address" required/>
    </div> 
  </div>
  </div>
@@ -491,8 +491,8 @@ button:focus{
   <!-- Province of Residence -->
   <div class="form-group">
      <label for="Bank Name">Bank Name</label> <small class="text-danger">*</small>
-     <select class="form-control" name="bankname" required>
-     <option value="">Pick Your Bank</option>
+     <select class="form-control" name="bankname" value="{{ old('bankname') }}" required>
+    
   <option value="Zambia National Commercial Bank (Zanaco)">Zambia National Commercial Bank (Zanaco)</option>
   <option value="Standard Chartered Bank Zambia">Standard Chartered Bank Zambia</option>
   <option value="Barclays Zambia (Absa)">Barclays Zambia (Absa)</option>
@@ -521,7 +521,7 @@ button:focus{
  <div class="form-group">
              <label for="Bank branch">Bank Branch</label> <small class="text-danger">*</small>
  
-             <input class="form-control" type="text" id="bank_branch" name="bank_branch" required/>
+             <input class="form-control" type="text" id="bank_branch" value="{{ old('bank_branch') }}" name="bank_branch" required/>
              </div> 
  </div>
  </div>
@@ -534,7 +534,7 @@ button:focus{
 <div class="form-group">
    <label for="Account Name">Account Name</label> <small class="text-danger">*</small>
 
-   <input class="form-control" type="text" id="account_name" name="account_name" required/>
+   <input class="form-control" type="text" id="account_name" value="{{ old('account_name') }}" name="account_name" required/>
    </div> 
 </div>
 
@@ -543,7 +543,7 @@ button:focus{
 <div class="form-group">
    <label for="Account Number">Account Number</label> <small class="text-danger">*</small>
 
-   <input class="form-control" type="text" id="account_number" name="account_number" required/>
+   <input class="form-control" type="text" id="account_number" value="{{ old('account_number') }}" name="account_number" required/>
    </div> 
 </div>
 </div> 
@@ -558,7 +558,7 @@ button:focus{
 <div class="form-group">
    <label for="Mobile Money Name">Mobile Money Name</label> <small class="text-danger">*</small>
 
-   <input class="form-control" type="text" id="momo_name" name="momo_name" required/>
+   <input class="form-control" type="text" id="momo_name" value="{{ old('momo_name') }}" name="momo_name" required/>
    </div> 
 </div>
 
@@ -567,7 +567,7 @@ button:focus{
 <div class="form-group">
    <label for="Mobile Money Number">Mobile Money Number</label> <small class="text-danger">*</small>
 
-   <input class="form-control" type="text" id="mobile_money_number" name="mobile_money_number" required/>
+   <input class="form-control" type="text" id="mobile_money_number" value="{{ old('mobile_money_number') }}" name="mobile_money_number" required/>
    </div> 
 </div>
 
@@ -609,7 +609,7 @@ button:focus{
  <div class="form-group">
              <label for="Next of Kin First Name">Next of Kin First Name</label> <small class="text-danger">*</small>
  
-             <input class="form-control" type="text" id="nexofkin_firstname" name="nexofkin_firstname" required/>
+             <input class="form-control" type="text" id="nexofkin_firstname" value="{{ old('nextofkin_firstname') }}" name="nextofkin_firstname" required/>
              </div> 
  </div>
  </div>
@@ -623,7 +623,7 @@ button:focus{
  <div class="form-group">
              <label for="Next of Kin Last Name"> Next of Kin Last Name </label> <small class="text-danger">*</small>
  
-             <input class="form-control" type="text" id="nexofkin_lastname" name="nexofkin_lastname" required/>
+             <input class="form-control" type="text" id="nextofkin_lastname" value="{{ old('nextofkin_lastname') }}"  name="nextofkin_lastname" required/>
              </div> 
  
  </div>
@@ -633,7 +633,7 @@ button:focus{
  <div class="form-group">
              <label for="Next of Kin Number">Next of Kin Number</label> <small class="text-danger">*</small>
  
-             <input class="form-control" type="text" id="nexofkin_number" name="nexofkin_number" required/>
+             <input class="form-control" type="text" id="nextofkin_number" value="{{ old('nextofkin_number') }}"  name="nextofkin_number" required/>
              </div> 
  </div>
  </div>
@@ -646,7 +646,7 @@ button:focus{
   <!-- Relationship with Next of Kin -->
   <div class="form-group">
      <label for="Relationship with Next of Kin">Relationship with Next of Kin</label> <small class="text-danger">*</small>
-     <select class="form-control" name="next_of_kin_relationship" required>
+     <select class="form-control" name="next_of_kin_relationship" value="{{ old('next_of_kin_relationship') }}" required>
      <option value="Father">Father </option>
    <option value="Mother">Mother</option>
    <option value="Spouse">Spouse</option>
@@ -670,7 +670,7 @@ button:focus{
  <div class="form-group">
              <label for="Next of Kin Physical Address">Next of Kin Physical Address</label> <small class="text-danger">*</small>
  
-             <input class="form-control" type="text" id="nextofkin_address" name="nextofkin_address" required/>
+             <input class="form-control" type="text" id="nextofkin_address" value="{{ old('nextofkin_address') }}" name="nextofkin_address" required/>
              </div> 
  </div>
  </div>
@@ -700,7 +700,7 @@ button:focus{
  <div class="form-group">
              <label for="Upload Image of White Book (PNG/JPEG)">Upload Image of White Book (PNG/JPEG)</label> <small class="text-danger">*</small>
  
-             <input class="form-control" accept="image/jpeg, image/png" type="file" id="whitebook" name="whitebook" required/>
+             <input class="form-control" accept="image/jpeg, image/png" type="file" id="whitebook" value="{{ old('whitebook') }}" name="whitebook" required/>
              
              </div> 
  
@@ -711,7 +711,7 @@ button:focus{
  <div class="form-group">
  <label for="Upload Front Image of vehicle (PNG/JPEG)">Upload Front Image of vehicle (PNG/JPEG)</label> <small class="text-danger">*</small>
  
-             <input class="form-control" accept="image/jpeg, image/png" type="file" id="front_image"  name="front_image"  required/>
+             <input class="form-control" accept="image/jpeg, image/png" type="file" id="front_image" value="{{ old('front_image') }}" name="front_image"  required/>
              </div> 
  </div>
  </div>
@@ -723,7 +723,7 @@ button:focus{
  <div class="form-group">
              <label for="Upload Back Image of Vehicle (PNG/JPEG)">Upload Back Image of Vehicle (PNG/JPEG)</label> <small class="text-danger">*</small>
  
-             <input class="form-control"accept="image/jpeg, image/png" type="file" id="back_image" name="back_image" required/>
+             <input class="form-control"accept="image/jpeg, image/png" type="file" id="back_image" value="{{ old('back_image') }}" name="back_image" required/>
              
              </div> 
  
@@ -734,7 +734,7 @@ button:focus{
  <div class="form-group">
  <label for="Upload Left Image of vehicle (PNG/JPEG)">Upload Left Image of vehicle (PNG/JPEG)</label> <small class="text-danger">*</small>
  
-             <input class="form-control" accept="image/jpeg, image/png" type="file" id="left_image"  name="left_image"  required/>
+             <input class="form-control" accept="image/jpeg, image/png" type="file" id="left_image" value="{{ old('left_image') }}"  name="left_image"  required/>
              </div> 
  </div>
  </div>
@@ -747,7 +747,7 @@ button:focus{
  <div class="form-group">
              <label for="Upload Right Image of Vehicle (PNG/JPEG)">Upload Right Image of Vehicle (PNG/JPEG)</label> <small class="text-danger">*</small>
  
-             <input class="form-control"accept="image/jpeg, image/png" type="file" id="right_image" name="right_image" required/>
+             <input class="form-control"accept="image/jpeg, image/png" type="file" id="right_image" value="{{ old('right_image') }}" name="right_image" required/>
              
              </div> 
  
@@ -756,9 +756,9 @@ button:focus{
               <!-- Chassis Number -->
               <div class="col-lg-6">
  <div class="form-group">
- <label for="Chassis Number Image of vehicle (PNG/JPEG)">Upload Chassis Number Image of vehicle (PNG/JPEG)</label> <small class="text-danger">*</small>
+ <label for="Chassis Number Image of vehicle (PNG/JPEG)">Upload Chassis Image of vehicle (PNG/JPEG)</label> <small class="text-danger">*</small>
  
-             <input class="form-control" accept="image/jpeg, image/png" type="file" id="chassis_number"  name="chassis_number"  required/>
+             <input class="form-control" accept="image/jpeg, image/png" type="file" id="chassis_number" value="{{ old('chassis_number') }}" name="chassis_number"  required/>
              </div> 
  </div>
  </div>
@@ -772,7 +772,7 @@ button:focus{
  <div class="form-group">
              <label for="Payslip1">Upload Mileage Image (PNG/JPEG)</label> <small class="text-danger">*</small>
  
-             <input class="form-control"accept="image/jpeg, image/png" type="file" id="mileage" name="mileage" required/>
+             <input class="form-control"accept="image/jpeg, image/png" type="file" id="mileage" value="{{ old('mileage') }}" name="mileage" required/>
              
              </div> 
  
@@ -786,7 +786,7 @@ button:focus{
  <div class="form-group">
              <label for="Bank Statement">Upload Bank Statement (PDF)</label> <small class="text-danger">*</small>
  
-             <input class="form-control" accept="application/pdf" type="file" id="bank_statement" name="bank_statement" required/>
+             <input class="form-control" accept="application/pdf" type="file" id="bank_statement" value="{{ old('bank_statement') }}" name="bank_statement" required/>
              </div> 
  
  </div>
@@ -798,7 +798,7 @@ button:focus{
  <div class="form-group">
              <label for="Passport Photo">Selfie (JPG/PNG)</label> <small class="text-danger">*</small>
  
-             <input class="form-control" accept="image/jpeg, image/png" type="file" id="passport_photo" name="passport_photo" required/>
+             <input class="form-control" accept="image/jpeg, image/png" type="file" id="passport_photo" value="{{ old('passport_photo') }}" name="passport_photo" required/>
              </div> 
  </div>
  
@@ -812,7 +812,7 @@ button:focus{
  <div class="form-group">
              <label for="NRC"> NRC (PDF) </label> <small class="text-danger">*</small>
  
-             <input class="form-control" accept="application/pdf" type="file" id="file" name="nrc_file" required/>
+             <input class="form-control" accept="application/pdf" type="file" id="file" value="{{ old('nrc_file') }}" name="nrc_file" required/>
              </div> 
  
  </div>
@@ -832,15 +832,17 @@ button:focus{
 
 
 
-                <div class="tab">
-                    <h6>Create Password</h6>
+<div class="tab">
+                    <label for="create password">Create Password</label>
                     <p><input type="password" placeholder="Atleast 8 characters" oninput="this.className = ''" name="password" value="{{old('password')}}" autofocus></p>
+                    <label for="password confirmation">Confirm Password</label>
+                    <p><input type="password" placeholder="Confirm Password" oninput="this.className = ''" name="password_confirmation" value="{{old('password_confirmation')}}" autofocus></p>
                 </div>
                <br>
-                <div class="thanks-message text-center" id="text-message"> <img src="{{asset('images/logo.JPG')}}" width="120" height="100" class="mb-4">
+                <div class="thanks-message text-center" id="text-message"> 
                     <h3>Thank you for your feedback!</h3> <span>You are one step away from getting your Loan! Click on the Submit button below to get started.</span>
               <br>
-                    <button type="submit" class="btn btn-primary">SUBMIT</button>
+                    <button type="submit" name="submit" class="btn btn-primary">SUBMIT</button>
                 </div>
                 <div style="overflow:auto;" id="nextprevious">
                     <div style="float:right;">
@@ -1011,7 +1013,7 @@ $(document).ready(function(){
     $('#employer_number').mask('0000-000-000');
 });
 $(document).ready(function(){
-    $('#nexofkin_number').mask('0000-000-000');
+    $('#nextofkin_number').mask('0000-000-000');
 });
 
 

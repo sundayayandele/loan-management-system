@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Controller;
 use App\Models\reg_employee_mst;
@@ -153,9 +154,8 @@ $number = random_int(1000000000, 9999999999);
 $loannumber = $user->employee_id.$number;
 
 if(web_loan_application::where('loan_number',"=",$loannumber)->exists()){
-
-return redirect('dashboard')->with('wrongloannumber', 'Whoops something went wrong, try again');     
-
+    toast('Whoops something went wrong, try again!','error');
+    return redirect('/');   
 
 } 
 
@@ -167,7 +167,8 @@ return redirect('dashboard')->with('wrongloannumber', 'Whoops something went wro
 **/
 
 elseif (web_loan_application::where('employee_id',"=",$user->employee_id)->exists()){
- return redirect('dashboard')->with('pendingl', 'It seems You have a pending Loan. First settle this Loan then you can apply later.');     
+    toast('It seems You have a pending Loan. First settle this Loan then you can apply later!','error');
+    return redirect('/');     
  } 
 
  
@@ -212,9 +213,8 @@ else{
  // Submitting Passport Photo 
  $user->profilepic = $request->passport_photo->store('passportphoto');
  $user->save();
-   
-return redirect('dashboard')->with('status', 'Your Loan has been submitted successfully. Wait for the email confirmation once approved.'); 
-
+ toast('Your Loan has been submitted successfully. Wait for the email confirmation once approved!','success');
+ return redirect('/');   
  
 }
 
