@@ -28,7 +28,16 @@ public function pending_loans(Request $request){
                 return $data->loan_number;
             })  
              ->addColumn('loan_type', function($data){
-                 return $data->loan_type;
+                if($data->loan_type == 1){
+                    return "PAYROLL BASED LOAN";
+                }
+                elseif($data->loan_type == 2){
+                    return "AUTO LOAN";
+                }
+                else{
+                    return "PRIVATE SECTOR LOAN";    
+                }
+                 
              })   
              ->addColumn('mannumber', function($data){
                  return reg_employee_mst::find($data->employee_id)->mannumber;
