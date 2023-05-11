@@ -185,7 +185,7 @@
  <div class="form-group">
              <label for="Bank Statement">Upload Bank Statement (PDF)</label> <small class="text-danger">*</small>
  
-             <input class="form-control" accept="application/pdf" type="file" id="bank_statement" name="bank_statement" required/>
+             <input class="form-control" accept="application/pdf" type="file" id="bank_statement" name="bankstatement" required/>
              </div> 
  
  </div>

@@ -66,10 +66,8 @@ public function web_loan_application(Request $request,$id){
         'total_repayments_amt'=>['required','numeric'],  
         'emi'=>['required','numeric'],  
         'payment_mode_id'=>['required','string'],   
-        'mobile_money_no'=>['required','numeric'],   
-        'mobile_money_name'=>['required','string'], 
-        'payslip1'=>['required','mimes:pdf'],   
-        'payslip2'=>['required','mimes:pdf'],   
+        'payslip1'=>['nullable','mimes:pdf'],   
+        'payslip2'=>['nullable','mimes:pdf'],   
         'bankstatement'=>['required','mimes:pdf'],  
          
     ]);
@@ -91,7 +89,7 @@ public function web_loan_application(Request $request,$id){
 
 
     toast('Whoops something went wrong, try again!','error');
-    return redirect()->back();
+    return redirect('dashboard');
  
         
   
@@ -107,7 +105,7 @@ public function web_loan_application(Request $request,$id){
    
    elseif (web_loan_application::where('employee_id',"=",$request->employee_id)->exists()){
     toast('It seems You have a pending Loan. First settle this Loan then you can apply later!','error');
-    return redirect()->back();
+    return redirect('dashboard');
     
     } 
 
@@ -130,14 +128,17 @@ else{
     $loan_application->loan_amount = $request->total_repayments_amt;
     $loan_application->emi = $request->emi;
     $loan_application->payment_mode = $request->payment_mode_id;
-    $loan_application->mobile_money_number = $request->mobile_money_no;
-    $loan_application->mobile_monney_name = $request->mobile_money_name;
     $loan_application->loan_number = $loannumber;
+    $loan_application->mobile_money_number = auth()->user()->mobile_money_no;
+    $loan_application->mobile_monney_name = auth()->user()->mobile_money_name;
+
+
 
     // If the Loan is For Civil Servants Or Private Sector
 if($request->loan_type == 1 || $request->loan_type == 3){
     $loan_application->payslip1 = $request->payslip1->store('payslips');
     $loan_application->payslip2 = $request->payslip2->store('payslips');
+    $loan_application->company_id = auth()->user()->company_id;
 }
 // If the Loan is For Auto Loans
 else{
@@ -148,7 +149,7 @@ else{
     $loan_application->right_image = $request->right_image->store('right_images');
     $loan_application->chassis_number = $request->chassis_number->store('chassis_number_images');
     $loan_application->mileage = $request->mileage->store('mileage_images');
-    $loan_application->bank_statement = $request->bank_statement->store('bank_statement');
+   
 }
    
    
@@ -159,7 +160,7 @@ else{
 
       
     toast('Loan Application submitted successfully!','success');
-    return redirect()->back();
+    return redirect('dashboard');
  
     
 }

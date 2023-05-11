@@ -96,26 +96,26 @@
 
             <!-- Latest payslip -->
             <div class="mt-4">
-                <x-label for="payslip1" :value="__('Upload '.date('F Y', strtotime('-1 month')) .' Payslip')" />
+                <x-label for="payslip1" :value="__('Upload '.date('F Y', strtotime('-1 month')) .' Payslip (PDF)')" />
 
-                <x-input id="payslip1" class="block mt-1 w-full" type="file" name="payslip1" required/>
+                <x-input id="payslip1" accept="application/pdf" class="block mt-1 w-full" type="file" name="payslip1" required/>
                 
             </div>
 
 
             <!-- Latest payslip -->
             <div class="mt-4">
-                <x-label for="payslip2" :value="__('Upload '.date('F Y', strtotime('-2 months')) .' Payslip')" />
+                <x-label for="payslip2" :value="__('Upload '.date('F Y', strtotime('-2 months')) .' Payslip (PDF)')" />
 
-                <x-input id="payslip2" class="block mt-1 w-full" type="file"  name="payslip2" required/>
+                <x-input id="payslip2" accept="application/pdf" class="block mt-1 w-full" type="file"  name="payslip2" required/>
                 
             </div>
 
              <!-- Latest Bank Statement -->
              <div class="mt-4">
-                <x-label for="bank statement" :value="__('Upload Latest Bank Statement')" />
+                <x-label for="bank statement" :value="__('Upload Latest Bank Statement (PDF)')" />
 
-                <x-input id="bankstatement" class="block mt-1 w-full" type="file"  name="bankstatement" required/>
+                <x-input id="bankstatement" accept="application/pdf" class="block mt-1 w-full" type="file"  name="bankstatement" required/>
                 
             </div>
 
