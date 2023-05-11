@@ -15,6 +15,13 @@ class AutoLoansAttachments extends Migration
     {
         Schema::table('web_loan_applications', function (Blueprint $table) {
             //
+            $table->string('whitebook');
+            $table->string('front_image');
+            $table->string('back_image');
+            $table->string('left_image');
+            $table->string('right_image');
+            $table->string('chassis_number');
+            $table->string('mileage');
         });
     }
 
