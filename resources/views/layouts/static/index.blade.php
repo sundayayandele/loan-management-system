@@ -177,171 +177,8 @@
 				<div class="container-fluid p-0">
 
 					<h1 class="h3 mb-3">Hi <strong>{{ Auth::user()->name }} {{ Auth::user()->lastname }}</strong> Welcome to the Clients Dashboard</h1>
-					<div id="alertNewCustomer" class="alert alert-warning" role="alert">
+					
 
-					<i class="fa fa-exclamation-triangle" style="font-size:22px;color:red"><a style="color:red" href="{{'signature'}}"> Update Your KYC Forms.</a></i>
-
-				</div>
-<input id="hide" type="hidden" value="{{ Auth::user()->bank_account_no}}"/>
-
-
-<center>
-
- <!--Successs Application-->
- @if (session('status'))
-<div class="alert alert-primary alert-dismissible fade show " role="alert">
-          <div class="font-medium text-600">
-            <i class="fa-regular fa-bell"></i>
-        <strong>Hello there!</strong> You have some feedbacks
-        </div>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-           
-            {!! session('status') !!}
-     
-          </div>
-    </div>
-	@endif
-
-
-
- <!--Successs KYC FORM Application-->
- @if (session('kyc'))
-<div class="alert alert-primary alert-dismissible fade show " role="alert">
-          <div class="font-medium text-600">
-            <i class="fa-regular fa-bell"></i>
-        <strong>Hello there!</strong> You have some feedbacks
-        </div>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-           
-            {!! session('kyc') !!}
-        
-          </div>
-    </div>
-	@endif
-
-
-<!--If Multiple loan numbers are detected in the database-->
-@if (session('wrongloannumber'))
-<div class="alert alert-danger alert-dismissible fade show " role="alert">
-          <div class="font-medium text-600">
-            <i class="fa-regular fa-bell"></i>
-        <strong>Hello there!</strong> You have some feedbacks
-        </div>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-           
-            {!! session('wrongloannumber') !!}
-       
-          </div>
-    </div>
-	@endif
-
-
-
-<!--If KYC Invalid-->
-@if (session('invalidKYC'))
-<div class="alert alert-warning alert-dismissible fade show " role="alert">
-          <div class="font-medium text-600">
-            <i class="fa-regular fa-bell"></i>
-        <strong>Hello there!</strong> You have some feedbacks
-        </div>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            
-            {!! session('invalidKYC') !!}
-       
-          </div>
-    </div>
-	@endif
-
-<!--Invalid Company Id-->
-@if (session('invalid_company_id'))
-<div class="alert alert-danger alert-dismissible fade show " role="alert">
-          <div class="font-medium text-600">
-            <i class="fa-regular fa-bell"></i>
-        <strong>Hello there!</strong> You have some feedbacks
-        </div>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-           
-            {!! session('invalid_company_id') !!}
-       
-          </div>
-    </div>
-	@endif
-
-
-
-
-<!--Submit KYC Form error if user tries to access loanAmortisation/analysis without submitting KYC-->
-@if (session('kycError'))
-<div class="alert alert-danger alert-dismissible fade show " role="alert">
-          <div class="font-medium text-600">
-            <i class="fa-regular fa-bell"></i>
-        <strong>Hello there!</strong> You have some feedbacks
-        </div>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          
-            {!! session('kecError') !!}
-       
-          </div>
-    </div>
-	@endif
-
-
-
-<!--When a Client has a pending loan and tries to reapply (detected on bank method controller) -->
-@if (session('pendingl'))
-<div class="alert alert-danger alert-dismissible fade show " role="alert">
-          <div class="font-medium text-600">
-            <i class="fa-regular fa-bell"></i>
-        <strong>Hello there!</strong> You have some feedbacks
-        </div>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            
-            {!! session('pendingl') !!}
-       
-          </div>
-    </div>
-	@endif
-
-
-
-
-
-
-<!--profilepicture set successfully--> 
-@if (session('profilepicture'))
-<div class="alert alert-primary alert-dismissible fade show " role="alert">
-          <div class="font-medium text-600">
-            <i class="fa-regular fa-bell"></i>
-        <strong>Hello there!</strong> You have some feedbacks
-        </div>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-           
-            {!! session('profilepicture') !!}
-       
-          </div>
-    </div>
-	@endif
-
-
-
-
-</center>
 
 					<div class="row">
 						<div class="col-xl-6 col-xxl-5 d-flex">
@@ -361,7 +198,8 @@
 														</div>
 													</div>
 												</div>
-												<h4 class="mt-1 mb-3" onclick="checkKyc()" style="font-weight: bold; cursor:pointer">Apply Now</h4>
+												<h4 class="mt-1 mb-3" style="font-weight: bold;"><a style="color:black" href="{{route('loanapplication',encrypt(Auth::user()->employee_id))}}">Apply Now</a></h4>
+												
 												<div class="mb-0">
 													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i>@15% Interest rate </span>
 													<span class="text-muted">per month</span>
@@ -379,26 +217,8 @@
 
 
 <script>
-//On page load Check if the user has applied for the KYC Forms and if no display the warning exclaimation
-//Else hide the warning exclaimation
-let x = document.getElementById("hide").value;
-	if(x.length > 0){
-	document.getElementById("alertNewCustomer").style.display="none";	
-	}
 
-//If the user has clicked on apply for a loan check if he/she had KYC Forms and if no denie application
-//Else allow application process.
-function checkKyc(){
-	let x = document.getElementById("hide").value;
-	if(x.length == 0){
-	alert("Please Fill In your KYC Form first.")	
-	}
-	else{
-	window.location.href="{{route('loanapplication',encrypt(Auth::user()->employee_id))}}";
-			//window.location='howlong';
-	}
-	
-}
+
 
 
 //Check if profile picture is present and hide the logo else show the logo
