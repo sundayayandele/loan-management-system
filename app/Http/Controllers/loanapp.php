@@ -32,213 +32,6 @@ class loanapp extends Controller
 
 
 /**
-     * KYC forms to be filled in by the client who wants to apply for a loan.
-     * Call personaldetails view blade
-     * Submit to personaldetails route
-     * 
-     * 
-     * @param  \App\Http\Requests\Auth\LoginRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-
-
-public function personaldetails_blade(){
-    $personal=ref_town_mst::all(); 
-     return view('personaldetails')->with('personal',$personal);  
-}
-
-   
- 
-  public function personaldetails(Request $request,$id){
-    $validate=validator::make($request->all(),[
-        'name'=>['required','string'],
-        'DateofBirth'=>['required'],
-        'gender'=>['required','string'],
-        'marital'=>['required','string'],
-        'number'=>['required','string'],
-        'address'=>['required','string'],
-        'town'=>['required','string'],
-        'province'=>['required','string'],
-    ]);
-   if ($validate->fails()){
-    return Redirect::back()->withErrors($validate);
-   }
-   else{
-    $personalDetails=reg_employee_mst::find(decrypt($id));
-    $personalDetails->dob=$request->input('DateofBirth');
-    $personalDetails->gender=$request->input('gender');
-    $personalDetails->marital_status=$request->input('marital');
-    $personalDetails->phone=$request->input('number');
-    $personalDetails->address=$request->input('address');
-    $personalDetails->town_id=$request->input('town');
-    $personalDetails->province_id=$request->input('province');
-    $personalDetails->save();
-    return redirect()->route('nextofkindetails');
- }
-}  
-
-
-
-
-/**
-     * KYC forms to be filled in by the client who wants to apply for a loan.
-     * Next of Kin Details
-     * 
-     * @param  \App\Http\Requests\Auth\LoginRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-
-
-  public function nextofkindetails(Request $request,$id){
-    $validate=validator::make($request->all(),[
-        'firstnamenext'=>['required','string'],
-        'lastnamenext'=>['required','string'],
-        'relationshipnext'=>['required','string'],
-        'physicaladdressnext'=>['required','string'], 
-        'phonenumbernext'=>['required','string'],        
-    ]);
-   if ($validate->fails()){
-    return Redirect::back()->withErrors($validate)->withInput();
-   }
-   else{
-    $nextofkingDetails=reg_employee_mst::find(decrypt($id));
-    $nextofkingDetails->next_of_kin_fname=$request->input('firstnamenext');
-    $nextofkingDetails->next_of_kin_lname=$request->input('lastnamenext');
-    $nextofkingDetails->next_of_kin_relationship=$request->input('relationshipnext');
-    $nextofkingDetails->next_of_kin_address=$request->input('physicaladdressnext');
-    $nextofkingDetails->next_of_kin_phone=$request->input('phonenumbernext');
-    $nextofkingDetails->save();
-    return redirect()->route('employerdetails');
- }
-}  
-
-
-
-
-
-/**
-     * KYC forms to be filled in by the client who wants to apply for a loan.
-     * Employer Details 
-     * 
-     * @param  \App\Http\Requests\Auth\LoginRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     * 
-     */
-
-
-public function employerdetails(Request $request,$id){
-    $validate=validator::make($request->all(),[
-        'employername'=>['required','string'],
-        'employeenumber'=>['nullable','string'],
-        'netmonthly'=>['required','numeric'],
-             
-    ]);
-   if ($validate->fails()){
-    return Redirect::back()->withErrors($validate)->withInput();
-   }
-   else{
-    $employerDetails=reg_employee_mst::find(decrypt($id));
-    $employerDetails->company_id=$request->input('employername');
-    $employerDetails->mannumber=$request->input('employeenumber');
-    $employerDetails->net_salary=$request->input('netmonthly');
-    $employerDetails->save();
-    return redirect()->route('attatchments');
- }
-}  
-
-
-
-
-
-/**
-     * KYC forms to be filled in by the client who wants to apply for a loan.
-     * Attachments
-     * 
-     * @param  \App\Http\Requests\Auth\LoginRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-
-
-public function attatchments(Request $request,$id){
-    $validate=validator::make($request->all(),[
-        'nrc_file'=>'required|mimes:pdf|max:10200', //10mb Max
-        'passportphoto'=>'required|mimes:jpeg,jpg,png|max:10200'
-        
-    ]);
-    
-   if ($validate->fails()){
-    return Redirect::back()->withErrors($validate)->withInput();
-   }
-   else{
-       //Submiting NRC File in reg_employee_attachments 
-       $attachments_nrc = reg_employee_mst::find(decrypt($id));
-       $nrc = new reg_employee_attachment;
-       $nrc->attachment_name=$request->nrc_file->store('nrc');
-       $nrc->document_type_id=1;
-       $attachments_nrc->reg_employee_attachment()->save($nrc);
-
-     
-       // Submitting Passport Photo 
-       $attachments_nrc ->profilepic = $request->passportphoto->store('passportphoto');
-       $attachments_nrc->save();
-
-
-
-       return redirect()->route('bankdetails');
-
-   }    
-}  
-
-
-
-
-
-/**
-     * KYC forms to be filled in by the client who wants to apply for a loan.
-     * Bank Details
-     * KYC Forms Ends Here
-     * 
-     * @param  \App\Http\Requests\Auth\LoginRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-
-
-public function bankdetails(Request $request,$id){
-    $validate=validator::make($request->all(),[
-        'bankname'=>['required','string'],
-        'branchname'=>['required','string'],
-        'accountnumber'=>['required','numeric'],
-        'accountname'=>['required','string'], 
-        'mobile_money_number'=>['required','string'],
-        'mobile_money_name'=>['required','string'], 
-        
-    ]);
-   if ($validate->fails()){
-    return Redirect::back()->withErrors($validate)->withInput();
-   }
-   
-else {
-    $bankDetails=reg_employee_mst::find(decrypt($id));
-    $bankDetails->bank_id=$request->input('bankname');
-    $bankDetails->bank_branch_id=$request->input('branchname');
-    $bankDetails->bank_account_no=$request->input('accountnumber');
-    $bankDetails->bank_account_name=$request->input('accountname');
-    $bankDetails->mobile_money_no=$request->input('mobile_money_number');
-    $bankDetails->mobile_money_name=$request->input('mobile_money_name');
-    $bankDetails->save();
-
-   
-   //Show that the form KYC has been submitted successfully
-   toast('Your KYC form has been Submitted successfully','success');
-   return redirect('dashboard');
-    
-}
-
-}
-
-
-
-/**
      * Loan Application Form Blade View.
      * 
      * 
@@ -264,7 +57,7 @@ public function loanapplication($id){
 
 public function web_loan_application(Request $request,$id){
    
-dd($request);
+
     $validate=validator::make($request->all(),[
         'loan_type'=>['required','string'],
         'employee_id'=>['required','numeric'],
@@ -295,8 +88,12 @@ dd($request);
    $loannumber = decrypt($id).$number;
 
    if(web_loan_application::where('loan_number',"=",$loannumber)->exists()){
-   
-   return redirect('dashboard')->with('wrongloannumber', 'Whoops something went wrong, try again');     
+
+
+    toast('Whoops something went wrong, try again!','error');
+    return redirect()->back();
+ 
+        
   
 
 } 
@@ -309,7 +106,9 @@ dd($request);
 **/
    
    elseif (web_loan_application::where('employee_id',"=",$request->employee_id)->exists()){
-    return redirect('dashboard')->with('pendingl', 'It seems You have a pending Loan. First settle this Loan then you can apply later.');     
+    toast('It seems You have a pending Loan. First settle this Loan then you can apply later!','error');
+    return redirect()->back();
+    
     } 
 
     
@@ -334,13 +133,22 @@ else{
     $loan_application->mobile_money_number = $request->mobile_money_no;
     $loan_application->mobile_monney_name = $request->mobile_money_name;
     $loan_application->loan_number = $loannumber;
+
+    // If the Loan is For Civil Servants Or Private Sector
 if($request->loan_type == 1 || $request->loan_type == 3){
     $loan_application->payslip1 = $request->payslip1->store('payslips');
     $loan_application->payslip2 = $request->payslip2->store('payslips');
 }
+// If the Loan is For Auto Loans
 else{
-    $loan_application->payslip1 = $request->payslip1->store('payslips');
-    $loan_application->payslip2 = $request->payslip2->store('payslips');  
+    $loan_application->whitebook = $request->whitebook->store('whitebooks');
+    $loan_application->front_image = $request->front_image->store('front_images');
+    $loan_application->back_image = $request->back_image->store('back_images');
+    $loan_application->left_image = $request->left_image->store('left_images');
+    $loan_application->right_image = $request->right_image->store('right_images');
+    $loan_application->chassis_number = $request->chassis_number->store('chassis_number_images');
+    $loan_application->mileage = $request->mileage->store('mileage_images');
+    $loan_application->bank_statement = $request->bank_statement->store('bank_statement');
 }
    
    
@@ -350,7 +158,8 @@ else{
     $loan_application->save();
 
       
-return redirect('dashboard')->with('status', 'Your Loan has been submitted successfully. Wait for the email confirmation once approved.'); 
+    toast('Loan Application submitted successfully!','success');
+    return redirect()->back();
  
     
 }
@@ -454,9 +263,9 @@ public function admin_articles(Request $request){
        $article->created_by =  Auth::user()->firstname. " " . Auth::user()->lastname;
        $article->save();
       
-
-    return Redirect::back()->with("published","Published Successfully");
-  
+       toast('Published Successfully!','success');
+       return redirect()->back();
+    
 }  
 
 
@@ -622,7 +431,9 @@ public function profilepictureclient(Request $request,$id){
        
        ## Save profile picture
        $profilepicture->save();
-       return redirect('dashboard')->with('profilepicture', 'Profile picture set Successfully');  
+       toast('Profile picture set Successfully!','success');
+       return redirect('dashboard');
+       
      }
     }  
 
@@ -698,7 +509,12 @@ public function analytics(Request $request,$id){
 
    
    if (is_null($loan_profile) || is_null($loan_s)){
-    return redirect('dashboard')->with('invalidKYC', 'You need to apply for a Loan First'); 
+
+    toast('You need to apply for a Loan First!','error');
+    return redirect('dashboard');
+
+
+    
     }
 
 else{
@@ -939,6 +755,7 @@ public function collectionsPost(Request $request){
 
 if ($airtelTokenAccessAttempt->status() != 200) {
 
+    
 return "This system uses airtel Mobile Money API (https://developers.airtel.africa/login) for testing transactions
 in collecting funds from customers. Now it seems you have not configured any API's in `config -> airtelMoMoAPI` and in `.env`";
     }
