@@ -38,14 +38,14 @@
 @endphp
 
 
-<!--Clients Details-->   
-
+<!-- Clients Details-->   
+@if($loan_applications->loan_type == 1)
 <table class="table">
   <thead>
     <tr>
       <th>Amount</th>
       <th>Month(s)</th>
-      <th>Mobile Number</th>
+      <th>Loan Type</th>
       <th>Loan Number</th>
       <th>Payment Mode</th>
       <th>NRC/PICTURE</th>
@@ -59,7 +59,7 @@
     <tr>
       <td>{{$loan_applications->loan_amount ?? ''}}</td>
       <td>{{$loan_applications->months ?? ''}}</td>
-      <td>{{$loan_applications->mobile_money_number ?? ''}}</td>
+      <td>PAYROLL</td>
       <td>{{$loan_applications->loan_number ?? ''}}</td>
       <td>{{$loan_applications->payment_mode ?? ''}}</td>
      
@@ -85,8 +85,108 @@
   </tbody>
 </table>
 
+@elseif($loan_applications->loan_type == 2)
 
-
+<table class="table">
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Month(s)</th>
+      <th>Loan Type</th>
+      <th>Loan Number</th>
+      <th>Asset Name</th>
+      <th>Asset Estimate</th>
+      <th>Asset Location</th>
+      <th>NRC</th>
+      <th>Vehicle Images</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>{{$loan_applications->loan_amount ?? ''}}</td>
+      <td>{{$loan_applications->months ?? ''}}</td>
+      <td>AUTO</td>
+      <td>{{$loan_applications->loan_number ?? ''}}</td>
+      <td>{{$loan_applications->asset_name ?? ''}}</td>
+      <td>{{$loan_applications->asset_estimate ?? ''}}</td>
+      <td>{{$loan_applications->asset_location ?? ''}}</td>
+      
+     
+     
+      <td>
+      @forelse ($attachments as $files)
+        <a href="{{asset('attatchments_loans/'.$files->attachment_name)}}">NRC</a>
+        <br>
+        @empty
+        <p>No files attached</p>
+        @endforelse
+        </td>
+        @if($loan_applications)
+        <td>
+        <a href="{{asset('attatchments_loans/'.$loan_applications->front_image)}}">WhiteBook</a><br>
+          <a href="{{asset('attatchments_loans/'.$loan_applications->front_image)}}">Front Image</a><br>
+          <a href="{{asset('attatchments_loans/'.$loan_applications->back_image)}}">Back Image</a><br>
+          <a href="{{asset('attatchments_loans/'.$loan_applications->right_image)}}">Right Image</a><br>
+          <a href="{{asset('attatchments_loans/'.$loan_applications->left_image)}}">Left Image</a><br>
+          <a href="{{asset('attatchments_loans/'.$loan_applications->chassis_number)}}">Chassis Number</a><br>
+          <a href="{{asset('attatchments_loans/'.$loan_applications->chassis_number)}}">Mileage </a><br>
+        </td>  
+          
+      @else
+      No Applications to review
+      <br>
+      @endif
+    </tr>
+   
+  </tbody>
+</table>
+@else
+<table class="table">
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Month(s)</th>
+      <th>Loan Type</th>
+      <th>Loan Number</th>
+      <th>Payment Mode</th>
+      <th>NRC/PICTURE</th>
+      <th>PAYSLIP-1</th>
+      <th>PAYSLIP-2</th>
+      <th>Bank Statement</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>{{$loan_applications->loan_amount ?? ''}}</td>
+      <td>{{$loan_applications->months ?? ''}}</td>
+      <td>PRIVATE</td>
+      <td>{{$loan_applications->loan_number ?? ''}}</td>
+      <td>{{$loan_applications->payment_mode ?? ''}}</td>
+     
+     
+      <td>
+      @forelse ($attachments as $files)
+        <a href="{{asset('attatchments_loans/'.$files->attachment_name)}}">Check File</a>
+        <br>
+        @empty
+        <p>No files attached</p>
+        @endforelse
+        </td>
+        @if($loan_applications)
+        <td><a href="{{asset('attatchments_loans/'.$loan_applications->payslip1)}}">PAYSLIP-1</a></td>  
+        <td><a href="{{asset('attatchments_loans/'.$loan_applications->payslip2)}}">PAYSLIP-2</a></td> 
+        <td><a href="{{asset('attatchments_loans/'.$loan_applications->bank_statement)}}">Bank Statement</a></td>   
+      @else
+      No Applications to review
+      <br>
+      @endif
+    </tr>
+   
+  </tbody>
+</table>
+@endif
 
 <!--End Clients Details here-->
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\web_loan_application;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Approvals;
-use App\Notifications\SignatureNotification.php;
+use App\Notifications\SignatureNotification;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Http\Request;
 
