@@ -264,7 +264,7 @@ public function loanapplication($id){
 
 public function web_loan_application(Request $request,$id){
    
-
+dd($request);
     $validate=validator::make($request->all(),[
         'loan_type'=>['required','string'],
         'employee_id'=>['required','numeric'],
@@ -334,8 +334,16 @@ else{
     $loan_application->mobile_money_number = $request->mobile_money_no;
     $loan_application->mobile_monney_name = $request->mobile_money_name;
     $loan_application->loan_number = $loannumber;
+if($request->loan_type == 1 || $request->loan_type == 3){
     $loan_application->payslip1 = $request->payslip1->store('payslips');
     $loan_application->payslip2 = $request->payslip2->store('payslips');
+}
+else{
+    $loan_application->payslip1 = $request->payslip1->store('payslips');
+    $loan_application->payslip2 = $request->payslip2->store('payslips');  
+}
+   
+   
     $loan_application->bank_statement = $request->bankstatement->store('bank_statement');
     $loan_application->approved = 0;
     $loan_application->due_date = Carbon::now()->addMonths($request->tenure_months)->format('d-m-Y');

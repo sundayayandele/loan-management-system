@@ -257,20 +257,20 @@
             
 
 
-if(loan_amount >= 200 && loan_amount <= 1000){
+
 var total = (loan_amount+lower_facility_fee)+((loan_amount+lower_facility_fee)*(loan_percent/100)*installments);
  document.getElementById('total_repayments_amt').value = parseFloat(total).toFixed(2);
  document.getElementById('emi').value = parseFloat((total/installments)).toFixed(2);
-}
 
-if(loan_amount >= 1001 && loan_amount <= 10000){
+
+
 var total = (loan_amount+higher_facility_fee)+((loan_amount+higher_facility_fee)*(loan_percent/100)*installments);
  document.getElementById('total_repayments_amt').value = parseFloat(total).toFixed(2);
  document.getElementById('emi').value = parseFloat((total/installments)).toFixed(2);
- document.getElementById('emi_terms').value = parseFloat((total/installments)).toFixed(2);
- document.getElementById('loan_amt_terms').value = loan_amount;
- document.getElementById('loan_amt_terms_conditions').value = loan_amount;
-}
+ //document.getElementById('emi_terms').value = parseFloat((total/installments)).toFixed(2);
+ //document.getElementById('loan_amt_terms').value = loan_amount;
+ //document.getElementById('loan_amt_terms_conditions').value = loan_amount;
+
  
            
         }
