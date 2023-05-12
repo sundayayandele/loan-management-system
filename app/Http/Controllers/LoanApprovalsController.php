@@ -19,11 +19,17 @@ class LoanApprovalsController extends Controller
      */
     public function index()
     {
-        
+        $status = web_loan_application::where('approved', "=", 0)->exists();
+        if($status){
         return view('LoanApprovals.index',[
             'loan_applications' => web_loan_application::where('approved', "=", 0)->first(),
             'total_to_approve' => web_loan_application::where('approved', "=", 0)->count()
         ]);
+    }
+    else{
+        toast('You have no new Loans to review!','success');
+        return redirect()->route('admindashboard');   
+    }
     }
 
     /**
@@ -76,7 +82,7 @@ class LoanApprovalsController extends Controller
         $add_user -> answer9 = $request->answer9; 
         $add_user -> answer10 = $request->answer10; 
         $add_user -> answer11 = $request->answer11; 
-        $add_user -> loan_officer_decision = $request->loan_officer_decision == 'yes' ? 1 : 0; 
+        $add_user -> loan_officer_decision = $request->loan_officer_decision == 'yes' ? 2 : 3;  //2 For Yes and 3 For no
         $add_user -> loan_officer_comments = $request->loan_officer_comments; 
         $add_user -> user_id = auth()->user()->employee_id; 
         $add_user -> save(); 
@@ -102,7 +108,7 @@ class LoanApprovalsController extends Controller
    
         }
 
-        toast('The Loan Analysis has been submitted for verification to the CFO Succesfully! Signature verification Link has been sent to the clients email address','success');
+        toast('The Loan Analysis has been submitted for verification to the CFO Succesfully!','success');
         return redirect()->route('loan_approvals.index');    
 
     }
@@ -148,7 +154,7 @@ class LoanApprovalsController extends Controller
        
       $loan_data = Approvals::find($loan_approval);
       $loan_data->update([
-        'cfo_decision' => $request->cfo_decision == 'yes' ? 1 : 0,
+        'cfo_decision' => $request->cfo_decision == 'yes' ? 1 : 4, //1 For Yes and 4 for No
         'cfo_comments' => $request->cfo_comments
       ]);
 
@@ -158,7 +164,7 @@ class LoanApprovalsController extends Controller
  $loan_status->save();
 
  toast('The Loan Analysis has been submitted for verification to the ADMIN Succesfully!','success');
- return redirect()->route('review');    
+ return redirect()->route('review'); 
 
     }
 

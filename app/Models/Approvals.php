@@ -16,7 +16,8 @@ class Approvals extends Model
      */
     protected $fillable = [
         'cfo_decision',
-        'cfo_comments'
+        'cfo_comments',
+        'completed_by_admin'
        ];
 
 }

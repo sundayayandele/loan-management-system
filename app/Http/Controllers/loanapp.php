@@ -551,13 +551,14 @@ return view("results_analytics",compact("loan_profile","email","phone","nrc","lo
 
 public function review(){
 $loan_status = Approvals::where('cfo_decision', "=", 0)->first();
-if($loan_status){
+
 $loan_applications = web_loan_application::where('loan_number', "=", $loan_status->loan_number)->where('approved',"=",5)->orWhere('approved',"=",6)->first();
+if($loan_status && $loan_applications){
 return view('LoanApprovals_CFO.index',[
     'loan_applications' => $loan_applications,
     'loan_status' => $loan_status
 ]);
-//return view('loan_approval', compact('loan_applications'));
+
 }
 else{
     toast('All Loans have been reviewed!','success');
@@ -582,14 +583,18 @@ else{
 
 
 public function reviewed_loans(){
-    $loan_status = Approvals::where('cfo_decision', "=", 1)->orWhere('cfo_decision', "=", 0)->first();
-    if($loan_status){
+    $loan_status = Approvals::where('completed_by_admin', "=", 0)->where('cfo_decision', "=", 1)->orWhere('cfo_decision', "=", 4)->first();
     $loan_applications = web_loan_application::where('loan_number', "=", $loan_status->loan_number)->where('approved',"=",7)->orWhere('approved',"=",8)->first();
+   
+    
+    //($loan_applications);
+    
+    if($loan_status && $loan_applications){
     return view('LoanApprovals_ADMIN.index',[
-        'loan_applications' =>     $loan_applications,
+        'loan_applications' => $loan_applications,
         'loan_status' => $loan_status
     ]);
-    //return view('loan_approval', compact('loan_applications'));
+    
     }
     else{
         toast('You have no Loans to review!','success');
@@ -656,15 +661,24 @@ public function approve(Request $request){
         'admin_decision' => 'required|string'
     ]);
 
-
+// 
 
     $loan_applications = web_loan_application::where('loan_number',"=",$request->loan_number)->where('approved',"=",7)->orWhere('approved',"=",8)->first();
-    
     
     if($request->admin_decision == 'yes'){
     $loan_applications-> approved = 1;
     $loan_applications->save();
     
+
+
+    ## Mark as Complete in Approvals Table 
+       $loan_data = Approvals::where('loan_number',"=",$request->loan_number)->first();
+       $loan_data->update([
+       'completed_by_admin' => 1
+        
+      ]); 
+
+
     ## Send Email Notification to the user together with the loan number
     ## If Loan Application has been approved successfully
 
@@ -674,6 +688,10 @@ $hold_loan = web_loan_application::where('loan_number',"=",$request->loan_number
 $applicant = reg_employee_mst::find($hold_loan->employee_id);
 $rep = auth()->user()->firstname. ' '.auth()->user()->lastname;
 
+
+// Compile Loan Agreement if Signature Exists
+if ($applicant->hasBeenSigned()) { 
+
 $pdf = Pdf::loadView('LoanTerms.company_payroll', compact('hold_loan','applicant','rep'))
 ->setOptions(['defaultFont' => 'sans-serif','isRemoteEnabled' => true]);
 $attachment = $pdf->output();
@@ -681,7 +699,7 @@ $attachment = $pdf->output();
 $fileName = $request->loan_number.'.pdf';
 
 Storage::disk("loan_agreement_forms")->put('FORMS/'.$fileName, $attachment);
-
+}
 
 ## Send Email Notification to the user together with the loan number
     ## If Loan Application has been approved successfully
@@ -691,10 +709,16 @@ Storage::disk("loan_agreement_forms")->put('FORMS/'.$fileName, $attachment);
     $email_notification->notify(new approve($loan_number,$loan_applicant_name));
 
 
+    if (!$applicant->hasBeenSigned()) { 
+     toast('Loan Approved with no Agreement Form. Cause there is no signature for applicant','success');
+     return redirect()->route('reviewed_loans');  
+    }
 
-     toast('Loan Approved Successfully. Client Notified Via Email!','success');
-    return redirect()->back();  
-}
+    if ($applicant->hasBeenSigned()) { 
+        toast('Loan Approved with Agreement Form. Applicant Notified Via Email','success');
+        return redirect()->route('reviewed_loans');  
+       }
+    }
 
 elseif($request->admin_decision == 'no'){
     $loan_applications-> approved = 0;
@@ -710,11 +734,15 @@ elseif($request->admin_decision == 'no'){
     return redirect()->back();  
      }
 
+
+     
+
 else{
     toast('Invalid Request','error');
     return redirect()->back();  
 }
     }
+
   
 
 /**

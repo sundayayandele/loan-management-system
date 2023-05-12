@@ -76,9 +76,6 @@
         <td><a href="{{asset('attatchments_loans/'.$loan_applications->payslip1)}}">PAYSLIP-1</a></td>  
         <td><a href="{{asset('attatchments_loans/'.$loan_applications->payslip2)}}">PAYSLIP-2</a></td> 
         <td><a href="{{asset('attatchments_loans/'.$loan_applications->bank_statement)}}">Bank Statement</a></td>   
-      @else
-      No Applications to review
-      <br>
       @endif
     </tr>
    
@@ -133,9 +130,7 @@
           <a href="{{asset('attatchments_loans/'.$loan_applications->chassis_number)}}">Mileage </a><br>
         </td>  
           
-      @else
-      No Applications to review
-      <br>
+     
       @endif
     </tr>
    
@@ -178,9 +173,7 @@
         <td><a href="{{asset('attatchments_loans/'.$loan_applications->payslip1)}}">PAYSLIP-1</a></td>  
         <td><a href="{{asset('attatchments_loans/'.$loan_applications->payslip2)}}">PAYSLIP-2</a></td> 
         <td><a href="{{asset('attatchments_loans/'.$loan_applications->bank_statement)}}">Bank Statement</a></td>   
-      @else
-      No Applications to review
-      <br>
+     
       @endif
     </tr>
    
@@ -398,8 +391,8 @@
           </td>
           <td>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="answer12" value="no" id="answer12_no">
-              <label class="form-check-label" for="answer12_no">No</label>
+              <input class="form-check-input" type="checkbox" name="loan_officer_decision" value="no" id="loan_officer_decision">
+              <label class="form-check-label" for="loan_officer_decision">No</label>
             </div>
           </td>
         </tr>
