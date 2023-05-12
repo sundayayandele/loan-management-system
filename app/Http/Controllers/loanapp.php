@@ -704,6 +704,10 @@ $rep = auth()->user()->firstname. ' '.auth()->user()->lastname;
 // Compile Loan Agreement if Signature Exists
 if ($applicant->hasBeenSigned()) { 
 
+
+  // Loan Agreement For Private or Civil Servants
+ 
+if($loan_applications->loan_type == 1 || $loan_applications->loan_type == 3){
 $pdf = Pdf::loadView('LoanTerms.company_payroll', compact('hold_loan','applicant','rep'))
 ->setOptions(['defaultFont' => 'sans-serif','isRemoteEnabled' => true]);
 $attachment = $pdf->output();
@@ -711,6 +715,20 @@ $attachment = $pdf->output();
 $fileName = $request->loan_number.'.pdf';
 
 Storage::disk("loan_agreement_forms")->put('FORMS/'.$fileName, $attachment);
+}
+
+
+// Loan Agreement For Auto Loans
+ 
+if($loan_applications->loan_type == 2){
+    $pdf = Pdf::loadView('LoanTerms.company_auto', compact('hold_loan','applicant','rep'))
+    ->setOptions(['defaultFont' => 'sans-serif','isRemoteEnabled' => true]);
+    $attachment = $pdf->output();
+    
+    $fileName = $request->loan_number.'.pdf';
+    
+    Storage::disk("loan_agreement_forms")->put('FORMS/'.$fileName, $attachment);
+    }
 }
 
 ## Send Email Notification to the user together with the loan number

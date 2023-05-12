@@ -347,12 +347,12 @@ hr.new2 {
           <p>Full Name of Borrower: <strong>{{$applicant->firstname. ' '.$applicant->lastname}} </strong></p>
         <p>Verified Email: <strong>{{$applicant->email}} </strong></p>
 <br>
-         <p> Signature of Borrower: <img src="{{asset('files/'.$applicant->signature->getSignatureImagePath())}}"
+         <p> Signature of Borrower: <img src="{{asset('attatchments_loans/'.$applicant->signature->getSignatureImagePath())}}"
                                          class="img-fluid my-5" width="60" height="60" alt="$applicant->firstname. ' '.$applicant->lastname" /></p>
 
           <h3>Signed for and on behalf of the Credit Provider</h3>
           <p>Full Name of Credit Provider Representative: <strong>{{$rep}}</strong></p>
-          <p>Signature - Credit Provider Representative: <img src="{{asset('files/'.Auth::user()->borrower_photo_signature)}}" class="img-fluid my-5" width="60"
+          <p>Signature - Credit Provider Representative: <img src="{{asset('attatchments_loans/'.$rep->signature->getSignatureImagePath())}}" class="img-fluid my-5" width="60"
               height="60" alt="Credit Signature" />
           </p>
 
@@ -365,7 +365,7 @@ hr.new2 {
           <h3>MANDATE TO THE BANK TO PAY BY DIRECT DEBIT</h3>
         
         <center>
-          <img src="{{asset('files/'.$applicant->profilepic)}}" class="img-fluid my-5" width="40"
+          <img src="{{asset('attatchments_loans/'.$applicant->profilepic)}}" class="img-fluid my-5" width="40"
               height="40" alt="Borrower Selfie" />
         </center>
         
@@ -675,7 +675,7 @@ hr.new2 {
           <p>Please pay TCS Ltd t/a Eliana Cash Express, Direct Debits from my account detailed in this mandate subject
             to safeguards assured by the Direct Debits Guarantee. I/we understand that this mandate is completed online
             and as such details will be passed electronically to the Bank/NBFI by Eliana Cash Express.</p>
-          Signatures:<br> <img src="{{asset('files/'.$applicant->signature->getSignatureImagePath())}}" class="img-fluid my-5"
+          Signatures:<br> <img src="{{asset('attatchments_loans/'.$applicant->signature->getSignatureImagePath())}}" class="img-fluid my-5"
             width="100" height="80" alt="$applicant->fistname. ' '.$applicant->lastname " />
           <h3>Date : {{date('j-F-Y')}} </h3>
 

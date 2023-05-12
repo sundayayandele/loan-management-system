@@ -102,38 +102,41 @@ hr.new2 {
 
 
           <center>
-            <img src="{{asset('images/eliana_logos/Capture.JPG')}}" width="160" height="100" alt="ElianaCashXpress"
-              style="margin-top:20px;">
-            <br><br>
+          
+    <img src="{{asset('images/logo.JPG')}}" width="160" height="100" alt="{{config('app.name')}}" style="margin-top:20px;">
+    <br><br>
 
-            <img src="{{asset('files/'.$applicant->borrower_photo_selfie)}}" class="img-fluid my-5" width="180"
-              height="180" alt="Borrower Selfie" />
 
-            <h4>{{$hold_loan->employee_name}}</h4>
+    <img src="{{asset('attatchments_loans/'.$hold_loan->profilepic)}}" width="100" height="100" alt="{{$applicant->firstname. ' '.$applicant->lastname}}">
+
+
+  
+
+            <h4>{{$applicant->firstname. ' '.$applicant->lastname}}</h4>
 
 
           </center>
           <br>
 
 
-          <p>Application Date: {{$hold_loan->created_at}}</p>
+          <p>Application Date: date('j, F-Y',strtotime($hold_loan->created_at))</p>
 
           <h3>Loan Agreement</h3>
 
           <h3> 1.0 Parties of the Agreement</h3>
 
-          <p>1.1. "The lender" : <strong>ELIANA CASH EXPRESS</strong></p>
+          <p>1.1. "The lender" : <strong>{{config('app.name')}}</strong></p>
 
-          <p>1.2."The Borrower" - <strong>{{$hold_loan->employee_name}}</strong></p>
+          <p>1.2."The Borrower" - <strong>{{$applicant->firstname. ' '.$applicant->lastname}}</strong></p>
           <p><strong>“The Lender"</strong> and <strong>"The Borrower"</strong> acting under the Zambian legislation and
             the rights under the charter of the lender, have agreed on the following:
           </p>
           <h3>2.0 Subject of the Agreement</h3>
 
           <p>2.1. On the basis of the terms specified in this Agreement, the Lender will provide the Borrower with a
-            loan facility of “ZMW <strong> {{$hold_loan->loan_monthly}}</strong>
-            ” at a total credit of "<strong>{{$hold_loan->loan_percentage}}</strong>
-            " per Month payable in "<strong>{{$hold_loan->loan_installments}}</strong>
+            loan facility of “ZMW <strong> {{$hold_loan->emi}}</strong>
+            ” at a total credit of "<strong>12.75%</strong>
+            " per Month payable in "<strong>{{$hold_loan->months}}</strong>
             " installment(s) following the borrower completion of the online application form that is on the lender’s
             on-line platform including the use of electronic signatures.</p>
           <p>2.2. The lender and the borrower hereby agree that they shall be at liberty to appoint agents to act for
@@ -146,32 +149,15 @@ hr.new2 {
           <p>3.1. The borrower undertakes to have truthfully and fully disclosed all details relating to the facility in
             the online loan application form and acknowledges having agreed to the lender's website terms of use.</p>
 
-<!--New Feature-->
-<h3>Signed by the Borrower </h3>
-<p>Full Name of Borrower: <strong>{{$hold_loan->employee_name}}</strong></p>
-        
-Signature of Borrower: <img src="{{asset('files/'.Auth::user()->borrower_photo_signature)}}" class="img-fluid my-5" width="180" height="180" alt="Borrower Signature"/>
-”
-@php 
 
-$user = \App\Models\User::where('email',"=",'matthewsmkcchilufya8@gmail.com')->first();
-$signature = $user->borrower_photo_signature
-
-@endphp
-<h3>Signed for and on behalf of the Credit Provider</h3>
-<p>Full Name of Credit Provider Representative: <strong>{{$user->name}}</strong></p>
-<p>Signature of Credit Provider Representative:<br>
-  <img src="{{asset('files/'.$signature)}}" class="img-fluid my-5" width="180" height="180" alt="Rep Signature"/>
-
-<!--New Feature Ends here-->
 
 
           <h3>4.0 Acknowledgement of Receipt of Cash</h3>
 
-          <p>4.1 I<strong> “{{$hold_loan->employee_name}}” </strong> hereby acknowledges receipt of ZMW
-            “<strong>{{$hold_loan->loan_amounts}}</strong>
+          <p>4.1 I<strong> “{{$applicant->firstname. ' '.$applicant->lastname}}” </strong> hereby acknowledges receipt of ZMW
+            “<strong>{{$hold_loan->amount}}</strong>
             ” paid out in cash and/or by Deposit to Bank Account/ Mobile money on the date
-            <strong>{{$hold_loan->created_at}}</strong></p>
+            <strong>date('j, F-Y',strtotime($hold_loan->created_at))</strong></p>
 
           <h3>5.0 Repayment</h3>
           <p>5.1 The Borrower agrees to repay the amount of the Loan, interest and other charges on the terms of this
@@ -355,16 +341,18 @@ $signature = $user->borrower_photo_signature
             throughout by their signatures below:</p>
           <p>Signed this <strong>{{date('d')}} day of {{date('F-Y')}}</strong>
 
+
+
           <h3>Signed by the Borrower </h3>
-          <p>Full Name of Borrower: <strong>{{$hold_loan->employee_name}} </strong></p>
+          <p>Full Name of Borrower: <strong>{{$applicant->firstname. ' '.$applicant->lastname}} </strong></p>
         <p>Verified Email: <strong>{{$applicant->email}} </strong></p>
 <br>
-         <p> Signature of Borrower: <img src="{{asset('files/'.$applicant->borrower_photo_signature)}}"
-                                         class="img-fluid my-5" width="60" height="60" alt="Borrower Signature" /></p>
+         <p> Signature of Borrower: <img src="{{asset('attatchments_loans/'.$applicant->signature->getSignatureImagePath())}}"
+                                         class="img-fluid my-5" width="60" height="60" alt="$applicant->firstname. ' '.$applicant->lastname" /></p>
 
           <h3>Signed for and on behalf of the Credit Provider</h3>
           <p>Full Name of Credit Provider Representative: <strong>{{$rep}}</strong></p>
-          <p>Signature - Credit Provider Representative: <img src="{{asset('files/'.Auth::user()->borrower_photo_signature)}}" class="img-fluid my-5" width="60"
+          <p>Signature - Credit Provider Representative: <img src="{{asset('attatchments_loans/'.$rep->signature->getSignatureImagePath())}}" class="img-fluid my-5" width="60"
               height="60" alt="Credit Signature" />
           </p>
 
@@ -377,7 +365,7 @@ $signature = $user->borrower_photo_signature
           <h3>MANDATE TO THE BANK TO PAY BY DIRECT DEBIT</h3>
         
         <center>
-          <img src="{{asset('files/'.$applicant->borrower_photo_selfie)}}" class="img-fluid my-5" width="40"
+          <img src="{{asset('attatchments_loans/'.$applicant->profilepic)}}" class="img-fluid my-5" width="40"
               height="40" alt="Borrower Selfie" />
         </center>
         
@@ -393,7 +381,7 @@ $signature = $user->borrower_photo_signature
           
           <div class="row">
             <div class="column1" >
-              Service provider Reference Number: 000{{$applicant->id}}
+              Service provider Reference Number: {{$applicant->loan_number}}
             </div>
 
           </div>
@@ -422,7 +410,7 @@ $signature = $user->borrower_photo_signature
           <div class="row">
             <div class="column1" >
               Fixed amount to be debited
-                (ZMW): <strong>{{$hold_loan->loan_monthly}}</strong>
+                (ZMW): <strong>{{$hold_loan->emi}}</strong>
             </div>
 
           </div>
@@ -453,7 +441,7 @@ $signature = $user->borrower_photo_signature
           <div class="row">
             <div class="column1" >
               
-              Expiry Date (DD/MM/YYYY h:m:s): <strong>{{ \Carbon\Carbon::today()->addMonths($hold_loan->loan_installments) }}</strong>
+              Expiry Date (DD/MM/YYYY h:m:s): <strong>{{ date('j, F-Y',strtotime($hold_loan->due_date)) }}</strong>
             </div>
 
           </div>
@@ -471,7 +459,7 @@ $signature = $user->borrower_photo_signature
             <div class="column1" >
              
               Variable amount to be debited subject to maximum of
-                (ZMW): <strong>{{$hold_loan->loan_monthly+1000}}</strong>
+                (ZMW): <strong>{{$hold_loan->emi+1000}}</strong>
             </div>
 
           </div>
@@ -557,7 +545,7 @@ $signature = $user->borrower_photo_signature
 
           <div class="row">
             <div class="column1" >
-               Name(s): <strong>{{$hold_loan->employee_name}} </strong>
+               Name(s): <strong>{{$applicant->firstname. ' '.$applicant->lastname}} </strong>
               
             </div>
 
@@ -653,14 +641,14 @@ $signature = $user->borrower_photo_signature
 
           <div class="row">
             <div class="column3" >
-               Bank Name: <strong>{{$applicant->client_bank_name}} </strong>
+               Bank Name: <strong>{{$applicant->bank_id}} </strong>
               
             </div>
             <div class="column3" >
-              Bank Branch:<strong>{{$applicant->client_bank_branch}} </strong>              
+              Bank Branch:<strong>{{$applicant->bank_branch_id}} </strong>              
             </div>
             <div class="column3" >
-              Bank Account Number: <strong>{{$applicant->client_bank_account_number}} </strong>
+              Bank Account Number: <strong>{{$applicant->bank_account_no}} </strong>
              
             </div>
 
@@ -678,8 +666,8 @@ $signature = $user->borrower_photo_signature
           <p>Name and full postal address of your Bank</p>
 
 
-          <p>Bank Name: {{$applicant->client_bank_name}} </p>
-          <p>Bank Branch: {{$applicant->client_bank_branch}} </p>
+          <p>Bank Name: {{$applicant->bank_id}} </p>
+          <p>Bank Branch: {{$applicant->bank_branch_id}} </p>
           <p>Lusaka, 10101</p>
 
 
@@ -687,9 +675,9 @@ $signature = $user->borrower_photo_signature
           <p>Please pay TCS Ltd t/a Eliana Cash Express, Direct Debits from my account detailed in this mandate subject
             to safeguards assured by the Direct Debits Guarantee. I/we understand that this mandate is completed online
             and as such details will be passed electronically to the Bank/NBFI by Eliana Cash Express.</p>
-          Signatures:<br> <img src="{{asset('files/'.$applicant->borrower_photo_signature)}}" class="img-fluid my-5"
-            width="100" height="80" alt="Borrower Signature" />
-          <h3>Date : {{date('d-F-Y')}} </h3>
+          Signatures:<br> <img src="{{asset('attatchments_loans/'.$applicant->signature->getSignatureImagePath())}}" class="img-fluid my-5"
+            width="100" height="80" alt="$applicant->fistname. ' '.$applicant->lastname " />
+          <h3>Date : {{date('j-F-Y')}} </h3>
 
           <h3> Banks/NBFIs may not accept Direct Debit Mandates for some types of accounts</h3>
           <small>This Guarantee is offered by all Banks/NBFI that take part in the DDACC System. The efficiency and
