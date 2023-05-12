@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\web_loan_application;
+use App\Models\reg_employee_mst;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Approvals;
 use App\Notifications\SignatureNotification;
@@ -98,10 +99,10 @@ class LoanApprovalsController extends Controller
     $loan_applicant_name = $email_notification->firstname. ' '.$email_notification->lastname;
     $email_notification->notify(new SignatureNotification($loan_number,$loan_applicant_name));
 
-
+   
         }
 
-        toast('The Loan Analysis has been submitted for verification to the CFO Succesfully!','success');
+        toast('The Loan Analysis has been submitted for verification to the CFO Succesfully! Signature verification Link has been sent to the clients email address','success');
         return redirect()->route('loan_approvals.index');    
 
     }

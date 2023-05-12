@@ -66,7 +66,7 @@
      
       <td>
       @forelse ($attachments as $files)
-        <a href="{{asset('attatchments_loans/'.$files->attachment_name)}}">Check File</a>
+        <a href="{{asset('attatchments_loans/'.$files->attachment_name)}}">NRC</a>
         <br>
         @empty
         <p>No files attached</p>
@@ -168,7 +168,7 @@
      
       <td>
       @forelse ($attachments as $files)
-        <a href="{{asset('attatchments_loans/'.$files->attachment_name)}}">Check File</a>
+        <a href="{{asset('attatchments_loans/'.$files->attachment_name)}}">NRC</a>
         <br>
         @empty
         <p>No files attached</p>
