@@ -68,7 +68,7 @@ $user = \App\Models\reg_employee_mst::find($loan_status->user_id);
      
       <td>
       @if($employee_data->signature)
-        <img src="{{asset('attatchments_loans/'.$employee_data->signature->getSignatureImagePath())}}"/>
+        <img src="{{asset('attatchments_loans/'.$employee_data->signature->getSignatureImagePath())}}" width="100" height="100"/>
         @endif
       </td>
      
@@ -146,7 +146,7 @@ $user = \App\Models\reg_employee_mst::find($loan_status->user_id);
       
       <td>
       @if($employee_data->signature)
-        <img src="{{asset('attatchments_loans/'.$employee_datasignature->getSignatureImagePath())}}"/>
+        <img src="{{asset('attatchments_loans/'.$employee_datasignature->getSignatureImagePath())}}" width="100" height="100"/>
         @endif
       </td>
      
@@ -184,7 +184,7 @@ $user = \App\Models\reg_employee_mst::find($loan_status->user_id);
      
       <td>
       @if($employee_data->signature)
-        <img src="{{asset('attatchments_loans/'.$employee_data->signature->getSignatureImagePath())}}"/>
+        <img src="{{asset('attatchments_loans/'.$employee_data->signature->getSignatureImagePath())}}" width="100" height="100"/>
         @endif
       </td>
      

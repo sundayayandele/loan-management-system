@@ -550,7 +550,13 @@ return view("results_analytics",compact("loan_profile","email","phone","nrc","lo
 
 
 public function review(){
+    $status = Approvals::where('cfo_decision', "=", 0)->exists();
+    if($status){
 $loan_status = Approvals::where('cfo_decision', "=", 0)->first();
+
+
+
+
 
 $loan_applications = web_loan_application::where('loan_number', "=", $loan_status->loan_number)->where('approved',"=",5)->orWhere('approved',"=",6)->first();
 if($loan_status && $loan_applications){
@@ -560,6 +566,7 @@ return view('LoanApprovals_CFO.index',[
 ]);
 
 }
+    }
 else{
     toast('All Loans have been reviewed!','success');
     return redirect()->route('admindashboard');    
@@ -583,6 +590,10 @@ else{
 
 
 public function reviewed_loans(){
+
+    $status = Approvals::where('completed_by_admin', "=", 0)->exists();
+  
+    if($status){
     $loan_status = Approvals::where('completed_by_admin', "=", 0)->where('cfo_decision', "=", 1)->orWhere('cfo_decision', "=", 4)->first();
     $loan_applications = web_loan_application::where('loan_number', "=", $loan_status->loan_number)->where('approved',"=",7)->orWhere('approved',"=",8)->first();
    
@@ -596,6 +607,7 @@ public function reviewed_loans(){
     ]);
     
     }
+}
     else{
         toast('You have no Loans to review!','success');
         return redirect()->route('admindashboard');    
@@ -721,7 +733,16 @@ Storage::disk("loan_agreement_forms")->put('FORMS/'.$fileName, $attachment);
     }
 
 elseif($request->admin_decision == 'no'){
-    $loan_applications-> approved = 0;
+
+ ## Mark as Complete in Approvals Table 
+ $loan_data = Approvals::where('loan_number',"=",$request->loan_number)->first();
+ $loan_data->update([
+ 'completed_by_admin' => 1
+  
+]); 
+
+
+    $loan_applications-> approved = 3; //Denied Loan 
     $loan_applications->save();
     
     ## Send Email Notification to the user together with the loan number
