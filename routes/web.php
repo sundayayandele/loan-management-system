@@ -315,6 +315,21 @@ Route::get('terms_payroll/{loan_number}', [loanapp::class,'terms_payroll'])
 ->middleware('auth')
 ->name('terms_payroll'); 
 
+## Terms Auto
+Route::get('terms_auto/{loan_number}', [loanapp::class,'terms_auto'])
+->middleware('auth')
+->name('terms_auto'); 
+
+
+## Terms Private
+Route::get('terms_private/{loan_number}', [loanapp::class,'terms_private'])
+->middleware('auth')
+->name('terms_private'); 
+
+
+
+
+
 ## Verify Loan Application
 Route::post('verify_loan_application', [loanapp::class,'verify_loan_application'])
 ->middleware('auth')

@@ -2,7 +2,7 @@
             @csrf
           
            <!-- Loan Type -->
-           <x-input id="name" class="block mt-1 w-full" type="hidden"  value=1 name="loan_type"  readonly/>
+           <x-input id="name" class="block mt-1 w-full" type="hidden"  value=3 name="loan_type"  readonly/>
            
  <!-- Employee Id -->
  
@@ -16,7 +16,7 @@
 
             <!-- Tenure Months -->
 <div class="mt-4">
-            <x-label for="How Many Months" :value="__('How Many Months')" />
+            <label for="How Many Months">How Many Months </label> <small class="text-danger">*</small>
 <!--Show the number of months to the user--> 
 <select class="block mt-1 w-full" onchange="calculateEMIPrivate()" value="{{ old('tenure_months') }}" name="tenure_months" id="months_private" required>
   <option value=1>1 Month </option>
@@ -31,7 +31,7 @@
 
 <!-- Loan Amount -->
 <div class="mt-4">
-            <x-label for="Loan Amount (ZMW)" :value="__('Loan Amount (ZMW)')" />
+            <label for="Loan Amount (ZMW)">Loan Amount (ZMW)</label> <small class="text-danger">*</small>
 
             <x-input id="name" class="block mt-1 w-full" type="number" onkeyup="calculateEMIPrivate()" id="amount_private" value="{{ old('loan_amt') }}" name="loan_amt"  />
             <small>The facility fee of K100 will be added.</small>   
@@ -55,14 +55,14 @@
 
  <!-- Loan Repayments Amount -->
 <div class="mt-4">
-            <x-label for="Total Repayments Amount (ZMW)" :value="__('Total Repayments Amount (ZMW)')" />
+            <label for="Total Repayments Amount (ZMW)">Total Repayments Amount (ZMW)</label> <small class="text-danger">*</small>
 
             <x-input id="name" class="block mt-1 w-full" type="number" id="total_repayments_amt_private" value="{{ old('total_repayments_amt') }}" name="total_repayments_amt" readonly />
             </div> 
 
              <!-- EMI -->
 <div class="mt-4">
-            <x-label for="EMI" :value="__('EMI (ZMW)')" />
+            <label for="EMI">EMI (ZMW) </label> <small class="text-danger">*</small>
 
             <x-input id="name" class="block mt-1 w-full" type="number" id="emi_private" value="{{ old('emi') }}" name="emi" readonly/>
             </div> 
@@ -72,7 +72,7 @@
 
 <!-- Reference Payment Mode -->
 <div class="mt-4">
-            <x-label for="Payment Mode" :value="__('Payment Mode')" />
+            <label for="Payment Mode">Payment Mode </label> <small class="text-danger">*</small>
 
         
 <!--Show Payments Modes to the user--> 
@@ -96,7 +96,7 @@
 
             <!-- Latest payslip -->
             <div class="mt-4">
-                <x-label for="payslip1" :value="__('Upload '.date('F Y', strtotime('-1 month')) .' Payslip (PDF)')" />
+                <label for="payslip1"> Upload {{date('F Y', strtotime('-1 month'))}} Payslip (PDF) </label> <small class="text-danger">*</small>
 
                 <x-input id="payslip1" accept="application/pdf" class="block mt-1 w-full" type="file" value="{{ old('payslip1') }}" name="payslip1" required/>
                 
@@ -105,15 +105,14 @@
 
             <!-- Latest payslip -->
             <div class="mt-4">
-                <x-label for="payslip2" :value="__('Upload '.date('F Y', strtotime('-2 months')) .' Payslip (PDF)')" />
-
-                <x-input id="payslip2" accept="application/pdf" class="block mt-1 w-full" type="file" value="{{ old('payslip2') }}" name="payslip2" required/>
+            <label for="payslip2"> Upload {{date('F Y', strtotime('-2 month'))}} Payslip (PDF) </label> <small class="text-danger">*</small>  
+            <x-input id="payslip2" accept="application/pdf" class="block mt-1 w-full" type="file" value="{{ old('payslip2') }}" name="payslip2" required/>
                 
             </div>
 
              <!-- Latest Bank Statement -->
              <div class="mt-4">
-                <x-label for="bank statement" :value="__('Upload Latest Bank Statement (PDF)')" />
+                <label for="bank statement">Upload Latest Bank Statement (PDF) </label> <small class="text-danger">*</small>
 
                 <x-input id="bankstatement" accept="application/pdf" class="block mt-1 w-full" type="file" value="{{ old('bankstatement') }}" name="bankstatement" required/>
                 
@@ -125,9 +124,9 @@
              <!-- Loan Application Submitt -->
              
                
-             <p><input type="checkbox" name="terms" required> By Marking this box and applying for this Loan, you have read and agreed to our <a href="#" data-toggle="modal" data-target="#exampleModalLong">Terms and Conditions</a></p>
-                <button class="btn btn-success">
-                    {{ __('APPLY') }}
+            
+                <button class="btn btn-primary">
+                    {{ __('Loan Summary') }}
                 </button>
             
             

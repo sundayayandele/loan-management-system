@@ -165,11 +165,27 @@ else{
     $loan_application->due_date = Carbon::now()->addMonths($request->tenure_months)->format('d-m-Y');
     $loan_application->save();
 
-
-    Alert::success('Loan Summary', 'Here is a summary of your loan:');
+if($request->loan_type == 1){
+    Alert::success('Loan Summary', 'Here is a summary of your Civil Servant loan:');
     return view('LoanSummary.payroll',[
         'loan_number' => $loannumber
     ]);
+}
+
+elseif($request->loan_type == 2){
+    Alert::success('Loan Summary', 'Here is a summary of your Auto Based loan:');
+    return view('LoanSummary.auto',[
+        'loan_number' => $loannumber
+    ]);
+}
+
+else{
+    Alert::success('Loan Summary', 'Here is a summary of your Private Sector loan:');
+    return view('LoanSummary.private',[
+        'loan_number' => $loannumber
+    ]); 
+}
+   
  
     
 }
@@ -178,6 +194,21 @@ else{
 
 public function terms_payroll($loan_number){
     return view('LoanTerms.client_payroll',[
+        'loan_number' => decrypt($loan_number)
+    ]);
+   
+}
+
+
+public function terms_auto($loan_number){
+    return view('LoanTerms.client_auto',[
+        'loan_number' => decrypt($loan_number)
+    ]);
+   
+}
+
+public function terms_private($loan_number){
+    return view('LoanTerms.client_private',[
         'loan_number' => decrypt($loan_number)
     ]);
    

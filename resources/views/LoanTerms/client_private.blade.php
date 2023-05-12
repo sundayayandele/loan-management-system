@@ -122,41 +122,16 @@ $loan_details = \App\Models\web_loan_application::where('loan_number',"=",$loan_
 <p>18.5 Where disclosure to any third party by the Credit Provider is necessary to enforce collection or recovery of payments due to the Credit Provider in terms of this Agreement, at any point during its life</p>
 <p>18.6 Where disclosure to any third party by the Credit Provider is necessary to enforce collection or recovery of the outstanding balance of this loan in event of default by the Borrower and/or termination of this Agreement</p>
 <p>18.7 Where disclosure to any third party is necessary to enable the Credit Provider vet the Borrower in terms of credit worthiness in order to give the Credit Provider comfort to proceed with execution of this Agreement.</p>
-<!--New Features-->
-<h3>19.0 Floating Charge Authorization</h3>
-<p>In pursuance of the conditions on which the loan, as reflected above, was granted, <strong>I hereby irrevocably authorize</strong> the credit service provider to place a caveat or a charge (also referred to as a floating lien) on any of my properties if and when I, the borrower, unnecessarily holds on to the collateral pledged for the debt.</p>
-<p><strong>The registry</strong>, where the records for my properties are held is hereby authorized to place a caveat as reflected in this agreement until the contractual amount has been paid in full. The amount due may be varied at the request of the credit provider in the event of a general increase or decrease in the rates applicable to the loan, or where the installments are rescheduled as a result of the default or other arrangements. A variation as aforementioned will result in the total contractual amount being adjusted accordingly.</p>
-<p>The registry, where the records for my properties are held is hereby authorized to place a caveat as reflected in this agreement until the contractual amount has been paid in full. The amount due may be varied at the request of the credit provider in the event of a general increase or decrease in the rates applicable to the loan, or where the installments are rescheduled as a result of the default or other arrangements. A variation as aforementioned will result in the total contractual amount being adjusted accordingly.</p>
-<!--End New Features-->
-          <p>I acknowledge that the loan may not have been granted to me had my employer not concluded an agreement with
-            the credit provider in terms whereof my employer is contractually bound to make the aforementioned
-            deductions. I further acknowledge that the deductions made in accordance with this payroll authorization may
-            only be discontinued when I leave the employment as indicated or once the Loan has been repaid in full or
-            where the Credit Provider in writing consents to the discontinuation thereof. Should my employment be
-            terminated before the loan has been repaid in full I hereby authorize my employer to deduct the then
-            outstanding balance of the loan(s) from all amounts that become payable to me as a result of the termination
-            of my employment and further authorize the Credit Provider to continue recovering the Loan balance through
-            my bank account, or through payroll deductions from my remuneration due to me from my employer, post
-            termination, until the loan balance is extinguished. I hereby undertake to authorize my employer to effect
-            deductions from payroll until the loan is liquidated in full.</p>
-          <h3>20.0 Whole Agreement, Declaration and Signature</h3>
-          <p>This Agreement sets out the entire agreement between the Borrower and the Credit Provider concerning the
-            Loan and supersedes any representations, warranties, course of dealing or agreements (written or oral)
-            previously made between the Borrower and the Credit Provider. The Borrower confirms and acknowledges that in
-            entering this Agreement, the Borrower has not relied on any representation or statement other than those set
-            out in this Agreement. By signing this Agreement, the Borrower confirms that they have, hereby, applied for
-            a loan in the amount fully disclosed in this Agreement and acknowledge that they have read, understood and
-            agreed to be bound by this Loan Agreement and the Terms and Conditions contained in this entire agreement
-            and have noted all costs and repayment details. The Borrower further confirms and declares that all the
-            information given to the Credit Provider in this Agreement is true and complete.</p>
-          <h3>21.0 Non – Discrimination</h3>
-          <p>The Borrower will be treated with the utmost dignity and respect in accordance with their rights and
-            freedoms as enshrined in the Constitution of Zambia, Act. No. 2 of 2016. Likewise, it is expected that the
-            Borrower will not discriminate against an employee(s) of the Credit Provider in any way.</p>
-          <h3>22.0 Signature and Date</h3>
-          <p>The Parties hereby agree to the terms and conditions set forth in this Agreement and such is demonstrated
-            throughout by their signatures below:</p>
-          <p>Signed this <strong>{{date('d')}} day of {{date('F-Y')}}</strong>
+<h3>19.0 Payroll Authorization</h3>
+<p>In pursuance of the conditions on which the loan, as reflected above, was granted, I hereby irrevocably authorize the payroll department of my employer to deduct the installments as reflected in this agreement from my remuneration until the contractual amount has been paid in full. The installment amount may be varied at the request of the credit provider in the event of a general increase or decrease in the rates applicable to the loan, or where the installments are rescheduled as a result of the default or other arrangements. A variation as aforementioned will result in the total contractual amount being adjusted accordingly.</p>
+<p>I acknowledge that the loan may not have been granted to me had my employer not concluded an agreement with the credit provider in terms whereof my employer is contractually bound to make the aforementioned deductions. I further acknowledge that the deductions made in accordance with this payroll authorization may only be discontinued when I leave the employment as indicated or once the Loan has been repaid in full or where the Credit Provider in writing consents to the discontinuation thereof. Should my employment be terminated before the loan has been repaid in full I hereby authorize my employer to deduct the then outstanding balance of the loan(s) from all amounts that become payable to me as a result of the termination of my employment and further authorize the Credit Provider to continue recovering the Loan balance through my bank account, or through payroll deductions from my remuneration due to me from my employer, post termination, until the loan balance is extinguished. I hereby undertake to authorize my employer to effect deductions from payroll until the loan is liquidated in full.</p>
+<h3>20.0 Whole Agreement, Declaration and Signature</h3>
+<p>This Agreement sets out the entire agreement between the Borrower and the Credit Provider concerning the Loan and supersedes any representations, warranties, course of dealing or agreements (written or oral) previously made between the Borrower and the Credit Provider. The Borrower confirms and acknowledges that in entering this Agreement, the Borrower has not relied on any representation or statement other than those set out in this Agreement. By signing this Agreement, the Borrower confirms that they have, hereby, applied for a loan in the amount fully disclosed in this Agreement and acknowledge that they have read, understood and agreed to be bound by this Loan Agreement and the Terms and Conditions contained in this entire agreement and have noted all costs and repayment details. The Borrower further confirms and declares that all the information given to the Credit Provider in this Agreement is true and complete.</p>
+<h3>21.0 Non – Discrimination</h3>
+<p>The Borrower will be treated with the utmost dignity and respect in accordance with their rights and freedoms as enshrined in the Constitution of Zambia, Act. No. 2 of 2016. Likewise, it is expected that the Borrower will not discriminate against an employee(s) of the Credit Provider in any way.</p>
+<h3> 23.o Signature and Date</h3>
+<p>The Parties hereby agree to the terms and conditions set forth in this Agreement and such is demonstrated throughout by their signatures below:</p>
+<p>Signed this <strong>{{date('d')}} day of {{date('F-Y')}}</strong>
 
 <h3>Signed by the Borrower: </h3>
 <p>Full Name of Borrower “<strong>{{auth()->user()->firstname. ' '.auth()->user()->lastname}}</strong></p>

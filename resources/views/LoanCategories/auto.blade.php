@@ -16,7 +16,7 @@
 
             <!-- Tenure Months -->
 <div class="mt-4">
-            <x-label for="How Many Months" :value="__('How Many Months')" />
+            <label for="How Many Months">How Many Months</label> <small class="text-danger">*</small>
 <!--Show the number of months to the user--> 
 <select class="block mt-1 w-full" onchange="calculateEMI()" value="{{ old('tenure_months') }}" name="tenure_months" id="months" required>
   <option value=1>1 Month </option>
@@ -31,7 +31,8 @@
 
 <!-- Loan Amount -->
 <div class="mt-4">
-            <x-label for="Loan Amount (ZMW)" :value="__('Loan Amount (ZMW)')" />
+<label for="Loan Amount (ZMW)">Loan Amount (ZMW)</label> <small class="text-danger">*</small>
+            
 
             <x-input class="block mt-1 w-full" type="number" value="{{ old('loan_amt') }}" onkeyup="calculateEMI()" id="amount" name="loan_amt"  />
             
@@ -55,15 +56,15 @@
 
  <!-- Loan Repayments Amount -->
 <div class="mt-4">
-            <x-label for="Total Repayments Amount" :value="__('Total Repayments Amount (ZMW)')" />
-
+           
+            <label for="Total Repayments Amount">Total Repayments Amount</label> <small class="text-danger">*</small>
             <x-input class="block mt-1 w-full" type="number" value="{{ old('total_repayments_amt') }}" id="total_repayments_amt" name="total_repayments_amt" readonly />
             </div> 
 
              <!-- EMI -->
 <div class="mt-4">
-            <x-label for="EMI" :value="__('EMI (ZMW)')" />
-
+<label for="EMI">EMI</label> <small class="text-danger">*</small>
+            
             <x-input class="block mt-1 w-full" type="number" id="emi" value="{{ old('emi') }}"  name="emi"  readonly/>
             </div> 
           
@@ -73,7 +74,8 @@
 
 <!-- Asset Name  -->
 <div class="mt-4">
-            <x-label for="Asset Name" :value="__('Asset Name')" />
+<label for="Asset Name">Asset Name</label> <small class="text-danger">*</small>
+            
 
             <x-input class="block mt-1 w-full" type="text" value="{{ old('asset_name') }}" id="asset_name" name="asset_name"  />
             
@@ -82,7 +84,8 @@
 
         <!-- Asset Location  -->
 <div class="mt-4">
-            <x-label for="Asset Location" :value="__('Asset Location')" />
+            
+            <label for="Asset Location">Asset Location</label> <small class="text-danger">*</small>
 
             <x-input class="block mt-1 w-full" type="text" value="{{ old('asset_location') }}" id="asset_location" name="asset_location"  />
             
@@ -91,7 +94,8 @@
 
 <!-- Asset Estimate  -->
 <div class="mt-4">
-            <x-label for="Asset Estimate" :value="__('Asset Estimate Value (ZMW)')" />
+<label for="Asset Estimate Value (ZMW)">Asset Estimate Value (ZMW)</label> <small class="text-danger">*</small>
+           
 
             <x-input class="block mt-1 w-full" type="number" value="{{ old('asset_estimate') }}" id="asset_estimate" name="asset_estimate"  />
             
@@ -103,8 +107,8 @@
 
 <!-- Reference Payment Mode -->
 <div class="mt-4">
-            <x-label for="Payment Mode" :value="__('Payment Mode')" />
-
+           
+            <label for="Payment Mode">Payment Mode</label> <small class="text-danger">*</small>
         
 <!--Show Payments Modes to the user--> 
 <select class="block mt-1 w-full" value="{{ old('payment_mode_id') }}" name="payment_mode_id" required>
@@ -226,9 +230,9 @@
 <br>
              <!-- Loan Application Submitt -->
                
-             <p><input type="checkbox" name="terms" required> By Marking this box and applying for this Loan, you have read and agreed to our <a href="#" data-toggle="modal" data-target="#exampleModalLong">Terms and Conditions</a></p>
-                <button class="btn btn-success">
-                    {{ __('APPLY') }}
+             
+                <button class="btn btn-primary">
+                    {{ __('Loan Summary') }}
                 </button>
             
             
