@@ -6,7 +6,7 @@
 
 <div class="shadow p-3 mb-5 bg-white rounded">
 
-        <!-- Validation Errors -->
+      <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
   <div class="form-group">
@@ -18,7 +18,7 @@
       <option value=3>Private Sector Loans</option>
     </select>            
 </div>
-  
+
 <div id="auto-loans" style="display: none;">
     <!-- Content to show when auto Loans is selected -->
     @include('LoanCategories.auto')
@@ -27,6 +27,8 @@
   <div id="payroll-loans" style="display: none;">
     <!-- Content to show when Payroll Loans is selected -->
    @include('LoanCategories.payroll') 
+   
+   
   </div>
 
 
@@ -38,7 +40,7 @@
  
   
 
-
+  
 
 <script>
   $('#loan-type').on('change', function() {

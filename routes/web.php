@@ -310,6 +310,18 @@ Route::get('downloading_loan_agreement_forms', [loanapp::class,'downloadZip'])
 ->name('downloading_loan_agreement_forms'); 
 
 
+## Terms Payroll
+Route::get('terms_payroll/{loan_number}', [loanapp::class,'terms_payroll'])
+->middleware('auth')
+->name('terms_payroll'); 
+
+## Verify Loan Application
+Route::post('verify_loan_application', [loanapp::class,'verify_loan_application'])
+->middleware('auth')
+->name('verify_loan_application'); 
+
+
+
 
 ## If the Called Route is not found call this Route
 Route::fallback(function () {

@@ -352,7 +352,7 @@ hr.new2 {
 
           <h3>Signed for and on behalf of the Credit Provider</h3>
           <p>Full Name of Credit Provider Representative: <strong>{{$rep}}</strong></p>
-          <p>Signature - Credit Provider Representative: <img src="{{asset('attatchments_loans/'.$rep->signature->getSignatureImagePath())}}" class="img-fluid my-5" width="60"
+          <p>Signature - Credit Provider Representative: <img src="{{asset('attatchments_loans/'.auth()->user()->signature->getSignatureImagePath())}}" class="img-fluid my-5" width="60"
               height="60" alt="Credit Signature" />
           </p>
 

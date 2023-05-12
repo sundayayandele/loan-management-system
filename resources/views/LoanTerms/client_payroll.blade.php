@@ -1,30 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
+@include('top_menu')
+
+
+        <style>
 th,table,td {
   border: 1px solid;
 }
 </style>
-</head>
-<body>
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Terms & Conditions</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-
-
-
-
+@php
+$loan_details = \App\Models\web_loan_application::where('loan_number',"=",$loan_number)->first();
+@endphp
 
 
 
@@ -53,9 +39,9 @@ th,table,td {
 </p>
 <h3>2.0 Subject of the Agreement</h3>
 
-<p>2.1.	On the basis of the terms specified in this Agreement, the Lender will provide the Borrower with a loan facility of  “ZMW <strong><input type="text" id="loan_amt_terms" value="" readonly></strong>
+<p>2.1.	On the basis of the terms specified in this Agreement, the Lender will provide the Borrower with a loan facility of  “ZMW <strong>{{$loan_details->amount}}</strong>
 ” at a total  credit of "<strong>6.69%</strong>
-"% per Month payable in "<strong><input type="text" id="emi_terms" value="" readonly/></strong>
+"% per Month payable in "<strong>{{$loan_details->months}}</strong>
 "  installments  following the borrower completion of the online application form that is on the lender’s on-line platform.</p>
 <p>2.2. The lender and the borrower hereby agree that they shall be at liberty to appoint agents to act for them and the agency law shall apply.</p>
 <p>2.3.	Lender and Borrower take responsibility to fulfill commitments towards each other fully and in due time.</p>
@@ -69,7 +55,7 @@ th,table,td {
  
 <h3>4.0 Acknowledgement of Receipt of Cash</h3>
 
-<p>4.1 I “{{auth()->user()->firstname. ' '.auth()->user()->lastname}}” hereby acknowledges receipt of ZMW “<strong><input type="text" id="loan_amt_terms_conditions" value="" readonly></strong>
+<p>4.1 I “{{auth()->user()->firstname. ' '.auth()->user()->lastname}}” hereby acknowledges receipt of ZMW “<strong>{{$loan_details->amount}}</strong>
 ” paid out in cash and/or by Deposit to Bank Account/ Mobile money on the date “{{date('j, F Y')}}”  </p> 
 
 <h3>5.0 Repayment</h3>
@@ -155,7 +141,7 @@ $user = auth()->user();
 @endphp
 “ 
 @if(!is_null($user->signature))
-Signature of Borrower: “<img src="{{asset($user->signature->getSignatureImagePath())}}" width="50" height="50" alt="{{config('app.name')}}">
+Signature of Borrower: “<img src="{{asset('attatchments_loans/'.auth()->user()->signature->getSignatureImagePath())}}" width="50" height="50" alt="{{config('app.name')}}">
 "
 @endif
 <p>Signed for and on behalf of the Credit Provider: </p>
@@ -245,7 +231,7 @@ Payment Date (DD/MM/ YYYY)
     </th>
     </tr>
     <tr>
-        <td><input type="text" id="emi" value="" readonly></td>
+        <td>{{$loan_details->emi}}</td>
         
     </tr>
 </table>
@@ -298,7 +284,7 @@ Payment Date (DD/MM/ YYYY)
     </th>
     </tr>
     <tr>
-      <td><input type="text" id="emi_terms" value="" readonly> + 1000</td>  
+      <td>{{$loan_details->emi}} + 1000</td>  
     </tr>
 </table>
 
@@ -479,7 +465,7 @@ W
 
 <h3>INSTRUCTION TO DEBIT MY ACCOUNT</h3>
 <p>Please pay TCS Ltd t/a Eliana Cash Express, Direct Debits from my account detailed in this mandate subject to safeguards assured by the Direct Debits Guarantee. I/we understand that this mandate may remain with Eliana Cash Express and, if so, details will be passed electronically to my Bank/NBFI.</p>
-Signatures <img src="{{asset('files/Auth::user()->profilepic')}}" width="50" height="50" alt="Borrower Signature">
+Signatures <img src="{{asset('attatchments_loans/'.auth()->user()->signature->getSignatureImagePath())}}" width="50" height="50" alt="Borrower Signature">
 <h3>Date : {{date('d-F-Y')}} </h3>
 
    <h3>  Banks/NBFIs may not accept Direct Debit Mandates for some types of accounts</h3>
@@ -488,11 +474,7 @@ Signatures <img src="{{asset('files/Auth::user()->profilepic')}}" width="50" hei
 <small> If an error is made by your bank/NBFI, you are guaranteed a full and immediate refund from your branch of the amount paid.</small> 
 <small> You can cancel a Direct Debit at any time by writing to your Bank/NBFI. Please also send a copy of your letter to us.</small> 
 
-</div> 
-</div>
-</div>
+@include('bottom_menu')
 
 
 
-</body>
-</html>

@@ -107,7 +107,7 @@ public function web_loan_application(Request $request,$id){
  * 
 **/
    
-   elseif (web_loan_application::where('employee_id',"=",$request->employee_id)->exists()){
+   elseif (web_loan_application::where('employee_id',"=",$request->employee_id)->where('approved',"=",0)->exists()){
     toast('It seems You have a pending Loan. First settle this Loan then you can apply later!','error');
     return redirect('dashboard');
     
@@ -161,17 +161,48 @@ else{
    
    
     $loan_application->bank_statement = $request->bankstatement->store('bank_statement');
-    $loan_application->approved = 0;
+    $loan_application->approved = 11; //Pending verification from Applicant
     $loan_application->due_date = Carbon::now()->addMonths($request->tenure_months)->format('d-m-Y');
     $loan_application->save();
 
-      
-    toast('Loan Application submitted successfully!','success');
-    return redirect('dashboard');
+
+    Alert::success('Loan Summary', 'Here is a summary of your loan:');
+    return view('LoanSummary.payroll',[
+        'loan_number' => $loannumber
+    ]);
  
     
 }
 }
+
+
+public function terms_payroll($loan_number){
+    return view('LoanTerms.client_payroll',[
+        'loan_number' => decrypt($loan_number)
+    ]);
+   
+}
+
+
+
+public function verify_loan_application(Request $request){
+    $request->validate([
+        
+        'loan_number' => 'required|numeric'
+    ]);
+
+
+    $loan_application = web_loan_application::where('loan_number',"=",$request->loan_number)->first();
+    $loan_application->approved = 0;
+    $loan_application->save();
+
+    toast('Loan Application submitted successfully!','success');
+    return redirect('dashboard');
+
+
+
+}
+
 
 
 
@@ -701,8 +732,8 @@ $applicant = reg_employee_mst::find($hold_loan->employee_id);
 $rep = auth()->user()->firstname. ' '.auth()->user()->lastname;
 
 
-// Compile Loan Agreement if Signature Exists
-if ($applicant->hasBeenSigned()) { 
+// Compile Loan Agreement if Signature Exists For Both Client and Company Represantative
+if ($applicant->hasBeenSigned() && auth()->user()->hasBeenSigned()) { 
 
 
   // Loan Agreement For Private or Civil Servants

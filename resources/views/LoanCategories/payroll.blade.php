@@ -1,6 +1,6 @@
 <form method="POST" action="{{route('web_loan_application',encrypt(Auth::user()->employee_id))}}"  enctype="multipart/form-data">
             @csrf
-          
+                 
            <!-- Loan Type -->
            <x-input id="name" class="block mt-1 w-full" type="hidden"  value=1 name="loan_type"  readonly/>
            
@@ -27,6 +27,7 @@
   <option value=6>6 Months </option>
  </select>
 </div> 
+
 
 
 <!-- Loan Amount -->
@@ -125,21 +126,16 @@
              <!-- Loan Application Submitt -->
              
                
-             <p><input type="checkbox" name="terms" required> By Marking this box and applying for this Loan, you have read and agreed to our <a href="#" data-toggle="modal" data-target="#exampleModalLong">Terms and Conditions</a></p>
-                <button class="btn btn-success">
-                    {{ __('APPLY') }}
+             
+                <button class="btn btn-primary">
+                    {{ __('LOAN SUMMARY') }}
                 </button>
-            
-            
-               
 
-
-
-        
     </form>
             
-
-
+    
+   
+    
 
 
 <script>
@@ -187,20 +183,15 @@
             
 
 
-if(loan_amount >= 200 && loan_amount <= 1000){
+
 var total = (loan_amount+lower_facility_fee)+((loan_amount+lower_facility_fee)*(loan_percent/100)*installments);
  document.getElementById('total_repayments_amt_payroll').value = parseFloat(total).toFixed(2);
  document.getElementById('emi_payroll').value = parseFloat((total/installments)).toFixed(2);
-}
 
-if(loan_amount >= 1001 && loan_amount <= 10000){
 var total = (loan_amount+higher_facility_fee)+((loan_amount+higher_facility_fee)*(loan_percent/100)*installments);
  document.getElementById('total_repayments_amt_payroll').value = parseFloat((total)).toFixed(2)
  document.getElementById('emi_payroll').value = parseFloat((total/installments)).toFixed(2);
- //document.getElementById('emi_terms').value = parseFloat((total/installments)).toFixed(2);
- //document.getElementById('loan_amt_terms').value = loan_amount;
- //document.getElementById('loan_amt_terms_conditions').value = loan_amount;
-}
+
  
            
         }
