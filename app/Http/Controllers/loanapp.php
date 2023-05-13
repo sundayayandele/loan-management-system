@@ -192,6 +192,13 @@ else{
 }
 
 
+public function export_borrower(){
+    return view('Exports.borrowers');
+   
+}
+
+
+
 public function terms_payroll($loan_number){
     return view('LoanTerms.client_payroll',[
         'loan_number' => decrypt($loan_number)

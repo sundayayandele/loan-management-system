@@ -61,60 +61,72 @@
             </a>
 					</li>
 
+					@can('can-view-emails')
+
 
                     <li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('emailsub')}}">
               <i class="align-middle fas fa-envelope" ></i> <span class="align-middle" style="color:white">Email Subscribers</span>
             </a>					
 					</li>
+					@endcan
 
+					@can('can-view-messages')
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="{{route('messages')}}">
               <i class="align-middle fas fa-sms" ></i> <span class="align-middle" style="color:white">Messages</span>
             </a>
 				</li>
 
+@endcan
 
+@can('can-view-registered-users')
 					<li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('users.index')}}">
               <i class="align-middle fas fa-users" ></i> <span class="align-middle" style="color:white">Registered Users</span>
             </a>					
 					</li>
-
+@endcan
 
 					<li class="sidebar-header">
 						Loans
 					</li>
-
+@can('can-view-active-loans')
 					<li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('active_loans')}}">
               <i class="align-middle fas fa-money" ></i> <span class="align-middle" style="color:white">Active Loans</span>
             </a>					
 					</li>
-
+					@endcan
+					@can('can-view-denied-loans')
 					<li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('denied_loans')}}">
               <i class="align-middle fas fa-ban" ></i> <span class="align-middle" style="color:white">Denied Loans</span>
             </a>					
 					</li>
-
+@endcan
+@can('can-view-active-loans')
 					<li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('pending_loans')}}">
               <i class="align-middle fas fa-clock-o" ></i> <span class="align-middle" style="color:white">Pending Loans</span>
             </a>					
 					</li>
-
+					@endcan
+					@can('can-make-payments-update')
 					<li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('payments.create')}}">
               <i class="align-middle fas fa-money" ></i> <span class="align-middle" style="color:white">Payments updates</span>
             </a>					
 					</li>
+@endcan
 
+@can('can-view-loan-agreement-forms')
 					<li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('downloading_loan_agreement_forms')}}">
               <i class="align-middle fas fa-copy" ></i> <span class="align-middle" style="color:white">Loan Agreement Forms</span>
             </a>					
 					</li> 
+					@endcan
 
 
 				
@@ -123,54 +135,76 @@
 			<li class="sidebar-header">
 						My Approvals
 					</li>
+					@can('dlo')
 					<li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('loan_approvals.index')}}">
               <i class="align-middle fas fa-check" ></i> <span class="align-middle" style="color:white">Review Loans - DLO</span>
             </a>
 					</li>
-
+					@endcan
+					@can('cfo')
 			<li class="sidebar-item">
 						<a class="sidebar-link" href="{{route('review')}}">
               <i class="align-middle fas fa-copy" ></i> <span class="align-middle" style="color:white">Review Loans - CFO</span>
             </a>
 					</li>
-
+@endcan
+@can('can-approve-loan-applications')
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="{{route('reviewed_loans')}}">
               <i class="align-middle fas fa-copy" ></i> <span class="align-middle" style="color:white">Review Loans - ADMIN</span>
             </a>
 					</li>
-
+@endcan
+@can('can-upload-settlements')
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="{{route('settlements.create')}}">
               <i class="align-middle fas fa-upload" ></i> <span class="align-middle" style="color:white">Upload Settlements</span>
             </a>
 					</li>
 
-
+@endcan
+@can('can-add-roles')
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="{{route('roles.create')}}">
               <i class="align-middle fas fa-user-plus" ></i> <span class="align-middle" style="color:white">Roles</span>
             </a>
 					</li>
+					@endcan
+
+					@can('can-give-permissions')
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="{{route('roles_permissions.create')}}">
               <i class="align-middle fas fa fa-plus-square" ></i> <span class="align-middle" style="color:white">Permissions</span>
             </a>
 					</li>
+					@endcan
+
+
+					@can('can-give-roles-to-users')
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="{{route('roles_users.create')}}">
               <i class="align-middle fas fa fa-user" ></i> <span class="align-middle" style="color:white">Users</span>
             </a>
 					</li>
-					
+					@endcan
+					@can('send-text')		
 			<li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('reminders.create')}}">
               <i class="align-middle fas fa-mobile-phone" ></i> <span class="align-middle" style="color:white">Send Text</span>
             </a>					
-					</li>		
+					</li>	
+					@endcan
+					@can('can-export-users')	
 					
 
+					<li class="sidebar-item">
+                    <a class="sidebar-link" href="{{route('export_borrower')}}">
+              <i class="align-middle fas fa-copy" ></i> <span class="align-middle" style="color:white">Export</span>
+            </a>					
+					</li>		
+					
+@endcan
 
 					<hr>
 <center>
@@ -189,12 +223,12 @@
 
 				<div class="sidebar-cta">
 					<div class="sidebar-cta-content">
-						<strong class="d-inline-block mb-2">Download our Android App</strong>
+						<strong class="d-inline-block mb-2">ChatBot</strong>
 						<div class="mb-3 text-sm">
-							Are you looking for a mobile app component? Download it for free here.
+							Are you looking for an easier way of getting a loan. Chat with .....
 						</div>
 						<div class="d-grid">
-							<a href="upgrade-to-pro.html" class="btn btn-primary">Download</a>
+							<a href="" class="btn btn-primary">Chat</a>
 						</div>
 					</div>
 				</div>
@@ -265,83 +299,6 @@
 		
 
 
-<center>
-
- <!--Successs Application-->
- @if (session('status'))
-      <div class="alert alert-success w-75">
-         {!! session('status') !!}
-      </div>
-@endif
-
-
- <!--Successs KYC FORM Application-->
- @if (session('kyc'))
-      <div class="alert alert-success w-75">
-         {!! session('kyc') !!}
-      </div>
-@endif
-
-
-<!--If Multiple loan numbers are detected in the database-->
-@if (session('wrongloannumber'))
-      <div class="alert alert-danger w-75">
-         {!! session('wrongloannumber') !!}
-      </div>
-@endif
-
-
-
-<!--If Token Expired-->
-@if (session('tokenExpired'))
-      <div class="alert alert-danger w-75">
-         {!! session('tokenExpired') !!}
-      </div>
-@endif
-
-
-
-
-<!--Submit KYC Form error if user tries to access loanAmortisation/analysis without submitting KYC-->
-@if (session('kycError'))
-      <div class="alert alert-danger w-75">
-         {!! session('kycError') !!}
-      </div>
-@endif
-
-
-
-<!--When a Client has a pending loan and tries to reapply (detected on bank method controller) -->
-@if (session('pendingb'))
-      <div class="alert alert-danger w-75">
-         {!! session('pendingb') !!}
-      </div>
-@endif
-
-
-
-<!--When a Client has a pending loan and tries to reapply (detected on loan method controller) -->
-@if (session('pendingl'))
-      <div class="alert alert-danger w-75">
-         {!! session('pendingl') !!}
-      </div>
-@endif
-
-
-
-<!--profilepicture set Successsfully-->
-@if (session('profilepicture'))
-      <div class="alert alert-success w-75">
-         {!! session('profilepicture') !!}
-      </div>
-@endif
-
-
-
-
-</center>
-
-					
 
 
 <!--Check if the profile picture has been uploaded-->

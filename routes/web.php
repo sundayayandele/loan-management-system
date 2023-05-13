@@ -328,6 +328,13 @@ Route::get('terms_private/{loan_number}', [loanapp::class,'terms_private'])
 
 
 
+## Terms Private
+Route::get('/export_borrower', [loanapp::class,'export_borrower'])
+->middleware('auth')
+->name('export_borrower'); 
+
+
+
 
 
 ## Verify Loan Application

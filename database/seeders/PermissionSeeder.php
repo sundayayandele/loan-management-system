@@ -19,10 +19,10 @@ class PermissionSeeder extends Seeder
        
 
         $permissions = [
-            'create-post', 'edit-post', 'delete-post',
-            'view-emails', 'view-messages', 'view-registered-users', 'edit-registered-users', 'delete-registered-users',
-            'view-active-loans','view-pending-loans','view-denied-loans','payments-update','view-loan-agreement-forms',
-            'review-loan-applications','upload-settlements','roles-permissions','approvals','send-text'
+            'can-create-post', 'can-edit-post', 'can-delete-post',
+            'can-view-emails', 'can-view-messages', 'can-view-registered-users', 'can-edit-registered-users', 'can-delete-registered-users',
+            'can-view-active-loans','can-view-pending-loans','can-view-denied-loans','can-make-payments-update','can-view-loan-agreement-forms',
+            'can-approve-loan-applications','can-upload-settlements','can-add-roles','can-give-permissions','can-give-roles-to-users','dlo','cfo','send-text','can-export-users'
         ];
         foreach ($permissions as $permission) {
             DB::table('permissions')->insert([

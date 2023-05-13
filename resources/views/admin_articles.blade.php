@@ -68,8 +68,9 @@
               </div>
               <div class="col-xs-5 col-md-3">
                 <div class="form-group">
-                 
+                 @can('can-create-post')
                   <button type="submit" class="btn btn-primary">Publish</button>
+                  @endcan
                 </div>
                
                 <div class="form-group">
