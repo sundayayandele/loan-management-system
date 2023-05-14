@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 <head>
 	<title>{{config('app.name')}} | HOME</title>
 	<meta charset="UTF-8">
@@ -146,7 +146,7 @@
 <hr>
 		<!--End results amortisation-->
 						
-						<button class="site-btn"><a href="{('payroll')}}" style="color:white">Apply for a loan now!</a></button>
+						<button class="site-btn"><a href="{{'payroll'}}" style="color:white">Apply for a loan now!</a></button>
 					</form>
 				</div>
 			
@@ -230,7 +230,7 @@
 <hr>
 		<!--End results amortisation-->
 						
-						<button class="site-btn"><a href="{{('private_sector')}}" style="color:white">Apply for a loan now!</a></button>
+						<button class="site-btn"><a href="{{'private_sector'}}" style="color:white">Apply for a loan now!</a></button>
 					</form>
 				</div>
 			

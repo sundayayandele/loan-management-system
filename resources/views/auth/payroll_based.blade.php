@@ -4,7 +4,8 @@
 <style>
 
 body {
-    background: #eee
+    background: url('/landing_page/img/hero-slider/1.jpg') no-repeat center center fixed;
+    background-size: cover;
 }
 
 #regForm {
@@ -847,7 +848,7 @@ button:focus{
                     <p><input type="password" placeholder="Confirm Password" oninput="this.className = ''" name="password_confirmation" value="{{old('password_confirmation')}}" autofocus></p>
                 </div>
                <br>
-                <div class="thanks-message text-center tab" id="text-message">
+                <div class="thanks-message text-center" id="text-message">
                    
                     <h3>Thank you for your feedback!</h3> <span>You are one step away from getting your Loan! Click on the Submit button below to get started.</span>
               <br>
@@ -861,7 +862,7 @@ button:focus{
             </form>
         </div>
     </div>
-</div>
+
 
 <script>
    var currentTab = 0;

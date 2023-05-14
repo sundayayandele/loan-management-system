@@ -4,7 +4,8 @@
 <style>
 
 body {
-    background: #eee
+    background: url('/landing_page/img/hero-slider/1.jpg') no-repeat center center fixed;
+    background-size: cover;
 }
 
 #regForm {
