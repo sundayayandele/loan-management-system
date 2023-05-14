@@ -213,9 +213,8 @@ else{
  $user->profilepic = $request->passport_photo->store('passportphoto');
  $user->save();
 
- toast('Your Loan has been submitted successfully. Wait for the email confirmation once approved!','success');
- return redirect('login');   
-   
+ Alert::success('Success Loan Application', 'Your Loan has been submitted successfully. Wait for the email confirmation once approved!');  
+ return redirect('/');     
  
 }
 

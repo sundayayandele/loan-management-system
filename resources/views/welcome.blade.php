@@ -32,6 +32,7 @@
 
 </head>
 <body>
+@include('sweetalert::alert')
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
