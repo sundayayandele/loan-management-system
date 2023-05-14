@@ -33,6 +33,15 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
+        
+        $request->validate([
+            'nrc' => 'required|regex:/^\d{6}\/\d{2}\/\d{1}$/',
+        ], [
+            'regex' => 'Please enter a valid NRC with slashes. Example: 123456/78/9',
+        ]);
+        
+        
+
         $credentials = request(['nrc', 'password']);
         if (Auth::guard('employees')->attempt($credentials)) {
             $user = reg_employee_mst::where('nrc', "=", $request->nrc)->firstOrFail();
@@ -71,7 +80,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-        Session::flash('status','You are logged out now. Enjoy browsing other public areas of the system');
+        Session::flash('status','Welcome!!!. Login to check your Profile');
         return redirect('login');
     }
 }
