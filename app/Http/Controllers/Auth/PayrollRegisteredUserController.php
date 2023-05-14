@@ -51,7 +51,7 @@ class PayrollRegisteredUserController extends Controller
             'lastname' => ['required', 'string','max:255'],
             'nrc' => ['required', 'string'],
             'email' => ['required', 'email','unique:reg_employee_mst'],
-            'dob' => ['required', 'date','before:2005-01-01'],
+            'dob' => ['required','before:2005-01-01'],
             'phone' => ['required', 'string'],
             'province' => ['required', 'string'],
             'town' => ['required', 'string'],
@@ -215,7 +215,7 @@ else{
  $user->profilepic = $request->passport_photo->store('passportphoto');
  $user->save();
   toast('Your Loan has been submitted successfully. Wait for the email confirmation once approved!','success');
- return redirect('/');   
+ return redirect('login');   
  
 }
 
