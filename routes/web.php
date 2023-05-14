@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loanapp;
 use App\Http\Controllers\RegisteredUsersController;
 use App\Http\Controllers\RemindersController;
+use App\Http\Controllers\LoanHistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -328,7 +329,7 @@ Route::get('terms_private/{loan_number}', [loanapp::class,'terms_private'])
 
 
 
-## Terms Private
+## Export
 Route::get('/export_borrower', [loanapp::class,'export_borrower'])
 ->middleware('auth')
 ->name('export_borrower'); 
@@ -341,6 +342,15 @@ Route::get('/export_borrower', [loanapp::class,'export_borrower'])
 Route::post('verify_loan_application', [loanapp::class,'verify_loan_application'])
 ->middleware('auth')
 ->name('verify_loan_application'); 
+
+
+## Loan History
+Route::get('loan-history', [LoanHistoryController::class,'index'])
+->middleware('auth')     
+->name('loan_history');
+## Retrieve all denied loans via AJAX 
+Route::get('/all_applied_loans', [LoanHistoryController::class, 'loan_history'])
+->name('all_applied_loans'); 
 
 
 

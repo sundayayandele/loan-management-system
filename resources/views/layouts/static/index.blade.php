@@ -64,7 +64,11 @@
             </a>
 					</li>
 
-
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{route('loan_history')}}">
+              <i class="fas fa-file" ></i> <span class="align-middle" style="color:white">Loan History</span>
+            </a>
+					</li>
 					
 
                    
@@ -99,21 +103,17 @@
             </a>
 					</li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="mailto:instafinance@gmail.com">
-              <i class="fas fa-question-circle"></i> <span class="align-middle" style="color:white">help</span>
-            </a>
-					</li>
+					
 				</ul>
 
 				<div class="sidebar-cta">
 					<div class="sidebar-cta-content">
-						<strong class="d-inline-block mb-2">Download our Android App</strong>
+						<strong class="d-inline-block mb-2">Eliana CashXpress</strong>
 						<div class="mb-3 text-sm">
-							Are you looking for a mobile app component? Download it for free here.
+						Our chatbot is designed to help you easily apply for a loan online. Whether you're a civil servant, private sector employee, or looking for an auto loan, our chatbot is here to guide you through the process!
 						</div>
 						<div class="d-grid">
-							<a href="" class="btn btn-primary">Download</a>
+							<a href="" class="btn btn-primary">ChatBot</a>
 						</div>
 					</div>
 				</div>
@@ -201,7 +201,7 @@
 												<h4 class="mt-1 mb-3" style="font-weight: bold;"><a style="color:black" href="{{route('loanapplication',encrypt(Auth::user()->employee_id))}}">Apply Now</a></h4>
 												
 												<div class="mb-0">
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i>@15% Interest rate </span>
+													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i>as low 6.69% Interest rate </span>
 													<span class="text-muted">per month</span>
 												</div>
 											</div>
@@ -276,10 +276,10 @@ let profilepic = document.getElementById("profilepicture").value;
 														</div>
 													</div>
 												</div>
-												<h4 class="mt-1 mb-3" style="font-weight: bold;"><a style="color:black" href="{{'collectionsView'}}">Settle Balance</a></h4>
+												<h4 class="mt-1 mb-3" style="font-weight: bold;"><a style="color:black" href="{{route('loan_history')}}">Loan History</a></h4>
 												<div class="mb-0">
-													<span class="text-success"><i class="mdi mdi-arrow-bottom-right"></i>pay online </span>
-													<span class="text-muted">via mobile money</span>
+													<span class="text-success"><i class="mdi mdi-arrow-bottom-right"></i>check applied loans </span>
+													<span class="text-muted">via web</span>
 												</div>
 											</div>
 										</div>
@@ -335,7 +335,7 @@ let profilepic = document.getElementById("profilepicture").value;
 					<div class="row text-muted">
 						<div class="col-6 text-start">
 							<p class="mb-0">
-								<a class="text-muted" href="https://www.chandachewe.com" target="_blank"><strong>Chanda Chewe</strong></a>
+								<a class="text-muted" href="https://www.elianaconnect.com" target="_blank"><strong>Powered by Eliana-connect</strong></a>
 							</p>
 						</div>
 						<div class="col-6 text-end">

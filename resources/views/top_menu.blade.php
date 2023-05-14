@@ -83,6 +83,12 @@
             </a>
 					</li>
 
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{route('loan_history')}}">
+              <i class="fas fa-file" ></i> <span class="align-middle" style="color:white">Loan History</span>
+            </a>
+					</li>
+
 
 					
 

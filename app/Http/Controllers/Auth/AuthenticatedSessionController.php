@@ -35,7 +35,8 @@ class AuthenticatedSessionController extends Controller
     {
         
         $request->validate([
-            'nrc' => 'required|regex:/^\d{6}\/\d{2}\/\d{1}$/',
+            'nrc' => 'regex:/^\d{6}\/\d{2}\/\d{1}$/',
+            'password' => 'required|string'
         ], [
             'regex' => 'Please enter a valid NRC with slashes. Example: 123456/78/9',
         ]);
@@ -43,8 +44,9 @@ class AuthenticatedSessionController extends Controller
         
 
         $credentials = request(['nrc', 'password']);
+        $credentials['nrc'] = str_replace('/', '', $credentials['nrc']);
         if (Auth::guard('employees')->attempt($credentials)) {
-            $user = reg_employee_mst::where('nrc', "=", $request->nrc)->firstOrFail();
+            $user = reg_employee_mst::where('nrc', "=", str_replace('/','',$request->nrc))->firstOrFail();
             
             Auth::login($user);        
 
