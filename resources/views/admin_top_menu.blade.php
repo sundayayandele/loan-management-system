@@ -58,7 +58,7 @@
 
 					<li class="sidebar-item ">
 						<a class="sidebar-link" href="{{route('admindashboard')}}">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle" style="color:white">Dashboard</span>
+              <i class="align-middle fas fa-tachometer"></i> <span style="color:white">Dashboard</span>
             </a>
 					</li>
 

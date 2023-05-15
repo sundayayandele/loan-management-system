@@ -152,7 +152,7 @@
             <div class="card-body">
               <div class="media d-flex">
                 <div class="align-self-center">
-                  <i class="icon-graph success font-large-2 float-left"></i>
+                  <i class="fas fa-envelope success font-large-2 float-left"></i>
                 </div>
                 <div class="media-body text-right">
                   <h3> <h3><a href="{{route('emailsub')}}">{{\App\Models\emailsubscription::count()}}</a></h3></h3>
@@ -195,7 +195,7 @@
                   <span>Pending Loans</span>
                 </div>
                 <div class="align-self-center">
-                  <i class="icon-user success font-large-2 float-right"></i>
+                  <i class="fas fa-dollar-sign success font-large-2 float-right"></i>
                 </div>
               </div>
             </div>
@@ -312,6 +312,17 @@
         {!! $chart_collections->container() !!}
     </div>
     </div>
+
+
+
+  <div class="row">
+  <div class="col-12">
+    <div class="">
+        {!! $registered_users->container() !!}
+    </div>
+    </div>
+  </div>
+  
 
 
 
