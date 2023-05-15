@@ -389,6 +389,21 @@ Route::get('contact', function(){
 
 
 
+## get all permissions for the user, either directly, or from roles, or from both
+Route::get('view_all_permissions', [RolesUsersController::class,'show_all_permissions_from_a_user'])
+->middleware('auth','admin')
+->name('view_all_permissions');  
+
+
+## get all permissions via Ajax
+Route::get('get_all_permissions', [RolesUsersController::class,'get_all_permissions_from_a_user'])
+->middleware('auth','admin')
+->name('get_all_permissions');  
+
+
+
+
+
 ## If the Called Route is not found call this Route
 Route::fallback(function () {
     return view('Whoops!!!! this link does not exist');

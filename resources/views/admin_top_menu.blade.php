@@ -170,6 +170,12 @@
               <i class="align-middle fas fa fa-ban" ></i> <span class="align-middle" style="color:white">Revoke Roles </span>
             </a>
 					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{route('view_all_permissions')}}">
+              <i class="align-middle fas fa-eye" ></i> <span class="align-middle" style="color:white">View All Permissions</span>
+            </a>
+					</li>
 					
 			<li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('reminders.create')}}">
@@ -180,7 +186,7 @@
 
 					<li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('export_borrower')}}">
-              <i class="align-middle fas fa-export" ></i> <span class="align-middle" style="color:white">Export</span>
+              <i class="align-middle fas fa-share" ></i> <span class="align-middle" style="color:white">Export</span>
             </a>					
 					</li>		
 					

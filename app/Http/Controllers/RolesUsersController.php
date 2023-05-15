@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use RealRashid\SweetAlert\Facades\Alert;
+use DataTables;
 
 class RolesUsersController extends Controller
 {
@@ -135,5 +136,35 @@ else{
 
         toast('User Role(s) Removed Successfully!','success');
         return redirect()->back();  
+    }
+
+
+
+    // get all permissions for the user, either directly, or from roles, or from both
+    public function show_all_permissions_from_a_user(){
+        return view('AllPermissions.index');  
+    }
+
+
+
+
+    public function get_all_permissions_from_a_user(){
+       
+$data = reg_employee_mst::with('permissions')->get();
+
+return Datatables::of($data)
+    ->addIndexColumn()
+    ->addColumn('user', function($data){
+        return $data->firstname. ' '.$data->lastname;
+    })
+    ->addColumn('email', function($data){
+        return $data->email;
+    })
+    ->addColumn('permissions', function($data){
+        $permissions = $data->permissions->pluck('name')->implode(', ');
+        return $permissions;
+    })
+    ->rawColumns(['user','email', 'permissions'])
+    ->make(true);
     }
 }
