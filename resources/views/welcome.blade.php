@@ -45,11 +45,11 @@
 		</a>
 		<nav class="header-nav">
 			<ul class="main-menu">
-				<li><a href="index.php" class="active">Home</a></li>
-				<li><a href="about-us.php">About Us</a></li>
+				<li><a href="{{'/'}}" class="active">Home</a></li>
+				<li><a href="{{route('about_us')}}">About Us</a></li>
 				
-				<li><a href="">News</a></li>
-				<li><a href="contact.php">Contact</a></li>
+				<li><a href="{{route('login')}}">Login</a></li>
+				<li><a href="{{route('contact')}}">Contact</a></li>
 			</ul>
 			<div class="header-right">
 				<a href="#" class="hr-btn"><i class="flaticon-029-telephone-1"></i>Call us now! </a>
@@ -146,7 +146,14 @@
 		
 <hr>
 		<!--End results amortisation-->
-						
+
+        
+  
+  <span style="color:white"> By clicking on 'Apply for a loan now!' and/or proceeding with this Loan, you have read and accept our <a href="" data-toggle="modal" data-target="#termsPayroll"> terms and conditions</a></span>
+  <br><br>
+		
+
+        
 						<button class="site-btn"><a href="{{'payroll'}}" style="color:white">Apply for a loan now!</a></button>
 					</form>
 				</div>
@@ -230,7 +237,8 @@
 		
 <hr>
 		<!--End results amortisation-->
-						
+		<span style="color:white"> By clicking on 'Apply for a loan now!' and/or proceeding with this Loan, you have read and accept our <a href="" data-toggle="modal" data-target="#termsPrivate"> terms and conditions</a></span>
+  <br><br>				
 						<button class="site-btn"><a href="{{'private_sector'}}" style="color:white">Apply for a loan now!</a></button>
 					</form>
 				</div>
@@ -317,7 +325,8 @@
 		
 <hr>
 		<!--End results amortisation-->
-						
+		<span style="color:white"> By clicking on 'Apply for a loan now!' and/or proceeding with this Loan, you have read and accept our <a href="" data-toggle="modal" data-target="#termsAuto"> terms and conditions</a></span>
+  <br><br>		
 						<button class="site-btn"><a href="{{'auto'}}" style="color:white">Apply for a loan now!</a></button>
 					</form>
 				</div>
@@ -698,12 +707,12 @@ function group_loan(){
 					<div class="footer-widget">
 						<h2>Useful Links</h2>
 						<ul>
-							<li><a href="about-us.php">About us</a></li>
-							<li><a href="index.php">Get Started</a></li>
-							<li><a href="lhttps://backend.elianacashxpress.com/login">Login</a></li>
-							<li><a href="https://myeliana.com">Our Company</a></li>
-							<li><a href="https://myeliana-insurance-agency.myeliana.com/">Insurance</a></li>
-							<li><a href="https://elianaconnect.com">Softwares</a></li>
+							<li><a href="{{route('about_us')}}">About us</a></li>
+							<li><a href="{{'/'}}">Get Started</a></li>
+							<li><a href="{{route('login')}}">Login</a></li>
+							<li><a target="_blank" href="https://myeliana.com">Our Company</a></li>
+							<li><a target="_blank" href="https://myeliana-insurance-agency.myeliana.com/">Insurance</a></li>
+							<li><a  target="_blank" href="https://elianaconnect.com">Softwares</a></li>
 							
 						</ul>
 					</div>
@@ -730,7 +739,7 @@ function group_loan(){
 							<li><a href="">FAQ</a></li>
 							<li><a href="">Sitemap</a></li>
 							<li><a href="">Privacy policy</a></li>
-							<li><a href="contact.php">Contact us</a></li>
+							<li><a href="{{route('contact')}}">Contact us</a></li>
 						</ul>
 					</div>
 				</div>
@@ -742,6 +751,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</footer>
 	<!-- Footer Section end -->
+
+
+<!---Terms and conditions for Payroll civil servants--> 
+@include('LoanTerms.web_payroll')
+<!---Terms and conditions for Private Sector--> 
+@include('LoanTerms.web_private')
+<!---Terms and conditions for Auto--> 
+@include('LoanTerms.web_auto')
+
+
+
 	
 	<!--====== Javascripts & Jquery ======-->
 	<script src="{{asset('landing_page/js/jquery-3.2.1.min.js')}}"></script>

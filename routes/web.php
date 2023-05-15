@@ -368,6 +368,22 @@ Route::get('/all_applied_loans', [LoanHistoryController::class, 'loan_history'])
 
 
 
+## About Us
+Route::get('about_us', function(){
+    return view('about_us');
+})
+->middleware('guest')
+->name('about_us'); 
+
+
+## Contact Us
+Route::get('contact', function(){
+    return view('contact');
+})
+->middleware('guest')
+->name('contact'); 
+
+
 
 ## If the Called Route is not found call this Route
 Route::fallback(function () {

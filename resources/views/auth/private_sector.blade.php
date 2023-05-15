@@ -449,10 +449,10 @@ button:focus{
  
  
  <div class="row">
-     <!-- NRC Number -->
+     <!-- Company Name -->
   <div class="col-lg-6">
  <div class="form-group">
-             <label for="Ministry"> Ministry </label> <small class="text-danger">*</small>
+             <label for="Company Name"> Company Name </label> <small class="text-danger">*</small>
  
              <input class="form-control" type="text" id="ministry" value="{{ old('ministry') }}" name="ministry" required/>
              </div> 
