@@ -98,4 +98,42 @@ class RolesUsersController extends Controller
     {
         //
     }
+
+
+    public function remove()
+    {
+        return view('RevokeRoles.create',[
+            'users' => reg_employee_mst::get(),
+            'roles' => Role::get()
+        ]);
+    }
+
+
+
+
+
+
+    public function revoke(Request $request){
+       
+        $user = reg_employee_mst::find($request->user);
+        $roles = explode(",",$request->input('dataField')); 
+        foreach ($roles as $role) {
+            $getRoles = Role::findByName($role);
+
+          
+if ($user->hasRole($role)) {
+    $user->removeRole($getRoles);
+}
+
+else{
+    toast('This User was not assigned roles to revoke!','error');
+    return redirect()->back();    
+}
+            
+           
+        }
+
+        toast('User Role(s) Removed Successfully!','success');
+        return redirect()->back();  
+    }
 }

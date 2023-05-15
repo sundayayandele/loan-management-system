@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Spatie\Permission\Traits\HasRoles;
 use Creagia\LaravelSignPad\Concerns\RequiresSignature;
 use Creagia\LaravelSignPad\Contracts\CanBeSigned;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class reg_employee_mst extends Authenticatable implements CanBeSigned   
 {
-    use HasFactory, Notifiable, RequiresSignature;
+    use HasRoles, HasFactory, Notifiable, RequiresSignature;
 
     public function api_logins_mst()
     {

@@ -292,7 +292,21 @@ Route::resource('roles_permissions', RolesToPermissions::class)
 
 ## Assign Roles To Users - CRUD - (ADMINS ONLY)
 Route::resource('roles_users', RolesUsersController::class)
-->middleware('auth','admin');  
+->middleware('auth','admin'); 
+
+
+## Show View For Revoking Roles From Users - (ADMINS ONLY)
+Route::get('roles_users_remove', [RolesUsersController::class,'remove'])
+->middleware('auth','admin')
+->name('roles_users.remove'); 
+
+
+## Revoke Roles From Users - (ADMINS ONLY)
+Route::post('roles_users_revoke', [RolesUsersController::class,'revoke'])
+->middleware('auth','admin')
+->name('roles_users.revoke'); 
+
+
 
 ## Loan Approvals - DLO
 Route::resource('loan_approvals', LoanApprovalsController::class)

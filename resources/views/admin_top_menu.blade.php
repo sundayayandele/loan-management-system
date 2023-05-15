@@ -163,6 +163,13 @@
               <i class="align-middle fas fa fa-user" ></i> <span class="align-middle" style="color:white">Users</span>
             </a>
 					</li>
+
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{route('roles_users.remove')}}">
+              <i class="align-middle fas fa fa-ban" ></i> <span class="align-middle" style="color:white">Revoke Roles </span>
+            </a>
+					</li>
 					
 			<li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('reminders.create')}}">

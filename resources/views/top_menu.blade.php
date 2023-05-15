@@ -124,21 +124,17 @@
             </a>
 					</li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="mailto:instafinance@gmail.com">
-              <i class="fas fa-question-circle"></i> <span class="align-middle" style="color:white">help</span>
-            </a>
-					</li>
+				
 				</ul>
 
 				<div class="sidebar-cta">
 					<div class="sidebar-cta-content">
-						<strong class="d-inline-block mb-2">Download our Android App</strong>
+						<strong class="d-inline-block mb-2">Eliana CashXpress</strong>
 						<div class="mb-3 text-sm">
-							Are you looking for a mobile app component? Download it for free here.
+						Our chatbot is designed to help you easily apply for a loan online. Whether you're a civil servant, private sector employee, or looking for an auto loan, our chatbot is here to guide you through the process!
 						</div>
 						<div class="d-grid">
-							<a href="upgrade-to-pro.html" class="btn btn-primary">Download</a>
+							<a href="upgrade-to-pro.html" class="btn btn-primary">Chat-Bot</a>
 						</div>
 					</div>
 				</div>
