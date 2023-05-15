@@ -307,6 +307,11 @@
     </div>
     </div>
 
+    <div class="col-xl-6">
+    <div class="">
+        {!! $chart_collections->container() !!}
+    </div>
+    </div>
 
 
 
