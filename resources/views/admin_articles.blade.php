@@ -21,98 +21,295 @@
     </script>
   </head>
   <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" id="nav"></nav>
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 ">
-
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header" style="font-weight:bold">PUBLISH ARTICLES AND NEW FEATURES</h1>
-
-          <form action="{{route('admin_articles')}}" method="POST" enctype="multipart/form-data">
-              @csrf
- <!-- Validation Errors -->
- <x-auth-validation-errors style="color:red" class="mb-4" :errors="$errors" />
-              
-<!--If published successfully-->
-
-<!--profilepicture set successfully--> 
-@if (session('published'))
-<div class="alert alert-primary alert-dismissible fade show " role="alert">
-          <div class="font-medium text-600">
-            <i class="fa-regular fa-bell"></i>
-        <strong>Hello there!</strong> You have some feedbacks
-        </div>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-           
-            {!! session('published') !!}
-       
-          </div>
-    </div>
-	@endif
-<br>
-            <div class="form-group">
-              <label for="title">Title</label>
-              <input type="text" name="title" class="form-control" id="title" placeholder="Title">
-            </div>
-            <div class="row">
-              <div class="col-xs-12 col-sm-7 col-md-9">
-                <div class="form-group">
-                  <textarea name="body" id="content"></textarea>
-                 <script>CKEDITOR.replace('content');</script>
-                </div>
-              </div>
-              <div class="col-xs-5 col-md-3">
-                <div class="form-group">
-                 @can('can-create-post')
-                  <button type="submit" class="btn btn-primary">Publish</button>
-                  @endcan
-                </div>
-               
-                <div class="form-group">
-                  <label for="status_id">Status</label>
-                  <select name="status_id" class="form-control">
-                    <option value="">Status 1</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="category_id">Category</label>
-                  <div class="checkbox">
-                  <label>
-                    <input type="checkbox" value="">
-                    Category 1
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" value="" disabled>
-                    Category 2
-                  </label>
-                </div>
-                <div class="form-group">
-                  <label for="metakeywords">Metakeywords</label>
-                  <textarea placeholder="Metakeywords" name="metakeywords" class="form-control" rows="2"></textarea>
-                  <p class="help-block">Separate the words with comma</p>
-                </div>
-                <div class="form-group">
-                  <label for="image">Image</label>
-                  <input type="file" name="image" id="image" class="form-control" />
-                  <p class="help-block">Image definitions</p>
-                </div>
-                <a href="#" class="thumbnail">
-                  <img src="http://fakeimg.pl/300/">
-                </a>
-              </div>
-            </div>
-          </form>
-
-        </div>
+<div class="grey-bg container-fluid">
+  <section id="minimal-statistics">
+    <div class="row">
+      <div class="col-12 mt-3 mb-1">
+        <h4 class="text-uppercase">Payments Analytics</h4>
+        <p>Statistics on incoming payments, today's payments and missed payments.</p>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-xl-4 col-sm-6 col-12"> 
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="align-self-center">
+                  <i class="fas fa-money-bill-wave primary font-large-2 float-left"></i>
+                </div>
+                <div class="media-body text-right">
+                  <h3><a href="{{route('users.index')}}">{{\App\Models\reg_employee_mst::count()}}</a></h3>
+                  <span>Incoming payments</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="align-self-center">
+                  <i class="fas fa-pound-sign warning font-large-2 float-left"></i>
+                </div>
+                <div class="media-body text-right">
+                  <h3><a href="{{route('messages')}}">{{\App\Models\message::count()}}</a></h3>
+                  <span>Todays Payments</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="align-self-center">
+                  <i class="fas fa-money-check-alt success font-large-2 float-left"></i>
+                </div>
+                <div class="media-body text-right">
+                  <h3> <h3><a href="{{route('emailsub')}}">{{\App\Models\emailsubscription::count()}}</a></h3></h3>
+                  <span>Missed Payments</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>      
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="row">
+      <div class="col-12 mt-3 mb-1">
+        <h4 class="text-uppercase">Web Analytics</h4>
+        <p>Statistics on users, emails, messages and loans.</p>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-xl-4 col-sm-6 col-12"> 
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="align-self-center">
+                  <i class="fas fa-tachometer primary font-large-2 float-left"></i>
+                </div>
+                <div class="media-body text-right">
+                  <h3><a href="{{route('users.index')}}">{{\App\Models\reg_employee_mst::count()}}</a></h3>
+                  <span>Users</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="align-self-center">
+                  <i class="icon-speech warning font-large-2 float-left"></i>
+                </div>
+                <div class="media-body text-right">
+                  <h3><a href="{{route('messages')}}">{{\App\Models\message::count()}}</a></h3>
+                  <span>Messages</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="align-self-center">
+                  <i class="icon-graph success font-large-2 float-left"></i>
+                </div>
+                <div class="media-body text-right">
+                  <h3> <h3><a href="{{route('emailsub')}}">{{\App\Models\emailsubscription::count()}}</a></h3></h3>
+                  <span>Emails</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>      
+    </div>
+
+ 
+     
+    <div class="row">
+      <div class="col-xl-4 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="media-body text-left">
+                <h3><a href="{{route('active_loans')}}">{{\App\Models\web_loan_application::where('approved',"=",1)->count()}}</a></h3>
+                  <span>Active Loans</span>
+                </div>
+                <div class="align-self-center">
+                  <i class="fas fa-money font-large-2 float-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="media-body text-left">
+                <h3><a href="{{route('pending_loans')}}">{{\App\Models\web_loan_application::where('approved',"=",2)->count()}}</a></h3>
+                  <span>Pending Loans</span>
+                </div>
+                <div class="align-self-center">
+                  <i class="icon-user success font-large-2 float-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-xl-4 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="media-body text-left">
+                <h3><a href="{{route('active_loans')}}">{{\App\Models\web_loan_application::where('approved',"=",3)->count()}}</a></h3>
+                  <span>Denied Loans</span>
+                </div>
+                <div class="align-self-center">
+                  <i class="fas fa-ban warning font-large-2 float-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>     
+    </div>
+  
+    <div class="row">
+      <div class="col-xl-4 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="media-body text-left">
+                <h3><a href="">K{{\App\Models\web_loan_application::where('approved',"=",1)->where('loan_type',"=",1)->sum('amount')}}</a></h3>
+                  <span>Disbursed - Payroll</span>
+                </div>
+                <div class="align-self-center">
+                  <i class="fas fa-wallet primary font-large-2 float-right"></i>
+                </div>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="media-body text-left">
+                <h3><a href="">K{{\App\Models\web_loan_application::where('approved',"=",1)->where('loan_type',"=",2)->sum('amount')}}</a></h3>
+                  <span>Disbursed - Private</span>
+                </div>
+                <div class="align-self-center">
+                  <i class="fas fa-wallet warning font-large-2 float-right"></i>
+                </div>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-xl-4 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="media-body text-left">
+                <h3><a href="">K{{\App\Models\web_loan_application::where('approved',"=",1)->where('loan_type',"=",3)->sum('amount')}}</a></h3>
+                  <span>Disbursed - Auto</span>
+                </div>
+                <div class="align-self-center">
+                  <i class="fas fa-money success font-large-2 float-right"></i>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+
+
+
+      
+
+
+      
+    </div>
+  </section>
+  
+
+
+
+
+</div>
+<!--Charts For Total Funds Disbursed-->
+
+<div class="row">
+  <div class="col-xl-6">
+    <div class="">
+        {!! $chart->container() !!}
+    </div>
+    </div>
+
+
+
+
 
   </body>
 </html>

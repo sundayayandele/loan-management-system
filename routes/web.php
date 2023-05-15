@@ -14,6 +14,7 @@ use App\Http\Controllers\loanapp;
 use App\Http\Controllers\RegisteredUsersController;
 use App\Http\Controllers\RemindersController;
 use App\Http\Controllers\LoanHistoryController;
+use App\Http\Controllers\AdminDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -427,9 +428,9 @@ Route::get('/dashboard', function () {
 //Verified 
 
 ## Admin Dashboard
-Route::get('/admindashboard', function () {
-    return view('admindashboard');
-})->middleware(['auth','admin'])->name('admindashboard');
+Route::get('/admindashboard', [AdminDashboardController::class,'dashboard'])
+->middleware(['auth','admin'])
+->name('admindashboard');
 
 
 require __DIR__.'/auth.php';
