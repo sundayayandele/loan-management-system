@@ -49,7 +49,7 @@ class PayrollRegisteredUserController extends Controller
             'emi' => ['required', 'numeric'],
             'firstname' => ['required', 'string','max:255'],
             'lastname' => ['required', 'string','max:255'],
-            'nrc' => ['required', 'string'],
+            'nrc' => ['required', 'string','unique:reg_employee_mst'],
             'email' => ['required', 'email','unique:reg_employee_mst'],
             'dob' => ['required','before:2005-01-01'],
             'phone' => ['required', 'string'],
@@ -85,8 +85,9 @@ class PayrollRegisteredUserController extends Controller
         ],
         [
             'dob.before' => 'The date of birth must be before 1st January 2005',
-			'email.unique' => "You are already a client, just Log In and apply.",
-			'phone.unique' => 'Only first time clients needs to do this. Returning clients just needs to log in and apply',
+			'email.unique' => "The Email address is aleady in use. You have already registered on our system. Just Log In and Apply",
+            'nrc.unique' => "The NRC is aleady in use. You have already registered on our system. Just Log In and Apply.",
+			'phone.unique' => 'The Phone is aleady in use. You have already registered on our system. Juts Log In and Apply',
             'gross.gte' => 'The gross amount must be greater than or equal to basic or net',
             'net.lt' => 'The net amount must be less than gross',
             'basic.lt' => 'The basic amount must be less than gross'
