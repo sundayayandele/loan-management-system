@@ -41,7 +41,7 @@
 
 	<!-- Header Section -->
 	<header class="header-section">
-		<a href="index.php" class="site-logo">
+		<a href="{{'/'}}" class="site-logo">
 		<h3><span style="color: white;">CASH</span><span style="color:royalblue">XPRESS</span></h3>
 		</a>
 		<nav class="header-nav">
@@ -223,7 +223,7 @@
 			</div>
 			
 			<div class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <strong>ELIANA-CASHXPRESS</strong>| This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://elianaconnect.com" target="_blank">elianaconnect</a>
+			Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <strong>ELIANA-CASHXPRESS</strong>| This website is made powered by <a style="color:royalblue" href="https://elianaconnect.com" target="_blank">Elianaconnect</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
 		</div>
 	</footer>

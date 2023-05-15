@@ -447,12 +447,40 @@ public function emailsub(){
 
 
 
+    public function add_message(Request $request){
+ 
+ $request->validate([
+    'name' => 'required|string',
+    'email' => 'required|email',
+    'subject' => 'required|string',
+    'message' => 'required|string'
+ ]);
+
+ message::create($request->all());
+
+
+ toast('We have recieved your Message. We will get in touch as soon as possible!','success');
+ return redirect('/');   
+       
+       
+      
+    } 
+
+
+
+
+
 public function message(){
  
     return view('Messages.index');
    
   
 } 
+
+
+
+
+
 
 
 

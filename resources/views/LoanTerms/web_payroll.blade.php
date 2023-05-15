@@ -6,7 +6,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="termsCheckTitle">Terms and Conditions - Starter Pack (Civil Servants)</h5>
+        <h5 class="modal-title" id="termsCheckTitle">Terms and Conditions - Starter Pack</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

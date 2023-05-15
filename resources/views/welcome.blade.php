@@ -40,7 +40,7 @@
 
 	<!-- Header Section -->
 	<header class="header-section">
-		<a href="index.php" class="site-logo">
+		<a href="{{'/'}}" class="site-logo">
 		<h3><span style="color: white;">CASH</span><span style="color:royalblue">XPRESS</span></h3>
 		</a>
 		<nav class="header-nav">
@@ -543,7 +543,7 @@ function group_loan(){
 				</div>
 			</div>
 			<div class="text-center pt-3">
-				<a href="#" class="site-btn sb-big">Get Started!</a>
+				<a href="#" class="site-btn sb-big" >Get Started!</a>
 			</div>
 		</div>
 	</section>
@@ -553,7 +553,7 @@ function group_loan(){
 	<!-- CTA Section end -->
 	<section class="cta-section set-bg" data-setbg="img/cta-bg.jpg">
 		<div class="container">
-			<h2>Already have a <strong>CASHXPRESS</strong> Account?</h2>
+			<h2>Already have a <strong style="color:royalblue">CASHXPRESS</strong> Account?</h2>
 			<h5>If you're returning client you just need to login and Apply.</h5>
 			<a href="{{route('login')}}" class="site-btn sb-dark sb-big">Login</a>
 		</div>
@@ -658,8 +658,8 @@ function group_loan(){
 													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem por incididunt ut labore et dolore mag na aliqua.  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti. Ut gravida mattis magna, non varius lorem sodales nec. In libero orci, ornare non nisl.</p>
 -->
 													<ul>
-							<li>+26 0972960400</li>
-							<li>info@elianacashxpress.com</li>
+							<li style="color:royalblue">+26 0972960400</li>
+							<li style="color:royalblue">info@elianacashxpress.com</li>
 						</ul>
 					</div>
 				</div>
@@ -687,7 +687,7 @@ function group_loan(){
 	<footer class="footer-section">
 		<div class="container">
 			<a href="" class="footer-logo">
-			<h3><span style="color: white;">CASH</span><span style="color:red">XPRESS</span></h3>
+			<h3><span style="color: white;">CASH</span><span style="color:royalblue">XPRESS</span></h3>
 			</a>
 			<div class="row">
 				<div class="col-lg-4 col-sm-6">
@@ -746,7 +746,7 @@ function group_loan(){
 			</div>
 			
 			<div class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <strong>ELIANA-CASHXPRESS</strong>| This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://elianaconnect.com" target="_blank">elianaconnect</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <strong>ELIANA-CASHXPRESS</strong>| This website is made powered by <a style="color:royalblue" href="https://elianaconnect.com" target="_blank">Elianaconnect</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
 		</div>
 	</footer>

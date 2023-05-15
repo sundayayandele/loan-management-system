@@ -45,7 +45,7 @@
 
 	<!-- Header Section -->
 	<header class="header-section">
-		<a href="index.php" class="site-logo">
+		<a href="{{'/'}}" class="site-logo">
 		<h3><span style="color: white;">CASH</span><span style="color:royalblue">XPRESS</span></h3>
 		</a>
 		<nav class="header-nav">
@@ -101,17 +101,31 @@
 					</div>
 				</div>
 				<div class="col-lg-8">
-					<form class="contact-form">
+					<form class="contact-form" action="{{route('add_message')}}" method="post">
+						@csrf
 						<div class="row">
 							<div class="col-md-6">
-								<input type="text" placeholder="Your Name">
+								<input type="text" name="name" value="{{ old('name') }}" class="@error('name') is-invalid @enderror" placeholder="Your Full Name">
 							</div>
+							@error('name')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror
+
 							<div class="col-md-6">
-								<input type="text" placeholder="Your E-mail">
+								<input type="text" name="email" value="{{ old('email') }}" class="@error('email') is-invalid @enderror" placeholder="Your E-mail">
 							</div>
+							@error('email')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror
 							<div class="col-md-12">
-								<input type="text" placeholder="Subject">
-								<textarea placeholder="Your Message"></textarea>
+								<input type="text" placeholder="Subject" value="{{ old('subject') }}" name="subject" class="@error('subject') is-invalid @enderror">
+								@error('subject')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror
+								<textarea placeholder="Your Message" value="{{ old('message') }}" name="message" class="@error('message') is-invalid @enderror"></textarea>
+								@error('message')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror
 								<button class="site-btn">send message</button>
 							</div>
 						</div>
@@ -195,7 +209,7 @@
 			</div>
 			
 			<div class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <strong>ELIANA-CASHXPRESS</strong>| This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://elianaconnect.com" target="_blank">elianaconnect</a>
+			Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <strong>ELIANA-CASHXPRESS</strong>| This website is made powered by <a style="color:royalblue" href="https://elianaconnect.com" target="_blank">Elianaconnect</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
 		</div>
 	</footer>

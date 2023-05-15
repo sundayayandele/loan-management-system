@@ -145,7 +145,7 @@ Commom elements
 	padding: 22px 35px;
 	border-radius: 50px;
 	text-transform: uppercase;
-	background: #f43f00;
+	background: royalblue;
 	color: #fff;
 	line-height: normal;
 	cursor: pointer;
@@ -524,7 +524,7 @@ Header section
 	color: #fff;
 	font-size: 16px;
 	font-weight: 700;
-	background: #313038;
+	background: royalblue;
 	padding: 36px 30px 36px 60px;
 	line-height: 1.2;
 	position: relative;
@@ -538,7 +538,7 @@ Header section
 	left: 12px;
 	display: inline-block;
 	text-align: center;
-	background: #f43f00;
+	background: royalblue;
 	border-radius: 50%;
 	font-size: 16px;
 	font-weight: 300;
@@ -547,7 +547,7 @@ Header section
 }
 
 .header-right .hr-btn.hr-btn-2 {
-	background: #f43f00;
+	background: royalblue;
 	padding: 36px 20px;
 	min-width: 236px;
 	text-align: center;

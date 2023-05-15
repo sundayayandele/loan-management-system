@@ -124,7 +124,11 @@ Route::get('/emails-all', [loanapp::class, 'all_emails'])
 ->name('all_emails'); 
 
 
-## Read Clients Messages and queiries which were sent from the Web (ADMIN ONLY)
+## Add Messages and queries which were sent from the Web
+Route::post('/add_messages', [loanapp::class, 'add_message'])
+->middleware('guest')->name("add_message");
+
+## Read Clients Messages and queries which were sent from the Web (ADMIN ONLY)
 Route::get('/messages', [loanapp::class, 'message'])
 ->middleware('admin','auth')->name("messages");
 
