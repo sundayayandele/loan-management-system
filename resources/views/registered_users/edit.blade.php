@@ -179,7 +179,7 @@
                     <div class="row">
                       <div class="col-lg-6 col-md-6 col-sm-12">
                       <div class="form-group">
-                        <label for="position">Position</label><small class="text-danger">*</small>
+                        <label for="position">Position</label>
                         <input type="text" name="position" class="form-control @error('position') is-invalid @enderror" id="position" autocomplete="off" value="{{ old('position', $employee->position) }}" >
                         @error('position')
     <div class="alert alert-danger">{{ $message }}</div>

@@ -165,21 +165,21 @@ public function all_users(Request $request){
         $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'mannumber' => 'required|string',
+            'mannumber' => 'nullable|string',
             'gender' => 'required|string',
             'marital_status' => 'required|string',
             'phone' => 'required|string',
             'nrc' => 'required|string',
-            'dob' => 'required|date',
+            'dob' => 'required|before:2005-01-01',
             'address' => 'required|string',
             'email' => 'required|email',
-            'position' => 'required|string',
+            'position' => 'nullable|string',
             'net_salary' => 'required|numeric',
             'bank_id' => 'required|string',
             'bank_branch' => 'required|string',
             'bank_account_number' => 'required|string',
             'bank_account_name' => 'required|string',
-            'mobile_money_number' => 'required|numeric',
+            'mobile_money_number' => 'required|string',
             'mobile_money_name' => 'required|string',
             
         ]);
@@ -199,10 +199,10 @@ public function all_users(Request $request){
     $personalDetails->position=$request->input('position');
     $personalDetails->net_salary=$request->input('net_salary');
     $personalDetails->bank_id=$request->input('bank_id');
-    $personalDetails->bank_branch=$request->input('bank_branch');
-    $personalDetails->bank_account_number=$request->input('bank_account_number');
+    $personalDetails->bank_branch_id=$request->input('bank_branch');
+    $personalDetails->bank_account_no=$request->input('bank_account_number');
     $personalDetails->bank_account_name=$request->input('bank_account_name');
-    $personalDetails->mobile_money_number=$request->input('mobile_money_number');
+    $personalDetails->mobile_money_no=$request->input('mobile_money_number');
     $personalDetails->mobile_money_name=$request->input('mobile_money_name');
     $personalDetails->save();
 
