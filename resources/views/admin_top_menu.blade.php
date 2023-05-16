@@ -16,22 +16,12 @@
 <link href="{{asset('landing_page/img/apple-touch-icon.png')}}" rel="shortcut icon"/>
 
 
-<!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <!--Fontawesome--> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-<!--Fontawsome--> 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<!--End fontawesome-->
-
 
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
@@ -47,6 +37,7 @@
 </head>
 
 <body>
+	
 @include('sweetalert::alert')
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
@@ -56,7 +47,7 @@
         </a>
 
 				<ul class="sidebar-nav">
-					<li class="sidebar-header">
+					<li class="sidebar-header" style="font-size:14px;font-weight:bold">
 						Web Analytics
 					</li>
 
@@ -87,7 +78,7 @@
 					</li>
 
 
-					<li class="sidebar-header">
+					<li class="sidebar-header" style="font-size:14px;font-weight:bold">
 						Loans
 					</li>
 
@@ -125,7 +116,7 @@
 				
 
 				
-			<li class="sidebar-header">
+			<li class="sidebar-header" style="font-size:14px;font-weight:bold">
 						My Approvals
 					</li>
 					<li class="sidebar-item">

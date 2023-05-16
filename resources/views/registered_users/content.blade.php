@@ -30,12 +30,19 @@
   </tbody>
 </table>
 
+<style> 
 
+.modal-backdrop {
+  display: none;
+}
+
+
+</style>
 <!--Bootstrap Modal -->    
 
 
 <!-- Modal -->
-<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="delete-modal-label" aria-hidden="true">
+<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="delete-modal-label" aria-hidden="true" >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
