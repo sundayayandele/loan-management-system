@@ -31,7 +31,7 @@ class AdminsProfileController extends Controller
         $user_hashed_password = api_logins_mst::where('employee_id',"=",auth()->user()->employee_id)->firstOrFail();
 
         if (Hash::check($request->old_password,$user_hashed_password->password)) {
-            $user_hashed_password->password = $request->new_password;
+            $user_hashed_password->password = Hash::make($request->password);
             $user_hashed_password->save();
             toast('Your password has been changed successfully!','success');
             return redirect()->route('admindashboard');
