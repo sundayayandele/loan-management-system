@@ -43,6 +43,12 @@ $currentDate = \Carbon\Carbon::now();
 $tenDaysFromNow = $currentDate->addDays(10);
 $incoming_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->where('updated_at', '<=', $tenDaysFromNow)->count();
 
+
+
+
+$today = \Carbon\Carbon::today();
+$thirtyDaysAgo = $today->subDays(30);
+$todays_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->where('updated_at', '=', $thirtyDaysAgo)->count();
 @endphp
 
 
@@ -77,7 +83,7 @@ $incoming_payments = \App\Models\transactionHistory::where('balance_due',">",0 )
                   <i class="fas fa-pound-sign warning font-large-2 float-left"></i>
                 </div>
                 <div class="media-body text-right">
-                  <h3><a href="{{route('messages')}}">{{\App\Models\message::count()}}</a></h3>
+                  <h3><a href="{{route('todays_payments')}}">{{$todays_payments}}</a></h3>
                   <span>Todays Payments</span>
                 </div>
               </div>
