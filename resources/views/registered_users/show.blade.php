@@ -19,7 +19,7 @@
         <div class="card mb-4">
           <div class="card-body text-center">
           @if($employee->profilepic)
-            <img src="{{asset('attachments_loans/'.$employee->profilepic)}}" alt="avatar"
+            <img src="{{asset('attatchments_loans/'.$employee->profilepic)}}" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;">
               @else 
               <img src="{{asset('avatar.png')}}" alt="avatar"
