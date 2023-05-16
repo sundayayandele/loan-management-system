@@ -104,6 +104,21 @@
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0">{{ $employee->nrc }}</p>
+
+<!--Show NRC Fie--> 
+@php 
+$attachments = $employee->reg_employee_attachment()->get();
+@endphp
+@forelse ($attachments as $files)
+        <a href="{{asset('attatchments_loans/'.$files->attachment_name)}}">NRC FILE</a>
+        <br>
+        @empty
+        <p>No files attached</p>
+        @endforelse
+
+<!--End showing NRC File-->
+
+
               </div>
             </div>
             <hr>
