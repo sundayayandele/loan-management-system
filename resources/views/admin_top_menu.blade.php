@@ -242,8 +242,12 @@
 								<!--Profile Route-->
 					
                                
-                    <a class="dropdown-item" href="{{route('emailsub')}}">
-              <i class="align-middle fas fa-envelope" ></i> <span class="align-middle"> Email Subscribers</span>
+                    <a class="dropdown-item" href="{{route('admin_profile')}}">
+              <i class="align-middle fas fa-user" ></i> <span class="align-middle">Profile</span>
+            </a>					
+					
+			<a class="dropdown-item" href="{{route('emailsub')}}">
+              <i class="align-middle fas fa-key" ></i> <span class="align-middle"> Change Password</span>
             </a>					
 					
 								<!--End profile route-->	
@@ -252,9 +256,7 @@
 
 							
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="{{route('password.request')}}"><i class="align-middle me-1" data-feather="settings"></i> Change password</a>
-                                <hr>
-
+								
 						<div class="dropdown-item">		
                         <!-- Log Out -->
                         <form method="POST" action="{{ route('logout') }}">

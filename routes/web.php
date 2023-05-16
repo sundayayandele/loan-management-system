@@ -18,6 +18,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\IncomingPaymentsController;
 use App\Http\Controllers\TodaysPaymentsController;
 use App\Http\Controllers\MissedPaymentsController;
+use App\Http\Controllers\AdminsProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -444,7 +445,10 @@ Route::get('all_missed_payments', [MissedPaymentsController::class,'missed_payme
 ->name('all_missed_payments');  
 
 
-
+## Admins Profile
+Route::get('admins_profile', [AdminsProfileController::class,'index'])
+->middleware('auth','admin')
+->name('admin_profile');  
 
 
 

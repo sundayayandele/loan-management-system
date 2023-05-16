@@ -37,7 +37,14 @@ public function active_loans(Request $request){
                 }
              })   
              ->addColumn('mannumber', function($data){
-                 return reg_employee_mst::find($data->employee_id)->mannumber;
+                 $employee = reg_employee_mst::find($data->employee_id);
+                 if($employee){
+                    return $employee->mannumber;
+                 }
+                 else{
+                    return 'N/A';
+                 }
+                 
              })   
              ->addColumn('company_id', function($data){
                 
