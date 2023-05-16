@@ -26,6 +26,11 @@
               class="rounded-circle img-fluid" style="width: 150px;">
               @endif
             <h5 class="my-3">{{ $employee->firstname.' '.$employee->lastname }}</h5>
+            <p>
+            @if($employee->signature)
+        <img src="{{asset('attatchments_loans/'.$employee->signature->getSignatureImagePath())}}" width="100" height="100"/>
+        @endif
+</p>
             <p class="text-muted mb-1">{{ $employee->email }}</p>
             <p class="text-muted mb-1">{{ $employee->position }}</p>
             <p class="text-muted mb-4">{{ $employee->province_id }}</p>
