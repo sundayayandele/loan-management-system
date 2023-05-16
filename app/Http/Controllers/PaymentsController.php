@@ -53,9 +53,9 @@ class PaymentsController extends Controller
         // The Loan Number exists and everything is fine upto here Now
         // Check if the Loan Number is active|pending|completed
        $loan_status = web_loan_application::where('loan_number',"=",$request->loan_number)->where('approved',"=",1)->exists();
-if($loan_status){
+      if($loan_status){
      
-      // Update or create Transactions
+      // Create Transactions
       transactionHistory::create([    
         'loan_number' => $request->loan_number,
         'loan_amount' => $request->loan_amount,

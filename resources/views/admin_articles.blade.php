@@ -37,6 +37,19 @@
       </div>
     </div>
 
+@php 
+
+$currentDate = \Carbon\Carbon::now();
+$tenDaysFromNow = $currentDate->addDays(10);
+$incoming_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->where('updated_at', '<=', $tenDaysFromNow)->count();
+
+@endphp
+
+
+
+
+
+
     <div class="row">
       <div class="col-xl-4 col-sm-6 col-12"> 
         <div class="card">
@@ -47,7 +60,7 @@
                   <i class="fas fa-money-bill-wave primary font-large-2 float-left"></i>
                 </div>
                 <div class="media-body text-right">
-                  <h3><a href="{{route('users.index')}}">{{\App\Models\reg_employee_mst::count()}}</a></h3>
+                  <h3><a href="{{route('incoming_payments')}}">{{$incoming_payments}}</a></h3>
                   <span>Incoming payments</span>
                 </div>
               </div>
@@ -325,6 +338,17 @@
   
 
 
+  <script src="{{ $chart->cdn() }}"></script>
+
+{{ $chart->script() }}
+
+<script src="{{ $chart_collections->cdn() }}"></script>
+
+{{ $chart_collections->script() }}
+
+<script src="{{ $registered_users->cdn() }}"></script>
+
+{{ $registered_users->script() }}
 
 
   </body>

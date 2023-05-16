@@ -15,6 +15,9 @@ use App\Http\Controllers\RegisteredUsersController;
 use App\Http\Controllers\RemindersController;
 use App\Http\Controllers\LoanHistoryController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\IncomingPaymentsController;
+use App\Http\Controllers\TodaysPaymentsController;
+use App\Http\Controllers\MissedPaymentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -400,6 +403,47 @@ Route::get('view_all_permissions', [RolesUsersController::class,'show_all_permis
 Route::get('get_all_permissions', [RolesUsersController::class,'get_all_permissions_from_a_user'])
 ->middleware('auth','admin')
 ->name('get_all_permissions');  
+
+
+## get all incoming payments in 10 days
+Route::get('incoming_payments', [IncomingPaymentsController::class,'index'])
+->middleware('auth','admin')
+->name('incoming_payments');  
+
+
+## get all incoming payments via Ajax
+Route::get('all_incoming_payments', [IncomingPaymentsController::class,'incoming_payments'])
+->middleware('auth','admin')
+->name('all_incoming_payments');  
+
+
+
+
+## get todays payments
+Route::get('todays_payments', [TodaysPaymentsController::class,'index'])
+->middleware('auth','admin')
+->name('todays_payments');  
+
+
+## get all todays payments via Ajax
+Route::get('all_todays_payments', [TodaysPaymentsController::class,'todays_payments'])
+->middleware('auth','admin')
+->name('all_todays_payments');  
+
+
+
+## get missed payments
+Route::get('issed_payments', [MissedPaymentsController::class,'index'])
+->middleware('auth','admin')
+->name('missed_payments');  
+
+
+## get all missed payments via Ajax
+Route::get('all_missed_payments', [MissedPaymentsController::class,'missed_payments'])
+->middleware('auth','admin')
+->name('all_missed_payments');  
+
+
 
 
 
