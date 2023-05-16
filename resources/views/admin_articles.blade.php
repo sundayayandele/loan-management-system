@@ -44,11 +44,15 @@ $tenDaysFromNow = $currentDate->addDays(10);
 $incoming_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->where('updated_at', '<=', $tenDaysFromNow)->count();
 
 
-
-
 $today = \Carbon\Carbon::today();
 $thirtyDaysAgo = $today->subDays(30);
 $todays_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->where('updated_at', '=', $thirtyDaysAgo)->count();
+
+
+$tenDaysAgo = $currentDate->subDays(10);
+$missed_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->where('updated_at', '>=', $tenDaysFromNow)->count();
+
+
 @endphp
 
 
@@ -100,7 +104,7 @@ $todays_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->
                   <i class="fas fa-money-check-alt success font-large-2 float-left"></i>
                 </div>
                 <div class="media-body text-right">
-                  <h3> <h3><a href="{{route('emailsub')}}">{{\App\Models\emailsubscription::count()}}</a></h3></h3>
+                  <h3> <h3><a href="{{route('missed_payments')}}">{{$missed_payments}}</a></h3></h3>
                   <span>Missed Payments</span>
                 </div>
               </div>
