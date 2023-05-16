@@ -246,7 +246,7 @@
               <i class="align-middle fas fa-user" ></i> <span class="align-middle">Profile</span>
             </a>					
 					
-			<a class="dropdown-item" href="{{route('emailsub')}}">
+			<a class="dropdown-item" href="{{route('admin_change_password')}}">
               <i class="align-middle fas fa-key" ></i> <span class="align-middle"> Change Password</span>
             </a>					
 					

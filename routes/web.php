@@ -451,6 +451,19 @@ Route::get('admins_profile', [AdminsProfileController::class,'index'])
 ->name('admin_profile');  
 
 
+## Admin Change Password
+Route::get('admin_change_password', [AdminsProfileController::class,'create'])
+->middleware('auth','admin')
+->name('admin_change_password');  
+
+
+
+## Admin Store Password
+Route::post('admin_store_password', [AdminsProfileController::class,'store'])
+->middleware('auth','admin')
+->name('admin_store_password');  
+
+
 
 
 ## If the Called Route is not found call this Route
