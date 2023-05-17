@@ -70,7 +70,7 @@ Route::get('/messages', [loanapp::class, 'message'])
 
 ## Retrieve all messages via AJAX 
 Route::get('/messages-all', [loanapp::class, 'all_messages'])
-middleware('auth','permission:can-view-messages')
+->middleware('auth','permission:can-view-messages')
 ->name('all_messages');
 
 
@@ -118,30 +118,30 @@ Route::post('/loanapplication/{id}', [loanapp::class, 'loanSubmit'])
 
 
 
-## Loan Applications Review (ADMINS ONLY)
+## Loan Applications Review 
 Route::get('review', [loanapp::class, 'review'])
 ->middleware('auth','permission:can-approve-loan-applications')->name('review');
 
 
 
-##Loan Applications - Review Verfied Loans (ADMINS ONLY)
+##Loan Applications - Review Verfied Loans 
 Route::get('reviewed_loans', [loanapp::class, 'reviewed_loans'])
 ->middleware('auth','permission:can-approve-loan-applications')->name('reviewed_loans');
 
 
 
-## Loan Applications - Approve (ADMINS ONLY)
+## Loan Applications - Approve 
 Route::post('approve_or_denie', [loanapp::class, 'approve'])
 ->middleware('auth','permission:can-approve-loan-applications')->name('approve_or_denie');
 
 
     
-## Regisered Users - CRUD - (ADMINS ONLY)
+## Regisered Users - CRUD - 
 Route::resource('users', RegisteredUsersController::class)
 ->middleware('auth','permission:can-view-registered-users');     
 
 
-## Retrieve all registeeed users via AJAX 
+## Retrieve all regisitered users via AJAX 
 Route::get('/users-all', [RegisteredUsersController::class, 'all_users'])
 ->middleware('auth','permission:can-view-registered-users')
 ->name('all_users'); 
@@ -184,7 +184,7 @@ Route::get('/pending-all', [PendingLoansController::class, 'pending_loans'])
 ->name('all_pending_loans'); 
 
 
-## Update Payments - CRUD - (ADMINS ONLY)
+## Update Payments - CRUD - 
 Route::resource('payments', PaymentsController::class)
 ->middleware('auth','permission:can-make-payments-update');  
 
@@ -208,13 +208,13 @@ Route::resource('roles_users', RolesUsersController::class)
 ->middleware('auth','permission:can-give-roles-to-users'); 
 
 
-## Show View For Revoking Roles From Users - (ADMINS ONLY)
+## Show View For Revoking Roles From Users - 
 Route::get('roles_users_remove', [RolesUsersController::class,'remove'])
 ->middleware('auth','permission:can-revoke-roles')
 ->name('roles_users.remove'); 
 
 
-## Revoke Roles From Users - (ADMINS ONLY)
+## Revoke Roles From Users - 
 Route::post('roles_users_revoke', [RolesUsersController::class,'revoke'])
 ->middleware('auth','permission:can-revoke-roles')
 ->name('roles_users.revoke'); 
@@ -417,7 +417,7 @@ Route::get('/dashboard', function () {
 
 ## Admin Dashboard
 Route::get('/admindashboard', [AdminDashboardController::class,'dashboard'])
-->middleware(['auth','admin'])
+->middleware(['auth','permission:dlo|cfo|super-admin'])
 ->name('admindashboard');
 
 
