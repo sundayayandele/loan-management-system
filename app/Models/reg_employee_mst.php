@@ -14,6 +14,14 @@ class reg_employee_mst extends Authenticatable implements CanBeSigned
 {
     use HasRoles, HasFactory, Notifiable, RequiresSignature;
 
+
+    public function hasAnyRole()
+    {
+        return $this->roles()->exists();
+    }
+
+
+
     public function api_logins_mst()
     {
         // Primary id in parent table and the Foreign key in child table

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 use Illuminate\Support\Facades\Redirect;
+use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->admin == 1){
+        if(auth()->user()->hasAnyRole()){
             return $next($request);
         }
    

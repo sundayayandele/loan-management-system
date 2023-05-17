@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             [
                 'firstname' => 'super-admin',
                 'lastname' => 'administrator',
-                'nrc' => '123456/78/9',
+                'nrc' => '123456789',
                 'email' => 'admin@admin.com',
                 'password' => '$2y$10$dD8yarAAR8v75qt7ekre1utGJE7dA0PS2Ge5FLX9OkPxVBzMIBAcC', // test1234
                 'role' => 'super-admin'
@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
             [
                 'firstname' => 'chief financial officer',
                 'lastname' => 'cfo',
-                'nrc' => '123456/18/9',
+                'nrc' => '123456189',
                 'email' => 'cfo@cfo.com',
                 'password' => '$2y$10$dD8yarAAR8v75qt7ekre1utGJE7dA0PS2Ge5FLX9OkPxVBzMIBAcC', // test1234
                 'role' => 'cfo'
@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
             [
                 'firstname' => 'divisional loan officer',
                 'lastname' => 'dlo',
-                'nrc' => '123456/12/1',
+                'nrc' => '123456121',
                 'email' => 'dlo@dlo.com',
                 'password' => '$2y$10$dD8yarAAR8v75qt7ekre1utGJE7dA0PS2Ge5FLX9OkPxVBzMIBAcC', // test1234
                 'role' => 'dlo'
