@@ -51,17 +51,17 @@ class UserSeeder extends Seeder
         ];
 
         foreach ($factoryUsers as $user) {
-            $newUser =  reg_employee_mst::factory()->create([
+            $newUser =  reg_employee_mst::create([
                 'firstname' => $user['firstname'],
                 'lastname' => $user['lastname'],
                 'email' => $user['email'],
                 'nrc' => $user['nrc'],
             ]);
 
-            $newUser =  api_logins_mst::factory()->create([
+            $new =  api_logins_mst::create([
                 'nrc' => $user['nrc'],
                 'password' => $user['password'],
-                'employee_id' => reg_employee_mst::where('email',"=",$user['email'])->first()->employee_id;
+                'employee_id' => reg_employee_mst::where('email',"=",$user['email'])->first()->employee_id
             ]);
             $newUser->assignRole($user['role']);
         }
