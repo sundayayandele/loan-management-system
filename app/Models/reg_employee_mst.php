@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Permission;
 use Creagia\LaravelSignPad\Concerns\RequiresSignature;
 use Creagia\LaravelSignPad\Contracts\CanBeSigned;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -20,9 +21,8 @@ class reg_employee_mst extends Authenticatable implements CanBeSigned
         return $this->roles()->exists();
     }
 
-
-
-    public function api_logins_mst()
+    
+   public function api_logins_mst()
     {
         // Primary id in parent table and the Foreign key in child table
         return $this->hasOne(api_logins_mst::class, 'employee_id','employee_id');

@@ -150,21 +150,24 @@ else{
 
     public function get_all_permissions_from_a_user(){
        
-$data = reg_employee_mst::with('permissions')->get();
+        $data = reg_employee_mst::with('roles.permissions')->get();
 
-return Datatables::of($data)
-    ->addIndexColumn()
-    ->addColumn('user', function($data){
-        return $data->firstname. ' '.$data->lastname;
-    })
-    ->addColumn('email', function($data){
-        return $data->email;
-    })
-    ->addColumn('permissions', function($data){
-        $permissions = $data->permissions->pluck('name')->implode(', ');
-        return $permissions;
-    })
-    ->rawColumns(['user','email', 'permissions'])
-    ->make(true);
+        return Datatables::of($data)
+            ->addIndexColumn()
+            ->addColumn('user', function ($data) {
+                return $data->firstname . ' ' . $data->lastname;
+            })
+            ->addColumn('email', function ($data) {
+                return $data->email;
+            })
+            ->addColumn('permissions', function ($data) {
+                $permissions = $data->roles->flatMap(function ($role) {
+                    return $role->permissions;
+                })->pluck('name')->implode(', ');
+    
+                return $permissions;
+            })
+            ->rawColumns(['user', 'email', 'permissions'])
+            ->make(true);
     }
 }
