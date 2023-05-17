@@ -413,11 +413,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-//Verified 
-
 ## Admin Dashboard
 Route::get('/admindashboard', [AdminDashboardController::class,'dashboard'])
-->middleware(['auth'])
+->middleware(['auth','role'])
 ->name('admindashboard');
 
 

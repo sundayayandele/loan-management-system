@@ -50,11 +50,10 @@ class AuthenticatedSessionController extends Controller
             
             Auth::login($user);        
 
-
-            if (auth()->user()->admin == 1) {
+            if ($user->hasAnyRole()) {
                 return redirect()->intended(RouteServiceProvider::ADMIN);
-            } 
-            
+            }
+                       
             else {   
 
                 //Log In the user to the Clients Dashboard now

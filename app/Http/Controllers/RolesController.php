@@ -41,19 +41,28 @@ class RolesController extends Controller
     public function store(Request $request)
     {
       
-        {
-            $roles = $request->input('roles');
-            foreach ($roles as $role) {
-                DB::table('roles')->insert([
-                    'name' => $role,
-                    'guard_name' => 'web',
-                    'created_at' => date("Y-m-d H:i:s"),
-                    'updated_at' => date("Y-m-d H:i:s"),
-                ]);
-            }
+       
+        $roles = $request->input('roles');
+    
+        $existingRoles = DB::table('roles')
+            ->whereIn('name', $roles)
+            ->pluck('name')
+            ->toArray();
+        
+        $uniqueRoles = array_diff($roles, $existingRoles);
+        
+        foreach ($uniqueRoles as $role) {
+            DB::table('roles')->insert([
+                'name' => $role,
+                'guard_name' => 'web',
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s"),
+            ]);
+        }
+    
             toast('Roles Added Successfully!','success');
             return redirect()->back();   
-        }
+       
     }
 
     /**
