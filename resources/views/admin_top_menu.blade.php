@@ -60,8 +60,26 @@
   opacity: 0.5; /* make the div 50% translucent */
   color: #999; /* grey out the text */
   cursor: default; /* make it unclickable */
-  pointer-events: none; /* prevent mouse events from firing */
 }
+
+.no-permission:hover {
+  position: relative; /* ensure the tooltip is positioned relative to this element */
+}
+
+.no-permission:hover::after {
+  content: 'You don\'t have permission to view this';
+  position: absolute; /* position the tooltip relative to the .no-permission element */
+  top: 100%; /* adjust the top position to place the tooltip below the element */
+  left: 0;
+  background-color: #333; /* background color of the tooltip */
+  color: #fff; /* text color of the tooltip */
+  padding: 4px 8px; /* padding of the tooltip */
+  border-radius: 4px; /* rounded corners */
+  font-size: 14px; /* font size of the tooltip */
+}
+
+
+
 
 </style>
 					@can('can-view-emails')
@@ -144,7 +162,7 @@
 					</li>
 					@else
 
-					<li class="sidebar-item">
+					<li class="sidebar-item no-permission">
                     <a class="sidebar-link" href="{{route('pending_loans')}}">
               <i class="align-middle fas fa-clock-o" ></i> <span class="align-middle" style="color:white">Pending Loans</span>
             </a>					
@@ -159,7 +177,7 @@
             </a>					
 					</li>
 					@else
-					<li class="sidebar-item">
+					<li class="sidebar-item no-permission">
                     <a class="sidebar-link" href="{{route('payments.create')}}">
               <i class="align-middle fas fa-money" ></i> <span class="align-middle" style="color:white">Payments updates</span>
             </a>					
@@ -212,6 +230,23 @@
 					@else
 
 					<li class="sidebar-item no-permission">
+						<a class="sidebar-link" href="{{route('review')}}">
+              <i class="align-middle fas fa-copy" ></i> <span class="align-middle" style="color:white">Review Loans - CFO</span>
+            </a>
+					</li>
+
+
+					@endcan
+
+					@can('can-approve-loan-applications')
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{route('reviewed_loans')}}">
+              <i class="align-middle fas fa-copy" ></i> <span class="align-middle" style="color:white">Review Loans - ADMIN</span>
+            </a>
+					</li>
+					@else
+					<li class="sidebar-item no-permission">
 						<a class="sidebar-link" href="{{route('reviewed_loans')}}">
               <i class="align-middle fas fa-copy" ></i> <span class="align-middle" style="color:white">Review Loans - ADMIN</span>
             </a>
@@ -243,7 +278,7 @@
 					</li>
 
 @else
-<li class="sidebar-item n0-permission">
+<li class="sidebar-item no-permission">
 						<a class="sidebar-link" href="{{route('roles.create')}}">
               <i class="align-middle fas fa-user-plus" ></i> <span class="align-middle" style="color:white">Roles</span>
             </a>

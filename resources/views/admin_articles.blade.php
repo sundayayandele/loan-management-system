@@ -69,10 +69,18 @@ $missed_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->
                 <div class="align-self-center">
                   <i class="fas fa-money-bill-wave primary font-large-2 float-left"></i>
                 </div>
+@can('can-check-incoming-payments')
                 <div class="media-body text-right">
                   <h3><a href="{{route('incoming_payments')}}">{{$incoming_payments}}</a></h3>
                   <span>Incoming payments</span>
                 </div>
+                @else
+                <div class="media-body text-right no-permission">
+                  <h3><a href="{{route('incoming_payments')}}">{{$incoming_payments}}</a></h3>
+                  <span>Incoming payments</span>
+                </div>
+                @endcan
+
               </div>
             </div>
           </div>
@@ -86,10 +94,18 @@ $missed_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->
                 <div class="align-self-center">
                   <i class="fas fa-pound-sign warning font-large-2 float-left"></i>
                 </div>
+@can('can-check-todays-payments')
                 <div class="media-body text-right">
                   <h3><a href="{{route('todays_payments')}}">{{$todays_payments}}</a></h3>
                   <span>Todays Payments</span>
                 </div>
+@else
+<div class="media-body text-right no-permission">
+                  <h3><a href="{{route('todays_payments')}}">{{$todays_payments}}</a></h3>
+                  <span>Todays Payments</span>
+                </div>
+
+@endcan
               </div>
             </div>
           </div>
@@ -103,10 +119,20 @@ $missed_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->
                 <div class="align-self-center">
                   <i class="fas fa-money-check-alt success font-large-2 float-left"></i>
                 </div>
+@can('can-check-missed-payments')
                 <div class="media-body text-right">
                   <h3> <h3><a href="{{route('missed_payments')}}">{{$missed_payments}}</a></h3></h3>
                   <span>Missed Payments</span>
                 </div>
+                @else
+                <div class="media-body text-right no-permission">
+                  <h3> <h3><a href="{{route('missed_payments')}}">{{$missed_payments}}</a></h3></h3>
+                  <span>Missed Payments</span>
+                </div>
+
+                @endcan
+
+
               </div>
             </div>
           </div>
@@ -143,10 +169,17 @@ $missed_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->
                 <div class="align-self-center">
                   <i class="fas fa-tachometer primary font-large-2 float-left"></i>
                 </div>
+                @can('can-view-registered-users')
                 <div class="media-body text-right">
                   <h3><a href="{{route('users.index')}}">{{\App\Models\reg_employee_mst::count()}}</a></h3>
                   <span>Users</span>
                 </div>
+                @else
+                <div class="media-body text-right no-permission">
+                  <h3><a href="{{route('users.index')}}">{{\App\Models\reg_employee_mst::count()}}</a></h3>
+                  <span>Users</span>
+                </div>
+                @endcan
               </div>
             </div>
           </div>
@@ -160,10 +193,17 @@ $missed_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->
                 <div class="align-self-center">
                   <i class="icon-speech warning font-large-2 float-left"></i>
                 </div>
+                @can('can-view-messages')
                 <div class="media-body text-right">
                   <h3><a href="{{route('messages')}}">{{\App\Models\message::count()}}</a></h3>
                   <span>Messages</span>
                 </div>
+                @else
+                <div class="media-body text-right no-permission">
+                  <h3><a href="{{route('messages')}}">{{\App\Models\message::count()}}</a></h3>
+                  <span>Messages</span>
+                </div>
+                @endcan
               </div>
             </div>
           </div>
@@ -177,10 +217,17 @@ $missed_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->
                 <div class="align-self-center">
                   <i class="fas fa-envelope success font-large-2 float-left"></i>
                 </div>
+                @can('can-view-emails')
                 <div class="media-body text-right">
                   <h3> <h3><a href="{{route('emailsub')}}">{{\App\Models\emailsubscription::count()}}</a></h3></h3>
                   <span>Emails</span>
                 </div>
+                @else
+                <div class="media-body text-right no-permission">
+                  <h3> <h3><a href="{{route('emailsub')}}">{{\App\Models\emailsubscription::count()}}</a></h3></h3>
+                  <span>Emails</span>
+                </div>
+                @endcan
               </div>
             </div>
           </div>
@@ -196,10 +243,18 @@ $missed_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->
           <div class="card-content">
             <div class="card-body">
               <div class="media d-flex">
+                @can('can-view-active-loans')
                 <div class="media-body text-left">
                 <h3><a href="{{route('active_loans')}}">{{\App\Models\web_loan_application::where('approved',"=",1)->count()}}</a></h3>
                   <span>Active Loans</span>
                 </div>
+@else
+<div class="media-body text-left no-permission">
+                <h3><a href="{{route('active_loans')}}">{{\App\Models\web_loan_application::where('approved',"=",1)->count()}}</a></h3>
+                  <span>Active Loans</span>
+                </div>
+
+@endcan
                 <div class="align-self-center">
                   <i class="fas fa-money font-large-2 float-right"></i>
                 </div>
@@ -213,10 +268,19 @@ $missed_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->
           <div class="card-content">
             <div class="card-body">
               <div class="media d-flex">
+@can('can-view-pending-loans')
                 <div class="media-body text-left">
                 <h3><a href="{{route('pending_loans')}}">{{\App\Models\web_loan_application::where('approved',"=",2)->count()}}</a></h3>
                   <span>Pending Loans</span>
                 </div>
+@else
+<div class="media-body text-left no-permission">
+                <h3><a href="{{route('pending_loans')}}">{{\App\Models\web_loan_application::where('approved',"=",2)->count()}}</a></h3>
+                  <span>Pending Loans</span>
+                </div>
+
+
+@endcan
                 <div class="align-self-center">
                   <i class="fas fa-dollar-sign success font-large-2 float-right"></i>
                 </div>
@@ -231,10 +295,21 @@ $missed_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->
           <div class="card-content">
             <div class="card-body">
               <div class="media d-flex">
+
+@can('can-view-denied-loans')
                 <div class="media-body text-left">
                 <h3><a href="{{route('active_loans')}}">{{\App\Models\web_loan_application::where('approved',"=",3)->count()}}</a></h3>
                   <span>Denied Loans</span>
                 </div>
+@else
+<div class="media-body text-left no-permission">
+                <h3><a href="{{route('active_loans')}}">{{\App\Models\web_loan_application::where('approved',"=",3)->count()}}</a></h3>
+                  <span>Denied Loans</span>
+                </div>
+
+
+@endcan
+
                 <div class="align-self-center">
                   <i class="fas fa-ban warning font-large-2 float-right"></i>
                 </div>
@@ -322,8 +397,8 @@ $missed_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->
 
 </div>
 <!--Charts For Total Funds Disbursed-->
-
-<div class="row">
+@can('can-view-charts')
+<div class="row no-permission">
   <div class="col-xl-6">
     <div class="">
         {!! $chart->container() !!}
@@ -338,14 +413,39 @@ $missed_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->
 
 
 
-  <div class="row">
+  <div class="row no-permission">
   <div class="col-12">
     <div class="">
         {!! $registered_users->container() !!}
     </div>
     </div>
   </div>
-  
+  @else
+
+  <div class="row no-permission">
+  <div class="col-xl-6">
+    <div class="">
+        {!! $chart->container() !!}
+    </div>
+    </div>
+
+    <div class="col-xl-6">
+    <div class="">
+        {!! $chart_collections->container() !!}
+    </div>
+    </div>
+
+
+
+  <div class="row no-permission">
+  <div class="col-12">
+    <div class="">
+        {!! $registered_users->container() !!}
+    </div>
+    </div>
+  </div>
+
+  @endcan
 
 
   <script src="{{ $chart->cdn() }}"></script>

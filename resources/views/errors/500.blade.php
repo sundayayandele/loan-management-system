@@ -102,7 +102,7 @@
 		<div role="main" class="main">
 			<?php $messages = array('We need a map.', 'I think we\'re lost.', 'We took a wrong turn.'); ?>
 
-			<h1>Unauthorized</h1>
+			<h1>Server Error</h1>
 
 			<h2>Server Error: 500 (Server Error )</h2>
 
