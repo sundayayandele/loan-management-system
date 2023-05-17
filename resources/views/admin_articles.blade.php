@@ -398,7 +398,7 @@ $missed_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->
 </div>
 <!--Charts For Total Funds Disbursed-->
 @can('can-view-charts')
-<div class="row no-permission">
+<div class="row">
   <div class="col-xl-6">
     <div class="">
         {!! $chart->container() !!}
@@ -413,7 +413,7 @@ $missed_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->
 
 
 
-  <div class="row no-permission">
+  <div class="row">
   <div class="col-12">
     <div class="">
         {!! $registered_users->container() !!}
@@ -421,6 +421,9 @@ $missed_payments = \App\Models\transactionHistory::where('balance_due',">",0 )->
     </div>
   </div>
   @else
+
+
+  
 
   <div class="row no-permission">
   <div class="col-xl-6">

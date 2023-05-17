@@ -155,7 +155,7 @@
 
 
 					@can('can-view-pending-loans')
-					<li class="sidebar-item no-permission">
+					<li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('pending_loans')}}">
               <i class="align-middle fas fa-clock-o" ></i> <span class="align-middle" style="color:white">Pending Loans</span>
             </a>					

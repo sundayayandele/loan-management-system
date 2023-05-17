@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\reg_employee_mst;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Gate;
+
 use DataTables;
 use DateTime;
 class RegisteredUsersController extends Controller
@@ -75,14 +77,30 @@ public function all_users(Request $request){
             ->addColumn('created_at', function($data){
                 return date('d,F-Y',strtotime($data->created_dt));
             })  
-
-            ->addColumn('action', function($data){
+            
+            ->addColumn('action', function ($data) {
                 $btn = "<div class='table-actions'>
-                <a href='".route('users.show',['user'=>$data->employee_id])."' class='show-employee cursure-pointer'><i class='fas fa-eye text-primary'></i></a>
-                <a href='".route("users.edit",['user'=>$data->employee_id])."'><i class='fas fa-pencil text-dark'></i></a>
-                <a data-bs-toggle='modal' data-bs-target='#delete-modal' href='".route("users.destroy",['user'=>$data->employee_id])."' class='delete-link'>&#x1F5D1;</a>
-                </div>";
+                    <a href='" . route('users.show', ['user' => $data->employee_id]) . "' class='show-employee cursure-pointer'><i class='fas fa-eye text-primary'></i></a>";
+            
+                if (Gate::allows('can-edit-registered-users')) {
+                    $btn .= "<a href='" . route('users.edit', ['user' => $data->employee_id]) . "'><i class='fas fa-pencil text-dark'></i></a>";
+                }
+                else{
+                    $btn .= "<div class='no-permission'><i class='fas fa-pencil text-dark'></i></div>";    
+                }
+            
+                if (Gate::allows('can-delete-registered-users')) {
+                    $btn .= "<a data-bs-toggle='modal' data-bs-target='#delete-modal' href='" . route('users.destroy', ['user' => $data->employee_id]) . "' class='delete-link'>&#x1F5D1;</a>";
+                }
+                else{
+                    
+                    $btn .= "<div class='no-permission'>&#x1F5D1;</div>";  
+                }
+            
+                $btn .= "</div>";
+            
                 return $btn;
+            
         }) 
             
             ->rawColumns(['first_name','last_name','mannumber','nrc','dob','gender','marital_status','email','phone','net_salary','company_id','bank_id','bank_branch_id','bank_account_number','bank_account_name','created_at','action'])
