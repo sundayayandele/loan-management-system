@@ -488,68 +488,9 @@ public function message(){
 
 
 
-/**
-     * Here follows the actions to be peformed by the Clients & Admin Sometimes
-     * Check Your Profile  
-     * 
-     * 
-     * @param  \App\Http\Requests\Auth\LoginRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */   
-
- 
-public function profileclient($id){
-    $profileclient=reg_employee_mst::find(decrypt($id));
-    return view('profileclient')->with("profileclient",$profileclient);
-   
-  
-} 
-
-
-
-
 
 /**
-     * Here follows the actions to be peformed by the Clients & Admin Sometimes
-     * Submit Your Profile Picture  
-     * 
-     * 
-     * @param  \App\Http\Requests\Auth\LoginRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-
-
-
-public function profilepictureclient(Request $request,$id){
-    $validate=validator::make($request->all(),[
-        'profilepicture'=>'required|mimes:jpg,jpeg,png|max:10200',
-                     
-    ]);
-
-   if ($validate->fails()){
-    return Redirect::back()->withErrors($validate)->withInput();
-   }
-   
-       else{
-        $profilepicture=reg_employee_mst::find(decrypt($id));
-        $profilepicture->profilepic=$request->profilepicture->store('profilepicture');
-       
-       ## Save profile picture
-       $profilepicture->save();
-       toast('Profile picture set Successfully!','success');
-       return redirect('dashboard');
-       
-     }
-    }  
-
-
-
-
-
-
-
-/**
-     * Here follows the actions to be peformed by the Client 
+     * Here follows the actions to be peformed by the Admin 
      * Loan Analysis  
      * 
      * 
@@ -588,53 +529,6 @@ return view('Settlements.download');
   
   
 } 
-
-
-
-
-
-
-
-
-
-
-## Loan Analytics Customer Profile View 
-    
-public function analytics(Request $request,$id){
-    
-    $loan_profile = reg_employee_mst::find(decrypt($id));
-    $email = preg_replace("/(?!^).(?=[^@]+@)/", "*",$loan_profile->email);
-    $phone = substr($loan_profile->phone,0,-6).str_repeat('*',4).substr($loan_profile->phone,8);
-    $bank_account_no = substr($loan_profile->bank_account_no,0,-6).str_repeat('*',4).substr($loan_profile->bank_account_no,8);
-    $nrc = substr($loan_profile->nrc,0,-4).str_repeat('*',4).substr($loan_profile->nrc,6);
-   
-   ## Checking Loan Status
-   $loan_s = web_loan_application::where('employee_id',"=",decrypt($id))->first();
-   
-
-   
-   if (is_null($loan_profile) || is_null($loan_s)){
-
-    toast('You need to apply for a Loan First!','error');
-    return redirect('dashboard');
-
-
-    
-    }
-
-else{
-    $loan_status = $loan_s->approved;
-return view("results_analytics",compact("loan_profile","email","phone","nrc","loan_status","bank_account_no"));
-
-}
-
-}
-
-
-
-
-
-
 
 /**
      * Here follows the actions to be peformed by the Admin

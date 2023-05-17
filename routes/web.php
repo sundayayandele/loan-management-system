@@ -19,6 +19,7 @@ use App\Http\Controllers\IncomingPaymentsController;
 use App\Http\Controllers\TodaysPaymentsController;
 use App\Http\Controllers\MissedPaymentsController;
 use App\Http\Controllers\AdminsProfileController;
+use App\Http\Controllers\CustomerProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,74 +31,10 @@ use App\Http\Controllers\AdminsProfileController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-## Call the personal details blade
-Route::get('/personaldetails_blade', [loanapp::class, 'personaldetails_blade'])
-                ->middleware('auth')->name('personaldetails_blade');
-
-
-## personaldetails route submit   
-Route::post('kyc_personaldetails/{id}', [loanapp::class, 'personaldetails'])
-                ->middleware('auth')->name('personaldetails');
-
-
-## Call the next of kin Blade
-Route::get('/nextofkindetails', function(){
-    return view('nextofkindetails'); 
-})->middleware('auth')->name('nextofkindetails');    
-
-
-## nextofkindetails route submit   
-Route::post('kyc_nextofkindetails/{id}', [loanapp::class, 'nextofkindetails'])
-                ->middleware('auth')->name('nextofkind');
-
-
-## Call the Bank details Blade
-Route::get('/bankdetails', function(){
-    return view('bankdetails'); 
-})->middleware('auth')->name('bankdetails'); 
-
-
-
-
 ## Call the signature View
 Route::get('/signature', function(){
     return view('ClientSignature.create'); 
 })->middleware('auth');//->name('signature'); 
-
-
-
-
-## bankdetails route submit   
-Route::post('bankdetails/{id}', [loanapp::class, 'bankdetails'])
-                ->middleware('auth')->name('bank_submit');
-
-
-## Call the employer details Blade
-Route::get('/employerdetails', function(){
-    return view('employerdetails'); 
-})->middleware('auth')->name('employerdetails');                 
-
-
-
-## Employer route submit   
-Route::post('employerdetails/{id}', [loanapp::class, 'employerdetails'])
-                ->middleware('auth')->name('employerdetails_submit');
-
-
-
-                
-## Call the attatchments details Blade
-Route::get('/attatchments', function(){
-    return view('attatchments'); 
-})->middleware('auth')->name('attatchments');   
-
-
-
-## Attatchments route submit   
-Route::post('attatchments/{id}', [loanapp::class, 'attatchments'])
-                ->middleware('auth')->name('attatchments_submit');
-
 
 
 
@@ -111,21 +48,15 @@ Route::get('checkpayments', [loanapp::class, 'checkpaymentstatus'])
                 ->middleware('auth')->name('checkpayments');
 
 
-
-## Articles submission by admin
-Route::post('/articles', [loanapp::class, 'admin_articles'])
-->middleware('auth')->name("admin_articles");
-
-
-    
-
 ## Get all clients and potential clients who subscribed for the email subscription to
 ## be recieving updates from the System (ADMIN ONLY)
 Route::get('/emailsub', [loanapp::class, 'emailsub'])
-->middleware('auth','admin')->name("emailsub");
+->middleware('auth', 'permission:can-view-emails')->name("emailsub");
+
 
 ## Retrieve all emails via AJAX 
 Route::get('/emails-all', [loanapp::class, 'all_emails'])
+->middleware('auth','permission:can-view-emails')
 ->name('all_emails'); 
 
 
@@ -135,35 +66,15 @@ Route::post('/add_messages', [loanapp::class, 'add_message'])
 
 ## Read Clients Messages and queries which were sent from the Web (ADMIN ONLY)
 Route::get('/messages', [loanapp::class, 'message'])
-->middleware('admin','auth')->name("messages");
+->middleware('auth','permission:can-view-messages')->name("messages");
 
 ## Retrieve all messages via AJAX 
 Route::get('/messages-all', [loanapp::class, 'all_messages'])
+middleware('auth','permission:can-view-messages')
 ->name('all_messages');
 
 
-## profile client  
-Route::get('profileclient/{id}', [loanapp::class, 'profileclient'])
-                ->middleware('auth')->name('profilec');
-
-
-
-                
- ## Show profile picture route client  
-Route::get('/profilepictureclient', function () {
-    return view('profilepictureclient');
-})->middleware('auth')->name("profilepictureclient_view");
-
-
-
-## Show profile picture route submit client  
-Route::post('profilepictureclient/{id}', [loanapp::class, 'profilepictureclient'])
-->middleware('auth')->name('profilepictureclient');
-
-
-
-
-                              
+                           
 ## Loan Application
 Route::get('application/{id}', [loanapp::class, 'loanapplication'])
 ->middleware('auth')->name('loanapplication');
@@ -179,39 +90,21 @@ Route::get('settlements_forms_downloads', [loanapp::class, 'settlements_forms_do
 ->middleware('auth')->name('settlements_forms_downloads');
 
                       
-## Loan Analysis View Armotization 
+## Settlements Forms View 
 Route::get('settlement_forms', [loanapp::class, 'settlement_forms'])
 ->middleware('auth')->name('settlement_forms');
 
-                        
-
-
-
                   
-## Loan Customer Profile 
-Route::get('customer_profile/{id}', [loanapp::class, 'analyticsView'])
-->middleware('auth')->name('analyticsView');
-
-## Loan Analytics Customer Profile Submit
-Route::post('analytics_route/{id}', [loanapp::class, 'analytics'])
-->middleware('auth')->name('analytics');
-
 
 ## Collections view
 Route::get('/collectionsView', function(){
 return view("collectionsView");
 })->middleware('auth')->name('collectionsView'); 
 
+
 ## Collections Post
 Route::post('/collectionsPost', [loanapp::class, 'collectionsPost'])
 ->middleware('auth')->name("collectionsPost");
-
-
-## articles and updates route to controller
-Route::get('/articles', [loanapp::class, 'articles_view']);
-
-
-
 
                               
 ## Loan Application
@@ -227,110 +120,121 @@ Route::post('/loanapplication/{id}', [loanapp::class, 'loanSubmit'])
 
 ## Loan Applications Review (ADMINS ONLY)
 Route::get('review', [loanapp::class, 'review'])
-->middleware('auth','admin')->name('review');
-
+->middleware('auth','permission:can-approve-loan-applications')->name('review');
 
 
 
 ##Loan Applications - Review Verfied Loans (ADMINS ONLY)
 Route::get('reviewed_loans', [loanapp::class, 'reviewed_loans'])
-->middleware('auth','admin')->name('reviewed_loans');
+->middleware('auth','permission:can-approve-loan-applications')->name('reviewed_loans');
 
 
 
 ## Loan Applications - Approve (ADMINS ONLY)
 Route::post('approve_or_denie', [loanapp::class, 'approve'])
-->middleware('auth','admin')->name('approve_or_denie');
+->middleware('auth','permission:can-approve-loan-applications')->name('approve_or_denie');
 
 
     
 ## Regisered Users - CRUD - (ADMINS ONLY)
 Route::resource('users', RegisteredUsersController::class)
-->middleware('auth','admin');     
+->middleware('auth','permission:can-view-registered-users');     
+
 
 ## Retrieve all registeeed users via AJAX 
 Route::get('/users-all', [RegisteredUsersController::class, 'all_users'])
+->middleware('auth','permission:can-view-registered-users')
 ->name('all_users'); 
 
 
 ## Active Loans
 Route::get('active-loans', [ActiveLoansController::class,'index'])
-->middleware('auth')     
+->middleware('auth','permission:can-view-active-loans')     
 ->name('active_loans');
+
+
 ## Retrieve all active loans via AJAX 
 Route::get('/active-all', [ActiveLoansController::class, 'active_loans'])
+->middleware('auth','permission:can-view-active-loans')
 ->name('all_active_loans'); 
 
 
 ## Denied Loans
 Route::get('denied-loans', [DeniedLoansController::class,'index'])
-->middleware('auth')     
+->middleware('auth','permission:can-view-denied-loans')     
 ->name('denied_loans');
+
+
 ## Retrieve all denied loans via AJAX 
 Route::get('/denied-all', [DeniedLoansController::class, 'denied_loans'])
+->middleware('auth','permission:can-view-denied-loans')
 ->name('all_denied_loans'); 
 
 
 
 ## Pending Loans
 Route::get('pendng-loans', [PendingLoansController::class,'index'])
-->middleware('auth')     
+->middleware('auth','permission:can-view-pending-loans')     
 ->name('pending_loans');
+
+
 ## Retrieve all pending loans via AJAX 
 Route::get('/pending-all', [PendingLoansController::class, 'pending_loans'])
+->middleware('auth','permission:can-view-pending-loans')
 ->name('all_pending_loans'); 
 
 
 ## Update Payments - CRUD - (ADMINS ONLY)
 Route::resource('payments', PaymentsController::class)
-->middleware('auth','admin');  
+->middleware('auth','permission:can-make-payments-update');  
 
-## Update Settlements - CRUD - (ADMINS ONLY)
+
+## Update Settlements
 Route::resource('settlements', UploadSettlementsFormsController::class)
-->middleware('auth','admin');  
+->middleware('auth','permission:can-upload-settlements-forms');  
 
-## Roles - CRUD - (ADMINS ONLY)
+## Roles
 Route::resource('roles', RolesController::class)
-->middleware('auth','admin');  
+->middleware('auth','permission:can-add-roles');  
 
 
-## Assign Permissions To Users - CRUD - (ADMINS ONLY)
+## Assign Permissions To Roles
 Route::resource('roles_permissions', RolesToPermissions::class)
-->middleware('auth','admin');  
+->middleware('auth','permission:can-give-permissions');  
 
 
-## Assign Roles To Users - CRUD - (ADMINS ONLY)
+## Assign Roles To Users
 Route::resource('roles_users', RolesUsersController::class)
-->middleware('auth','admin'); 
+->middleware('auth','permission:can-give-roles-to-users'); 
 
 
 ## Show View For Revoking Roles From Users - (ADMINS ONLY)
 Route::get('roles_users_remove', [RolesUsersController::class,'remove'])
-->middleware('auth','admin')
+->middleware('auth','permission:can-revoke-roles')
 ->name('roles_users.remove'); 
 
 
 ## Revoke Roles From Users - (ADMINS ONLY)
 Route::post('roles_users_revoke', [RolesUsersController::class,'revoke'])
-->middleware('auth','admin')
+->middleware('auth','permission:can-revoke-roles')
 ->name('roles_users.revoke'); 
 
 
 
 ## Loan Approvals - DLO
 Route::resource('loan_approvals', LoanApprovalsController::class)
-->middleware('auth');  
+->middleware('auth','permission:dlo');  
 
 
 ## Reminders Notification
 Route::resource('reminders', RemindersController::class)
-->middleware('auth'); 
+->middleware('auth','permission:can-send-text'); 
 
 
 
 ## Download Compressed Loan Agreement Forms
 Route::get('downloading_loan_agreement_forms', [loanapp::class,'downloadZip'])
-->middleware('auth')
+->middleware('auth','permission:can-view-loan-agreement-forms')
 ->name('downloading_loan_agreement_forms'); 
 
 
@@ -354,7 +258,7 @@ Route::get('terms_private/{loan_number}', [loanapp::class,'terms_private'])
 
 ## Export
 Route::get('/export_borrower', [loanapp::class,'export_borrower'])
-->middleware('auth')
+->middleware('auth','permission:can-export-borrower')
 ->name('export_borrower'); 
 
 
@@ -371,8 +275,11 @@ Route::post('verify_loan_application', [loanapp::class,'verify_loan_application'
 Route::get('loan-history', [LoanHistoryController::class,'index'])
 ->middleware('auth')     
 ->name('loan_history');
-## Retrieve all denied loans via AJAX 
+
+
+## Retrieve all loans via AJAX 
 Route::get('/all_applied_loans', [LoanHistoryController::class, 'loan_history'])
+->middleware('auth')
 ->name('all_applied_loans'); 
 
 
@@ -396,25 +303,25 @@ Route::get('contact', function(){
 
 ## get all permissions for the user, either directly, or from roles, or from both
 Route::get('view_all_permissions', [RolesUsersController::class,'show_all_permissions_from_a_user'])
-->middleware('auth','admin')
+->middleware('auth','permission:can-check-permissions')
 ->name('view_all_permissions');  
 
 
 ## get all permissions via Ajax
 Route::get('get_all_permissions', [RolesUsersController::class,'get_all_permissions_from_a_user'])
-->middleware('auth','admin')
+->middleware('auth','permission:can-check-permissions')
 ->name('get_all_permissions');  
 
 
 ## get all incoming payments in 10 days
 Route::get('incoming_payments', [IncomingPaymentsController::class,'index'])
-->middleware('auth','admin')
+->middleware('auth','permission:can-check-incoming-payments')
 ->name('incoming_payments');  
 
 
 ## get all incoming payments via Ajax
 Route::get('all_incoming_payments', [IncomingPaymentsController::class,'incoming_payments'])
-->middleware('auth','admin')
+->middleware('auth','permission:can-check-incoming-payments')
 ->name('all_incoming_payments');  
 
 
@@ -422,46 +329,66 @@ Route::get('all_incoming_payments', [IncomingPaymentsController::class,'incoming
 
 ## get todays payments
 Route::get('todays_payments', [TodaysPaymentsController::class,'index'])
-->middleware('auth','admin')
+->middleware('auth','permission:can-check-todays-payments')
 ->name('todays_payments');  
 
 
 ## get all todays payments via Ajax
 Route::get('all_todays_payments', [TodaysPaymentsController::class,'todays_payments'])
-->middleware('auth','admin')
+->middleware('auth','permission:can-check-todays-payments')
 ->name('all_todays_payments');  
 
 
 
 ## get missed payments
-Route::get('issed_payments', [MissedPaymentsController::class,'index'])
-->middleware('auth','admin')
+Route::get('missed_payments', [MissedPaymentsController::class,'index'])
+->middleware('auth','permission:can-check-missed-payments')
 ->name('missed_payments');  
 
 
 ## get all missed payments via Ajax
 Route::get('all_missed_payments', [MissedPaymentsController::class,'missed_payments'])
-->middleware('auth','admin')
+->middleware('auth','permission:can-check-missed-payments')
 ->name('all_missed_payments');  
 
 
 ## Admins Profile
 Route::get('admins_profile', [AdminsProfileController::class,'index'])
-->middleware('auth','admin')
+->middleware('auth','permission:can-check-their-profile')
 ->name('admin_profile');  
 
 
 ## Admin Change Password
 Route::get('admin_change_password', [AdminsProfileController::class,'create'])
-->middleware('auth','admin')
+->middleware('auth','permission:can-change-their-password')
 ->name('admin_change_password');  
 
 
 
 ## Admin Store Password
 Route::post('admin_store_password', [AdminsProfileController::class,'store'])
-->middleware('auth','admin')
+->middleware('auth','permission:can-change-their-password')
 ->name('admin_store_password');  
+
+
+
+## Customers Profile
+Route::get('customers_profile', [CustomerProfileController::class,'index'])
+->middleware('auth')
+->name('customer_profile');  
+
+
+## Customer Change Password
+Route::get('customer_change_password', [CustomerProfileController::class,'create'])
+->middleware('auth')
+->name('customer_change_password');  
+
+
+
+## Customer Store Password
+Route::post('customer_store_password', [CustomerProfileController::class,'store'])
+->middleware('auth')
+->name('customer_store_password');  
 
 
 

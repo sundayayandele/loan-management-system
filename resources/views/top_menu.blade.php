@@ -4,18 +4,13 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
-	<meta name="author" content="AdminKit">
-	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
-<!-- Latest compiled and minified CSS -->
+	<meta name="description" content="Get affordable and accessible microfinance solutions. We offer low-interest loans for civil servants, private individuals, and auto loans. Our flexible loan products come with competitive rates and personalized customer service to help you achieve your financial goals. Apply online today!">
+	<meta name="keywords" content="Micronfin,Loans,Civil servants loans,Private loans,Autoloans,Low interest rates,Financial services,Microfinance,Quick loans,Personal loans,Business loans,Flexible repayment plans,Fast approval,Customer service.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <!-- Favicon -->
 <link href="{{asset('landing_page/img/apple-touch-icon.png')}}" rel="shortcut icon"/>
-
-<!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <!--Fontawesome--> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -32,11 +27,6 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<!--Fontawsome--> 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<!--End fontawesome-->
-
-<!--date picker library--> 
 
 
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -48,8 +38,7 @@
 
 	<link href="{{asset('dashboardassets/css/app.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+	
 </head>
 
 <body>
@@ -74,7 +63,7 @@
 
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="{{route('profilec', encrypt(Auth::user()->employee_id))}}">
+						<a class="sidebar-link" href="{{route('customer_profile')}}">
               <i class="fas fa-user" ></i> <span class="align-middle" style="color:white">Personal Profile</span>
             </a>
 					</li>
@@ -167,7 +156,7 @@
 </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<!--Profile Route-->
-                                <a class="dropdown-item" href="{{route('profilec', encrypt(Auth::user()->employee_id))}}">
+                                <a class="dropdown-item" href="{{route('customer_profile')}}">
               <i class="align-middle fas fa-user" ></i> <span class="align-middle"> Personal Profile</span>
             </a>	
 								<!--End profile route-->	
@@ -176,7 +165,7 @@
 
 							
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="{{route('password.request')}}"><i class="align-middle me-1" data-feather="settings"></i> Change password</a>
+								<a class="dropdown-item" href="{{route('customer_change_password')}}"><i class="align-middle me-1 fas fa-lock"></i> Change password</a>
                                 <hr>
 								<form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -184,7 +173,8 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+												<button class="btn btn-danger">Log Out</button>
+                                
                             </x-dropdown-link>
                         </form>
 

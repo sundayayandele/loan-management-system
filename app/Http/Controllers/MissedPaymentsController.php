@@ -37,12 +37,12 @@ class MissedPaymentsController extends Controller
             $currentDate = Carbon::now();
             
             // Calculate the date 10 days from now
-            $tenDaysFromNow = $currentDate->addDays(10);
+            $tenDaysFromNow = $currentDate->subDays(10);
 
 
 
 
-            $data = transactionHistory::where('balance_due',">",0 )->where('updated_at', '<=', $tenDaysFromNow)->get();
+            $data = transactionHistory::where('balance_due',">",0 )->where('updated_at', '>=', $tenDaysFromNow)->get();
             
             //
 
