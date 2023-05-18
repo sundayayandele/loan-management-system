@@ -821,9 +821,12 @@ public function collectionsPost(Request $request){
 
 if ($airtelTokenAccessAttempt->status() != 200) {
 
+            toast('Service unavailable! Transaction Failed','error');
+            return redirect()->back();  
     
-return "This system uses airtel Mobile Money API (https://developers.airtel.africa/login) for testing transactions
-in collecting funds from customers. Now it seems you have not configured any API's in `config -> airtelMoMoAPI` and in `.env`";
+
+//return "This system uses airtel Mobile Money API (https://developers.airtel.africa/login) for testing transactions
+//in collecting funds from customers. Now it seems you have not configured any API's in `config -> airtelMoMoAPI` and in `.env`";
     }
      else {
 
