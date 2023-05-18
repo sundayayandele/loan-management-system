@@ -46,7 +46,8 @@ class PaymentsController extends Controller
             'loan_number' => 'required|exists:web_loan_applications',
             'loan_amount' => 'required|numeric',
             'transaction_id' => 'required|string|unique:transaction_histories',
-            'payment_method' => 'required|string'
+            'payment_method' => 'required|string',
+            'reference_number' => 'required|string',
             
         ]);
 
@@ -61,6 +62,7 @@ class PaymentsController extends Controller
         'loan_amount' => $request->loan_amount,
         'payment_method' => $request->payment_method,
         'transaction_id' => $request->transaction_id,
+        'reference_number' => $request->reference_number,
         'user_id' => auth()->user()->employee_id,
     ]);
 

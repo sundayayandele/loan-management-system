@@ -28,6 +28,13 @@
     @enderror
   </div>
   <div class="form-group">
+    <label for="Reference-Number">Reference-Number<small class="text-danger">*</small></label>
+    <input type="text" value="{{ old('reference_number') }}" name="reference_number" class="form-control @error('reference_number') is-invalid @enderror" placeholder="Reference-Number">
+    @error('reference_number')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+  </div>
+  <div class="form-group">
   
                           <label for="payment_method">Payment Method<small class="text-danger">*</small></label>
                           <select value="{{ old('payment_method') }}" class="form-control @error('payment_method') is-invalid @enderror" name="payment_method" id="is_active" name="is_active">

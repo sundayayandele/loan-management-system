@@ -262,14 +262,14 @@ public function transaction_histories(Request $request){
     
    // $checkpayments=transactionHistory::where('transaction_id',"=",decrypt($id))->paginate(2);
         
-         $data = transactionHistory::where('transaction_id',"=",auth()->user()->nrc)->get();
+         $data = transactionHistory::where('reference_number',"=",auth()->user()->nrc)->get();
          return Datatables::of($data)
              ->addIndexColumn()  
              ->addColumn('loan_number', function($data){
                 return $data->loan_number;
             })  
              ->addColumn('loan_amount', function($data){
-                 return $data->loan_type;
+                 return $data->loan_amount;
              })   
              ->addColumn('message', function($data){
                 return $data->message;
