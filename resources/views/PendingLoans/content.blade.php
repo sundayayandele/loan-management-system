@@ -55,9 +55,7 @@
             {data: 'loan_amount', name: 'loan_amount'},
             {data: 'payment_mode', name: 'payment_mode'},
             {data: 'mobile_money_number', name: 'mobile_money_number'},
-            {data: 'mobile_money_name', name: 'mobile_money_name'},
-
-           
+            {data: 'mobile_money_name', name: 'mobile_money_name'},           
             {data: 'created_at', name: 'created_at'},
             
            
@@ -66,7 +64,7 @@
                    {
                        extend: 'pdf',
                        exportOptions: {
-                           columns: [0,1,2,3,4,5,6,7,8,9,10,11] // Column index which needs to export
+                           columns: [0,1,2,3,4,5,6,7,8,9,10] // Column index which needs to export
                        },
                        customize: function (doc) {
             doc.defaultStyle.fontSize = 10;
@@ -83,7 +81,7 @@
                    {
                        extend: 'csv',
                        exportOptions: {
-                           columns: [0,1,2,3,4,5,6,7,8,9,10,11] // Column index which needs to export
+                           columns: [0,1,2,3,4,5,6,7,8,9,10] // Column index which needs to export
                        },
                        className: 'btn btn-info',
         text: '<i class="fa fa-file-excel"></i> Export as CSV',
@@ -93,7 +91,7 @@
                    {
                        extend: 'excel',
                        exportOptions: {
-                           columns: [0,1,2,3,4,5,6,7,8,9,10,11] // Column index which needs to export
+                           columns: [0,1,2,3,4,5,6,7,8,9,10] // Column index which needs to export
                        },
                        className: 'btn btn-primary',
         text: '<i class="fa fa-file-excel"></i> Export as EXCEL',
@@ -103,7 +101,7 @@
                    {
                        extend: 'print',
                        exportOptions: {
-                           columns: [0,1,2,3,4,5,6,7,8,9,10,11] // Column index which needs to export
+                           columns: [0,1,2,3,4,5,6,7,8,9,10] // Column index which needs to export
                        },
                        className: 'btn btn-secondary',
         text: '<i class="fa fa-print"></i> Print',

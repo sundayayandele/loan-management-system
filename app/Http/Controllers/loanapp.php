@@ -582,7 +582,7 @@ else{
 
 public function reviewed_loans(){
 
-    $status = Approvals::where('completed_by_admin', "=", 0)->exists();
+    $status = Approvals::where('completed_by_admin', "=", 0)->where('cfo_decision',"!=",0)->exists();
   
     if($status){
     $loan_status = Approvals::where('completed_by_admin', "=", 0)->where('cfo_decision', "=", 1)->orWhere('cfo_decision', "=", 4)->first();

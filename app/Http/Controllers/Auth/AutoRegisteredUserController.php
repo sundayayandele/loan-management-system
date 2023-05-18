@@ -41,7 +41,7 @@ class AutoRegisteredUserController extends Controller
     {
                
         $request->validate([
-            'loan_amt' => ['required', 'numeric'],
+            'loan_amt' => ['required', 'numeric','max:25000'],
             'tenure_months' => ['required', 'numeric'],
             'lower_facility_fee' => ['required', 'numeric'],
             'higher_facility_fee' => ['required', 'numeric'],
@@ -84,6 +84,7 @@ class AutoRegisteredUserController extends Controller
             'password' => ['required', 'confirmed',Rules\Password::defaults()],
         ],
         [
+            'loan_amt.max' => 'Loan amount for auto loans cannot exceed K25000 for first-time clients.',
             'dob.before' => 'The date of birth must be before 1st January 2005',
 			'email.unique' => "You are already a client, just Log In and apply.",
 			'phone.unique' => 'Only first time clients needs to do this. Returning clients just needs to log in and apply',

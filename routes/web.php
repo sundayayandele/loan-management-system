@@ -120,7 +120,7 @@ Route::post('/loanapplication/{id}', [loanapp::class, 'loanSubmit'])
 
 ## Loan Applications Review 
 Route::get('review', [loanapp::class, 'review'])
-->middleware('auth','permission:can-approve-loan-applications')->name('review');
+->middleware('auth','permission:cfo')->name('review');
 
 
 
