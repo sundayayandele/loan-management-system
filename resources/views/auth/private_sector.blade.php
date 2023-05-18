@@ -196,8 +196,8 @@ button:focus{
 <div class="form-group">
             <label for="name"> Loan Amount </label> <small class="text-danger">*</small>
 
-            <input class="form-control" value="{{ old('loan_amt') }}" type="number" onkeyup="calculateEMI()" id="amount" name="loan_amt"  />
-          
+            <input max="1000" class="form-control" value="{{ old('loan_amt') }}" type="number" onkeyup="calculateEMI()" id="amount" name="loan_amt"  />
+            <small class="text-danger">First time clients are limited to k1000 maximum</small>
         </div> 
 </div>
 
