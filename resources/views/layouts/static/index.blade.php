@@ -142,9 +142,9 @@
 </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<!--Profile Route-->
-					<a herf="{{route('customer_profile')}}" class="dropdown-item"><i class="align-middle me-1" data-feather="user" ></i>Personal profile</button>  
+					<a href="{{route('customer_profile')}}" class="dropdown-item"><i class="align-middle me-1" data-feather="user" ></i>Persona profile</button>  
 									 
-									</form>
+									
 								<!--End profile route-->	
 
 

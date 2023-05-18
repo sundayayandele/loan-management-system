@@ -126,7 +126,7 @@
 						Our chatbot is designed to help you easily apply for a loan online. Whether you're a civil servant, private sector employee, or looking for an auto loan, our chatbot is here to guide you through the process!
 						</div>
 						<div class="d-grid">
-							<a href="upgrade-to-pro.html" class="btn btn-primary">Chat-Bot</a>
+							<a href="" class="btn btn-primary">Chat-Bot</a>
 						</div>
 					</div>
 				</div>
@@ -194,83 +194,7 @@
 		
 
 
-<center>
-
- <!--Successs Application-->
- @if (session('status'))
-      <div class="alert alert-success w-75">
-         {!! session('status') !!}
-      </div>
-@endif
-
-
- <!--Successs KYC FORM Application-->
- @if (session('kyc'))
-      <div class="alert alert-success w-75">
-         {!! session('kyc') !!}
-      </div>
-@endif
-
-
-<!--If Multiple loan numbers are detected in the database-->
-@if (session('wrongloannumber'))
-      <div class="alert alert-danger w-75">
-         {!! session('wrongloannumber') !!}
-      </div>
-@endif
-
-
-
-<!--If KYC Invalid-->
-@if (session('invalidKYC'))
-      <div class="alert alert-danger w-75">
-         {!! session('invalidKYC') !!}
-      </div>
-@endif
-
-
-
-
-<!--Show KYC Form error if user tries to access loanAmortisation/analysis without submitting KYC-->
-@if (session('kycError'))
-      <div class="alert alert-danger w-75">
-         {!! session('kycError') !!}
-      </div>
-@endif
-
-
-
-<!--When a Client has a pending loan and tries to reapply (detected on bank method controller) -->
-@if (session('pendingb'))
-      <div class="alert alert-danger w-75">
-         {!! session('pendingb') !!}
-      </div>
-@endif
-
-
-
-<!--When a Client has a pending loan and tries to reapply (detected on loan method controller) -->
-@if (session('pendingl'))
-      <div class="alert alert-danger w-75">
-         {!! session('pendingl') !!}
-      </div>
-@endif
-
-
-
-<!--profilepicture set Successsfully-->
-@if (session('profilepicture'))
-      <div class="alert alert-success w-75">
-         {!! session('profilepicture') !!}
-      </div>
-@endif
-
-
-
-
-</center>
-
-					
+				
 
 
 <!--Check if the profile picture has been uploaded-->
