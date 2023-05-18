@@ -53,7 +53,8 @@ class AuthenticatedSessionController extends Controller
             if ($user->hasAnyRole()) {
                 return redirect()->intended(RouteServiceProvider::ADMIN);
             }
-                       
+           
+            
             else {   
 
                 //Log In the user to the Clients Dashboard now

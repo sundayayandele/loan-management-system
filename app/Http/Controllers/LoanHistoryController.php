@@ -62,7 +62,7 @@ public function loan_history(Request $request){
                 return $data->emi;
             }) 
             ->addColumn('created_at', function($data){
-                return date('j, F Y',strtootime($data->created_at));
+                return date('j, F Y',strtotime($data->created_at));
             })  
             
              
