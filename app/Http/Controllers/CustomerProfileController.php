@@ -34,7 +34,7 @@ class CustomerProfileController extends Controller
             $user_hashed_password->password = Hash::make($request->password);
             $user_hashed_password->save();
             toast('Your password has been changed successfully!','success');
-            return redirect()->route('admindashboard');
+            return redirect()->route('dashboard');
         } 
         
         else {
