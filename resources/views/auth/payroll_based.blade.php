@@ -196,7 +196,7 @@ button:focus{
 <div class="form-group">
             <label for="name"> Loan Amount </label> <small class="text-danger">*</small>
 
-            <input max="1000" class="form-control" value="{{ old('loan_amt') }}" type="number" onkeyup="calculateEMI()" id="amount" name="loan_amt"  />
+            <input class="form-control" value="{{ old('loan_amt') }}" type="number" onkeyup="calculateEMI()" id="amount" name="loan_amt"  />
           <small class="text-danger">First time clients are limited to k1000 maximum</small>
         </div> 
 </div>
@@ -662,18 +662,9 @@ button:focus{
  
  
  <div class="row">
-     <!-- NRC Number -->
-  <div class="col-lg-6">
- <div class="form-group">
-             <label for="Ministry"> Ministry </label> <small class="text-danger">*</small>
- 
-             <input class="form-control" type="text" id="ministry" value="{{ old('ministry') }}" name="ministry" required/>
-             </div> 
- 
- </div>
- 
+   
               <!-- Next of Kin Firstname -->
-              <div class="col-lg-6">
+              <div class="col-lg-12">
  <div class="form-group">
              <label for="Next of Kin First Name">Next of Kin First Name</label> <small class="text-danger">*</small>
  

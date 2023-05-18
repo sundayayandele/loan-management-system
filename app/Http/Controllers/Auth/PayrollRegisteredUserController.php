@@ -41,7 +41,7 @@ class PayrollRegisteredUserController extends Controller
     {
         
         $request->validate([
-            'loan_amt' => ['required', 'numeric'],
+            'loan_amt' => ['required', 'numeric','max:1000'],
             'tenure_months' => ['required', 'numeric'],
             'lower_facility_fee' => ['required', 'numeric'],
             'higher_facility_fee' => ['required', 'numeric'],
@@ -61,7 +61,7 @@ class PayrollRegisteredUserController extends Controller
             'ministry' => ['required', 'string'],
             'gross' => ['required','numeric','gte:net,basic'],
             'net' => ['required','numeric','lt:gross'],
-            'basic' => ['required','numeric','lt:gross'],
+            'basic' => ['required','numeric','lte:gross'],
             'bankname' => ['required', 'string','max:255'],
             'bank_branch' => ['required', 'string','max:255'],
             'account_name' => ['required', 'string','max:255'],
@@ -84,13 +84,14 @@ class PayrollRegisteredUserController extends Controller
             'password' => ['required', 'confirmed',Rules\Password::defaults()],
         ],
         [
+            'loan_amt.max' => 'Loan amount cannot exceed K1000 for first-time clients.',
             'dob.before' => 'The date of birth must be before 1st January 2005',
 			'email.unique' => "The Email address is aleady in use. You have already registered on our system. Just Log In and Apply",
             'nrc.unique' => "The NRC is aleady in use. You have already registered on our system. Just Log In and Apply.",
 			'phone.unique' => 'The Phone is aleady in use. You have already registered on our system. Juts Log In and Apply',
             'gross.gte' => 'The gross amount must be greater than or equal to basic or net',
             'net.lt' => 'The net amount must be less than gross',
-            'basic.lt' => 'The basic amount must be less than gross'
+            'basic.lte' => 'The basic amount must be less than or equal to gross'
 			
 		]);
 
