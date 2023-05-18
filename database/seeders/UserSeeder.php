@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
                 'firstname' => 'super-admin',
                 'lastname' => 'administrator',
                 'nrc' => '123456789',
+                'dob' => '10/10/1990',
                 'email' => 'admin@admin.com',
                 'password' => '$2y$10$dD8yarAAR8v75qt7ekre1utGJE7dA0PS2Ge5FLX9OkPxVBzMIBAcC', // test1234
                 'role' => 'super-admin'
@@ -35,6 +36,7 @@ class UserSeeder extends Seeder
                 'firstname' => 'chief financial officer',
                 'lastname' => 'cfo',
                 'nrc' => '123456189',
+                'dob' => '10/10/1990',
                 'email' => 'cfo@cfo.com',
                 'password' => '$2y$10$dD8yarAAR8v75qt7ekre1utGJE7dA0PS2Ge5FLX9OkPxVBzMIBAcC', // test1234
                 'role' => 'cfo'
@@ -44,6 +46,7 @@ class UserSeeder extends Seeder
                 'firstname' => 'divisional loan officer',
                 'lastname' => 'dlo',
                 'nrc' => '123456121',
+                'dob' => '10/10/1990',
                 'email' => 'dlo@dlo.com',
                 'password' => '$2y$10$dD8yarAAR8v75qt7ekre1utGJE7dA0PS2Ge5FLX9OkPxVBzMIBAcC', // test1234
                 'role' => 'dlo'
@@ -56,6 +59,7 @@ class UserSeeder extends Seeder
                 'lastname' => $user['lastname'],
                 'email' => $user['email'],
                 'nrc' => $user['nrc'],
+                'dob' => $user['dob'],
             ]);
 
             $new =  api_logins_mst::create([
