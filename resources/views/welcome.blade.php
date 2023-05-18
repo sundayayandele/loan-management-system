@@ -134,7 +134,9 @@
 		<!--Amount to Pay-->
 		<div style="color: white;font-family:cursive;">Interest Amount : K @{{InterestAmount}}</div>
 		
-		
+		 <!-- Service Fee -->
+	  
+		 <div style="color: aliceblue; font-family:cursive;">Service Fee : K 100 </div>
 		<!--Amount to pay -->
 	  
 	   <div style="color: aliceblue; font-family:cursive;">Total Amount To Pay : K @{{amountToPay}}</div>
@@ -224,7 +226,9 @@
 		
 		<!--Amount to Pay-->
 		<div style="color: white;font-family:cursive;">Interest Amount : K @{{InterestAmount}}</div>
-		
+		 <!-- Service Fee -->
+	  
+		 <div style="color: aliceblue; font-family:cursive;">Service Fee : K 100 </div>
 		
 		<!--Amount to pay -->
 	  
@@ -586,7 +590,7 @@ function group_loan(){
 					</div>
 					<div class="col-lg-6 order-lg-1">
 						<div class="feature-text">
-							<h2>Get aproved in minutes after you apply online</h2>
+							<h2>Get approved in minutes after you apply online</h2>
 							<p>You will get a quick loan approval decision through your portal and your email address which you used for creating your account on our system, so there is no wait for an answer.</p>
 							<a href="#" class="readmore">Login<img src="{{asset('landing_page/img/arrow.png')}}" alt=""></a>
 						</div>

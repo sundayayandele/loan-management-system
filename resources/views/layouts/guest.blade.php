@@ -33,17 +33,8 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<!--Fontawsome--> 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<!--End fontawesome-->
-
-<!--date picker library--> 
-
-
-
-
-
-
+<!-- Favicon -->
+<link href="{{asset('landing_page/img/apple-touch-icon.png')}}" rel="shortcut icon"/>
       <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
