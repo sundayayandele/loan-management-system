@@ -44,7 +44,7 @@ Please follow carefully the installation and use of this web framework of the Lo
 10 php artisan serve --port=8080
 
 Set up email notifications using [Mailtrap](https://mailtrap.io). Copy the mail credentials for your Laravel app from Mailtrap and update the corresponding settings in your `.env` file.
-
+```
 
 ## Credentials
 ```bash
