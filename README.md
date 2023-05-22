@@ -65,7 +65,7 @@ password: test1234
 
 ![Super Admin Dashboard](public/docs/loans1.PNG)
 ![Super Admin Dashboard](public/docs/loans2.PNG)
-![Super Admin Dashboard](public/docs/loans3.PNG)
+![Super Admin Dashboard](public/docs/Loans3.PNG)
 ![Clients Dashboard](public/docs/loans4.PNG)
 
 
