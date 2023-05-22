@@ -1,12 +1,6 @@
 
 ### Loan Management Software.
 
-![Super Admin Dashboard](http://localhost/loanmgtsystem/public/docs/loans1.PNG)
-![Super Admin Dashboard](http://localhost/loanmgtsystem/public/docs/loans2.PNG)
-![Super Admin Dashboard](http://localhost/loanmgtsystem/public/docs/loans3.PNG)
-![Clients Dashboard](http://localhost/loanmgtsystem/public/docs/loans4.PNG)
-
-
 ## Requirements
 
 - PHP >= 8.0
@@ -38,22 +32,18 @@ The Loan Management software is a web-based application that helps manage and tr
 Please follow carefully the installation and use of this web framework of the Loan Management System for better utilisation of it. Do not skip any stage.
 
 ```bash
-git clone https://github.com/chandachewe10/loanmgtsystem.git
-```
-
-1. Am assuming by now you have already cloned the repo using this url `https://github.com/chandachewe10/loanmgtsystem.git`
-2. Once cloned navigate to the root directory and open your CLI
-3. on your CLI run `composer install --no-scripts`
-4. run `copy .env.example .env`
-5. run `php artisan config:clear`
-6. run `php artisan cache:clear`
-7. run `php artisan key:generate`
-8. Now set up your database credentials in `.env` but do not migrate the tables yet
-9. This system consists of a parent table `reg_employee_mst` which contains a foreign id which the childrens table will be referencing and as such it must be migrated first before other tables are run. Hence migrate it first as:
+1. git clone https://github.com/chandachewe10/loanmgtsystem.git
+2. On your CLI run `composer install --no-scripts`
+3. run `copy .env.example .env`
+4. run `php artisan config:clear`
+5. run `php artisan cache:clear`
+6. run `php artisan key:generate`
+7. Now set up your database credentials in `.env` but do not migrate the tables yet
+8. This system consists of a parent table `reg_employee_mst` which contains a foreign id which the childrens table will be referencing and as such it must be migrated first before other tables are run. Hence migrate it first as:
 10.  
-```bash
+
 php artisan migrate --path=database/migrations/2022_01_31_191309_create_reg_employee_msts_table.php
-```
+
 
 11.  Now you can migrate other tables as usual:
 12. `php artisan migrate`
@@ -62,6 +52,7 @@ php artisan migrate --path=database/migrations/2022_01_31_191309_create_reg_empl
 15.  This system uses email notifications to send some requests to clients in testing. You can set up that at mailtrap:
 16. - [MALTRAP](https://mailtrap.io), Copy the mail credentials for Laravel app and put the codes in .`env`
 
+```
 
 ## Credentials
 ```bash
@@ -69,7 +60,7 @@ php artisan migrate --path=database/migrations/2022_01_31_191309_create_reg_empl
 nrc: 123456/78/9
 password: test1234
 
-2. Chief Financil Officer (CFO)
+2. Chief Financial Officer (CFO)
 nrc: 123456/18/9
 password: test1234
 
@@ -79,7 +70,10 @@ password: test1234
 
 
 ```
-
+![Super Admin Dashboard](public/docs/loans1.PNG)
+![Super Admin Dashboard](public/docs/loans2.PNG)
+![Super Admin Dashboard](public/docs/loans3.PNG)
+![Clients Dashboard](public/docs/loans4.PNG)
 
 
 
