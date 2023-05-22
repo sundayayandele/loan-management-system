@@ -89,13 +89,30 @@
             </a>					
 					</li>
 					@else
+                    
+       <li class="sidebar-item no-permission">
+                    <a class="sidebar-link" href="{{route('emailsub')}}">
+              <i class="align-middle fas fa-envelope" ></i> <span class="align-middle" style="color:white">Email Subscribers</span>
+            </a>					
+					</li>             
+                    
+         @endcan
+         
+         @can('can-view-messages')                   
 
 
-					<li class="sidebar-item no-permission">
+					<li class="sidebar-item">
 						<a class="sidebar-link" href="{{route('messages')}}">
               <i class="align-middle fas fa-sms" ></i> <span class="align-middle" style="color:white">Messages</span>
             </a>
 				</li>
+                
+                @else
+           <li class="sidebar-item no-permission">
+						<a class="sidebar-link" href="{{route('messages')}}">
+              <i class="align-middle fas fa-sms" ></i> <span class="align-middle" style="color:white">Messages</span>
+            </a>
+				</li>            
 
 @endcan
 
