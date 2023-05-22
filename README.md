@@ -33,7 +33,7 @@ Please follow carefully the installation and use of this web framework of the Lo
 
 ```bash
 1. git clone https://github.com/chandachewe10/loanmgtsystem.git
-2. `composer install --no-scripts`
+2. composer install --no-scripts
 3. copy .env.example .env
 4. php artisan config:clear
 5. php artisan cache:clear
