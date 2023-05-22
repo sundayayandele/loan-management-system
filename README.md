@@ -33,26 +33,18 @@ Please follow carefully the installation and use of this web framework of the Lo
 
 ```bash
 1. git clone https://github.com/chandachewe10/loanmgtsystem.git
-2. On your CLI run `composer install --no-scripts`
-3. run `copy .env.example .env`
-4. run `php artisan config:clear`
-5. run `php artisan cache:clear`
-6. run `php artisan key:generate`
-7. Now set up your database credentials in `.env` but do not migrate the tables yet
-8. This system consists of a parent table `reg_employee_mst` which contains a foreign id which the childrens table will be referencing and as such it must be migrated first before other tables are run. Hence migrate it first as:
-10.  
+2. `composer install --no-scripts`
+3. copy .env.example .env
+4. php artisan config:clear
+5. php artisan cache:clear
+6. php artisan key:generate
+7. php artisan migrate --path=database/migrations/2022_01_31_191309_create_reg_employee_msts_table.php
+8. php artisan migrate
+9. php artisan db:seed
+10 php artisan serve --port=8080
 
-php artisan migrate --path=database/migrations/2022_01_31_191309_create_reg_employee_msts_table.php
+Set up email notifications using [Mailtrap](https://mailtrap.io). Copy the mail credentials for your Laravel app from Mailtrap and update the corresponding settings in your `.env` file.
 
-
-11.  Now you can migrate other tables as usual:
-12. `php artisan migrate`
-13. `php artisan db:seed`
-14. `php artisan serve --port=8080`
-15.  This system uses email notifications to send some requests to clients in testing. You can set up that at mailtrap:
-16. - [MALTRAP](https://mailtrap.io), Copy the mail credentials for Laravel app and put the codes in .`env`
-
-```
 
 ## Credentials
 ```bash
@@ -68,8 +60,9 @@ password: test1234
 nrc: 123456/12/1
 password: test1234
 
-
 ```
+
+
 ![Super Admin Dashboard](public/docs/loans1.PNG)
 ![Super Admin Dashboard](public/docs/loans2.PNG)
 ![Super Admin Dashboard](public/docs/loans3.PNG)
