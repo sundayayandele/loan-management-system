@@ -1,12 +1,6 @@
 
 ### Loan Management Software.
 
-![Super Admin Dashboard](public/docs/loans1.PNG)
-![Super Admin Dashboard](public/docs/loans2.PNG)
-![Super Admin Dashboard](public/docs/loans3.PNG)
-![Clients Dashboard](public/docs/loans4.PNG)
-
-
 ## Requirements
 
 - PHP >= 8.0
@@ -79,7 +73,10 @@ password: test1234
 
 
 ```
-
+![Super Admin Dashboard](public/docs/loans1.PNG)
+![Super Admin Dashboard](public/docs/loans2.PNG)
+![Super Admin Dashboard](public/docs/loans3.PNG)
+![Clients Dashboard](public/docs/loans4.PNG)
 
 
 
